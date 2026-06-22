@@ -93,6 +93,7 @@ function App() {
   const handleLogout = () => {
     setUserRole(null);
     localStorage.removeItem('appUserRole');
+    localStorage.removeItem('apiKey');
     window.location.href = '/login';
   };
 
