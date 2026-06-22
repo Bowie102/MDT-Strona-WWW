@@ -18,7 +18,10 @@ function DutyLogs() {
   const fetchOfficers = () => {
     fetch(API_BASE_URL + '/api/officers')
       .then(res => res.json())
-      .then(data => setOfficers(data));
+      .then(data => {
+        const sorted = data.sort((a, b) => parseInt(a.badgeNumber || 0) - parseInt(b.badgeNumber || 0));
+        setOfficers(sorted);
+      });
   };
 
   const fetchLogs = () => {
@@ -29,10 +32,15 @@ function DutyLogs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Zamiana przecinka na kropkę do poprawnego parsowania float
+    let parsedHours = formData.hours.toString().replace(',', '.');
+    const dataToSend = { ...formData, hours: parsedHours };
+
     fetch(API_BASE_URL + '/api/duty', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(dataToSend)
     })
     .then(res => res.json())
     .then(() => {
@@ -83,8 +91,17 @@ function DutyLogs() {
             </div>
 
             <div className="form-group">
-              <label>Ilość Godzin (np. 2.5)</label>
-              <input type="number" step="0.5" min="0.5" className="form-control" required value={formData.hours} onChange={(e) => setFormData({...formData, hours: e.target.value})} />
+              <label>Ilość Godzin (np. 2.5 lub 2,5)</label>
+              <input 
+                type="text" 
+                className="form-control" 
+                required 
+                value={formData.hours} 
+                onChange={(e) => {
+                  let val = e.target.value.replace(/[^0-9.,]/g, '');
+                  setFormData({...formData, hours: val});
+                }} 
+              />
             </div>
 
             <div className="form-group">

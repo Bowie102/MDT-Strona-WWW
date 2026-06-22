@@ -150,7 +150,7 @@ function Dashboard() {
               <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '2rem', fontFamily: 'var(--font-mono)' }}>Brak logów w systemie.</p>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {logs.map((log) => {
+                {logs.slice(0, 10).map((log) => {
                   let badgeColor = '#64748b'; // default
                   let badgeText = log.type;
                   let borderLeft = '3px solid #64748b';

@@ -1,7 +1,7 @@
 import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { DollarSign, Download, Search } from 'lucide-react';
+import { DollarSign, Download, Search, Trash2 } from 'lucide-react';
 
 const PAY_RATES = {
   // LSPD
@@ -65,6 +65,38 @@ function Payroll({ isLoggedIn }) {
     });
   }, []);
 
+  const handleClearPayroll = async () => {
+    if (!window.confirm("UWAGA! Czy na pewno chcesz wyzerować wszystkie godziny ze służby? Tej operacji nie można cofnąć!")) return;
+    try {
+      const res = await fetch(API_BASE_URL + '/api/duty/clear', { method: 'DELETE' });
+      if (res.ok) {
+        alert("Pomyślnie wyzerowano wszystkie godziny!");
+        window.location.reload();
+      } else {
+        alert("Błąd podczas zerowania godzin.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Błąd połączenia z serwerem.");
+    }
+  };
+
+  const handleClearSingle = async (userId, name) => {
+    if (!window.confirm(`Czy na pewno chcesz wyzerować godziny funkcjonariusza: ${name}? Tej operacji nie można cofnąć!`)) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/duty/clear/${userId}`, { method: 'DELETE' });
+      if (res.ok) {
+        alert(`Pomyślnie wyzerowano godziny dla ${name}!`);
+        window.location.reload();
+      } else {
+        alert("Błąd podczas zerowania godzin pracownika.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Błąd połączenia z serwerem.");
+    }
+  };
+
   const filtered = payrollData.filter(off => 
     off.totalHours > 0 && 
     `${off.firstName} ${off.lastName} ${off.badgeNumber}`.toLowerCase().includes(searchTerm.toLowerCase())
@@ -110,13 +142,14 @@ function Payroll({ isLoggedIn }) {
       <div className="glass-card">
         <div className="table-container">
           {isLoggedIn && (
-            <button className="btn-primary" onClick={() => {
-              // TODO: CSV Download logic
-              alert("Pobieranie CSV w przygotowaniu...");
-            }}>
-              <Download size={18} />
-              Eksportuj do CSV
-            </button>
+            <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+              <button className="btn-primary" onClick={() => alert("Pobieranie CSV w przygotowaniu...")}>
+                <Download size={18} /> Eksportuj do CSV
+              </button>
+              <button className="btn-primary" style={{ backgroundColor: 'var(--danger-color, #ff4444)' }} onClick={handleClearPayroll}>
+                <Trash2 size={18} /> Zeruj godziny (Wypłacono)
+              </button>
+            </div>
           )}
           <table className="mdt-table">
             <thead>
@@ -125,6 +158,7 @@ function Payroll({ isLoggedIn }) {
                 <th>Stopień / Stawka</th>
                 <th>Przepracowane Godziny</th>
                 <th>Suma do wypłaty</th>
+                {isLoggedIn && <th style={{ textAlign: 'right' }}>Akcje</th>}
               </tr>
             </thead>
             <tbody>
@@ -142,11 +176,22 @@ function Payroll({ isLoggedIn }) {
                   </td>
                   <td><strong style={{ fontSize: '1.1rem' }}>{off.totalHours}h</strong></td>
                   <td><strong style={{ color: 'var(--bcso-green)', fontSize: '1.2rem' }}>${off.totalPay.toLocaleString()}</strong></td>
+                  {isLoggedIn && (
+                    <td style={{ textAlign: 'right' }}>
+                      <button 
+                        className="btn-danger" 
+                        style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}
+                        onClick={() => handleClearSingle(off.id, `${off.firstName} ${off.lastName}`)}
+                      >
+                        Wypłacono
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan="4" style={{ textAlign: 'center', color: 'var(--text-muted)' }}>Brak danych do wypłaty dla tych kryteriów.</td>
+                  <td colSpan={isLoggedIn ? "5" : "4"} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>Brak danych do wypłaty dla tych kryteriów.</td>
                 </tr>
               )}
             </tbody>
