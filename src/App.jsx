@@ -80,19 +80,19 @@ function Sidebar({ userRole, onLogout }) {
 }
 
 function App() {
-  const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || null);
+  const [userRole, setUserRole] = useState(localStorage.getItem('appUserRole') || null);
 
   useEffect(() => {
     if (userRole) {
-      localStorage.setItem('userRole', userRole);
+      localStorage.setItem('appUserRole', userRole);
     } else {
-      localStorage.removeItem('userRole');
+      localStorage.removeItem('appUserRole');
     }
   }, [userRole]);
 
   const handleLogout = () => {
     setUserRole(null);
-    localStorage.removeItem('userRole');
+    localStorage.removeItem('appUserRole');
     window.location.href = '/login';
   };
 
