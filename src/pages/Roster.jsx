@@ -31,13 +31,13 @@ const STATUSES = ['AKTYWNY', 'URLOP', 'ZAWIESZONY', 'SZKOLENIE'];
 const RANKS = {
   LSPD: [
     'Chief of Police', 'Assistant Chief', 'Deputy Chief', 'Commander', 'Captain',
-    'Lieutenant II', 'Lieutenant I', 'Master Sergeant', 'Sergeant II', 'Sergeant I',
-    'Sergeant', 'Officer III+1', 'Officer III', 'Officer II', 'Officer I', 'Cadet'
+    'Lieutenant II', 'Lieutenant I', 'Master Sergeant', 'Staff Sergeant', 'Sergeant',
+    'Officer III+1', 'Officer III', 'Officer II', 'Officer I', 'Cadet'
   ],
   BCSO: [
-    'Sheriff', 'Undersheriff', 'Captain', 'Lieutenant II', 'Lieutenant I',
-    'Sergeant III', 'Staff Sergeant', 'Sergeant', 'Corporal',
-    'Deputy III', 'Deputy II', 'Deputy I', 'Cadet'
+    'Sheriff', 'Undersheriff', 'Lieutenant II', 'Lieutenant I',
+    'Sergeant III', 'Sergeant II', 'Sergeant I', 'Corporal',
+    'Deputy III', 'Deputy II', 'Deputy I'
   ]
 };
 
