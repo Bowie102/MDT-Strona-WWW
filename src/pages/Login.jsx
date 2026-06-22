@@ -10,7 +10,7 @@ function Login({ onLogin }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === 'zarzad' && password === 'jebactrans') {
+    if (username === 'zarzad' && password === 'deluxm') {
       onLogin('ZARZAD');
       navigate('/');
     } else if (username === 'dtu' && password === 'dtucwel') {
