@@ -38,7 +38,7 @@ function Points({ isLoggedIn }) {
     try {
       const res = await fetch(`${API_BASE_URL}/api/points`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
         body: JSON.stringify(formData)
       });
       if (res.ok) {

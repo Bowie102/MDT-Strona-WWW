@@ -40,7 +40,7 @@ function DutyLogs() {
 
     fetch(API_BASE_URL + '/api/duty', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
       body: JSON.stringify(dataToSend)
     })
     .then(res => res.json())
@@ -52,7 +52,7 @@ function DutyLogs() {
 
   const handleDelete = (id) => {
     if(window.confirm('Usunąć ten wpis?')) {
-      fetch(`${API_BASE_URL}/api/duty/${id}`, { method: 'DELETE' })
+      fetch(`${API_BASE_URL}/api/duty/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
         .then(() => fetchLogs());
     }
   };

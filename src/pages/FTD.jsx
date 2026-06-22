@@ -62,7 +62,7 @@ export default function FTD({ isLoggedIn }) {
     try {
       await fetch(`${API_BASE_URL}/api/officers/${off.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
         body: JSON.stringify({ trainings: editTrainings })
       });
       setEditingId(null);
@@ -91,7 +91,7 @@ export default function FTD({ isLoggedIn }) {
 
     fetch(`${API_BASE_URL}/api/officers/${officer.id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
       body: JSON.stringify({ trainings: currentTrainings })
     }).then(() => fetchOfficers());
   };
@@ -109,7 +109,7 @@ export default function FTD({ isLoggedIn }) {
 
     fetch(`${API_BASE_URL}/api/officers/${officer.id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
       body: JSON.stringify({ trainings: currentTrainings })
     }).then(() => fetchOfficers());
   };
@@ -118,7 +118,7 @@ export default function FTD({ isLoggedIn }) {
     try {
       await fetch(`${API_BASE_URL}/api/officers/${cadetId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
         body: JSON.stringify({ supervisorId: supervisorId ? parseInt(supervisorId) : null })
       });
       fetchOfficers();
@@ -136,7 +136,7 @@ export default function FTD({ isLoggedIn }) {
       if (!divs.includes('FTD')) {
         await fetch(`${API_BASE_URL}/api/officers/${off.id}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
           body: JSON.stringify({ divisions: [...divs, 'FTD'] })
         });
         fetchOfficers();
@@ -151,7 +151,7 @@ export default function FTD({ isLoggedIn }) {
       const divs = safeParseJSON(off.divisions).filter(d => d !== 'FTD');
       await fetch(`${API_BASE_URL}/api/officers/${off.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
         body: JSON.stringify({ divisions: divs, ftdRank: '' }) // Clear ftdRank as well
       });
       fetchOfficers();

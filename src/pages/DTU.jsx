@@ -75,13 +75,13 @@ function DTU({ userRole }) {
       if (editingReportId) {
         await fetch(`http://localhost:3001/api/dtu/reports/${editingReportId}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
           body: JSON.stringify(newReport)
         });
       } else {
         await fetch('http://localhost:3001/api/dtu/reports', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
           body: JSON.stringify(newReport)
         });
       }
@@ -110,7 +110,8 @@ function DTU({ userRole }) {
     if (!window.confirm('Na pewno chcesz usunąć ten raport?')) return;
     try {
       await fetch(`http://localhost:3001/api/dtu/reports/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` }
       });
       fetchData();
     } catch (error) {

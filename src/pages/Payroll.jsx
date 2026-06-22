@@ -68,7 +68,7 @@ function Payroll({ isLoggedIn }) {
   const handleClearPayroll = async () => {
     if (!window.confirm("UWAGA! Czy na pewno chcesz wyzerować wszystkie godziny ze służby? Tej operacji nie można cofnąć!")) return;
     try {
-      const res = await fetch(API_BASE_URL + '/api/duty/clear', { method: 'DELETE' });
+      const res = await fetch(API_BASE_URL + '/api/duty/clear', { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } });
       if (res.ok) {
         alert("Pomyślnie wyzerowano wszystkie godziny!");
         window.location.reload();
@@ -84,7 +84,7 @@ function Payroll({ isLoggedIn }) {
   const handleClearSingle = async (userId, name) => {
     if (!window.confirm(`Czy na pewno chcesz wyzerować godziny funkcjonariusza: ${name}? Tej operacji nie można cofnąć!`)) return;
     try {
-      const res = await fetch(`${API_BASE_URL}/api/duty/clear/${userId}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE_URL}/api/duty/clear/${userId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } });
       if (res.ok) {
         alert(`Pomyślnie wyzerowano godziny dla ${name}!`);
         window.location.reload();

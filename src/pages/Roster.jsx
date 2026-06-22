@@ -121,7 +121,7 @@ function Roster({ isLoggedIn }) {
 
     fetch(url, {
       method,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
       body: JSON.stringify(formData)
     })
     .then(res => res.json())
@@ -137,7 +137,7 @@ function Roster({ isLoggedIn }) {
     if (reason === null) return; // Anulowano
     
     if (window.confirm('Potwierdzasz usunięcie z bazy? Zabrane zostaną mu również role na Discordzie.')) {
-      fetch(`${API_BASE_URL}/api/officers/${id}?reason=${encodeURIComponent(reason || 'Brak podanego powodu')}`, { method: 'DELETE' })
+      fetch(`${API_BASE_URL}/api/officers/${id}?reason=${encodeURIComponent(reason || 'Brak podanego powodu')}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
         .then(() => fetchOfficers());
     }
   };

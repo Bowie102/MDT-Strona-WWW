@@ -11,9 +11,11 @@ function Login({ onLogin }) {
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === 'zarzad' && password === 'deluxm') {
+      localStorage.setItem('apiKey', password);
       onLogin('ZARZAD');
       navigate('/');
     } else if (username === 'dtu' && password === 'dtucwel') {
+      localStorage.setItem('apiKey', password);
       onLogin('DTU');
       navigate('/dtu');
     } else {
