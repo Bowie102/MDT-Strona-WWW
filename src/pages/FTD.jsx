@@ -294,20 +294,12 @@ export default function FTD({ isLoggedIn }) {
                               <span style={{ fontWeight: 700, fontSize: '0.95rem', color: '#f8fafc' }}>{fto.firstName} {fto.lastName}</span>
                               <span style={{ fontSize: '0.7rem', color: isLspd ? '#60a5fa' : '#4ade80', background: isLspd ? 'rgba(59,130,246,0.1)' : 'rgba(21,128,61,0.1)', padding: '0.1rem 0.3rem', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{fto.rank}</span>
                             </div>
-                            
-                            <div style={{ display: 'flex', gap: '0.25rem', flexWrap: 'wrap' }}>
-                              {trains.length > 0 ? trains.map(tr => (
-                                <span key={tr} style={{ fontSize: '0.65rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', padding: '0.1rem 0.35rem', borderRadius: '4px', color: '#cbd5e1', fontWeight: 600 }}>
-                                  {tr}
-                                </span>
-                              )) : <span style={{ fontSize: '0.65rem', color: '#64748b' }}>Brak uprawnień</span>}
-                            </div>
                           </div>
                         </div>
 
                         {isLoggedIn && (
                           <button 
-                            onClick={() => removeHeadTrainer(t, fto.id)} 
+                            onClick={() => removeTrainer(t, fto.id, false)} 
                             style={{ 
                               background: 'transparent', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.3)', 
                               padding: '0.35rem 0.6rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.7rem', 
