@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Plus, Trash2, FileText } from 'lucide-react';
 import { format } from 'date-fns';
+import Select from 'react-select';
 
 function DutyLogs() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -56,6 +57,19 @@ function DutyLogs() {
     }
   };
 
+  const selectOptions = officers.map(o => ({
+    value: o.id,
+    label: `[${o.badgeNumber}] ${o.firstName} ${o.lastName}`
+  }));
+
+  const selectStyles = {
+    control: (base) => ({ ...base, background: 'rgba(0, 0, 0, 0.2)', borderColor: 'rgba(255, 255, 255, 0.1)', color: '#fff', minHeight: '44px' }),
+    singleValue: (base) => ({ ...base, color: '#fff' }),
+    menu: (base) => ({ ...base, background: '#1e293b', zIndex: 100 }),
+    option: (base, state) => ({ ...base, background: state.isFocused ? '#334155' : 'transparent', color: '#fff', cursor: 'pointer' }),
+    input: (base) => ({ ...base, color: '#fff' })
+  };
+
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
       <div className="page-header">
@@ -75,14 +89,15 @@ function DutyLogs() {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Funkcjonariusz</label>
-              <select className="form-control" required value={formData.userId} onChange={(e) => setFormData({...formData, userId: e.target.value})}>
-                <option value="">Wybierz...</option>
-                {officers.map(off => (
-                  <option key={off.id} value={off.id}>
-                    [{off.badgeNumber}] {off.firstName} {off.lastName}
-                  </option>
-                ))}
-              </select>
+              <Select
+                options={selectOptions}
+                styles={selectStyles}
+                placeholder="Wybierz..."
+                value={selectOptions.find(opt => opt.value === formData.userId) || null}
+                onChange={(selected) => setFormData({ ...formData, userId: selected ? selected.value : '' })}
+                isClearable
+                isSearchable
+              />
             </div>
             
             <div className="form-group">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../config';
 import { format } from 'date-fns';
 import { PlusCircle, MinusCircle, User, Shield, FileText, Send, Activity, Lock } from 'lucide-react';
+import Select from 'react-select';
 
 function Points({ isLoggedIn }) {
   const [officers, setOfficers] = useState([]);
@@ -21,7 +22,8 @@ function Points({ isLoggedIn }) {
     try {
       const offRes = await fetch(`${API_BASE_URL}/api/officers`);
       const offData = await offRes.json();
-      setOfficers(offData);
+      const sorted = offData.sort((a, b) => parseInt(a.badgeNumber || 0) - parseInt(b.badgeNumber || 0));
+      setOfficers(sorted);
 
       const recRes = await fetch(`${API_BASE_URL}/api/points`);
       const recData = await recRes.json();
@@ -46,6 +48,19 @@ function Points({ isLoggedIn }) {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const selectOptions = officers.map(o => ({
+    value: o.id,
+    label: `[${o.badgeNumber}] ${o.firstName} ${o.lastName}`
+  }));
+
+  const selectStyles = {
+    control: (base) => ({ ...base, background: 'rgba(0, 0, 0, 0.2)', borderColor: 'rgba(255, 255, 255, 0.1)', color: '#fff', minHeight: '44px' }),
+    singleValue: (base) => ({ ...base, color: '#fff' }),
+    menu: (base) => ({ ...base, background: '#1e293b', zIndex: 100 }),
+    option: (base, state) => ({ ...base, background: state.isFocused ? '#334155' : 'transparent', color: '#fff', cursor: 'pointer' }),
+    input: (base) => ({ ...base, color: '#fff' })
   };
 
   return (
@@ -73,34 +88,30 @@ function Points({ isLoggedIn }) {
               <label className="points-form-label">
                 <User size={16} color="#818cf8" /> Otrzymujący
               </label>
-              <select
-                required
-                className="points-select"
-                value={formData.officerId}
-                onChange={(e) => setFormData({ ...formData, officerId: e.target.value })}
-              >
-                <option value="" disabled>Wybierz funkcjonariusza...</option>
-                {officers.map(o => (
-                  <option key={o.id} value={o.id}>{o.firstName} {o.lastName} [{o.badgeNumber}]</option>
-                ))}
-              </select>
+              <Select
+                options={selectOptions}
+                styles={selectStyles}
+                placeholder="Wybierz funkcjonariusza..."
+                value={selectOptions.find(opt => opt.value === formData.officerId) || null}
+                onChange={(selected) => setFormData({ ...formData, officerId: selected ? selected.value : '' })}
+                isClearable
+                isSearchable
+              />
             </div>
 
             <div className="points-form-group">
               <label className="points-form-label">
                 <Shield size={16} color="#a78bfa" /> Wystawiający
               </label>
-              <select
-                required
-                className="points-select"
-                value={formData.issuerId}
-                onChange={(e) => setFormData({ ...formData, issuerId: e.target.value })}
-              >
-                <option value="" disabled>Twoje dane...</option>
-                {officers.map(o => (
-                  <option key={o.id} value={o.id}>{o.firstName} {o.lastName} [{o.badgeNumber}]</option>
-                ))}
-              </select>
+              <Select
+                options={selectOptions}
+                styles={selectStyles}
+                placeholder="Twoje dane..."
+                value={selectOptions.find(opt => opt.value === formData.issuerId) || null}
+                onChange={(selected) => setFormData({ ...formData, issuerId: selected ? selected.value : '' })}
+                isClearable
+                isSearchable
+              />
             </div>
 
             <div className="points-form-group">

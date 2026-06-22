@@ -154,7 +154,8 @@ function Roster({ isLoggedIn }) {
     const term = searchTerm.toLowerCase();
     return o.firstName.toLowerCase().includes(term) ||
            o.lastName.toLowerCase().includes(term) ||
-           o.badgeNumber.includes(term);
+           o.badgeNumber.includes(term) ||
+           (o.discordNick && o.discordNick.toLowerCase().includes(term));
   }).sort((a, b) => {
     // 1. Logika sortowania po rangach wydziałowych (tylko, gdy wybrano wydział)
     let divWeightA = 0;
@@ -288,7 +289,7 @@ function Roster({ isLoggedIn }) {
           <input 
             type="text" 
             className="form-control" 
-            placeholder="Szukaj po odznace, nazwisku..." 
+            placeholder="Szukaj po odznace, nazwisku, nicku DC..." 
             style={{ paddingLeft: '2.5rem' }}
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
@@ -361,6 +362,7 @@ function Roster({ isLoggedIn }) {
                     {off.metroAlias && <span className="metro-alias">"{off.metroAlias}"</span>}
                     {off.isHC && <span className="tag hc" style={{ marginLeft: '8px' }}>HC</span>}
                     {off.isCB && <span className="tag cb" style={{ marginLeft: '8px' }}>CB</span>}
+                    {divs.includes('HC BCSO') && <span className="tag hc" style={{ marginLeft: '8px' }}>HC BCSO</span>}
                   </td>
                   <td className="col-divider" style={{ color: '#94a3b8' }}>{off.discordNick || '-'}</td>
                   <td className="col-divider">
@@ -572,6 +574,9 @@ function Roster({ isLoggedIn }) {
                     </label>
                     <label style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
                       <input type="checkbox" checked={formData.isCB} onChange={e => setFormData({...formData, isCB: e.target.checked})} /> Command Bureau (CB)
+                    </label>
+                    <label style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
+                      <input type="checkbox" checked={formData.divisions.includes('HC BCSO')} onChange={() => handleToggle('divisions', 'HC BCSO')} /> High Command BCSO (HC BCSO)
                     </label>
                   </div>
 

@@ -157,130 +157,29 @@ export default function FTD({ isLoggedIn }) {
     }
   };
 
-  const ftdMembers = officers.filter(o => safeParseJSON(o.divisions).includes('FTD'));
-  const nonFtdMembers = officers.filter(o => !safeParseJSON(o.divisions).includes('FTD'));
-  const commanders = ftdMembers.filter(o => o.ftdRank === 'FTD Commander' || o.ftdRank === 'Commander');
-  const fto = ftdMembers.filter(o => o.ftdRank !== 'FTD Commander' && o.ftdRank !== 'Commander');
+  const sortOfficers = (arr) => arr.sort((a, b) => parseInt(a.badgeNumber || 0) - parseInt(b.badgeNumber || 0));
+
+  const ftdMembers = sortOfficers(officers.filter(o => safeParseJSON(o.divisions).includes('FTD')));
+  const nonFtdMembers = sortOfficers(officers.filter(o => !safeParseJSON(o.divisions).includes('FTD')));
+  const commanders = sortOfficers(ftdMembers.filter(o => o.ftdRank === 'FTD Commander' || o.ftdRank === 'Commander'));
+  const fto = sortOfficers(ftdMembers.filter(o => o.ftdRank !== 'FTD Commander' && o.ftdRank !== 'Commander'));
   
   // Kadeci: zakładamy, że to rangi "Cadet", "Kadet", "Rekrut" itp.
-  const cadets = officers.filter(o => 
+  const cadets = sortOfficers(officers.filter(o => 
     o.rank.toLowerCase().includes('cadet') || 
     o.rank.toLowerCase().includes('rekrut') || 
     o.rank.toLowerCase().includes('kadet')
-  );
+  ));
 
   const renderFtoTab = () => {
-    const renderTableSection = (title, count, group) => {
-      if (group.length === 0) return null;
-      return (
-        <div style={{ marginBottom: '2rem' }}>
-          <div className="ftd-section-header">
-            <span className="ftd-section-title">{title}</span>
-            <span className="ftd-section-count">{count} {count === 1 ? 'osoba' : 'osób'}</span>
-          </div>
-          <div className="ftd-table-wrapper">
-            <table className="ftd-table">
-              <thead>
-                <tr>
-                  <th style={{ textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Jednostka</th>
-                  <th style={{ textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Odznaka</th>
-                  <th style={{ textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Imię i nazwisko</th>
-                  <th style={{ textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Nick</th>
-                  <th style={{ textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Stopień LSPD</th>
-                  {TRAININGS.map((t, index) => (
-                    <th key={t} style={{ textAlign: 'center', borderRight: index === TRAININGS.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>{t}</th>
-                  ))}
-                  <th style={{ textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Notatki</th>
-                  {isLoggedIn && <th style={{ textAlign: 'center' }}>Akcje</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {group.map(off => {
-                  const isEditing = editingId === off.id;
-                  const trains = isEditing ? editTrainings : safeParseJSON(off.trainings);
-
-                  return (
-                    <tr key={off.id}>
-                      <td style={{ color: off.department === 'LSPD' ? '#60a5fa' : '#4ade80', fontWeight: 'bold', textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>{off.department}</td>
-                      <td style={{ fontFamily: 'monospace', color: '#cbd5e1', textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>{off.badgeNumber}</td>
-                      <td className="name-cell" style={{ textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>{off.firstName} {off.lastName}</td>
-                      <td style={{ color: '#94a3b8', fontSize: '0.85rem', textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>{off.discordNick || '-'}</td>
-                      <td style={{ color: '#60a5fa', textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>{off.rank}</td>
-                      
-                      {TRAININGS.map((t, index) => (
-                        <td key={t} style={{ textAlign: 'center', borderRight: index === TRAININGS.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>
-                          {isEditing ? (
-                            <input 
-                              type="checkbox" 
-                              checked={trains.includes(t)}
-                              onChange={() => toggleTraining(t)}
-                              style={{ cursor: 'pointer', accentColor: '#10b981' }}
-                            />
-                          ) : (
-                            trains.includes(t) 
-                              ? <span className="ftd-check">✓</span> 
-                              : <span className="ftd-dash">—</span>
-                          )}
-                        </td>
-                      ))}
-                      
-                      <td style={{ color: '#94a3b8', fontSize: '0.85rem', textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>{off.notes || '-'}</td>
-                      {isLoggedIn && (
-                        <td style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>
-                          {isEditing ? (
-                            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
-                              <button className="btn-primary" style={{ background: '#10b981', padding: '0.25rem 0.75rem', fontSize: '0.75rem' }} onClick={() => saveEdit(off)}>ZAPISZ</button>
-                              <button className="btn-primary" style={{ background: '#ef4444', padding: '0.25rem 0.75rem', fontSize: '0.75rem' }} onClick={cancelEdit}>ANULUJ</button>
-                            </div>
-                          ) : (
-                            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
-                              <button 
-                                style={{ background: 'transparent', border: '1px solid #facc15', color: '#facc15', padding: '0.25rem 0.75rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 'bold' }}
-                                onClick={() => startEdit(off)}
-                              >
-                                EDYTUJ
-                              </button>
-                            </div>
-                          )}
-                        </td>
-                      )}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      );
-    };
-
-    return (
-      <>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', marginTop: '2rem' }}>
-          <div>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              FTO <span style={{ color: '#475569' }}>—</span> FIELD TRAINING OFFICERS
-            </h3>
-            <span style={{ color: '#94a3b8', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              {ftdMembers.length} REKORDÓW
-            </span>
-          </div>
-        </div>
-        {renderTableSection("FTD Commander", commanders.length, commanders)}
-        {renderTableSection("FTO", fto.length, fto)}
-      </>
-    );
-  };
-
-  const renderSzkoleniowcyTab = () => {
     return (
       <div style={{ marginTop: '2rem' }}>
         <div style={{ marginBottom: '2rem' }}>
           <h3 style={{ fontSize: '1.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            Kadra <span style={{ color: '#facc15' }}>Instruktorska</span>
+            FTO <span style={{ color: '#facc15' }}>— Główni Szkoleniowcy</span>
           </h3>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-            Zarządzaj oficerami przypisanymi do poszczególnych bloków szkoleniowych.
+            Zarządzaj oficerami przypisanymi jako główni szkoleniowcy do poszczególnych szkoleń.
           </p>
         </div>
 
@@ -597,12 +496,10 @@ export default function FTD({ isLoggedIn }) {
 
       <div className="ftd-tabs">
         <div className={`ftd-tab ${activeTab === 'FTO' ? 'active' : ''}`} onClick={() => setActiveTab('FTO')}>FTO</div>
-        <div className={`ftd-tab ${activeTab === 'Szkoleniowcy' ? 'active' : ''}`} onClick={() => setActiveTab('Szkoleniowcy')}>Szkoleniowcy</div>
         <div className={`ftd-tab ${activeTab === 'Prowadzący' ? 'active' : ''}`} onClick={() => setActiveTab('Prowadzący')}>Prowadzący</div>
       </div>
 
       {activeTab === 'FTO' && renderFtoTab()}
-      {activeTab === 'Szkoleniowcy' && renderSzkoleniowcyTab()}
       {activeTab === 'Prowadzący' && renderProwadzacyTab()}
 
     </div>
