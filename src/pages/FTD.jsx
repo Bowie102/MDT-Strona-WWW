@@ -75,40 +75,42 @@ export default function FTD({ isLoggedIn }) {
     setEditingId(null);
   };
 
-  const assignHeadTrainer = async (trainingName, newOfficerId) => {
-    try {
-      if (newOfficerId) {
-        const newHead = officers.find(o => o.id.toString() === newOfficerId);
-        if (newHead) {
-          const newTrainings = [...new Set([...safeParseJSON(newHead.ftdHeadTrainings), trainingName])];
-          await fetch(`${API_BASE_URL}/api/officers/${newHead.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ftdHeadTrainings: newTrainings })
-          });
-        }
-      }
-      fetchOfficers();
-    } catch (err) {
-      console.error(err);
+
+  const assignTrainer = (training, officerId, isHead) => {
+    if (!officerId) return;
+    const officer = officers.find(o => o.id === parseInt(officerId));
+    if (!officer) return;
+
+    let currentTrainings = safeParseJSON(officer.trainings);
+    if (isHead) {
+      if (!currentTrainings.includes(`HEAD_${training}`)) currentTrainings.push(`HEAD_${training}`);
+    } else {
+      if (!currentTrainings.includes(training)) currentTrainings.push(training);
     }
+
+    fetch(`${API_BASE_URL}/api/officers/${officer.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ trainings: currentTrainings })
+    }).then(() => fetchOfficers());
   };
 
-  const removeHeadTrainer = async (trainingName, officerId) => {
-    try {
-      const off = officers.find(o => o.id === officerId);
-      if (off) {
-        const newTrainings = safeParseJSON(off.ftdHeadTrainings).filter(t => t !== trainingName);
-        await fetch(`${API_BASE_URL}/api/officers/${off.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ftdHeadTrainings: newTrainings })
-        });
-        fetchOfficers();
-      }
-    } catch (err) {
-      console.error(err);
+  const removeTrainer = (training, officerId, isHead) => {
+    const officer = officers.find(o => o.id === parseInt(officerId));
+    if (!officer) return;
+
+    let currentTrainings = safeParseJSON(officer.trainings);
+    if (isHead) {
+      currentTrainings = currentTrainings.filter(t => t !== `HEAD_${training}`);
+    } else {
+      currentTrainings = currentTrainings.filter(t => t !== training);
     }
+
+    fetch(`${API_BASE_URL}/api/officers/${officer.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ trainings: currentTrainings })
+    }).then(() => fetchOfficers());
   };
 
   const assignSupervisor = async (cadetId, supervisorId) => {
@@ -185,52 +187,89 @@ export default function FTD({ isLoggedIn }) {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '1.5rem' }}>
           {TRAININGS.map(t => {
-            const trainersForThis = officers.filter(o => safeParseJSON(o.ftdHeadTrainings).includes(t));
-            const availableToAssign = ftdMembers.filter(o => !safeParseJSON(o.ftdHeadTrainings).includes(t));
+            const headTrainer = officers.find(o => safeParseJSON(o.trainings).includes(`HEAD_${t}`));
+            const trainersForThis = officers.filter(o => safeParseJSON(o.trainings).includes(t) && !safeParseJSON(o.trainings).includes(`HEAD_${t}`));
+            const availableToAssignHead = ftdMembers.filter(o => !safeParseJSON(o.trainings).includes(`HEAD_${t}`));
+            const availableToAssignTrainer = ftdMembers.filter(o => !safeParseJSON(o.trainings).includes(t) && !safeParseJSON(o.trainings).includes(`HEAD_${t}`));
 
             return (
-              <div key={t} className="glass-card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div key={t} className="glass-card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', border: '1px solid rgba(255,255,255,0.05)', background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%)' }}>
                 
                 {/* Karta Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{ color: '#facc15', fontWeight: '900', fontSize: '1.5rem', letterSpacing: '1px' }}>
+                    <div style={{ color: '#facc15', fontWeight: '900', fontSize: '1.75rem', letterSpacing: '1px', textShadow: '0 0 10px rgba(250, 204, 21, 0.3)' }}>
                       {t}
                     </div>
                     <div>
                       <h4 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, letterSpacing: '0.5px', color: '#f8fafc' }}>{TRAINING_NAMES[t]}</h4>
-                      <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 600 }}>{trainersForThis.length} {trainersForThis.length === 1 ? 'Instruktor' : 'Instruktorów'}</span>
+                      <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 600 }}>{trainersForThis.length} Szkoleniowców</span>
                     </div>
                   </div>
+                </div>
+
+                {/* Główny Szkoleniowiec Section */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(250, 204, 21, 0.2)' }}>
+                  <span style={{ fontSize: '0.8rem', color: '#facc15', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>Główny Szkoleniowiec</span>
                   
-                  {isLoggedIn && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', alignItems: 'flex-end' }}>
-                      <select id={`select-trainer-${t}`} style={{ background: 'rgba(15, 23, 42, 0.8)', border: '1px solid #334155', color: '#f1f5f9', padding: '0.4rem 0.5rem', borderRadius: '6px', fontSize: '0.75rem', outline: 'none', minWidth: '160px' }}>
-                        <option value="">-- Wybierz instruktora --</option>
-                        {availableToAssign.map(off => (
-                          <option key={off.id} value={off.id}>
-                            [{off.badgeNumber}] {off.firstName} {off.lastName}
-                          </option>
+                  {headTrainer ? (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(250, 204, 21, 0.2)', color: '#facc15', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold', fontFamily: 'monospace' }}>
+                          {headTrainer.badgeNumber}
+                        </div>
+                        <span style={{ color: '#f8fafc', fontWeight: '600' }}>{headTrainer.firstName} {headTrainer.lastName}</span>
+                      </div>
+                      {isLoggedIn && (
+                        <button onClick={() => removeTrainer(t, headTrainer.id, true)} style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <X size={18} />
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <div style={{ color: '#94a3b8', fontSize: '0.9rem', fontStyle: 'italic' }}>Brak przypisanego głównego szkoleniowca</div>
+                  )}
+
+                  {isLoggedIn && !headTrainer && (
+                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+                      <select id={`select-head-${t}`} style={{ flex: 1, background: 'rgba(15, 23, 42, 0.8)', border: '1px solid #334155', color: '#f1f5f9', padding: '0.4rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem', outline: 'none' }}>
+                        <option value="">-- Wybierz oficera --</option>
+                        {availableToAssignHead.map(off => (
+                          <option key={off.id} value={off.id}>[{off.badgeNumber}] {off.firstName} {off.lastName}</option>
                         ))}
                       </select>
-                      <button 
-                        style={{ background: '#3b82f6', color: '#fff', padding: '0.35rem 0.75rem', fontSize: '0.75rem', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', letterSpacing: '0.5px', width: '100%', transition: 'all 0.2s', boxShadow: '0 2px 8px rgba(59, 130, 246, 0.3)' }}
-                        onMouseOver={(e) => e.currentTarget.style.background = '#2563eb'}
-                        onMouseOut={(e) => e.currentTarget.style.background = '#3b82f6'}
-                        onClick={() => {
-                          const sel = document.getElementById(`select-trainer-${t}`);
-                          assignHeadTrainer(t, sel.value);
-                          sel.value = '';
-                        }}
-                      >
-                        + PRZYPISZ
-                      </button>
+                      <button onClick={() => {
+                        const sel = document.getElementById(`select-head-${t}`);
+                        if(sel.value) assignTrainer(t, sel.value, true);
+                        sel.value = '';
+                      }} style={{ background: '#facc15', color: '#000', border: 'none', padding: '0 1rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.8rem' }}>Ustaw</button>
                     </div>
                   )}
                 </div>
 
-                {/* Karta Lista Instruktorów */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {/* Lista Zwykłych Instruktorów */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>Szkoleniowcy</span>
+                  
+                  {isLoggedIn && (
+                    <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                      <select id={`select-trainer-${t}`} style={{ flex: 1, background: 'rgba(15, 23, 42, 0.8)', border: '1px solid #334155', color: '#f1f5f9', padding: '0.4rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem', outline: 'none' }}>
+                        <option value="">-- Dodaj szkoleniowca --</option>
+                        {availableToAssignTrainer.map(off => (
+                          <option key={off.id} value={off.id}>[{off.badgeNumber}] {off.firstName} {off.lastName}</option>
+                        ))}
+                      </select>
+                      <button onClick={() => {
+                        const sel = document.getElementById(`select-trainer-${t}`);
+                        if(sel.value) assignTrainer(t, sel.value, false);
+                        sel.value = '';
+                      }} style={{ background: '#3b82f6', color: '#fff', border: 'none', padding: '0 1rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.8rem' }}>Dodaj</button>
+                    </div>
+                  )}
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxHeight: '200px', overflowY: 'auto', paddingRight: '0.5rem' }} className="custom-scrollbar">
+                    {trainersForThis.length === 0 && <div style={{ color: '#64748b', fontSize: '0.85rem' }}>Brak przypisanych szkoleniowców.</div>}
+
                   {trainersForThis.map(fto => {
                     const trains = safeParseJSON(fto.trainings);
                     const isLspd = fto.department === 'LSPD';
@@ -288,6 +327,7 @@ export default function FTD({ isLoggedIn }) {
                       <p style={{ color: '#64748b', fontSize: '0.85rem', margin: 0, fontWeight: 500 }}>Brak przypisanych instruktorów.</p>
                     </div>
                   )}
+                  </div>
                 </div>
 
               </div>

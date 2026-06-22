@@ -362,7 +362,7 @@ function Roster({ isLoggedIn }) {
                     {off.metroAlias && <span className="metro-alias">"{off.metroAlias}"</span>}
                     {off.isHC && <span className="tag hc" style={{ marginLeft: '8px' }}>HC</span>}
                     {off.isCB && <span className="tag cb" style={{ marginLeft: '8px' }}>CB</span>}
-                    {divs.includes('HC BCSO') && <span className="tag hc" style={{ marginLeft: '8px' }}>HC BCSO</span>}
+                    {divs.includes('HC BCSO') && <span className="tag" style={{ marginLeft: '8px', background: 'rgba(234, 179, 8, 0.15)', color: '#facc15', border: '1px solid rgba(234, 179, 8, 0.3)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase' }}>HC BCSO</span>}
                   </td>
                   <td className="col-divider" style={{ color: '#94a3b8' }}>{off.discordNick || '-'}</td>
                   <td className="col-divider">
