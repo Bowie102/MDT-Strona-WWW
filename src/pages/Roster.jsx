@@ -194,15 +194,22 @@ function Roster({ isLoggedIn }) {
     }
 
     // 2. Standardowa logika sortowania po głównej randze
-    const weightA = RANK_WEIGHTS[a.rank] || 0;
-    const weightB = RANK_WEIGHTS[b.rank] || 0;
+    let weightA = RANK_WEIGHTS[a.rank] || 0;
+    let weightB = RANK_WEIGHTS[b.rank] || 0;
     
+    // Nadpisanie wagi dla HC BCSO (odznaki 401-405), aby sortowali się zaraz po sobie na szczycie BCSO
+    const bA = parseInt(a.badgeNumber) || 0;
+    const bB = parseInt(b.badgeNumber) || 0;
+    
+    if (bA >= 401 && bA <= 405) weightA = 84 - (bA - 401) * 0.5;
+    if (bB >= 401 && bB <= 405) weightB = 84 - (bB - 401) * 0.5;
+
     // Sort descending by rank weight
     if (weightA !== weightB) {
       return weightB - weightA;
     }
     // If rank is identical, sort by badge number ascending
-    return parseInt(a.badgeNumber) - parseInt(b.badgeNumber);
+    return bA - bB;
   });
 
   const getShortRank = (rank) => {
