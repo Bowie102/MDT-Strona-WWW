@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from 'react-router-dom';
-import { Shield, Users, Clock, DollarSign, Activity, LogOut, Calendar as CalendarIcon } from 'lucide-react';
+import { Shield, Users, Clock, DollarSign, Activity, LogOut } from 'lucide-react';
 
 import Dashboard from './pages/Dashboard';
 import Roster from './pages/Roster';
@@ -10,7 +10,6 @@ import Points from './pages/Points';
 import Login from './pages/Login';
 import FTD from './pages/FTD';
 import DTU from './pages/DTU';
-import CalendarView from './pages/CalendarView';
 
 function Sidebar({ userRole, onLogout }) {
   return (
@@ -20,25 +19,22 @@ function Sidebar({ userRole, onLogout }) {
       </div>
       
       <div className="nav-links">
-        <div className="nav-category">GŁÓWNY PANEL</div>
+        <div className="nav-category" style={{ borderColor: '#3b82f6' }}>GŁÓWNY PANEL</div>
         <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           <Activity size={18} /> Centrala
         </NavLink>
 
-        <div className="nav-category">KADRY (HC)</div>
+        <div className="nav-category" style={{ borderColor: '#ef4444' }}>KADRY (HC)</div>
         <NavLink to="/points" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           <Activity size={18} /> Akta (Plusy/Minusy)
         </NavLink>
 
-        <div className="nav-category">ZARZĄDZANIE KADRĄ</div>
+        <div className="nav-category" style={{ borderColor: '#10b981' }}>ZARZĄDZANIE KADRĄ</div>
         <NavLink to="/roster" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           <Users size={18} /> Lista Funkcjonariuszy
         </NavLink>
         <NavLink to="/duty" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           <Clock size={18} /> Czas Służby
-        </NavLink>
-        <NavLink to="/calendar" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <CalendarIcon size={18} /> Kalendarz Urlopów
         </NavLink>
         <NavLink to="/payroll" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
           <DollarSign size={18} /> Wypłaty
@@ -114,7 +110,6 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/roster" element={<Roster isLoggedIn={isZarzad} />} />
               <Route path="/duty" element={<DutyLogs />} />
-              <Route path="/calendar" element={<CalendarView />} />
               <Route path="/payroll" element={<Payroll isLoggedIn={isZarzad} />} />
               <Route path="/points" element={<Points isLoggedIn={isZarzad} />} />
               <Route path="/ftd" element={<FTD isLoggedIn={isZarzad} />} />

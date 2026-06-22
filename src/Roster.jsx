@@ -154,7 +154,8 @@ function Roster({ isLoggedIn }) {
     const term = searchTerm.toLowerCase();
     return o.firstName.toLowerCase().includes(term) ||
            o.lastName.toLowerCase().includes(term) ||
-           o.badgeNumber.includes(term);
+           o.badgeNumber.includes(term) ||
+           (o.discordNick && o.discordNick.toLowerCase().includes(term));
   }).sort((a, b) => {
     // 1. Logika sortowania po rangach wydziałowych (tylko, gdy wybrano wydział)
     let divWeightA = 0;
@@ -288,7 +289,7 @@ function Roster({ isLoggedIn }) {
           <input 
             type="text" 
             className="form-control" 
-            placeholder="Szukaj po odznace, nazwisku..." 
+            placeholder="Szukaj po odznace, nazwisku, nicku DC..." 
             style={{ paddingLeft: '2.5rem' }}
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
