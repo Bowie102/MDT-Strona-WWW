@@ -85,7 +85,7 @@ export default function FTD({ isLoggedIn }) {
     if (isHead) {
       if (!currentTrainings.includes(`HEAD_${training}`)) currentTrainings.push(`HEAD_${training}`);
     } else {
-      if (!currentTrainings.includes(training)) currentTrainings.push(training);
+      if (!currentTrainings.includes(`TRAINER_${training}`)) currentTrainings.push(`TRAINER_${training}`);
     }
 
     fetch(`${API_BASE_URL}/api/officers/${officer.id}`, {
@@ -103,7 +103,7 @@ export default function FTD({ isLoggedIn }) {
     if (isHead) {
       currentTrainings = currentTrainings.filter(t => t !== `HEAD_${training}`);
     } else {
-      currentTrainings = currentTrainings.filter(t => t !== training);
+      currentTrainings = currentTrainings.filter(t => t !== `TRAINER_${training}`);
     }
 
     fetch(`${API_BASE_URL}/api/officers/${officer.id}`, {
@@ -188,9 +188,9 @@ export default function FTD({ isLoggedIn }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '1.5rem' }}>
           {TRAININGS.map(t => {
             const headTrainer = officers.find(o => safeParseJSON(o.trainings).includes(`HEAD_${t}`));
-            const trainersForThis = officers.filter(o => safeParseJSON(o.trainings).includes(t) && !safeParseJSON(o.trainings).includes(`HEAD_${t}`));
+            const trainersForThis = officers.filter(o => safeParseJSON(o.trainings).includes(`TRAINER_${t}`));
             const availableToAssignHead = ftdMembers.filter(o => !safeParseJSON(o.trainings).includes(`HEAD_${t}`));
-            const availableToAssignTrainer = ftdMembers.filter(o => !safeParseJSON(o.trainings).includes(t) && !safeParseJSON(o.trainings).includes(`HEAD_${t}`));
+            const availableToAssignTrainer = ftdMembers.filter(o => !safeParseJSON(o.trainings).includes(`TRAINER_${t}`));
 
             return (
               <div key={t} className="glass-card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', border: '1px solid rgba(255,255,255,0.05)', background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%)' }}>
