@@ -3,6 +3,17 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus, UserPlus, X } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
+import toast from 'react-hot-toast';
+
+const containerVariant = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.05 } }
+};
+
+const itemVariant = {
+  hidden: { opacity: 0, x: -10 },
+  show: { opacity: 1, x: 0 }
+};
 
 const RANK_WEIGHTS = {
   'Chief of Police': 100,
@@ -123,26 +134,40 @@ function Roster({ isLoggedIn }) {
     const url = isEditMode ? `${API_BASE_URL}/api/officers/${currentOfficer.id}` : `${API_BASE_URL}/api/officers`;
     const method = isEditMode ? 'PUT' : 'POST';
 
-    fetch(url, {
+    const promise = fetch(url, {
       method,
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
       body: JSON.stringify(formData)
     })
-    .then(res => res.json())
-    .then(() => {
+    .then(async res => {
+      if (!res.ok) throw new Error(await res.text());
       setIsModalOpen(false);
       fetchOfficers();
-    })
-    .catch(err => console.error(err));
+    });
+
+    toast.promise(promise, {
+      loading: isEditMode ? 'Aktualizowanie danych...' : 'Dodawanie funkcjonariusza...',
+      success: isEditMode ? 'Pomyślnie zaktualizowano funkcjonariusza!' : 'Dodano nowego funkcjonariusza!',
+      error: 'Wystąpił błąd podczas zapisu.'
+    });
   };
 
   const handleDelete = (id) => {
     const reason = window.prompt('Wpisz powód zwolnienia funkcjonariusza:');
-    if (reason === null) return; // Anulowano
+    if (reason === null) return;
     
     if (window.confirm('Potwierdzasz usunięcie z bazy? Zabrane zostaną mu również role na Discordzie.')) {
-      fetch(`${API_BASE_URL}/api/officers/${id}?reason=${encodeURIComponent(reason || 'Brak podanego powodu')}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
-        .then(() => fetchOfficers());
+      const promise = fetch(`${API_BASE_URL}/api/officers/${id}?reason=${encodeURIComponent(reason || 'Brak podanego powodu')}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
+        .then(async res => {
+          if (!res.ok) throw new Error();
+          fetchOfficers();
+        });
+        
+      toast.promise(promise, {
+        loading: 'Usuwanie...',
+        success: 'Usunięto funkcjonariusza z rejestru.',
+        error: 'Błąd podczas usuwania.'
+      });
     }
   };
 
@@ -215,19 +240,6 @@ function Roster({ isLoggedIn }) {
     });
   }, [officers, filterDept, searchTerm]);
 
-  const getShortRank = (rank) => {
-    if (!rank) return '';
-    const map = {
-      'Chief of Police': 'COP', 'Assistant Chief': 'AC', 'Deputy Chief': 'DC', 'Commander': 'CMD',
-      'Captain': 'CPT', 'Lieutenant II': 'LT II', 'Lieutenant I': 'LT I',
-      'Master Sergeant': 'MSG', 'Staff Sergeant': 'SSG', 'Sergeant': 'SGT', 'Sergeant III': 'SGT III', 'Sergeant II': 'SGT II', 'Sergeant I': 'SGT I',
-      'Corporal': 'CPL', 'Officer III+1': 'OFC III+', 'Officer III': 'OFC III', 'Officer II': 'OFC II', 'Officer I': 'OFC I',
-      'Cadet': 'CDT', 'Sheriff': 'SHF', 'Undersheriff': 'USHR', 'Assistant Sheriff': 'ASHF',
-      'Deputy Sheriff': 'DEP', 'Deputy III': 'DEP III', 'Deputy II': 'DEP II', 'Deputy I': 'DEP I'
-    };
-    return map[rank] || rank.substring(0, 3).toUpperCase();
-  };
-
   const getRankClass = (off) => {
     if (off.rank === 'Sheriff' || off.rank === 'Undersheriff') return 'rank-hc-text';
     if (off.rank === 'Captain') return 'rank-cpt-text';
@@ -242,14 +254,12 @@ function Roster({ isLoggedIn }) {
   const COLS_DIV = ['METRO', 'FTD', 'Highway Patrol Division', 'DTU'];
   const COLS_TRN = ['SEU', 'SV', 'NT', 'PWC', 'WU', 'K9', 'ASU', 'MARY', 'FAC'];
 
-  // --- AUTO-SCALING LOGIC ---
   const containerRef = React.useRef(null);
   const tableRef = React.useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current && tableRef.current) {
-        // Zresetuj transformacje by pobrać naturalną szerokość
         tableRef.current.style.transform = 'none';
         tableRef.current.style.width = 'max-content';
         
@@ -260,7 +270,6 @@ function Roster({ isLoggedIn }) {
           const scaleRatio = containerWidth / tableNaturalWidth;
           tableRef.current.style.transform = `scale(${scaleRatio})`;
           tableRef.current.style.transformOrigin = 'top left';
-          // Dostosuj wysokość kontenera, żeby nie było pustej przestrzeni pod tabelą po jej zmniejszeniu
           containerRef.current.style.height = `${tableRef.current.offsetHeight * scaleRatio}px`;
         } else {
           tableRef.current.style.transform = 'none';
@@ -270,9 +279,7 @@ function Roster({ isLoggedIn }) {
       }
     };
 
-    // Odpal przy każdej zmianie rozmiaru okna lub przy zmianie wierszy (filtered)
     window.addEventListener('resize', handleResize);
-    // Małe opóźnienie dla pewności, że React wyrenderował tabelę
     setTimeout(handleResize, 50); 
     
     return () => window.removeEventListener('resize', handleResize);
@@ -340,7 +347,7 @@ function Roster({ isLoggedIn }) {
                 {isLoggedIn && <th className="col-divider">AKCJE</th>}
               </tr>
             </thead>
-            <tbody>
+            <motion.tbody variants={containerVariant} initial="hidden" animate="show">
               {filteredAndSorted.map(off => {
               const divs = safeParseJSON(off.divisions);
               const trains = safeParseJSON(off.trainings);
@@ -356,7 +363,7 @@ function Roster({ isLoggedIn }) {
               if (off.isHC) rowClass = 'row-hc';
 
               return (
-                <tr key={off.id} className={rowClass}>
+                <motion.tr variants={itemVariant} key={off.id} className={rowClass}>
                   <td>
                     <input type="checkbox" style={{ accentColor: '#fbbf24' }} />
                   </td>
@@ -434,11 +441,11 @@ function Roster({ isLoggedIn }) {
                       </div>
                     </td>
                   )}
-                </tr>
+                </motion.tr>
               );
             })}
-          </tbody>
-        </table>
+            </motion.tbody>
+          </table>
         )}
       </div>
 

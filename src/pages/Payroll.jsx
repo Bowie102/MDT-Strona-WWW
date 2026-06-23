@@ -2,7 +2,18 @@ import { API_BASE_URL } from '../config';
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { DollarSign, Download, Search, Trash2 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+const containerVariant = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.05 } }
+};
+
+const itemVariant = {
+  hidden: { opacity: 0, x: -10 },
+  show: { opacity: 1, x: 0 }
+};
 
 const PAY_RATES = {
   // LSPD
@@ -42,63 +53,59 @@ function Payroll({ isLoggedIn }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchPayroll = () => {
     setIsLoading(true);
     Promise.all([
       fetch(API_BASE_URL + '/api/officers').then(res => res.json()),
       fetch(API_BASE_URL + '/api/duty').then(res => res.json())
     ]).then(([officers, logs]) => {
-      
       const calculated = officers.map(off => {
         const userLogs = logs.filter(l => l.userId === off.id);
         const totalHours = userLogs.reduce((sum, l) => sum + l.hours, 0);
         const rate = PAY_RATES[off.rank] || 1000;
         const totalPay = totalHours * rate;
-        
-        return {
-          ...off,
-          totalHours,
-          rate,
-          totalPay
-        };
+        return { ...off, totalHours, rate, totalPay };
       });
-
       calculated.sort((a, b) => b.totalPay - a.totalPay);
       setPayrollData(calculated);
       setIsLoading(false);
     }).catch(() => setIsLoading(false));
+  };
+
+  useEffect(() => {
+    fetchPayroll();
   }, []);
 
   const handleClearPayroll = async () => {
     if (!window.confirm("UWAGA! Czy na pewno chcesz wyzerować wszystkie godziny ze służby? Tej operacji nie można cofnąć!")) return;
-    try {
-      const res = await fetch(API_BASE_URL + '/api/duty/clear', { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } });
-      if (res.ok) {
-        alert("Pomyślnie wyzerowano wszystkie godziny!");
-        window.location.reload();
-      } else {
-        alert("Błąd podczas zerowania godzin.");
-      }
-    } catch (e) {
-      console.error(e);
-      alert("Błąd połączenia z serwerem.");
-    }
+    
+    const promise = fetch(API_BASE_URL + '/api/duty/clear', { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
+      .then(async res => {
+        if (!res.ok) throw new Error();
+        fetchPayroll();
+      });
+
+    toast.promise(promise, {
+      loading: 'Zerowanie godzin...',
+      success: 'Pomyślnie wyzerowano wszystkie godziny!',
+      error: 'Błąd podczas zerowania godzin.'
+    });
   };
 
   const handleClearSingle = async (userId, name) => {
     if (!window.confirm(`Czy na pewno chcesz wyzerować godziny funkcjonariusza: ${name}? Tej operacji nie można cofnąć!`)) return;
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/duty/clear/${userId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } });
-      if (res.ok) {
-        alert(`Pomyślnie wyzerowano godziny dla ${name}!`);
-        window.location.reload();
-      } else {
-        alert("Błąd podczas zerowania godzin pracownika.");
-      }
-    } catch (e) {
-      console.error(e);
-      alert("Błąd połączenia z serwerem.");
-    }
+    
+    const promise = fetch(`${API_BASE_URL}/api/duty/clear/${userId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
+      .then(async res => {
+        if (!res.ok) throw new Error();
+        fetchPayroll();
+      });
+
+    toast.promise(promise, {
+      loading: `Zerowanie godzin dla ${name}...`,
+      success: `Pomyślnie wyzerowano godziny dla ${name}!`,
+      error: 'Błąd podczas zerowania godzin pracownika.'
+    });
   };
 
   const filtered = useMemo(() => {
@@ -171,9 +178,9 @@ function Payroll({ isLoggedIn }) {
                 {isLoggedIn && <th style={{ textAlign: 'right' }}>Akcje</th>}
               </tr>
             </thead>
-            <tbody>
+            <motion.tbody variants={containerVariant} initial="hidden" animate="show">
               {filtered.map(off => (
-                <tr key={off.id}>
+                <motion.tr variants={itemVariant} key={off.id}>
                   <td>
                     <span className={`badge-number ${off.department === 'BCSO' ? 'bcso' : ''}`} style={{ marginRight: '8px' }}>
                       {off.badgeNumber}
@@ -197,14 +204,14 @@ function Payroll({ isLoggedIn }) {
                       </button>
                     </td>
                   )}
-                </tr>
+                </motion.tr>
               ))}
               {filtered.length === 0 && (
                 <tr>
                   <td colSpan={isLoggedIn ? "5" : "4"} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>Brak danych do wypłaty dla tych kryteriów.</td>
                 </tr>
               )}
-            </tbody>
+            </motion.tbody>
           </table>
         </div>
       </div>

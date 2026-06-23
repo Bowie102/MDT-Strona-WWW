@@ -4,7 +4,21 @@ import { motion } from 'framer-motion';
 import { Clock, Plus, Trash2, FileText } from 'lucide-react';
 import { format } from 'date-fns';
 import Select from 'react-select';
+import toast from 'react-hot-toast';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+const containerVariant = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05 }
+  }
+};
+
+const itemVariant = {
+  hidden: { opacity: 0, x: -10 },
+  show: { opacity: 1, x: 0 }
+};
 
 function DutyLogs() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -39,26 +53,40 @@ function DutyLogs() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Zamiana przecinka na kropkę do poprawnego parsowania float
-    let parsedHours = formData.hours.toString().replace(',', '.');
-    const dataToSend = { ...formData, hours: parsedHours };
-
-    fetch(API_BASE_URL + '/api/duty', {
+    const promise = fetch(API_BASE_URL + '/api/duty', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` },
-      body: JSON.stringify(dataToSend)
+      body: JSON.stringify({ ...formData, hours: formData.hours.toString().replace(',', '.') })
     })
-    .then(res => res.json())
+    .then(async (res) => {
+      if(!res.ok) throw new Error(await res.text());
+      return res.json();
+    })
     .then(() => {
       fetchLogs();
       setFormData(prev => ({ ...prev, hours: '', report: '' }));
+    });
+
+    toast.promise(promise, {
+      loading: 'Zapisywanie w rejestrze...',
+      success: 'Pomyślnie dodano wpis!',
+      error: 'Nie udało się zapisać wpisu.'
     });
   };
 
   const handleDelete = (id) => {
     if(window.confirm('Usunąć ten wpis?')) {
-      fetch(`${API_BASE_URL}/api/duty/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
-        .then(() => fetchLogs());
+      const promise = fetch(`${API_BASE_URL}/api/duty/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` } })
+        .then(async (res) => {
+          if(!res.ok) throw new Error(await res.text());
+          fetchLogs();
+        });
+        
+      toast.promise(promise, {
+        loading: 'Usuwanie...',
+        success: 'Wpis został usunięty.',
+        error: 'Błąd podczas usuwania.'
+      });
     }
   };
 
@@ -157,7 +185,7 @@ function DutyLogs() {
                     <th style={{ width: '50px' }}>Akcja</th>
                   </tr>
                 </thead>
-              <tbody>
+              <motion.tbody variants={containerVariant} initial="hidden" animate="show">
                 {logs.length === 0 ? (
                   <tr>
                     <td colSpan="5" style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>
@@ -166,7 +194,7 @@ function DutyLogs() {
                   </tr>
                 ) : (
                   logs.map(log => (
-                    <tr key={log.id}>
+                    <motion.tr variants={itemVariant} key={log.id}>
                       <td>{format(new Date(log.date), 'dd.MM.yyyy')}</td>
                       <td>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -194,10 +222,10 @@ function DutyLogs() {
                           </button>
                         )}
                       </td>
-                    </tr>
+                    </motion.tr>
                   ))
                 )}
-              </tbody>
+              </motion.tbody>
             </table>
           </div>
         </div>
