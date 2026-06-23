@@ -50,6 +50,21 @@ function Points({ isLoggedIn }) {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm('Czy na pewno chcesz usunąć ten wpis z akt?')) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/points/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('apiKey')}` }
+      });
+      if (res.ok) {
+        fetchData();
+      }
+    } catch (err) {
+      console.error('Błąd usuwania wpisu', err);
+    }
+  };
+
   const selectOptions = officers.map(o => ({
     value: o.id,
     label: `[${o.badgeNumber}] ${o.firstName} ${o.lastName}`
