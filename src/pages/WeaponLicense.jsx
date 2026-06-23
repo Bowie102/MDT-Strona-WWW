@@ -102,7 +102,7 @@ function WeaponLicense() {
           <h2 style={{ fontSize: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <FileText size={32} color="var(--lspd-blue)" /> Licencja na Broń (CCW)
           </h2>
-          <p style={{ fontSize: '1.1rem', color: '#64748b', marginTop: '0.5rem' }}>Oficjalne zasady i baza wiedzy Departamentu Sprawiedliwości & LSPD</p>
+          <p style={{ fontSize: '1.1rem', color: '#64748b', marginTop: '0.5rem' }}>Oficjalne zasady i przepisy Departamentu Sprawiedliwości oraz LSPD</p>
         </div>
       </div>
 
@@ -115,22 +115,44 @@ function WeaponLicense() {
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
             <div>
-              <h4 style={{ color: '#cbd5e1', marginBottom: '0.75rem' }}>Podstawowe Informacje</h4>
+              <h4 style={{ color: '#cbd5e1', marginBottom: '0.75rem' }}>Podstawowe Informacje i Uprawnienia</h4>
+              <p style={{ color: '#94a3b8', lineHeight: '1.8', margin: '0 0 1rem 0' }}>
+                Licencja wydawana jest przez <strong>Departament Sprawiedliwości (DOJ)</strong> po złożeniu stosownego wniosku i spełnieniu rygorystycznych wymogów, takich jak niekaralność oraz stabilność psychiczna (brak hospitalizacji psychiatrycznej w ciągu ostatnich 6 miesięcy). Uprawnia ona do zakupu, posiadania i noszenia zarejestrowanej broni palnej oraz dedykowanej do niej amunicji.
+              </p>
               <ul style={{ paddingLeft: '1.2rem', color: '#94a3b8', lineHeight: '1.8' }}>
-                <li><strong>Wydawca:</strong> Departament Sprawiedliwości (DOJ).</li>
-                <li><strong>Limit Broni:</strong> Standardowo <Badge color="#f59e0b">MAX 2 sztuki</Badge>. Wyjątkowo DOJ może zwiększyć limit.</li>
-                <li><strong>Utrata Broni:</strong> Obowiązek powiadomienia LSPD w ciągu <Badge color="#ef4444">1 godziny</Badge>.</li>
-                <li><strong>Przechowywanie:</strong> Sejf (broń rozładowana, zabezpieczona, odłączony magazynek).</li>
+                <li><strong>Limit broni:</strong> Standardowo dozwolone jest posiadanie maksymalnie <Badge color="#f59e0b">2 sztuk</Badge>. W wyjątkowych sytuacjach DOJ może zezwolić na większą ilość.</li>
+                <li><strong>Zgłoszenie utraty:</strong> Właściciel ma obowiązek zgłosić zagubienie lub kradzież broni do LSPD w ciągu <Badge color="#ef4444">1 godziny</Badge> od stwierdzenia utraty.</li>
               </ul>
             </div>
             <div>
-              <h4 style={{ color: '#cbd5e1', marginBottom: '0.75rem' }}>Przestępstwa i Złamania Zasad</h4>
+              <h4 style={{ color: '#cbd5e1', marginBottom: '0.75rem' }}>Przestępstwa i Noszenie Broni</h4>
+              <p style={{ color: '#94a3b8', lineHeight: '1.8', margin: '0 0 1rem 0' }}>
+                Nielegalne posiadanie, w tym posiadanie broni i amunicji bez licencji, przekroczenie limitu sztuk, posiadanie amunicji do innej broni niż zarejestrowana, broń ze zdartymi numerami czy broń wojskowa bez pozwolenia kończy się konfiskatą, grzywną oraz więzieniem. Handel bronią bez uprawnień traktowany jest jako <strong>przestępstwo zbrojne</strong> zagrożone bardzo surowymi karami.
+              </p>
               <ul style={{ paddingLeft: '1.2rem', color: '#94a3b8', lineHeight: '1.8' }}>
-                <li>Posiadanie / handel bez uprawnień = <span style={{ color: '#ef4444', fontWeight: 'bold' }}>Przestępstwo Zbrojne</span>.</li>
-                <li>Zabronione jest noszenie jawne oraz demonstracyjne z bronią białą. Obowiązuje <Badge color="#3b82f6">Noś Ukrycie</Badge>.</li>
-                <li>Użycie Broni: traktowane jest jako <strong>każde wzięcie jej do ręki</strong>.</li>
-                <li>Broń wojskowa/automatyczna oraz materiały wybuchowe wymagają oddzielnych zezwoleń od DOJ.</li>
+                <li><strong>Sposób noszenia:</strong> Broń palna musi być zawsze przenoszona w ukryciu. Jej jawne noszenie jest surowo karane. Ponadto demonstracyjne noszenie broni białej (traktowane jako prowokacja) jest zabronione.</li>
+                <li><strong>Użycie broni:</strong> Przez "użycie" rozumiemy <strong>każde wzięcie broni do ręki</strong>. Nieuprawnione manipulowanie bronią lub stwarzanie nią zagrożenia jest karane.</li>
               </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div variants={itemVariant} className="glass-card" style={{ padding: '2rem' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.3rem', color: '#e2e8f0', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
+            <AlertTriangle size={24} color="#f59e0b" /> Uzasadnienie Użycia Broni (Defensywa)
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <div>
+              <h4 style={{ color: '#cbd5e1', marginBottom: '0.5rem' }}>Obrona konieczna</h4>
+              <p style={{ color: '#94a3b8', lineHeight: '1.8', margin: 0 }}>
+                Użycie broni jest dopuszczalne wyłącznie wtedy, gdy jest to działanie <strong>proporcjonalne</strong> do bezpośredniego i bezprawnego ataku na życie, zdrowie lub mienie obywatela. Konieczne jest późniejsze udokumentowanie sytuacji oraz zachowanie odpowiedniego terminu na zgłoszenie incydentu.
+              </p>
+            </div>
+            <div>
+              <h4 style={{ color: '#cbd5e1', marginBottom: '0.5rem' }}>Stan wyższej konieczności / Błąd faktu</h4>
+              <p style={{ color: '#94a3b8', lineHeight: '1.8', margin: 0 }}>
+                W przypadku wystąpienia stanu wyższej konieczności lub błędu faktu, obywatel ma obowiązek złożyć wniosek do odpowiednich organów ścigania w ciągu 7 dni, dołączając stosowne dowody potwierdzające jego wersję wydarzeń.
+              </p>
             </div>
           </div>
         </motion.div>
@@ -138,33 +160,40 @@ function WeaponLicense() {
         {/* Sekcja: PROCEDURA WYRABIANIA LICENCJI */}
         <motion.div variants={itemVariant} className="glass-card" style={{ padding: '2rem' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.3rem', color: '#e2e8f0', marginBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
-            <ShieldCheck size={24} color="#10b981" /> Procedura Wyrabiania Licencji (Krok po Kroku)
+            <ShieldCheck size={24} color="#10b981" /> Procedura Wyrabiania Licencji od A do Z
           </h3>
           
           <div style={{ marginLeft: '1rem', borderLeft: '2px dashed rgba(59, 130, 246, 0.3)', paddingLeft: '2rem' }}>
-            <StepBox number="1" title="Weryfikacja LSPD (Niekaralność)" cost={40000}>
-              <p style={{ margin: '0 0 0.5rem 0' }}>Sprawdzenie kartoteki obywatela. Aby zostać dopuszczonym do dalszych etapów, obywatel <strong>nie może być karany przez ostatnie 14 dni</strong> ani figurować jako poszukiwany.</p>
+            <StepBox number="1" title="Zaświadczenie o niekaralności (DOJ)" cost={20000}>
               <p style={{ margin: 0 }}>
-                Mandat z dopiskiem: <em>"Zaświadczenie o niekaralności"</em>. Wpis wykonujemy na kanale <Badge bg="rgba(255,255,255,0.05)" color="#cbd5e1">📇┃zaświadczenie-o-niekaralności</Badge>.
+                Wszystko zaczyna się od wyrobienia zaświadczenia o niekaralności w Departamencie Sprawiedliwości (DOJ). Koszt jego uzyskania to 20.000 $. Dokument ten jest przepustką do dalszych etapów.
               </p>
             </StepBox>
 
-            <StepBox number="2" title="Badania Psychologiczne" cost={40000}>
-              <p style={{ margin: 0 }}>Obywatel udaje się do kliniki psychologicznej na ocenę stabilności emocjonalnej. Opłata uiszczana jest bezpośrednio na rzecz wyznaczonego psychologa.</p>
+            <StepBox number="2" title="Badania psychologiczne" cost={20000}>
+              <p style={{ margin: 0 }}>
+                W kolejnym kroku obywatel musi udać się do specjalisty na pełne badania psychologiczne, za które również będzie musiał uiścić opłatę u wybranego psychologa.
+              </p>
             </StepBox>
 
-            <StepBox number="3" title="Badania EMS (Wzrok)" cost={40000}>
-              <p style={{ margin: 0 }}>Wizyta w szpitalu w celu weryfikacji wady wzroku i sprawności fizycznej. Opłata uiszczana jest bezpośrednio na rzecz jednostki ratowniczej (EMS).</p>
+            <StepBox number="3" title="Badania EMS (sprawnościowe)" cost={20000}>
+              <p style={{ margin: 0 }}>
+                Następnie należy poddać się badaniom w jednostce EMS. Obejmują one badanie wzroku oraz inne, wewnętrznie ustalone przez medyków testy kwalifikacyjne. Opłata wpłacana jest na rzecz EMS.
+              </p>
             </StepBox>
 
-            <StepBox number="4" title="Egzamin LSPD i Wydanie Licencji" cost={40000}>
-              <ul style={{ margin: '0 0 1rem 0', paddingLeft: '1.2rem' }}>
-                <li><strong>Przeszukanie:</strong> Przed wpuszczeniem na teren komendy, przedstaw się i przeszukaj obywatela. Wykrycie nielegalnych przedmiotów skutkuje zatrzymaniem.</li>
-                <li><strong>Wymagania zaliczenia:</strong> Maksymalnie <strong>2/3 błędy</strong> z pytań testowych. (Kolejne podejście możliwe za 3 dni).</li>
+            <StepBox number="4" title="Egzamin na komendzie LSPD" cost={20000}>
+              <p style={{ margin: '0 0 1rem 0' }}>
+                W ostatnim kroku obywatel zgłasza się na komendę LSPD, aby zdać test z budowy i obsługi broni palnej. Opłata za samo przystąpienie do egzaminu jest pobierana przez LSPD z dopiskiem <em>"Egzamin - pozwolenie na broń"</em>.
+              </p>
+              <ul style={{ margin: '0 0 1rem 0', paddingLeft: '1.2rem', color: '#94a3b8' }}>
+                <li><strong>Czynności wstępne:</strong> Przed wpuszczeniem na teren komendy, musisz się kulturalnie przedstawić obywatelowi i obowiązkowo go przeszukać. Jeśli znajdziesz przy nim jakiekolwiek niebezpieczne lub nielegalne przedmioty, musisz odstąpić od egzaminu i natychmiast zatrzymać taką osobę.</li>
+                <li><strong>Weryfikacja:</strong> Upewnij się, że osoba posiada komplet badań (Psycholog i EMS). Sprawdź również jej dane w tablecie – aby przystąpić do egzaminu, nie może być ona karana przez <strong>ostatnie 14 dni</strong> ani być poszukiwana.</li>
+                <li><strong>Zasady zaliczenia:</strong> Egzamin można zaliczyć popełniając <strong>maksymalnie 2 do 3 błędów</strong> z listy pytań (które znajdziesz na kanale discordowym 📇┃pytania). W przypadku wyniku negatywnego wyznaczasz termin kolejnego podejścia najwcześniej za 3 dni (i nie pobierasz opłaty za wydanie!).</li>
               </ul>
               <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '1rem', borderRadius: '6px' }}>
-                <p style={{ margin: '0 0 0.5rem 0', color: '#10b981', fontWeight: 'bold' }}>Po zdaniu egzaminu (+ $10,000 za wydanie dokumentu):</p>
-                <p style={{ margin: 0 }}>Wystawiasz mandat na 10k z dopiskiem <em>"Wydanie licencji na broń"</em>, a następnie nadajesz licencję w tablecie i logujesz to na kanale <Badge bg="rgba(255,255,255,0.05)" color="#cbd5e1">📇┃wydane</Badge>.</p>
+                <p style={{ margin: '0 0 0.5rem 0', color: '#10b981', fontWeight: 'bold' }}>Zakończenie sukcesem (+ $10,000 za licencję):</p>
+                <p style={{ margin: 0 }}>Po pozytywnym wyniku egzaminu pobierasz dodatkową opłatę w wysokości 10.000 $ jako koszt wystawienia dokumentu (z dopiskiem <em>"Wydanie licencji na broń"</em>). Nadajesz licencję w tablecie i wpisujesz ten fakt na kanale <Badge bg="rgba(255,255,255,0.05)" color="#cbd5e1">📇┃wydane</Badge>.</p>
               </div>
             </StepBox>
           </div>
@@ -173,21 +202,21 @@ function WeaponLicense() {
         {/* Sekcja: ZASADY WEWNĘTRZNE */}
         <motion.div variants={itemVariant} className="glass-card" style={{ padding: '2rem', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.3rem', color: '#ef4444', marginBottom: '1.5rem', borderBottom: '1px solid rgba(239, 68, 68, 0.2)', paddingBottom: '1rem' }}>
-            <AlertTriangle size={24} color="#ef4444" /> Cofnięcie i Zabrane Uprawnienia
+            <AlertTriangle size={24} color="#ef4444" /> Odbieranie i Cofanie Uprawnień
           </h3>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
             <div style={{ flex: '1 1 300px' }}>
-              <p style={{ color: '#e2e8f0', fontSize: '1.1rem', fontWeight: 'bold', margin: '0 0 1rem 0' }}>Kiedy konfiskujemy uprawnienia?</p>
-              <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderRadius: '8px', color: '#fca5a5' }}>
-                <strong>Każde przestępstwo z użyciem broni palnej</strong> = natychmiastowe odebranie licencji. Obywatel w takim przypadku musi natychmiast przekazać nam całą broń i amunicję.
+              <p style={{ color: '#e2e8f0', fontSize: '1.1rem', fontWeight: 'bold', margin: '0 0 1rem 0' }}>Główna zasada konfiskaty</p>
+              <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderRadius: '8px', color: '#fca5a5', lineHeight: '1.7' }}>
+                <strong>Każde popełnione przestępstwo z użyciem broni palnej wiąże się z bezwzględnym odebraniem licencji na jej posiadanie.</strong> Przy cofnięciu licencji obywatel ma obowiązek natychmiastowego przekazania broni oraz całej amunicji funkcjonariuszom LSPD.
               </div>
             </div>
             <div style={{ flex: '1 1 300px' }}>
-              <p style={{ color: '#e2e8f0', fontSize: '1.1rem', fontWeight: 'bold', margin: '0 0 1rem 0' }}>Uprawnienia funkcjonariuszy</p>
+              <p style={{ color: '#e2e8f0', fontSize: '1.1rem', fontWeight: 'bold', margin: '0 0 1rem 0' }}>Uprawnienia wewnątrz departamentu</p>
               <ul style={{ paddingLeft: '1.2rem', color: '#94a3b8', lineHeight: '1.8', margin: 0 }}>
-                <li><strong>Wystawianie licencji:</strong> Dozwolone tylko od rangi <Badge color="#eab308">Sergeant</Badge> w górę.</li>
-                <li><strong>Odbieranie licencji:</strong> Mają prawo wszystkie rangi LSPD (z wyjątkiem <Badge color="#94a3b8">Cadet</Badge>).</li>
-                <li>Wpisujemy konfiskatę na kanale <Badge bg="rgba(255,255,255,0.05)" color="#cbd5e1">📇┃zabrane</Badge>.</li>
+                <li>Do wystawiania nowych licencji uprawnieni są wyłącznie funkcjonariusze posiadający rangę <Badge color="#eab308">Sergeant</Badge> lub wyższą.</li>
+                <li>Prawa do konfiskowania uprawnień przysługują wszystkim funkcjonariuszom w departamencie, z wyłączeniem stopnia <Badge color="#94a3b8">Cadet</Badge>.</li>
+                <li>Każde cofnięcie uprawnień musi zostać starannie udokumentowane i wpisane według obowiązującego wzoru na kanale <Badge bg="rgba(255,255,255,0.05)" color="#cbd5e1">📇┃zabrane</Badge>.</li>
               </ul>
             </div>
           </div>
@@ -196,46 +225,46 @@ function WeaponLicense() {
         {/* Sekcja: BAZA WIEDZY - AKORDEON */}
         <motion.div variants={itemVariant} className="glass-card" style={{ padding: '2rem' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.3rem', color: '#e2e8f0', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
-            <HelpCircle size={24} color="#3b82f6" /> Pytania Teoretyczne na Egzamin
+            <HelpCircle size={24} color="#3b82f6" /> Baza Wiedzy (Pytania Egzaminacyjne)
           </h3>
           
           <AccordionItem title="Czym jest BLOS?" icon={CheckCircle2}>
-            <p style={{ marginBottom: '1rem' }}>Akronim od czterech głównych zasad bezpieczeństwa podczas obchodzenia się z bronią palną:</p>
+            <p style={{ marginBottom: '1rem' }}>BLOS to akronim od czterech podstawowych zasad bezpieczeństwa, których przestrzeganie jest fundamentalne dla każdego posiadacza broni palnej:</p>
             <ul style={{ paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <li><strong>B jak Broń:</strong> Traktuj każdą broń tak, jakby była załadowana, niezależnie od zapewnień innych.</li>
-              <li><strong>L jak Lufa:</strong> Zawsze kieruj lufę w stronę celu, kulochwytu, ziemi (pod kątem ok. 45°) lub w powietrze. Nigdy na siebie ani inne osoby.</li>
-              <li><strong>O jak Otoczenie:</strong> Zanim oddasz strzał, upewnij się, co znajduje się przed i za celem, by uniknąć rykoszetów i zagrożenia osób postronnych.</li>
-              <li><strong>S jak Spust:</strong> Trzymaj palec poza językiem spustowym i kładź go tam dopiero, gdy jesteś gotów oddać strzał.</li>
+              <li><strong>B jak Broń:</strong> Traktuj każdą broń tak, jakby była załadowana, absolutnie niezależnie od tego, czy ktoś przed chwilą zapewniał cię, że jest ona rozładowana.</li>
+              <li><strong>L jak Lufa:</strong> Zawsze kieruj wylot lufy w bezpieczną stronę – w stronę wyznaczonego celu, kulochwytu, prosto w ziemię (pod kątem ok. 45 stopni) lub w powietrze. Nigdy nie celuj w siebie ani w inne osoby.</li>
+              <li><strong>O jak Otoczenie:</strong> Zanim zdecydujesz się na oddanie strzału, upewnij się dokładnie co znajduje się przed twoim celem i tuż za nim. Pomoże to uniknąć śmiertelnego zagrożenia dla osób postronnych.</li>
+              <li><strong>S jak Spust:</strong> Zawsze trzymaj palec całkowicie poza językiem spustowym. Możesz położyć go na spuście dopiero wtedy, gdy wycelujesz i będziesz gotów oddać strzał.</li>
             </ul>
           </AccordionItem>
 
-          <AccordionItem title="Strefy Celowania" icon={Crosshair}>
-            <p>W przypadku, gdy jesteśmy zmuszeni do użycia broni palnej, celujemy <strong>WYŁĄCZNIE W KLATKĘ PIERSIOWĄ</strong> (środek masy).</p>
-            <p><strong>Zabronione jest celowanie w nogi</strong> ze względu na gigantyczne ryzyko trafienia w tętnicę udową i spowodowania śmiertelnego wykrwawienia przed przyjazdem EMS.</p>
+          <AccordionItem title="Kiedy jesteśmy zmuszeni do użycia broni palnej, w jakie części ciała celujemy?" icon={Crosshair}>
+            <p>Pamiętaj, że w sytuacji wymagającej użycia ostatecznej siły, celujemy <strong>wyłącznie w klatkę piersiową</strong>, ze względu na to, że jest to największy punkt na ciele (tzw. środek masy).</p>
+            <p><strong>Kategorycznie unikamy celowania w nogi.</strong> Jest to zbyt duże ryzyko ze względu na obecność tętnicy udowej – przypadkowe postrzelenie w tętnicę wiąże się ze śmiertelnym wykrwawieniem w przeciągu zaledwie kilku chwil.</p>
           </AccordionItem>
 
-          <AccordionItem title="Z czego składa się Łuska?" icon={HelpCircle}>
-            <p>Łuska to metalowa "obudowa" (najczęściej mosiężna, rzadziej stalowa), która trzyma wszystkie elementy naboju w całości.</p>
-            <p style={{ marginTop: '0.5rem' }}>Trzy główne części łuski:</p>
+          <AccordionItem title="Z czego składa się łuska i jaką pełni rolę?" icon={HelpCircle}>
+            <p>Łuska to zewnętrzna metalowa "obudowa" (najczęściej wykonana z mosiądzu, rzadziej ze stali lub aluminium), której główną rolą jest trzymanie wszystkich elementów naboju w jednej całości.</p>
+            <p style={{ marginTop: '0.5rem' }}>Konstrukcja łuski dzieli się na trzy główne części:</p>
             <ol style={{ paddingLeft: '1.2rem', marginTop: '0.5rem' }}>
-              <li><strong>Szyjka</strong> – miejsce, w którym osadzony jest pocisk.</li>
-              <li><strong>Korpus</strong> – główna, środkowa część łuski.</li>
-              <li><strong>Denko</strong> – dolna część zawierająca gniazdo spłonki i wyżłobienie dla wyciągacza.</li>
+              <li><strong>Szyjka</strong> – zwężona część, w której ciasno osadzony jest pocisk.</li>
+              <li><strong>Korpus</strong> – główna komora mieszcząca w sobie ładunek prochowy.</li>
+              <li><strong>Denko</strong> – dolna, spłaszczona część łuski z wbudowanym gniazdem na spłonkę i specjalnym wyżłobieniem ułatwiającym pracę wyciągacza łusek.</li>
             </ol>
           </AccordionItem>
 
-          <AccordionItem title="Czym jest Spłonka i Proch?" icon={HelpCircle}>
+          <AccordionItem title="Czym jest spłonka i czym jest proch?" icon={HelpCircle}>
             <ul style={{ paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1rem', margin: 0 }}>
-              <li><strong>Spłonka:</strong> mały zapłonnik umieszczony w dnie łuski. Po uderzeniu iglicy pistoletu, spłonka wytwarza iskrę i zapala ładunek prochowy.</li>
-              <li><strong>Proch:</strong> ładunek miotający (najczęściej proch bezdymny - nitroceluloza). Powstające gazy wypychają pocisk z lufy. Ilość i rodzaj prochu decyduje o ciśnieniu i prędkości pocisku.</li>
+              <li><strong>Spłonka:</strong> Jest to niewielki zapłonnik umiejscowiony na samym dnie łuski. W momencie uderzenia przez iglicę broni, spłonka wytwarza błyskawiczną iskrę, która zapala ładunek prochowy.</li>
+              <li><strong>Proch:</strong> To główny ładunek miotający (w nowoczesnej broni jest to najczęściej proch bezdymny z nitrocelulozy). Energia rozprężających się gazów powstających w wyniku jego spalania jest na tyle duża, że wypycha pocisk z lufy. Rodzaj prochu i jego ilość decydują o ostatecznym ciśnieniu i prędkości wyrzutu.</li>
             </ul>
           </AccordionItem>
 
-          <AccordionItem title="Rodzaje Pocisków (Typy Amunicji)" icon={HelpCircle}>
+          <AccordionItem title="Wymień rodzaje pocisków i ich zastosowanie" icon={HelpCircle}>
             <ul style={{ paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: 0 }}>
-              <li><strong>FMJ (Pełnopłaszczowe):</strong> standardowa amunicja używana głównie w strzelectwie sportowym i wojsku. Bardzo dobra przebijalność.</li>
-              <li><strong>HP (Hollow Point / Puste wierzchołki):</strong> używane często w obronie osobistej. Grzybkują w ciele, oddając całą energię celowi (wysoka siła obalająca), dzięki czemu nie przelatują przez ciało na wylot i są bezpieczniejsze dla otoczenia.</li>
-              <li><strong>SP (Półpłaszczowe):</strong> pociski myśliwskie charakteryzujące się ogromną siłą rażenia i potężnymi obrażeniami tkanek.</li>
+              <li><strong>Pociski Pełnopłaszczowe (FMJ):</strong> Standardowa amunicja. Stosowana głównie przez wojsko oraz podczas treningów strzeleckich. Charakteryzuje się dużą penetracją i przenikalnością materiałów.</li>
+              <li><strong>Pociski z pustym wierzchołkiem (HP):</strong> Specjalistyczna amunicja używana często do obrony osobistej. Konstrukcja pozwala pociskowi na natychmiastowe "grzybkowanie" przy trafieniu w ciało, oddając ogromną energię (bardzo wysoka siła obalająca) i zapobiegając przelatywaniu pocisku na wylot.</li>
+              <li><strong>Pociski Półpłaszczowe (SP):</strong> Typowa amunicja myśliwska. Przeznaczona do wywoływania rozległych i masywnych uszkodzeń tkanek wewnątrz celu, dysponująca potężną siłą rażenia.</li>
             </ul>
           </AccordionItem>
 
