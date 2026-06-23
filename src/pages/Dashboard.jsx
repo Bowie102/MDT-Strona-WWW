@@ -19,8 +19,9 @@ function Dashboard() {
     setIsLoading(true);
     Promise.all([
       fetch(`${API_BASE_URL}/api/officers`).then(res => res.json()),
-      fetch(`${API_BASE_URL}/api/dashboard-logs`).then(res => res.json())
-    ]).then(([officersData, logsData]) => {
+      fetch(`${API_BASE_URL}/api/dashboard-logs`).then(res => res.json()),
+      fetch(`${API_BASE_URL}/api/duty`).then(res => res.json())
+    ]).then(([officersData, logsData, dutyData]) => {
       let lspd = 0, bcso = 0, dtu = 0, metro = 0, ftd = 0, hwp = 0;
       officersData.forEach(off => {
         if (off.department === 'LSPD') lspd++;
@@ -37,15 +38,23 @@ function Dashboard() {
       setStats({ lspdCount: lspd, bcsoCount: bcso, dtuCount: dtu, metroCount: metro, ftdCount: ftd, hwpCount: hwp });
       setLogs(logsData);
 
-      // Generowanie realistycznego rankingu na podstawie aktywności i odznaczeń (symulowane deterministycznie dla wizualizacji)
+      // Obliczanie realnych przepracowanych godzin na podstawie pobranych logów służby
+      const hoursMap = {};
+      if (Array.isArray(dutyData)) {
+        dutyData.forEach(d => {
+          if (d.userId) {
+            hoursMap[d.userId] = (hoursMap[d.userId] || 0) + parseFloat(d.hours || 0);
+          }
+        });
+      }
+
+      // Generowanie rankingu na podstawie godzin na służbie
       const ranking = [...officersData]
-        .filter(off => off.status.includes('AKTYWNY'))
-        .map(off => {
-          let score = 150 + (off.id * 7) % 85; 
-          if (off.isHC) score += 100;
-          if (off.isCB) score += 50;
-          return { ...off, score };
-        })
+        .map(off => ({
+          ...off,
+          score: hoursMap[off.id] || 0
+        }))
+        .filter(off => off.score > 0)
         .sort((a, b) => b.score - a.score)
         .slice(0, 5);
         
@@ -165,9 +174,9 @@ function Dashboard() {
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
+      <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         
-        {/* LEWA KOLUMNA: Ostatnia Aktywność */}
+        {/* SEKACJA: Ostatnia Aktywność */}
         <div>
           <h3 style={{ color: 'var(--text-muted)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.85rem' }}>
             <Activity size={16} /> Ostatnia Aktywność Wydziału
@@ -220,49 +229,53 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* PRAWA KOLUMNA: Ranking */}
+        {/* SEKCJA: Ranking */}
         <div>
           <h3 style={{ color: '#facc15', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.85rem' }}>
-            <Award size={16} /> Hall of Fame LSPD & BCSO
+            <Award size={16} /> Hall of Fame LSPD & BCSO (Godziny na Służbie)
           </h3>
           <div className="glass-card" style={{ padding: '0.75rem', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.8) 100%)', border: '1px solid rgba(250, 204, 21, 0.15)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             
-            {topOfficers.map((off, idx) => {
-              const isFirst = idx === 0;
-              const isSecond = idx === 1;
-              const isThird = idx === 2;
-              
-              let rankColor = '#64748b';
-              if (isFirst) rankColor = '#facc15';
-              else if (isSecond) rankColor = '#cbd5e1';
-              else if (isThird) rankColor = '#b45309';
+            {topOfficers.length === 0 ? (
+              <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '1rem', fontFamily: 'var(--font-mono)' }}>Brak zarejestrowanych godzin.</p>
+            ) : (
+              topOfficers.map((off, idx) => {
+                const isFirst = idx === 0;
+                const isSecond = idx === 1;
+                const isThird = idx === 2;
+                
+                let rankColor = '#64748b';
+                if (isFirst) rankColor = '#facc15';
+                else if (isSecond) rankColor = '#cbd5e1';
+                else if (isThird) rankColor = '#b45309';
 
-              return (
-                <div key={off.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.75rem 1.25rem', background: isFirst ? 'rgba(250, 204, 21, 0.05)' : 'rgba(0,0,0,0.3)', borderRadius: '8px', borderLeft: `4px solid ${rankColor}`, border: isFirst ? '1px solid rgba(250, 204, 21, 0.2)' : '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden', transition: 'transform 0.2s' }} onMouseOver={e=>e.currentTarget.style.transform='translateX(4px)'} onMouseOut={e=>e.currentTarget.style.transform='translateX(0)'}>
-                  
-                  <div style={{ position: 'absolute', right: '-10px', top: '-15px', fontSize: '5rem', opacity: isFirst ? 0.08 : 0.03, fontWeight: 900, color: rankColor, pointerEvents: 'none' }}>
-                    #{idx + 1}
-                  </div>
-
-                  <div style={{ width: '38px', height: '38px', background: 'rgba(0,0,0,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '1.1rem', color: rankColor, border: `1px solid ${rankColor}40`, boxShadow: isFirst ? '0 0 10px rgba(250, 204, 21, 0.2)' : 'none' }}>
-                    #{idx + 1}
-                  </div>
-
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <span style={{ fontWeight: 800, color: isFirst ? '#facc15' : '#f8fafc', fontSize: '1.05rem', letterSpacing: '0.5px' }}>{off.firstName} {off.lastName}</span>
-                      <span style={{ fontSize: '0.65rem', color: off.department === 'LSPD' ? '#60a5fa' : '#34d399', background: off.department === 'LSPD' ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', padding: '0.15rem 0.4rem', borderRadius: '4px', fontWeight: 'bold', textTransform: 'uppercase' }}>{off.department}</span>
+                return (
+                  <div key={off.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.75rem 1.25rem', background: isFirst ? 'rgba(250, 204, 21, 0.05)' : 'rgba(0,0,0,0.3)', borderRadius: '8px', borderLeft: `4px solid ${rankColor}`, border: isFirst ? '1px solid rgba(250, 204, 21, 0.2)' : '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden', transition: 'transform 0.2s' }} onMouseOver={e=>e.currentTarget.style.transform='translateX(4px)'} onMouseOut={e=>e.currentTarget.style.transform='translateX(0)'}>
+                    
+                    <div style={{ position: 'absolute', right: '-10px', top: '-15px', fontSize: '5rem', opacity: isFirst ? 0.08 : 0.03, fontWeight: 900, color: rankColor, pointerEvents: 'none' }}>
+                      #{idx + 1}
                     </div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{off.rank} • Odznaka [{off.badgeNumber}]</div>
-                  </div>
 
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#f8fafc', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{off.score}</div>
-                    <div style={{ fontSize: '0.6rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Skuteczność</div>
+                    <div style={{ width: '38px', height: '38px', background: 'rgba(0,0,0,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '1.1rem', color: rankColor, border: `1px solid ${rankColor}40`, boxShadow: isFirst ? '0 0 10px rgba(250, 204, 21, 0.2)' : 'none' }}>
+                      #{idx + 1}
+                    </div>
+
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span style={{ fontWeight: 800, color: isFirst ? '#facc15' : '#f8fafc', fontSize: '1.05rem', letterSpacing: '0.5px' }}>{off.firstName} {off.lastName}</span>
+                        <span style={{ fontSize: '0.65rem', color: off.department === 'LSPD' ? '#60a5fa' : '#34d399', background: off.department === 'LSPD' ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', padding: '0.15rem 0.4rem', borderRadius: '4px', fontWeight: 'bold', textTransform: 'uppercase' }}>{off.department}</span>
+                      </div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{off.rank} • Odznaka [{off.badgeNumber}]</div>
+                    </div>
+
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#f8fafc', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{off.score.toFixed(1)}h</div>
+                      <div style={{ fontSize: '0.6rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Na Służbie</div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
 
           </div>
         </div>
