@@ -40,8 +40,31 @@ body {
   font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-dark) 60%);
+  background: linear-gradient(-45deg, #020617, #0f172a, #1e3a8a, #064e3b);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
   background-attachment: fixed;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* Base Inputs & Buttons */
@@ -273,8 +296,8 @@ button {
 
 .btn-primary:hover {
   background: #2563eb;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.2);
 }
 
 .btn-icon {
@@ -307,12 +330,18 @@ button {
   border: 1px solid #d97706;
   color: #f59e0b;
 }
-.btn-outline.edit:hover { background: rgba(245, 158, 11, 0.1); }
+.btn-outline.edit:hover { 
+  background: rgba(245, 158, 11, 0.1); 
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
 .btn-outline.delete {
   border: 1px solid #b91c1c;
   color: #ef4444;
 }
-.btn-outline.delete:hover { background: rgba(239, 68, 68, 0.1); }
+.btn-outline.delete:hover { 
+  background: rgba(239, 68, 68, 0.1); 
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
 
 /* --- CARDS & PANELS --- */
 .glass-card, .points-card {
