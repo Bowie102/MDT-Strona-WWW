@@ -1,7 +1,8 @@
 import { API_BASE_URL } from '../config';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus, UserPlus, X } from 'lucide-react';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const RANK_WEIGHTS = {
   'Chief of Police': 100,
@@ -45,6 +46,7 @@ function Roster({ isLoggedIn }) {
   const [officers, setOfficers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDept, setFilterDept] = useState('ALL');
+  const [isLoading, setIsLoading] = useState(true);
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -62,13 +64,15 @@ function Roster({ isLoggedIn }) {
   }, []);
 
   const fetchOfficers = () => {
+    setIsLoading(true);
     Promise.all([
       fetch(API_BASE_URL + '/api/officers').then(res => res.json()),
       fetch(API_BASE_URL + '/api/duty').then(res => res.json())
     ]).then(([officersData, logsData]) => {
       setOfficers(officersData);
       setDutyLogs(logsData);
-    });
+      setIsLoading(false);
+    }).catch(() => setIsLoading(false));
   };
 
   const safeParseJSON = (str) => {
@@ -142,75 +146,74 @@ function Roster({ isLoggedIn }) {
     }
   };
 
-  const filtered = officers.filter(o => {
-    if (filterDept !== 'ALL') {
-      if (filterDept === 'LSPD' || filterDept === 'BCSO') {
-        if (o.department !== filterDept) return false;
-      } else {
-        const divs = safeParseJSON(o.divisions) || [];
-        if (!divs.includes(filterDept)) return false;
+  const filteredAndSorted = useMemo(() => {
+    let result = officers.filter(o => {
+      if (filterDept !== 'ALL') {
+        if (filterDept === 'LSPD' || filterDept === 'BCSO') {
+          if (o.department !== filterDept) return false;
+        } else {
+          const divs = safeParseJSON(o.divisions) || [];
+          if (!divs.includes(filterDept)) return false;
+        }
       }
-    }
-    const term = searchTerm.toLowerCase();
-    return o.firstName.toLowerCase().includes(term) ||
-           o.lastName.toLowerCase().includes(term) ||
-           o.badgeNumber.includes(term) ||
-           (o.discordNick && o.discordNick.toLowerCase().includes(term));
-  }).sort((a, b) => {
-    // 1. Logika sortowania po rangach wydziałowych (tylko, gdy wybrano wydział)
-    let divWeightA = 0;
-    let divWeightB = 0;
+      const term = searchTerm.toLowerCase();
+      return (o.firstName && o.firstName.toLowerCase().includes(term)) ||
+             (o.lastName && o.lastName.toLowerCase().includes(term)) ||
+             (o.badgeNumber && o.badgeNumber.toLowerCase().includes(term)) ||
+             (o.discordNick && o.discordNick.toLowerCase().includes(term));
+    });
 
-    const getDivWeight = (rank) => {
-      if (!rank) return 0;
-      const upper = rank.toUpperCase();
-      if (upper.includes('COMMANDER')) {
-        if (upper.includes('DEPUTY')) return 90;
-        return 100;
+    return result.sort((a, b) => {
+      let divWeightA = 0;
+      let divWeightB = 0;
+
+      const getDivWeight = (rank) => {
+        if (!rank) return 0;
+        const upper = rank.toUpperCase();
+        if (upper.includes('COMMANDER')) {
+          if (upper.includes('DEPUTY')) return 90;
+          return 100;
+        }
+        if (upper.includes('LEAD DETECTIVE')) return 80;
+        if (upper.includes('SENIOR DETECTIVE')) return 70;
+        if (upper === 'DETECTIVE') return 60;
+        if (upper.includes('JUNIOR DETECTIVE')) return 50;
+        return 0;
+      };
+
+      if (filterDept === 'DTU') {
+        divWeightA = getDivWeight(a.dtuRank);
+        divWeightB = getDivWeight(b.dtuRank);
+      } else if (filterDept === 'METRO') {
+        divWeightA = getDivWeight(a.metroRank);
+        divWeightB = getDivWeight(b.metroRank);
+      } else if (filterDept === 'FTD') {
+        divWeightA = getDivWeight(a.ftdRank);
+        divWeightB = getDivWeight(b.ftdRank);
+      } else if (filterDept === 'HWP') {
+        divWeightA = getDivWeight(a.hwpRank);
+        divWeightB = getDivWeight(b.hwpRank);
       }
-      if (upper.includes('LEAD DETECTIVE')) return 80;
-      if (upper.includes('SENIOR DETECTIVE')) return 70;
-      if (upper === 'DETECTIVE') return 60;
-      if (upper.includes('JUNIOR DETECTIVE')) return 50;
-      return 0;
-    };
 
-    if (filterDept === 'DTU') {
-      divWeightA = getDivWeight(a.dtuRank);
-      divWeightB = getDivWeight(b.dtuRank);
-    } else if (filterDept === 'METRO') {
-      divWeightA = getDivWeight(a.metroRank);
-      divWeightB = getDivWeight(b.metroRank);
-    } else if (filterDept === 'FTD') {
-      divWeightA = getDivWeight(a.ftdRank);
-      divWeightB = getDivWeight(b.ftdRank);
-    } else if (filterDept === 'HWP') {
-      divWeightA = getDivWeight(a.hwpRank);
-      divWeightB = getDivWeight(b.hwpRank);
-    }
+      if (divWeightA !== divWeightB) {
+        return divWeightB - divWeightA;
+      }
 
-    if (divWeightA !== divWeightB) {
-      return divWeightB - divWeightA;
-    }
+      let weightA = RANK_WEIGHTS[a.rank] || 0;
+      let weightB = RANK_WEIGHTS[b.rank] || 0;
+      
+      const bA = parseInt(a.badgeNumber) || 0;
+      const bB = parseInt(b.badgeNumber) || 0;
+      
+      if (bA >= 401 && bA <= 405) weightA = 84 - (bA - 401) * 0.5;
+      if (bB >= 401 && bB <= 405) weightB = 84 - (bB - 401) * 0.5;
 
-    // 2. Standardowa logika sortowania po głównej randze
-    let weightA = RANK_WEIGHTS[a.rank] || 0;
-    let weightB = RANK_WEIGHTS[b.rank] || 0;
-    
-    // Nadpisanie wagi dla HC BCSO (odznaki 401-405), aby sortowali się zaraz po sobie na szczycie BCSO
-    const bA = parseInt(a.badgeNumber) || 0;
-    const bB = parseInt(b.badgeNumber) || 0;
-    
-    if (bA >= 401 && bA <= 405) weightA = 84 - (bA - 401) * 0.5;
-    if (bB >= 401 && bB <= 405) weightB = 84 - (bB - 401) * 0.5;
-
-    // Sort descending by rank weight
-    if (weightA !== weightB) {
-      return weightB - weightA;
-    }
-    // If rank is identical, sort by badge number ascending
-    return bA - bB;
-  });
+      if (weightA !== weightB) {
+        return weightB - weightA;
+      }
+      return bA - bB;
+    });
+  }, [officers, filterDept, searchTerm]);
 
   const getShortRank = (rank) => {
     if (!rank) return '';
@@ -318,24 +321,27 @@ function Roster({ isLoggedIn }) {
       </div>
 
       <div ref={containerRef} style={{ width: '100%', overflowX: 'hidden', paddingBottom: '1rem', position: 'relative' }}>
-        <table ref={tableRef} className="nostalgia-table" style={{ width: '100%' }}>
-          <thead>
-            <tr>
-              <th style={{ width: '30px' }}></th>
-              <th>JEDNOSTKA</th>
-              <th className="col-divider">ODZNAKA</th>
-              <th className="col-divider">IMIĘ I NAZWISKO</th>
-              <th className="col-divider">NICK</th>
-              <th className="col-divider">STOPIEŃ</th>
-              <th className="col-divider">STATUS</th>
-              {COLS_DIV.map(d => <th key={d} className={d === 'METRO' ? 'col-divider' : ''}>{d === 'Highway Patrol Division' ? 'HWP' : d}</th>)}
-              {COLS_TRN.map(t => <th key={t} className={t === 'SEU' ? 'col-divider' : ''}>{t}</th>)}
-              <th className="col-divider" style={{ color: '#fbbf24', textAlign: 'center' }}>GODZINY</th>
-              {isLoggedIn && <th className="col-divider">AKCJE</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map(off => {
+        {isLoading ? (
+          <LoadingSpinner message="Pobieranie listy funkcjonariuszy..." />
+        ) : (
+          <table ref={tableRef} className="nostalgia-table" style={{ width: '100%' }}>
+            <thead>
+              <tr>
+                <th style={{ width: '30px' }}></th>
+                <th>JEDNOSTKA</th>
+                <th className="col-divider">ODZNAKA</th>
+                <th className="col-divider">IMIĘ I NAZWISKO</th>
+                <th className="col-divider">NICK</th>
+                <th className="col-divider">STOPIEŃ</th>
+                <th className="col-divider">STATUS</th>
+                {COLS_DIV.map(d => <th key={d} className={d === 'METRO' ? 'col-divider' : ''}>{d === 'Highway Patrol Division' ? 'HWP' : d}</th>)}
+                {COLS_TRN.map(t => <th key={t} className={t === 'SEU' ? 'col-divider' : ''}>{t}</th>)}
+                <th className="col-divider" style={{ color: '#fbbf24', textAlign: 'center' }}>GODZINY</th>
+                {isLoggedIn && <th className="col-divider">AKCJE</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {filteredAndSorted.map(off => {
               const divs = safeParseJSON(off.divisions);
               const trains = safeParseJSON(off.trainings);
               const isLspd = off.department === 'LSPD';
@@ -433,6 +439,7 @@ function Roster({ isLoggedIn }) {
             })}
           </tbody>
         </table>
+        )}
       </div>
 
       <AnimatePresence>

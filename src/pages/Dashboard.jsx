@@ -3,20 +3,25 @@ import React, { useState, useEffect } from 'react';
 import { Users, Shield, Clock, Activity, FileText, Briefcase, Award, TrendingUp, AlertTriangle, Terminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 function Dashboard() {
   const [stats, setStats] = useState({
     lspdCount: 0, bcsoCount: 0, dtuCount: 0, metroCount: 0, ftdCount: 0, hwpCount: 0
   });
   const [logs, setLogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [threatLevel, setThreatLevel] = useState(localStorage.getItem('threatLevel') || 'GREEN');
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Pobierz oficerów do statystyk wydziałów
-    fetch(`${API_BASE_URL}/api/officers`).then(res => res.json()).then(data => {
+    setIsLoading(true);
+    Promise.all([
+      fetch(`${API_BASE_URL}/api/officers`).then(res => res.json()),
+      fetch(`${API_BASE_URL}/api/dashboard-logs`).then(res => res.json())
+    ]).then(([officersData, logsData]) => {
       let lspd = 0, bcso = 0, dtu = 0, metro = 0, ftd = 0, hwp = 0;
-      data.forEach(off => {
+      officersData.forEach(off => {
         if (off.department === 'LSPD') lspd++;
         if (off.department === 'BCSO') bcso++;
         
@@ -29,11 +34,11 @@ function Dashboard() {
         } catch(e) {}
       });
       setStats({ lspdCount: lspd, bcsoCount: bcso, dtuCount: dtu, metroCount: metro, ftdCount: ftd, hwpCount: hwp });
-    });
-
-    // Pobierz ujednolicone logi
-    fetch(`${API_BASE_URL}/api/dashboard-logs`).then(res => res.json()).then(data => {
-      setLogs(data);
+      setLogs(logsData);
+    }).catch(err => {
+      console.error("Dashboard fetch error:", err);
+    }).finally(() => {
+      setIsLoading(false);
     });
 
     document.body.className = `threat-${threatLevel.toLowerCase()}`;
@@ -77,6 +82,11 @@ function Dashboard() {
           )}
         </div>
       </div>
+
+      {isLoading ? (
+        <LoadingSpinner message="Ładowanie panelu informacyjnego..." />
+      ) : (
+        <>
 
       <div className="dashboard-grid" style={{ marginBottom: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
         <div className="stat-card" style={{ borderLeft: '3px solid #1d4ed8' }}>
@@ -214,6 +224,8 @@ function Dashboard() {
           </button>
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

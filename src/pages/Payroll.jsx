@@ -2,6 +2,7 @@ import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { DollarSign, Download, Search, Trash2 } from 'lucide-react';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const PAY_RATES = {
   // LSPD
@@ -39,8 +40,10 @@ const PAY_RATES = {
 function Payroll({ isLoggedIn }) {
   const [payrollData, setPayrollData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     Promise.all([
       fetch(API_BASE_URL + '/api/officers').then(res => res.json()),
       fetch(API_BASE_URL + '/api/duty').then(res => res.json())
@@ -62,7 +65,8 @@ function Payroll({ isLoggedIn }) {
 
       calculated.sort((a, b) => b.totalPay - a.totalPay);
       setPayrollData(calculated);
-    });
+      setIsLoading(false);
+    }).catch(() => setIsLoading(false));
   }, []);
 
   const handleClearPayroll = async () => {
@@ -97,12 +101,14 @@ function Payroll({ isLoggedIn }) {
     }
   };
 
-  const filtered = payrollData.filter(off => 
-    off.totalHours > 0 && 
-    `${off.firstName} ${off.lastName} ${off.badgeNumber}`.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filtered = useMemo(() => {
+    return payrollData.filter(off => 
+      off.totalHours > 0 && 
+      `${off.firstName} ${off.lastName} ${off.badgeNumber}`.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [payrollData, searchTerm]);
 
-  const totalBudget = filtered.reduce((sum, off) => sum + off.totalPay, 0);
+  const totalBudget = useMemo(() => filtered.reduce((sum, off) => sum + off.totalPay, 0), [filtered]);
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -113,33 +119,37 @@ function Payroll({ isLoggedIn }) {
         </div>
       </div>
 
-      <div className="dashboard-grid" style={{ marginBottom: '2rem' }}>
-        <div className="glass-card stat-card" style={{ gridColumn: 'span 2' }}>
-          <div className="stat-icon gold">
-            <DollarSign size={24} />
+      {isLoading ? (
+        <LoadingSpinner message="Generowanie listy płac..." />
+      ) : (
+        <>
+          <div className="dashboard-grid" style={{ marginBottom: '2rem' }}>
+            <div className="glass-card stat-card" style={{ gridColumn: 'span 2' }}>
+              <div className="stat-icon gold">
+                <DollarSign size={24} />
+              </div>
+              <div className="stat-info">
+                <h3 style={{ color: 'var(--gold-cb)' }}>${totalBudget.toLocaleString()}</h3>
+                <p>Całkowity budżet do wypłaty</p>
+              </div>
+            </div>
+            
+            <div className="glass-card" style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ width: '100%', position: 'relative' }}>
+                <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  placeholder="Szukaj pracownika..." 
+                  style={{ paddingLeft: '2.5rem' }}
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
-          <div className="stat-info">
-            <h3 style={{ color: 'var(--gold-cb)' }}>${totalBudget.toLocaleString()}</h3>
-            <p>Całkowity budżet do wypłaty</p>
-          </div>
-        </div>
-        
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ width: '100%', position: 'relative' }}>
-            <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '12px' }} />
-            <input 
-              type="text" 
-              className="form-control" 
-              placeholder="Szukaj pracownika..." 
-              style={{ paddingLeft: '2.5rem' }}
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
 
-      <div className="glass-card">
+          <div className="glass-card">
         <div className="table-container">
           {isLoggedIn && (
             <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
@@ -198,6 +208,8 @@ function Payroll({ isLoggedIn }) {
           </table>
         </div>
       </div>
+      </>
+      )}
     </motion.div>
   );
 }

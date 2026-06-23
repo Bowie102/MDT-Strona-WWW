@@ -3,10 +3,12 @@ import { API_BASE_URL } from '../config';
 import { format } from 'date-fns';
 import { PlusCircle, MinusCircle, User, Shield, FileText, Send, Activity, Lock } from 'lucide-react';
 import Select from 'react-select';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 function Points({ isLoggedIn }) {
   const [officers, setOfficers] = useState([]);
   const [records, setRecords] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     officerId: '',
     issuerId: '',
@@ -19,17 +21,22 @@ function Points({ isLoggedIn }) {
   }, []);
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
-      const offRes = await fetch(`${API_BASE_URL}/api/officers`);
+      const [offRes, recRes] = await Promise.all([
+        fetch(`${API_BASE_URL}/api/officers`),
+        fetch(`${API_BASE_URL}/api/points`)
+      ]);
       const offData = await offRes.json();
+      const recData = await recRes.json();
+      
       const sorted = offData.sort((a, b) => parseInt(a.badgeNumber || 0) - parseInt(b.badgeNumber || 0));
       setOfficers(sorted);
-
-      const recRes = await fetch(`${API_BASE_URL}/api/points`);
-      const recData = await recRes.json();
       setRecords(recData);
     } catch (err) {
       console.error('Błąd pobierania danych', err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -87,163 +94,178 @@ function Points({ isLoggedIn }) {
         </div>
       </div>
 
-      <div className="points-layout">
-        
-        {/* FORMULARZ (Lewa kolumna) */}
-        {isLoggedIn ? (
-          <div className="points-card">
+      {isLoading ? (
+        <LoadingSpinner message="Pobieranie akt oficerskich..." />
+      ) : (
+        <div className="points-layout">
+          
+          {/* FORMULARZ (Lewa kolumna) */}
+          {isLoggedIn ? (
+            <div className="points-card">
+              <div className="points-card-header">
+                <h2 className="points-card-title">
+                  <FileText color="#60a5fa" size={22} /> Nowy wpis do akt
+                </h2>
+              </div>
+            
+            <form onSubmit={handleSubmit} className="points-form">
+              <div className="points-form-group">
+                <label className="points-form-label">
+                  <User size={16} color="#818cf8" /> Otrzymujący
+                </label>
+                <Select
+                  options={selectOptions}
+                  styles={selectStyles}
+                  placeholder="Wybierz funkcjonariusza..."
+                  value={selectOptions.find(opt => opt.value === formData.officerId) || null}
+                  onChange={(selected) => setFormData({ ...formData, officerId: selected ? selected.value : '' })}
+                  isClearable
+                  isSearchable
+                />
+              </div>
+
+              <div className="points-form-group">
+                <label className="points-form-label">
+                  <Shield size={16} color="#a78bfa" /> Wystawiający
+                </label>
+                <Select
+                  options={selectOptions}
+                  styles={selectStyles}
+                  placeholder="Wybierz przełożonego..."
+                  value={selectOptions.find(opt => opt.value === formData.issuerId) || null}
+                  onChange={(selected) => setFormData({ ...formData, issuerId: selected ? selected.value : '' })}
+                  isClearable
+                  isSearchable
+                />
+              </div>
+
+              <div className="points-form-group">
+                <label className="points-form-label">
+                  <Activity size={16} color="#34d399" /> Typ wpisu
+                </label>
+                <div className="radio-group">
+                  <label className="radio-label">
+                    <input 
+                      type="radio" 
+                      value="PLUS" 
+                      checked={formData.type === 'PLUS'}
+                      onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                    />
+                    <div className="radio-custom plus">
+                      <PlusCircle size={16} /> PLUS
+                    </div>
+                  </label>
+                  
+                  <label className="radio-label">
+                    <input 
+                      type="radio" 
+                      value="MINUS" 
+                      checked={formData.type === 'MINUS'}
+                      onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                    />
+                    <div className="radio-custom minus">
+                      <MinusCircle size={16} /> MINUS
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div className="points-form-group">
+                <label className="points-form-label">Uzasadnienie</label>
+                <textarea 
+                  className="points-textarea" 
+                  rows="4" 
+                  placeholder="Dokładny opis sytuacji..."
+                  required
+                  value={formData.reason} 
+                  onChange={(e) => setFormData({...formData, reason: e.target.value})}
+                />
+              </div>
+
+              <button type="submit" className="points-submit-btn">
+                <Send size={18} /> Zapisz wpis w kartotece
+              </button>
+            </form>
+          </div>
+          ) : (
+            <div className="points-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '3rem', textAlign: 'center' }}>
+              <Lock size={48} color="var(--text-muted)" style={{ marginBottom: '1rem', opacity: 0.5 }} />
+              <h3 style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Zaloguj się</h3>
+              <p style={{ color: 'var(--text-muted)', opacity: 0.7 }}>Tylko zalogowani członkowie zarządu mogą dodawać wpisy do akt.</p>
+            </div>
+          )}
+
+          {/* HISTORIA (Prawa kolumna) */}
+          <div className="points-card history-card">
             <div className="points-card-header">
               <h2 className="points-card-title">
-                <FileText color="#60a5fa" size={22} /> Nowy wpis do akt
+                <FileText color="#fbbf24" size={22} /> Historia Wpisów
               </h2>
             </div>
-          
-          <form onSubmit={handleSubmit} className="points-form">
-            <div className="points-form-group">
-              <label className="points-form-label">
-                <User size={16} color="#818cf8" /> Otrzymujący
-              </label>
-              <Select
-                options={selectOptions}
-                styles={selectStyles}
-                placeholder="Wybierz funkcjonariusza..."
-                value={selectOptions.find(opt => opt.value === formData.officerId) || null}
-                onChange={(selected) => setFormData({ ...formData, officerId: selected ? selected.value : '' })}
-                isClearable
-                isSearchable
-              />
-            </div>
-
-            <div className="points-form-group">
-              <label className="points-form-label">
-                <Shield size={16} color="#a78bfa" /> Wystawiający
-              </label>
-              <Select
-                options={selectOptions}
-                styles={selectStyles}
-                placeholder="Twoje dane..."
-                value={selectOptions.find(opt => opt.value === formData.issuerId) || null}
-                onChange={(selected) => setFormData({ ...formData, issuerId: selected ? selected.value : '' })}
-                isClearable
-                isSearchable
-              />
-            </div>
-
-            <div className="points-form-group">
-              <label className="points-form-label">Wybierz typ wpisu</label>
-              <div className="points-type-selector">
-                <div
-                  className={`type-btn ${formData.type === 'PLUS' ? 'active-plus' : ''}`}
-                  onClick={() => setFormData({ ...formData, type: 'PLUS' })}
-                >
-                  <PlusCircle size={28} />
-                  <span>PLUS</span>
-                </div>
-                <div
-                  className={`type-btn ${formData.type === 'MINUS' ? 'active-minus' : ''}`}
-                  onClick={() => setFormData({ ...formData, type: 'MINUS' })}
-                >
-                  <MinusCircle size={28} />
-                  <span>MINUS</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="points-form-group">
-              <label className="points-form-label">Powód</label>
-              <input
-                required
-                className="points-input"
-                placeholder="Krótki powód przyznania..."
-                value={formData.reason}
-                onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-              />
-            </div>
-
-            <button type="submit" className="points-submit">
-              Wystaw do akt <Send size={18} />
-            </button>
-          </form>
-        </div>
-        ) : (
-          <div className="points-card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem', color: 'var(--text-muted)' }}>
-            <div style={{ textAlign: 'center' }}>
-              <Lock size={48} opacity={0.5} style={{ marginBottom: '1rem' }} />
-              <h3>Brak dostępu</h3>
-              <p>Zaloguj się jako Zarząd, aby wystawiać Akta.</p>
-            </div>
-          </div>
-        )}
-
-        {/* TABELA (Prawa kolumna) */}
-        <div className="points-card">
-          <div className="points-card-header">
-            <h2 className="points-card-title">Historia Wpisów</h2>
-          </div>
-          
-          <div className="points-table-wrapper">
-            <table className="points-table">
-              <thead>
-                <tr>
-                  <th>Decyzja</th>
-                  <th>Oficer</th>
-                  <th>Powód</th>
-                </tr>
-              </thead>
-              <tbody>
-                {records.map(record => (
-                  <tr key={record.id}>
-                    <td>
-                      {record.type === 'PLUS' ? (
-                        <div className="badge-plus">
-                          <PlusCircle size={14} /> PLUS
-                        </div>
-                      ) : (
-                        <div className="badge-minus">
-                          <MinusCircle size={14} /> MINUS
-                        </div>
-                      )}
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-                        {format(new Date(record.date), 'dd.MM HH:mm')}
-                      </div>
-                    </td>
-                    
-                    <td>
-                      <div className="officer-name">
-                        {record.officer?.firstName} {record.officer?.lastName}
-                        <span className="officer-badge">[{record.officer?.badgeNumber}]</span>
-                      </div>
-                      <div className="issuer-name">
-                        Nadane przez: {record.issuer?.lastName}
-                      </div>
-                    </td>
-                    
-                    <td>
-                      <div className="reason-text">
-                        {record.reason}
-                      </div>
-                      {isLoggedIn && (
-                        <button className="btn-outline delete" onClick={() => handleDelete(record.id)}>
-                          Usuń
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
             
-            {records.length === 0 && (
-              <div className="empty-state">
-                <FileText size={48} opacity={0.3} />
-                <h3>Brak wpisów w aktach</h3>
-                <p>Kartoteka jest czysta.</p>
-              </div>
-            )}
+            <div className="points-table-wrapper">
+              <table className="points-table">
+                <thead>
+                  <tr>
+                    <th>Typ & Data</th>
+                    <th>Funkcjonariusze</th>
+                    <th>Uzasadnienie</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {records.map(record => (
+                    <tr key={record.id}>
+                      <td>
+                        {record.type === 'PLUS' ? (
+                          <div className="badge-plus">
+                            <PlusCircle size={14} /> PLUS
+                          </div>
+                        ) : (
+                          <div className="badge-minus">
+                            <MinusCircle size={14} /> MINUS
+                          </div>
+                        )}
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
+                          {format(new Date(record.date), 'dd.MM HH:mm')}
+                        </div>
+                      </td>
+                      
+                      <td>
+                        <div className="officer-name">
+                          {record.officer?.firstName} {record.officer?.lastName}
+                          <span className="officer-badge">[{record.officer?.badgeNumber}]</span>
+                        </div>
+                        <div className="issuer-name">
+                          Nadane przez: {record.issuer?.lastName}
+                        </div>
+                      </td>
+                      
+                      <td>
+                        <div className="reason-text">
+                          {record.reason}
+                        </div>
+                        {isLoggedIn && (
+                          <button className="btn-outline delete" onClick={() => handleDelete(record.id)}>
+                            Usuń
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              
+              {records.length === 0 && (
+                <div className="empty-state">
+                  <FileText size={48} opacity={0.3} />
+                  <h3>Brak wpisów w aktach</h3>
+                  <p>Kartoteka jest czysta.</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-
-      </div>
+      )}
     </div>
   );
 }
