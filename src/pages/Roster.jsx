@@ -335,6 +335,7 @@ function Roster({ isLoggedIn }) {
             <thead>
               <tr>
                 <th style={{ width: '30px' }}></th>
+                <th>JEDNOSTKA</th>
                 <th className="col-divider">ODZNAKA</th>
                 <th className="col-divider">IMIĘ I NAZWISKO</th>
                 <th className="col-divider">NICK</th>
@@ -366,18 +367,14 @@ function Roster({ isLoggedIn }) {
                   <td>
                     <input type="checkbox" style={{ accentColor: '#fbbf24' }} />
                   </td>
-                  <td className="col-divider">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <div style={{ position: 'relative', width: '34px', height: '34px', flexShrink: 0 }}>
-                        <img src={isLspd ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 2px 5px ${isLspd ? 'rgba(59,130,246,0.3)' : 'rgba(16,185,129,0.3)'})` }} onError={(e) => e.target.style.display='none'} />
-                        <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', background: isLspd ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)', border: '1px solid #0f172a', borderRadius: '4px', padding: '0 4px', fontSize: '0.6rem', fontWeight: 900, color: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.5)', whiteSpace: 'nowrap' }}>
-                          {off.badgeNumber || '---'}
-                        </div>
-                      </div>
-                      {divs.includes('METRO') && off.metroBadge && (
-                        <span style={{ color: '#94a3b8', fontSize: '0.9rem', fontWeight: '800' }}>/{off.metroBadge}</span>
-                      )}
-                    </div>
+                  <td>
+                    <img src={isLspd ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', filter: `drop-shadow(0 2px 5px ${isLspd ? 'rgba(59,130,246,0.3)' : 'rgba(16,185,129,0.3)'})` }} />
+                  </td>
+                  <td className={`col-divider ${isLspd ? 'badge-lspd' : 'badge-bcso'}`}>
+                    #{off.badgeNumber}
+                    {divs.includes('METRO') && off.metroBadge && (
+                      <span style={{ marginLeft: '4px', color: '#f8fafc', fontSize: '1rem', fontWeight: '900' }}>/{off.metroBadge}</span>
+                    )}
                   </td>
                   <td className="name-cell col-divider">
                     {off.firstName} {off.lastName}
