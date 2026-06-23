@@ -1225,6 +1225,31 @@ tr:hover td {
   z-index: 1;
 }
 
+.fleet-image-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0);
+  transition: background-color 0.3s;
+}
+
+.fleet-image-overlay svg {
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: scale(0.8);
+}
+
+.glass-card:hover .fleet-image-overlay {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.glass-card:hover .fleet-image-overlay svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .ftd-tab.active {
   background: rgba(59, 130, 246, 0.15);
   color: #60a5fa;
