@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../config';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { DollarSign, Download, Search, Trash2 } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';

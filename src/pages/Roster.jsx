@@ -276,7 +276,7 @@ function Roster({ isLoggedIn }) {
     setTimeout(handleResize, 50); 
     
     return () => window.removeEventListener('resize', handleResize);
-  }, [filtered]);
+  }, [filteredAndSorted]);
 
   return (
     <div className="main-content">
