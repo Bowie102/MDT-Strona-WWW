@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from 'react-router-dom';
-import { Shield, Users, Clock, DollarSign, Activity, LogOut } from 'lucide-react';
+import { Shield, Users, Clock, DollarSign, Activity, LogOut, Book } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 
 import Dashboard from './pages/Dashboard';
@@ -11,6 +11,8 @@ import Points from './pages/Points';
 import Login from './pages/Login';
 import FTD from './pages/FTD';
 import DTU from './pages/DTU';
+import KnowledgeBase from './pages/KnowledgeBase';
+import BootSequence from './components/BootSequence';
 
 import { motion } from 'framer-motion';
 
@@ -38,6 +40,7 @@ function Sidebar({ userRole, onLogout }) {
       <div className="nav-links">
         <div className="nav-category" style={{ borderColor: '#3b82f6' }}>GŁÓWNY PANEL</div>
         <NavItem to="/" icon={Activity} label="Centrala" />
+        <NavItem to="/knowledge" icon={Book} label="Baza Wiedzy" />
 
         <div className="nav-category" style={{ borderColor: '#ef4444' }}>KADRY (HC)</div>
         <NavItem to="/points" icon={Activity} label="Akta (Plusy/Minusy)" />
@@ -84,6 +87,7 @@ function Sidebar({ userRole, onLogout }) {
 
 function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem('lspdAuthRole') || null);
+  const [hasBooted, setHasBooted] = useState(sessionStorage.getItem('lspd_booted') === 'true');
 
   useEffect(() => {
     if (userRole) {
@@ -105,34 +109,46 @@ function App() {
 
   return (
     <Router>
-      <div className="watermark"></div>
-      <div className="scanlines"></div>
-      <Toaster 
-        position="bottom-right" 
-        toastOptions={{ 
-          style: { background: '#1e293b', color: '#fff', border: '1px solid #334155', borderRadius: '8px' },
-          success: { iconTheme: { primary: '#10b981', secondary: '#fff' } },
-          error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } }
-        }} 
-      />
-      <div className="app-wrapper relative">
-        <div className="app-container">
+      {!hasBooted && (
+        <BootSequence onComplete={() => {
+          sessionStorage.setItem('lspd_booted', 'true');
+          setHasBooted(true);
+        }} />
+      )}
+      
+      {hasBooted && (
+        <>
+          <div className="watermark"></div>
+          <div className="scanlines"></div>
+          <Toaster 
+            position="bottom-right" 
+            toastOptions={{ 
+              style: { background: '#1e293b', color: '#fff', border: '1px solid #334155', borderRadius: '8px' },
+              success: { iconTheme: { primary: '#10b981', secondary: '#fff' } },
+              error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } }
+            }} 
+          />
+          <div className="app-wrapper relative">
+            <div className="app-container">
           <Sidebar userRole={userRole} onLogout={handleLogout} />
           <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/roster" element={<Roster isLoggedIn={isZarzad} />} />
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/knowledge" element={<KnowledgeBase />} />
+                <Route path="/roster" element={<Roster isLoggedIn={isZarzad} />} />
               <Route path="/duty" element={<DutyLogs />} />
               <Route path="/payroll" element={<Payroll isLoggedIn={isZarzad} />} />
               <Route path="/points" element={<Points isLoggedIn={isZarzad} />} />
               <Route path="/ftd" element={<FTD isLoggedIn={isZarzad} />} />
               <Route path="/dtu" element={<DTU userRole={userRole} />} />
               
-              <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login onLogin={(role) => setUserRole(role)} />} />
-            </Routes>
-          </main>
+                <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login onLogin={(role) => setUserRole(role)} />} />
+              </Routes>
+            </main>
+          </div>
         </div>
-      </div>
+      </>
+      )}
     </Router>
   );
 }
