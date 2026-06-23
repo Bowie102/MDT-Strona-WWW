@@ -208,22 +208,12 @@ function Dashboard() {
                   return (
                     <div key={log.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', background: 'var(--bg-dark)', border: '1px solid var(--border-color)', borderLeft, borderRadius: '6px' }}>
                       <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
-                          <span style={{ color: badgeColor, fontWeight: 'bold', fontSize: '0.75rem', minWidth: '70px' }}>[{badgeText}]</span>
-                          
-                          {/* Odznaka jak w FTO */}
-                          {log.officer && (
-                            <div style={{ position: 'relative', width: '32px', height: '32px', flexShrink: 0 }}>
-                              <img src={log.officer.department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 2px 5px ${log.officer.department === 'LSPD' ? 'rgba(59,130,246,0.3)' : 'rgba(16,185,129,0.3)'})` }} onError={(e) => e.target.style.display='none'} />
-                              <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', background: log.officer.department === 'LSPD' ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)', border: '1px solid #0f172a', borderRadius: '4px', padding: '0 4px', fontSize: '0.6rem', fontWeight: 900, color: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.5)', whiteSpace: 'nowrap' }}>
-                                {log.officer.badgeNumber || '---'}
-                              </div>
-                            </div>
-                          )}
-                          
-                          <span style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.9rem', marginLeft: '0.25rem' }}>{log.officer?.firstName} {log.officer?.lastName}</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                          <span style={{ color: badgeColor, fontWeight: 'bold', fontSize: '0.75rem' }}>[{badgeText}]</span>
+                          <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>dla</span>
+                          <span style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.85rem' }}>{log.officer?.firstName} {log.officer?.lastName}</span>
                         </div>
-                        <div style={{ color: '#cbd5e1', fontSize: '0.8rem', fontFamily: 'var(--font-mono)', marginTop: '0.5rem', paddingLeft: '80px' }}>{log.description}</div>
+                        <div style={{ color: '#cbd5e1', fontSize: '0.8rem', fontFamily: 'var(--font-mono)' }}>{log.description}</div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
                         <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', fontFamily: 'var(--font-mono)' }}>{format(new Date(log.date), 'dd/MM/yyyy HH:mm')}</div>
