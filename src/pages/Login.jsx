@@ -1,25 +1,40 @@
 import React, { useState } from 'react';
 import { Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === 'zarzad' && password === 'deluxm') {
-      localStorage.setItem('apiKey', password);
-      onLogin('ZARZAD');
-      navigate('/');
-    } else if (username === 'dtu' && password === 'dtucwel') {
-      localStorage.setItem('apiKey', password);
-      onLogin('DTU');
-      navigate('/dtu');
-    } else {
-      setError('ACCESS DENIED. INVALID CREDENTIALS.');
+    setIsLoading(true);
+    setError('');
+    
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      
+      const data = await res.json();
+      
+      if (res.ok && data.success) {
+        localStorage.setItem('apiKey', data.token);
+        onLogin(data.role);
+        navigate(data.role === 'DTU' ? '/dtu' : '/');
+      } else {
+        setError(data.error || 'ACCESS DENIED. INVALID CREDENTIALS.');
+      }
+    } catch (err) {
+      setError('Błąd połączenia z serwerem.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
