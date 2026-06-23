@@ -240,27 +240,49 @@ function Dashboard() {
               <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '1rem', fontFamily: 'var(--font-mono)' }}>Brak zarejestrowanych godzin.</p>
             ) : (
               <>
-                {/* E-SPORTS PREMIUM CARDS dla TOP 3 */}
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', marginTop: '2.5rem', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                {/* TOP 5 E-SPORTS CARDS */}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginTop: '1.5rem', paddingBottom: '1rem', flexWrap: 'wrap' }}>
+                  
+                  {/* #4 Miejsce */}
+                  {topOfficers[3] && (
+                    <div style={{ 
+                      width: '180px', background: 'linear-gradient(180deg, rgba(51, 65, 85, 0.1) 0%, rgba(15, 23, 42, 0.7) 100%)', 
+                      borderRadius: '12px', border: '1px solid rgba(51, 65, 85, 0.3)', boxShadow: '0 5px 15px -5px rgba(0,0,0,0.3)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem 0.75rem 1rem 0.75rem',
+                      position: 'relative', transition: 'transform 0.3s', cursor: 'default'
+                    }} onMouseOver={e=>{e.currentTarget.style.transform='translateY(-5px)'}} onMouseOut={e=>{e.currentTarget.style.transform='translateY(0)'}}>
+                      <div style={{ position: 'absolute', top: '-15px', background: '#0f172a', borderRadius: '50%', padding: '0.4rem', border: '1px solid rgba(51, 65, 85, 0.4)' }}>
+                        <span style={{ fontWeight: 900, color: '#94a3b8', fontSize: '0.9rem' }}>#4</span>
+                      </div>
+                      <div style={{ width: '50px', height: '50px', position: 'relative', marginBottom: '0.75rem' }}>
+                        <img src={topOfficers[3].department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.2))' }} />
+                        <div style={{ position: 'absolute', bottom: '-5px', left: '50%', transform: 'translateX(-50%)', background: '#0f172a', border: '1px solid #334155', borderRadius: '4px', padding: '0 4px', fontSize: '0.65rem', fontWeight: 900, color: '#f8fafc' }}>{topOfficers[3].badgeNumber}</div>
+                      </div>
+                      <h3 style={{ margin: 0, fontSize: '0.9rem', fontWeight: 800, color: '#f8fafc', textAlign: 'center', lineHeight: 1.1 }}>{topOfficers[3].lastName}</h3>
+                      <div style={{ marginTop: '0.75rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.2)', padding: '0.5rem', borderRadius: '6px' }}>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#cbd5e1', lineHeight: 1, fontFamily: 'var(--font-mono)' }}>{topOfficers[3].score.toFixed(1)}<span style={{fontSize: '0.7rem', color: '#64748b', marginLeft: '2px'}}>h</span></div>
+                      </div>
+                    </div>
+                  )}
+
                   {/* #2 Miejsce (Srebro) */}
                   {topOfficers[1] && (
                     <div style={{ 
-                      width: '240px', background: 'linear-gradient(180deg, rgba(148, 163, 184, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%)', 
-                      borderRadius: '16px', border: '1px solid rgba(148, 163, 184, 0.3)', boxShadow: '0 10px 30px -10px rgba(148, 163, 184, 0.2)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2.5rem 1rem 1.5rem 1rem',
-                      position: 'relative', transition: 'transform 0.3s, box-shadow 0.3s', cursor: 'default'
-                    }} onMouseOver={e=>{e.currentTarget.style.transform='translateY(-5px)'; e.currentTarget.style.boxShadow='0 15px 35px -10px rgba(148, 163, 184, 0.3)'}} onMouseOut={e=>{e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='0 10px 30px -10px rgba(148, 163, 184, 0.2)'}}>
-                      <div style={{ position: 'absolute', top: '-20px', background: '#0f172a', borderRadius: '50%', padding: '0.5rem', border: '2px solid rgba(148, 163, 184, 0.4)', boxShadow: '0 0 15px rgba(148, 163, 184, 0.3)' }}>
-                        <Medal size={24} color="#cbd5e1" />
+                      width: '200px', background: 'linear-gradient(180deg, rgba(148, 163, 184, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%)', 
+                      borderRadius: '14px', border: '1px solid rgba(148, 163, 184, 0.3)', boxShadow: '0 10px 25px -10px rgba(148, 163, 184, 0.2)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1rem 1.25rem 1rem',
+                      position: 'relative', transition: 'transform 0.3s', cursor: 'default'
+                    }} onMouseOver={e=>{e.currentTarget.style.transform='translateY(-5px)'}} onMouseOut={e=>{e.currentTarget.style.transform='translateY(0)'}}>
+                      <div style={{ position: 'absolute', top: '-18px', background: '#0f172a', borderRadius: '50%', padding: '0.4rem', border: '2px solid rgba(148, 163, 184, 0.4)' }}>
+                        <Medal size={20} color="#cbd5e1" />
                       </div>
-                      <div style={{ width: '65px', height: '65px', borderRadius: '50%', background: 'linear-gradient(135deg, #e2e8f0, #94a3b8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0f172a', fontSize: '1.3rem', fontWeight: 900, marginBottom: '1rem', border: '3px solid #0f172a', boxShadow: '0 0 0 2px #cbd5e1' }}>
-                        {topOfficers[1].badgeNumber}
+                      <div style={{ width: '60px', height: '60px', position: 'relative', marginBottom: '1rem' }}>
+                        <img src={topOfficers[1].department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(148,163,184,0.3))' }} />
+                        <div style={{ position: 'absolute', bottom: '-8px', left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(135deg, #e2e8f0, #94a3b8)', border: '2px solid #0f172a', borderRadius: '4px', padding: '0 6px', fontSize: '0.75rem', fontWeight: 900, color: '#0f172a' }}>{topOfficers[1].badgeNumber}</div>
                       </div>
-                      <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: '#f8fafc', textAlign: 'center', lineHeight: 1.2 }}>{topOfficers[1].firstName}<br/>{topOfficers[1].lastName}</h3>
-                      <div style={{ background: 'rgba(148, 163, 184, 0.1)', color: '#cbd5e1', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', marginTop: '0.75rem', letterSpacing: '1px' }}>{topOfficers[1].department}</div>
-                      <div style={{ marginTop: '1.5rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '8px', borderTop: '1px solid rgba(148,163,184,0.1)' }}>
-                        <div style={{ fontSize: '0.65rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.2rem' }}>Godziny</div>
-                        <div style={{ fontSize: '1.75rem', fontWeight: 900, color: '#cbd5e1', lineHeight: 1, fontFamily: 'var(--font-mono)' }}>{topOfficers[1].score.toFixed(1)}<span style={{fontSize: '0.9rem', color: '#94a3b8', marginLeft: '2px'}}>h</span></div>
+                      <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: '#f8fafc', textAlign: 'center', lineHeight: 1.2 }}>{topOfficers[1].firstName}<br/>{topOfficers[1].lastName}</h3>
+                      <div style={{ marginTop: '1rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.3)', padding: '0.6rem', borderRadius: '6px', borderTop: '1px solid rgba(148,163,184,0.1)' }}>
+                        <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#cbd5e1', lineHeight: 1, fontFamily: 'var(--font-mono)' }}>{topOfficers[1].score.toFixed(1)}<span style={{fontSize: '0.8rem', color: '#94a3b8', marginLeft: '2px'}}>h</span></div>
                       </div>
                     </div>
                   )}
@@ -268,22 +290,21 @@ function Dashboard() {
                   {/* #1 Miejsce (Złoto) */}
                   {topOfficers[0] && (
                     <div style={{ 
-                      width: '280px', background: 'linear-gradient(180deg, rgba(250, 204, 21, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)', 
-                      borderRadius: '20px', border: '1px solid rgba(250, 204, 21, 0.5)', boxShadow: '0 10px 40px -5px rgba(250, 204, 21, 0.3)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3rem 1.25rem 2rem 1.25rem',
-                      position: 'relative', transform: 'scale(1.05)', transition: 'transform 0.3s, box-shadow 0.3s', cursor: 'default', zIndex: 10
-                    }} onMouseOver={e=>{e.currentTarget.style.transform='scale(1.08)'; e.currentTarget.style.boxShadow='0 15px 50px -5px rgba(250, 204, 21, 0.4)'}} onMouseOut={e=>{e.currentTarget.style.transform='scale(1.05)'; e.currentTarget.style.boxShadow='0 10px 40px -5px rgba(250, 204, 21, 0.3)'}}>
-                      <div style={{ position: 'absolute', top: '-30px', background: '#0f172a', borderRadius: '50%', padding: '0.75rem', border: '2px solid rgba(250, 204, 21, 0.6)', boxShadow: '0 0 25px rgba(250, 204, 21, 0.5)' }}>
-                        <Crown size={32} color="#facc15" />
+                      width: '230px', background: 'linear-gradient(180deg, rgba(250, 204, 21, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)', 
+                      borderRadius: '16px', border: '1px solid rgba(250, 204, 21, 0.5)', boxShadow: '0 10px 35px -5px rgba(250, 204, 21, 0.3)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2.5rem 1rem 1.5rem 1rem',
+                      position: 'relative', transform: 'scale(1.05)', transition: 'transform 0.3s', cursor: 'default', zIndex: 10
+                    }} onMouseOver={e=>{e.currentTarget.style.transform='scale(1.08)'}} onMouseOut={e=>{e.currentTarget.style.transform='scale(1.05)'}}>
+                      <div style={{ position: 'absolute', top: '-25px', background: '#0f172a', borderRadius: '50%', padding: '0.6rem', border: '2px solid rgba(250, 204, 21, 0.6)', boxShadow: '0 0 20px rgba(250, 204, 21, 0.5)' }}>
+                        <Crown size={28} color="#facc15" />
                       </div>
-                      <div style={{ width: '85px', height: '85px', borderRadius: '50%', background: 'linear-gradient(135deg, #facc15, #ca8a04)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0f172a', fontSize: '1.75rem', fontWeight: 900, marginBottom: '1.25rem', border: '4px solid #0f172a', boxShadow: '0 0 0 3px #facc15' }}>
-                        {topOfficers[0].badgeNumber}
+                      <div style={{ width: '80px', height: '80px', position: 'relative', marginBottom: '1.25rem' }}>
+                        <img src={topOfficers[0].department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 15px rgba(250,204,21,0.4))' }} />
+                        <div style={{ position: 'absolute', bottom: '-10px', left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(135deg, #facc15, #ca8a04)', border: '2px solid #0f172a', borderRadius: '6px', padding: '2px 8px', fontSize: '0.9rem', fontWeight: 900, color: '#0f172a', boxShadow: '0 2px 10px rgba(250,204,21,0.3)' }}>{topOfficers[0].badgeNumber}</div>
                       </div>
-                      <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 900, color: '#f8fafc', textAlign: 'center', lineHeight: 1.1 }}>{topOfficers[0].firstName}<br/>{topOfficers[0].lastName}</h3>
-                      <div style={{ background: 'rgba(250, 204, 21, 0.15)', color: '#facc15', padding: '0.25rem 0.8rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '1rem', letterSpacing: '1.5px', border: '1px solid rgba(250,204,21,0.2)' }}>{topOfficers[0].department}</div>
-                      <div style={{ marginTop: '2rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.4)', padding: '1rem', borderRadius: '10px', borderTop: '1px solid rgba(250,204,21,0.2)' }}>
-                        <div style={{ fontSize: '0.75rem', color: '#facc15', opacity: 0.8, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>Godziny</div>
-                        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#facc15', lineHeight: 1, textShadow: '0 0 15px rgba(250, 204, 21, 0.4)', fontFamily: 'var(--font-mono)' }}>{topOfficers[0].score.toFixed(1)}<span style={{fontSize: '1.2rem', color: '#ca8a04', marginLeft: '2px'}}>h</span></div>
+                      <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900, color: '#f8fafc', textAlign: 'center', lineHeight: 1.1 }}>{topOfficers[0].firstName}<br/>{topOfficers[0].lastName}</h3>
+                      <div style={{ marginTop: '1.5rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.4)', padding: '0.75rem', borderRadius: '8px', borderTop: '1px solid rgba(250,204,21,0.2)' }}>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#facc15', lineHeight: 1, textShadow: '0 0 10px rgba(250, 204, 21, 0.4)', fontFamily: 'var(--font-mono)' }}>{topOfficers[0].score.toFixed(1)}<span style={{fontSize: '1rem', color: '#ca8a04', marginLeft: '2px'}}>h</span></div>
                       </div>
                     </div>
                   )}
@@ -291,54 +312,48 @@ function Dashboard() {
                   {/* #3 Miejsce (Brąz) */}
                   {topOfficers[2] && (
                     <div style={{ 
-                      width: '240px', background: 'linear-gradient(180deg, rgba(180, 83, 9, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%)', 
-                      borderRadius: '16px', border: '1px solid rgba(180, 83, 9, 0.3)', boxShadow: '0 10px 30px -10px rgba(180, 83, 9, 0.2)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2.5rem 1rem 1.5rem 1rem',
-                      position: 'relative', transition: 'transform 0.3s, box-shadow 0.3s', cursor: 'default'
-                    }} onMouseOver={e=>{e.currentTarget.style.transform='translateY(-5px)'; e.currentTarget.style.boxShadow='0 15px 35px -10px rgba(180, 83, 9, 0.3)'}} onMouseOut={e=>{e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='0 10px 30px -10px rgba(180, 83, 9, 0.2)'}}>
-                      <div style={{ position: 'absolute', top: '-20px', background: '#0f172a', borderRadius: '50%', padding: '0.5rem', border: '2px solid rgba(180, 83, 9, 0.4)', boxShadow: '0 0 15px rgba(180, 83, 9, 0.3)' }}>
-                        <Award size={24} color="#d97706" />
+                      width: '200px', background: 'linear-gradient(180deg, rgba(180, 83, 9, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%)', 
+                      borderRadius: '14px', border: '1px solid rgba(180, 83, 9, 0.3)', boxShadow: '0 10px 25px -10px rgba(180, 83, 9, 0.2)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1rem 1.25rem 1rem',
+                      position: 'relative', transition: 'transform 0.3s', cursor: 'default'
+                    }} onMouseOver={e=>{e.currentTarget.style.transform='translateY(-5px)'}} onMouseOut={e=>{e.currentTarget.style.transform='translateY(0)'}}>
+                      <div style={{ position: 'absolute', top: '-18px', background: '#0f172a', borderRadius: '50%', padding: '0.4rem', border: '2px solid rgba(180, 83, 9, 0.4)' }}>
+                        <Award size={20} color="#d97706" />
                       </div>
-                      <div style={{ width: '65px', height: '65px', borderRadius: '50%', background: 'linear-gradient(135deg, #f59e0b, #92400e)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0f172a', fontSize: '1.3rem', fontWeight: 900, marginBottom: '1rem', border: '3px solid #0f172a', boxShadow: '0 0 0 2px #d97706' }}>
-                        {topOfficers[2].badgeNumber}
+                      <div style={{ width: '60px', height: '60px', position: 'relative', marginBottom: '1rem' }}>
+                        <img src={topOfficers[2].department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(180,83,9,0.3))' }} />
+                        <div style={{ position: 'absolute', bottom: '-8px', left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(135deg, #f59e0b, #92400e)', border: '2px solid #0f172a', borderRadius: '4px', padding: '0 6px', fontSize: '0.75rem', fontWeight: 900, color: '#0f172a' }}>{topOfficers[2].badgeNumber}</div>
                       </div>
-                      <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: '#f8fafc', textAlign: 'center', lineHeight: 1.2 }}>{topOfficers[2].firstName}<br/>{topOfficers[2].lastName}</h3>
-                      <div style={{ background: 'rgba(180, 83, 9, 0.1)', color: '#d97706', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', marginTop: '0.75rem', letterSpacing: '1px' }}>{topOfficers[2].department}</div>
-                      <div style={{ marginTop: '1.5rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '8px', borderTop: '1px solid rgba(180,83,9,0.1)' }}>
-                        <div style={{ fontSize: '0.65rem', color: '#b45309', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.2rem' }}>Godziny</div>
-                        <div style={{ fontSize: '1.75rem', fontWeight: 900, color: '#d97706', lineHeight: 1, fontFamily: 'var(--font-mono)' }}>{topOfficers[2].score.toFixed(1)}<span style={{fontSize: '0.9rem', color: '#92400e', marginLeft: '2px'}}>h</span></div>
+                      <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: '#f8fafc', textAlign: 'center', lineHeight: 1.2 }}>{topOfficers[2].firstName}<br/>{topOfficers[2].lastName}</h3>
+                      <div style={{ marginTop: '1rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.3)', padding: '0.6rem', borderRadius: '6px', borderTop: '1px solid rgba(180,83,9,0.1)' }}>
+                        <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#d97706', lineHeight: 1, fontFamily: 'var(--font-mono)' }}>{topOfficers[2].score.toFixed(1)}<span style={{fontSize: '0.8rem', color: '#92400e', marginLeft: '2px'}}>h</span></div>
                       </div>
                     </div>
                   )}
-                </div>
 
-                {/* Reszta (Miejsca 4-5) jako czysta lista */}
-                {topOfficers.length > 3 && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    {topOfficers.slice(3).map((off, idx) => (
-                      <div key={off.id} style={{ 
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between', 
-                        background: 'rgba(0,0,0,0.2)', padding: '0.5rem 1rem', 
-                        borderRadius: '4px', border: '1px solid rgba(255,255,255,0.02)'
-                      }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                          <div style={{ fontWeight: 800, color: '#64748b', fontSize: '1rem', minWidth: '24px' }}>
-                            #{idx + 4}
-                          </div>
-                          <div>
-                            <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.85rem' }}>
-                              {off.firstName} {off.lastName} 
-                              <span style={{ marginLeft: '0.5rem', color: off.department === 'LSPD' ? '#60a5fa' : '#34d399', fontSize: '0.7rem', fontFamily: 'var(--font-mono)' }}>[{off.badgeNumber}]</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem', fontFamily: 'var(--font-mono)' }}>
-                          {off.score.toFixed(1)}h
-                        </div>
+                  {/* #5 Miejsce */}
+                  {topOfficers[4] && (
+                    <div style={{ 
+                      width: '180px', background: 'linear-gradient(180deg, rgba(51, 65, 85, 0.1) 0%, rgba(15, 23, 42, 0.7) 100%)', 
+                      borderRadius: '12px', border: '1px solid rgba(51, 65, 85, 0.3)', boxShadow: '0 5px 15px -5px rgba(0,0,0,0.3)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem 0.75rem 1rem 0.75rem',
+                      position: 'relative', transition: 'transform 0.3s', cursor: 'default'
+                    }} onMouseOver={e=>{e.currentTarget.style.transform='translateY(-5px)'}} onMouseOut={e=>{e.currentTarget.style.transform='translateY(0)'}}>
+                      <div style={{ position: 'absolute', top: '-15px', background: '#0f172a', borderRadius: '50%', padding: '0.4rem', border: '1px solid rgba(51, 65, 85, 0.4)' }}>
+                        <span style={{ fontWeight: 900, color: '#94a3b8', fontSize: '0.9rem' }}>#5</span>
                       </div>
-                    ))}
-                  </div>
-                )}
+                      <div style={{ width: '50px', height: '50px', position: 'relative', marginBottom: '0.75rem' }}>
+                        <img src={topOfficers[4].department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.2))' }} />
+                        <div style={{ position: 'absolute', bottom: '-5px', left: '50%', transform: 'translateX(-50%)', background: '#0f172a', border: '1px solid #334155', borderRadius: '4px', padding: '0 4px', fontSize: '0.65rem', fontWeight: 900, color: '#f8fafc' }}>{topOfficers[4].badgeNumber}</div>
+                      </div>
+                      <h3 style={{ margin: 0, fontSize: '0.9rem', fontWeight: 800, color: '#f8fafc', textAlign: 'center', lineHeight: 1.1 }}>{topOfficers[4].lastName}</h3>
+                      <div style={{ marginTop: '0.75rem', textAlign: 'center', width: '100%', background: 'rgba(0,0,0,0.2)', padding: '0.5rem', borderRadius: '6px' }}>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#cbd5e1', lineHeight: 1, fontFamily: 'var(--font-mono)' }}>{topOfficers[4].score.toFixed(1)}<span style={{fontSize: '0.7rem', color: '#64748b', marginLeft: '2px'}}>h</span></div>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
               </>
             )}
 

@@ -204,9 +204,9 @@ export default function FTD({ isLoggedIn }) {
           </div>
         )}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
           {ftdMembers.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '3rem', background: 'rgba(15, 23, 42, 0.4)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.1)' }}>
+            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', background: 'rgba(15, 23, 42, 0.4)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.1)' }}>
               <p style={{ color: '#94a3b8', margin: 0, fontSize: '0.9rem' }}>Brak przypisanych oficerów do FTD.</p>
             </div>
           ) : (
@@ -216,82 +216,82 @@ export default function FTD({ isLoggedIn }) {
               
               return (
                 <div key={fto.id} style={{ 
-                  background: isLspd ? 'linear-gradient(90deg, rgba(30,58,138,0.3) 0%, rgba(15,23,42,0.95) 100%)' : 'linear-gradient(90deg, rgba(6,78,59,0.3) 0%, rgba(15,23,42,0.95) 100%)',
-                  borderRadius: '12px', 
+                  background: 'linear-gradient(145deg, #1e293b 0%, #0f172a 100%)',
+                  borderRadius: '16px', 
                   border: '1px solid rgba(255,255,255,0.05)', 
-                  borderLeft: `6px solid ${deptColor}`,
-                  boxShadow: `0 4px 20px -5px ${deptColor}30`,
+                  borderTop: `4px solid ${deptColor}`,
+                  boxShadow: `0 10px 30px -10px rgba(0,0,0,0.5)`,
                   display: 'flex', 
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '1.25rem 2rem',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  flexDirection: 'column',
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
+                  cursor: 'default'
                 }} onMouseOver={e=>{
-                  e.currentTarget.style.transform='translateX(10px) scale(1.01)';
-                  e.currentTarget.style.boxShadow=`0 10px 30px -5px ${deptColor}50`;
-                  e.currentTarget.style.border='1px solid rgba(255,255,255,0.1)';
-                  e.currentTarget.style.borderLeft=`6px solid ${deptColor}`;
+                  e.currentTarget.style.transform='translateY(-5px)';
+                  e.currentTarget.style.boxShadow=`0 15px 40px -10px ${deptColor}40`;
                 }} onMouseOut={e=>{
-                  e.currentTarget.style.transform='translateX(0) scale(1)';
-                  e.currentTarget.style.boxShadow=`0 4px 20px -5px ${deptColor}30`;
-                  e.currentTarget.style.border='1px solid rgba(255,255,255,0.05)';
-                  e.currentTarget.style.borderLeft=`6px solid ${deptColor}`;
+                  e.currentTarget.style.transform='translateY(0)';
+                  e.currentTarget.style.boxShadow=`0 10px 30px -10px rgba(0,0,0,0.5)`;
                 }}>
                   
-                  {/* Watermark w tle */}
-                  <ShieldCheck size={140} color={deptColor} style={{ position: 'absolute', right: '10%', top: '50%', transform: 'translateY(-50%)', opacity: 0.04, zIndex: 0 }} />
+                  {/* Nagłówek ID */}
+                  <div style={{ background: isLspd ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', padding: '1.25rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <span style={{ fontSize: '0.65rem', color: deptColor, fontWeight: 900, letterSpacing: '2px', textTransform: 'uppercase' }}>FIELD TRAINING DIV</span>
+                      <span style={{ fontSize: '0.9rem', color: '#f8fafc', fontWeight: 800, letterSpacing: '1px' }}>OFFICIAL ID CARD</span>
+                    </div>
+                    <img src={isLspd ? '/lspd_logo.png' : '/bcso_logo.png'} alt="logo" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: `drop-shadow(0 0 10px ${deptColor}40)` }} />
+                  </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem', flex: 1, zIndex: 1 }}>
-                    <div style={{ 
-                      background: isLspd ? 'linear-gradient(135deg, #3b82f6, #1e3a8a)' : 'linear-gradient(135deg, #10b981, #064e3b)',
-                      color: '#fff', 
-                      width: '65px',
-                      height: '65px', 
-                      borderRadius: '50%', 
-                      fontWeight: '900', 
-                      fontSize: '1.4rem', 
-                      fontFamily: 'var(--font-mono)',
-                      border: `4px solid #0f172a`,
-                      boxShadow: `0 0 0 2px ${deptColor}`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center'
-                    }}>
-                      {fto.badgeNumber}
+                  {/* Ciało ID */}
+                  <div style={{ padding: '1.5rem 1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+                    
+                    {/* Odznaka (Zamiast Kółka) */}
+                    <div style={{ position: 'relative', width: '90px', height: '90px', marginBottom: '1.5rem' }}>
+                      <img src={isLspd ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 5px 15px rgba(0,0,0,0.5)) opacity(0.9)' }} />
+                      <div style={{ position: 'absolute', bottom: '-10px', left: '50%', transform: 'translateX(-50%)', background: isLspd ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)', border: '2px solid #0f172a', borderRadius: '6px', padding: '2px 10px', fontSize: '0.95rem', fontWeight: 900, color: '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                        {fto.badgeNumber}
+                      </div>
                     </div>
                     
-                    <div style={{ width: '320px' }}>
-                      <h4 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 900, color: '#f8fafc', letterSpacing: '-0.3px', textShadow: '0 2px 5px rgba(0,0,0,0.5)' }}>{fto.firstName} {fto.lastName}</h4>
-                      <div style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 700, marginTop: '0.3rem', textTransform: 'uppercase', letterSpacing: '1.5px' }}>{fto.rank}</div>
-                    </div>
-
-                    <div style={{ 
-                      display: 'inline-flex', alignItems: 'center', gap: '0.6rem', 
-                      fontSize: '0.8rem', color: isLspd ? '#93c5fd' : '#6ee7b7', 
-                      background: 'rgba(0,0,0,0.5)', padding: '0.5rem 1.25rem', 
-                      borderRadius: '9999px', fontWeight: 800, border: `1px solid ${isLspd ? 'rgba(59,130,246,0.3)' : 'rgba(16,185,129,0.3)'}`,
-                      boxShadow: `0 0 15px ${deptColor}20`,
-                      letterSpacing: '1px'
-                    }}>
-                      <ShieldCheck size={18} />
-                      TRAINING DIVISION ({fto.department})
+                    {/* Dane Oficera */}
+                    <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 900, color: '#f8fafc', textAlign: 'center', lineHeight: 1.1, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{fto.firstName} <br/>{fto.lastName}</h3>
+                    <div style={{ color: deptColor, fontSize: '0.85rem', fontWeight: 700, marginTop: '0.5rem', textTransform: 'uppercase', letterSpacing: '1.5px', background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: '4px' }}>{fto.rank}</div>
+                    
+                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1.5rem', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.02)' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                        <span style={{ fontSize: '0.6rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px' }}>Status</span>
+                        <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 800 }}>ACTIVE</span>
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        <span style={{ fontSize: '0.6rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px' }}>Clearance</span>
+                        <span style={{ fontSize: '0.8rem', color: '#f8fafc', fontWeight: 800 }}>LEVEL-F</span>
+                      </div>
                     </div>
                   </div>
                   
-                  {isLoggedIn && (
-                    <button 
-                      onClick={() => removeFto(fto)} 
-                      style={{ 
-                        background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.3)', 
-                        padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer', fontWeight: '900', fontSize: '0.75rem',
-                        transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: '0.4rem', zIndex: 1, letterSpacing: '1px'
-                      }}
-                      onMouseOver={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.3)'; e.currentTarget.style.transform='scale(1.05)'}}
-                      onMouseOut={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.15)'; e.currentTarget.style.transform='scale(1)'}}
-                    >
-                      <UserMinus size={16} /> USUŃ
-                    </button>
-                  )}
+                  {/* Stopka ID / Barcode */}
+                  <div style={{ marginTop: 'auto', padding: '1rem', background: 'rgba(0,0,0,0.5)', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    {/* Fake Barcode */}
+                    <div style={{ height: '24px', width: '120px', background: 'repeating-linear-gradient(90deg, #94a3b8 0, #94a3b8 2px, transparent 2px, transparent 4px, #94a3b8 4px, #94a3b8 5px, transparent 5px, transparent 8px, #94a3b8 8px, #94a3b8 10px, transparent 10px, transparent 11px)', opacity: 0.4 }}></div>
+                    
+                    {isLoggedIn && (
+                      <button 
+                        onClick={() => removeFto(fto)} 
+                        style={{ 
+                          background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.3)', 
+                          padding: '0.4rem', borderRadius: '6px', cursor: 'pointer',
+                          transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                        }}
+                        onMouseOver={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.3)';}}
+                        onMouseOut={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.1)';}}
+                        title="Usuń szkoleniowca"
+                      >
+                        <UserMinus size={16} />
+                      </button>
+                    )}
+                  </div>
 
                 </div>
               );
