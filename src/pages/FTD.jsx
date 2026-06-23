@@ -212,15 +212,17 @@ export default function FTD({ isLoggedIn }) {
           ) : (
             ftdMembers.map(fto => {
               const isLspd = fto.department === 'LSPD';
-              const deptColor = isLspd ? '#3b82f6' : '#10b981';
+              const isCommander = fto.ftdRank === 'FTD Commander' || fto.ftdRank === 'Commander';
+              const deptColor = isCommander ? '#facc15' : (isLspd ? '#3b82f6' : '#10b981');
+              const bgGradient = isCommander ? 'linear-gradient(145deg, #1e293b 0%, #171000 100%)' : 'linear-gradient(145deg, #1e293b 0%, #0f172a 100%)';
               
               return (
                 <div key={fto.id} style={{ 
-                  background: 'linear-gradient(145deg, #1e293b 0%, #0f172a 100%)',
+                  background: bgGradient,
                   borderRadius: '16px', 
-                  border: '1px solid rgba(255,255,255,0.05)', 
+                  border: isCommander ? '1px solid rgba(250, 204, 21, 0.3)' : '1px solid rgba(255,255,255,0.05)', 
                   borderTop: `4px solid ${deptColor}`,
-                  boxShadow: `0 10px 30px -10px rgba(0,0,0,0.5)`,
+                  boxShadow: isCommander ? `0 10px 30px -5px rgba(250, 204, 21, 0.2)` : `0 10px 30px -10px rgba(0,0,0,0.5)`,
                   display: 'flex', 
                   flexDirection: 'column',
                   position: 'relative',
@@ -229,19 +231,25 @@ export default function FTD({ isLoggedIn }) {
                   cursor: 'default'
                 }} onMouseOver={e=>{
                   e.currentTarget.style.transform='translateY(-5px)';
-                  e.currentTarget.style.boxShadow=`0 15px 40px -10px ${deptColor}40`;
+                  e.currentTarget.style.boxShadow=isCommander ? `0 15px 40px -5px rgba(250, 204, 21, 0.4)` : `0 15px 40px -10px ${deptColor}40`;
                 }} onMouseOut={e=>{
                   e.currentTarget.style.transform='translateY(0)';
-                  e.currentTarget.style.boxShadow=`0 10px 30px -10px rgba(0,0,0,0.5)`;
+                  e.currentTarget.style.boxShadow=isCommander ? `0 10px 30px -5px rgba(250, 204, 21, 0.2)` : `0 10px 30px -10px rgba(0,0,0,0.5)`;
                 }}>
                   
-                  {/* Nagłówek ID */}
-                  <div style={{ background: isLspd ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', padding: '1.25rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ fontSize: '0.65rem', color: deptColor, fontWeight: 900, letterSpacing: '2px', textTransform: 'uppercase' }}>FIELD TRAINING DIV</span>
-                      <span style={{ fontSize: '0.9rem', color: '#f8fafc', fontWeight: 800, letterSpacing: '1px' }}>OFFICIAL ID CARD</span>
+                  {isCommander && (
+                    <div style={{ position: 'absolute', top: '10px', right: '10px', color: '#facc15', opacity: 0.8 }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4h20"/><path d="m2 8 3 11c.1.5.6.9 1.1.9h11.8c.6 0 1.1-.4 1.1-.9l3-11-5 3-4-6-4 6-5-3Z"/></svg>
                     </div>
-                    <img src={isLspd ? '/lspd_logo.png' : '/bcso_logo.png'} alt="logo" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: `drop-shadow(0 0 10px ${deptColor}40)` }} />
+                  )}
+
+                  {/* Nagłówek ID */}
+                  <div style={{ background: isCommander ? 'rgba(250, 204, 21, 0.1)' : (isLspd ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)'), padding: '1.25rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: isCommander ? '1px solid rgba(250, 204, 21, 0.15)' : '1px solid rgba(255,255,255,0.05)' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <span style={{ fontSize: '0.65rem', color: deptColor, fontWeight: 900, letterSpacing: '2px', textTransform: 'uppercase' }}>{isCommander ? 'FIELD TRAINING COMMAND' : 'FIELD TRAINING DIV'}</span>
+                      <span style={{ fontSize: '0.9rem', color: isCommander ? '#fef08a' : '#f8fafc', fontWeight: 800, letterSpacing: '1px' }}>{isCommander ? 'COMMANDER ID CARD' : 'OFFICIAL ID CARD'}</span>
+                    </div>
+                    <img src={isLspd ? '/lspd_logo.png' : '/bcso_logo.png'} alt="logo" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: `drop-shadow(0 0 10px ${deptColor}60)` }} />
                   </div>
 
                   {/* Ciało ID */}
@@ -250,16 +258,52 @@ export default function FTD({ isLoggedIn }) {
                     {/* Odznaka (Zamiast Kółka) */}
                     <div style={{ position: 'relative', width: '90px', height: '90px', marginBottom: '1.5rem' }}>
                       <img src={isLspd ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 5px 15px rgba(0,0,0,0.5)) opacity(0.9)' }} />
-                      <div style={{ position: 'absolute', bottom: '-10px', left: '50%', transform: 'translateX(-50%)', background: isLspd ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)', border: '2px solid #0f172a', borderRadius: '6px', padding: '2px 10px', fontSize: '0.95rem', fontWeight: 900, color: '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                      <div style={{ position: 'absolute', bottom: '-10px', left: '50%', transform: 'translateX(-50%)', background: isCommander ? 'linear-gradient(135deg, #facc15, #ca8a04)' : (isLspd ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)'), border: '2px solid #0f172a', borderRadius: '6px', padding: '2px 10px', fontSize: '0.95rem', fontWeight: 900, color: isCommander ? '#0f172a' : '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
                         {fto.badgeNumber}
                       </div>
                     </div>
                     
                     {/* Dane Oficera */}
-                    <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 900, color: '#f8fafc', textAlign: 'center', lineHeight: 1.1, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{fto.firstName} <br/>{fto.lastName}</h3>
-                    <div style={{ color: deptColor, fontSize: '0.85rem', fontWeight: 700, marginTop: '0.5rem', textTransform: 'uppercase', letterSpacing: '1.5px', background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: '4px' }}>{fto.rank}</div>
+                    <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 900, color: isCommander ? '#fef08a' : '#f8fafc', textAlign: 'center', lineHeight: 1.1, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{fto.firstName} <br/>{fto.lastName}</h3>
+                    <div style={{ color: deptColor, fontSize: '0.85rem', fontWeight: 700, marginTop: '0.5rem', textTransform: 'uppercase', letterSpacing: '1.5px', background: isCommander ? 'rgba(250, 204, 21, 0.15)' : 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: '4px' }}>{fto.rank}</div>
                     
-                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1.5rem', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.02)' }}>
+                    {/* Szkolenia (Certyfikaty) */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', justifyContent: 'center', marginTop: '1rem', width: '100%', minHeight: '24px' }}>
+                      {safeParseJSON(fto.trainings).length === 0 ? (
+                        <span style={{ fontSize: '0.65rem', color: '#64748b', fontStyle: 'italic', letterSpacing: '1px' }}>NO CERTIFICATIONS ON FILE</span>
+                      ) : (
+                        safeParseJSON(fto.trainings).map(t => {
+                          const isTrainer = t.startsWith('TRAINER_');
+                          const isHead = t.startsWith('HEAD_');
+                          const baseTraining = t.replace('TRAINER_', '').replace('HEAD_', '');
+                          
+                          let pillColor = 'rgba(255,255,255,0.05)';
+                          let textColor = '#cbd5e1';
+                          let borderCol = 'rgba(255,255,255,0.1)';
+                          
+                          if (isHead) {
+                            pillColor = 'rgba(239, 68, 68, 0.1)'; textColor = '#fca5a5'; borderCol = 'rgba(239, 68, 68, 0.3)';
+                          } else if (isTrainer) {
+                            pillColor = 'rgba(250, 204, 21, 0.1)'; textColor = '#fde047'; borderCol = 'rgba(250, 204, 21, 0.3)';
+                          } else {
+                            pillColor = isLspd ? 'rgba(59, 130, 246, 0.1)' : 'rgba(16, 185, 129, 0.1)';
+                            textColor = isLspd ? '#93c5fd' : '#6ee7b7';
+                            borderCol = isLspd ? 'rgba(59, 130, 246, 0.3)' : 'rgba(16, 185, 129, 0.3)';
+                          }
+
+                          return (
+                            <span key={t} style={{
+                              background: pillColor, color: textColor, border: `1px solid ${borderCol}`,
+                              padding: '2px 8px', borderRadius: '4px', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.5px'
+                            }} title={t}>
+                              {isHead ? `HEAD ${baseTraining}` : isTrainer ? `INSTR ${baseTraining}` : t}
+                            </span>
+                          );
+                        })
+                      )}
+                    </div>
+                    
+                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1.25rem', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.02)' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                         <span style={{ fontSize: '0.6rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px' }}>Status</span>
                         <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 800 }}>ACTIVE</span>
@@ -327,15 +371,11 @@ export default function FTD({ isLoggedIn }) {
 
                 {/* Sekcja Kadeta */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '1rem', paddingTop: '0.5rem' }}>
-                  <div style={{ 
-                    width: '46px', height: '46px', borderRadius: '12px', 
-                    background: 'linear-gradient(135deg, rgba(59,130,246,0.15) 0%, rgba(59,130,246,0.05) 100%)', 
-                    border: '1px solid rgba(59, 130, 246, 0.3)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                    color: '#60a5fa', fontWeight: 'bold', fontSize: '0.9rem', fontFamily: 'monospace',
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                  }}>
-                    {cadet.badgeNumber || '---'}
+                  <div style={{ position: 'relative', width: '46px', height: '46px' }}>
+                    <img src={cadet.department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 2px 5px rgba(0,0,0,0.5))' }} onError={(e) => e.target.style.display='none'} />
+                    <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(135deg, #334155, #0f172a)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', padding: '0 4px', fontSize: '0.65rem', fontWeight: 900, color: '#f8fafc', boxShadow: '0 1px 3px rgba(0,0,0,0.5)', whiteSpace: 'nowrap' }}>
+                      {cadet.badgeNumber || '---'}
+                    </div>
                   </div>
                   <div>
                     <h4 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -356,8 +396,11 @@ export default function FTD({ isLoggedIn }) {
                   {isAssigned ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(16,185,129,0.15)', color: '#34d399', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold', border: '1px solid rgba(16,185,129,0.3)' }}>
-                          {supervisor.badgeNumber}
+                        <div style={{ position: 'relative', width: '38px', height: '38px' }}>
+                          <img src={supervisor.department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 2px 5px ${supervisor.department === 'LSPD' ? 'rgba(59,130,246,0.3)' : 'rgba(16,185,129,0.3)'})` }} onError={(e) => e.target.style.display='none'} />
+                          <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', background: supervisor.department === 'LSPD' ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)', border: '1px solid #0f172a', borderRadius: '4px', padding: '0 4px', fontSize: '0.65rem', fontWeight: 900, color: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.5)', whiteSpace: 'nowrap' }}>
+                            {supervisor.badgeNumber || '---'}
+                          </div>
                         </div>
                         <div>
                           <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: '0.95rem' }}>{supervisor.firstName} {supervisor.lastName}</div>
