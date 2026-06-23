@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { Shield, Users, Clock, DollarSign, Activity, LogOut } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
 
 import Dashboard from './pages/Dashboard';
 import Roster from './pages/Roster';
@@ -11,6 +12,22 @@ import Login from './pages/Login';
 import FTD from './pages/FTD';
 import DTU from './pages/DTU';
 
+import { motion } from 'framer-motion';
+
+function NavItem({ to, icon: Icon, label }) {
+  return (
+    <NavLink to={to} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={{ position: 'relative' }}>
+      {({ isActive }) => (
+        <>
+          <Icon size={18} style={{ zIndex: 2, position: 'relative' }} /> 
+          <span style={{ zIndex: 2, position: 'relative' }}>{label}</span>
+          {isActive && <motion.div layoutId="sidebarActive" className="active-indicator" />}
+        </>
+      )}
+    </NavLink>
+  );
+}
+
 function Sidebar({ userRole, onLogout }) {
   return (
     <div className="sidebar">
@@ -20,35 +37,21 @@ function Sidebar({ userRole, onLogout }) {
       
       <div className="nav-links">
         <div className="nav-category" style={{ borderColor: '#3b82f6' }}>GŁÓWNY PANEL</div>
-        <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <Activity size={18} /> Centrala
-        </NavLink>
+        <NavItem to="/" icon={Activity} label="Centrala" />
 
         <div className="nav-category" style={{ borderColor: '#ef4444' }}>KADRY (HC)</div>
-        <NavLink to="/points" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <Activity size={18} /> Akta (Plusy/Minusy)
-        </NavLink>
+        <NavItem to="/points" icon={Activity} label="Akta (Plusy/Minusy)" />
 
         <div className="nav-category" style={{ borderColor: '#10b981' }}>ZARZĄDZANIE KADRĄ</div>
-        <NavLink to="/roster" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <Users size={18} /> Lista Funkcjonariuszy
-        </NavLink>
-        <NavLink to="/duty" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <Clock size={18} /> Czas Służby
-        </NavLink>
-        <NavLink to="/payroll" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <DollarSign size={18} /> Wypłaty
-        </NavLink>
+        <NavItem to="/roster" icon={Users} label="Lista Funkcjonariuszy" />
+        <NavItem to="/duty" icon={Clock} label="Czas Służby" />
+        <NavItem to="/payroll" icon={DollarSign} label="Wypłaty" />
 
         <div className="nav-category" style={{ borderColor: '#facc15' }}>TRAINING DIVISION</div>
-        <NavLink to="/ftd" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <Shield size={18} /> FTO
-        </NavLink>
+        <NavItem to="/ftd" icon={Shield} label="FTO" />
 
         <div className="nav-category" style={{ borderColor: '#8b5cf6' }}>BIURO DETEKTYWISTYCZNE</div>
-        <NavLink to="/dtu" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-          <Shield size={18} /> DTU
-        </NavLink>
+        <NavItem to="/dtu" icon={Shield} label="DTU" />
       </div>
 
       <div className="sidebar-footer">
@@ -103,6 +106,15 @@ function App() {
   return (
     <Router>
       <div className="watermark"></div>
+      <div className="scanlines"></div>
+      <Toaster 
+        position="bottom-right" 
+        toastOptions={{ 
+          style: { background: '#1e293b', color: '#fff', border: '1px solid #334155', borderRadius: '8px' },
+          success: { iconTheme: { primary: '#10b981', secondary: '#fff' } },
+          error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } }
+        }} 
+      />
       <div className="app-wrapper relative">
         <div className="app-container">
           <Sidebar userRole={userRole} onLogout={handleLogout} />

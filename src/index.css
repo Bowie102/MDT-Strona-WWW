@@ -699,6 +699,20 @@ tr:hover td {
   z-index: 0;
 }
 
+/* --- CRT SCANLINE EFFECT --- */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
 .relative { position: relative; z-index: 1; }
 
 /* Dashboard layout specific */
@@ -1187,6 +1201,28 @@ tr:hover td {
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+.nav-link.active {
+  color: #fff;
+  font-weight: 600;
+}
+
+.active-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(59, 130, 246, 0.15); /* lspd-blue oparty tło */
+  border-left: 4px solid var(--lspd-blue);
+  border-radius: var(--radius-sm);
+  z-index: 1;
 }
 
 .ftd-tab.active {
