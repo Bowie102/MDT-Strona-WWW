@@ -164,8 +164,8 @@ export default function FTD({ isLoggedIn }) {
 
   const ftdMembers = sortOfficers(officers.filter(o => safeParseJSON(o.divisions).includes('FTD')));
   const nonFtdMembers = sortOfficers(officers.filter(o => !safeParseJSON(o.divisions).includes('FTD')));
-  const commanders = sortOfficers(ftdMembers.filter(o => o.ftdRank === 'FTD Commander' || o.ftdRank === 'Commander'));
-  const fto = sortOfficers(ftdMembers.filter(o => o.ftdRank !== 'FTD Commander' && o.ftdRank !== 'Commander'));
+  const commanders = sortOfficers(ftdMembers.filter(o => o.ftdRank && o.ftdRank.toLowerCase().includes('commander')));
+  const fto = sortOfficers(ftdMembers.filter(o => !o.ftdRank || !o.ftdRank.toLowerCase().includes('commander')));
   
   // Kadeci: zakładamy, że to rangi "Cadet", "Kadet", "Rekrut" itp.
   const cadets = sortOfficers(officers.filter(o => 
@@ -212,7 +212,7 @@ export default function FTD({ isLoggedIn }) {
           ) : (
             ftdMembers.map(fto => {
               const isLspd = fto.department === 'LSPD';
-              const isCommander = fto.ftdRank === 'FTD Commander' || fto.ftdRank === 'Commander';
+              const isCommander = fto.ftdRank && fto.ftdRank.toLowerCase().includes('commander');
               const deptColor = isCommander ? '#facc15' : (isLspd ? '#3b82f6' : '#10b981');
               const bgGradient = isCommander ? 'linear-gradient(145deg, #1e293b 0%, #171000 100%)' : 'linear-gradient(145deg, #1e293b 0%, #0f172a 100%)';
               
