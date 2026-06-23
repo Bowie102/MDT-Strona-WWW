@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from 'react-router-dom';
-import { Shield, Users, Clock, DollarSign, Activity, LogOut, Book, Car } from 'lucide-react';
+import { Shield, Users, Clock, DollarSign, Activity, LogOut, Book, Car, FileBadge } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 
 import Dashboard from './pages/Dashboard';
@@ -13,6 +13,7 @@ import FTD from './pages/FTD';
 import DTU from './pages/DTU';
 import KnowledgeBase from './pages/KnowledgeBase';
 import Fleet from './pages/Fleet';
+import WeaponLicense from './pages/WeaponLicense';
 import BootSequence from './components/BootSequence';
 
 import { motion } from 'framer-motion';
@@ -43,6 +44,7 @@ function Sidebar({ userRole, onLogout }) {
         <NavItem to="/" icon={Activity} label="Centrala" />
         <NavItem to="/knowledge" icon={Book} label="Baza Wiedzy" />
         <NavItem to="/fleet" icon={Car} label="Flota LSPD/BCSO" />
+        <NavItem to="/weapon-license" icon={FileBadge} label="Licencja na Broń" />
 
         <div className="nav-category" style={{ borderColor: '#ef4444' }}>KADRY (HC)</div>
         <NavItem to="/points" icon={Activity} label="Akta (Plusy/Minusy)" />
@@ -138,6 +140,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/knowledge" element={<KnowledgeBase />} />
                 <Route path="/fleet" element={<Fleet />} />
+                <Route path="/weapon-license" element={<WeaponLicense />} />
                 <Route path="/roster" element={<Roster isLoggedIn={isZarzad} />} />
               <Route path="/duty" element={<DutyLogs />} />
               <Route path="/payroll" element={<Payroll isLoggedIn={isZarzad} />} />
