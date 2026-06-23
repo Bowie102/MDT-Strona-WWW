@@ -760,7 +760,82 @@ tr:hover td {
   color: #ef4444;
 }
 
-.points-submit {
+.points-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.points-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  flex: 1;
+}
+
+.radio-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom.plus {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom.minus {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.points-textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.points-textarea:focus {
+  border-color: var(--lspd-blue);
+}
+
+.points-submit-btn {
   width: 100%;
   background: var(--lspd-blue);
   color: white;
@@ -774,10 +849,11 @@ tr:hover td {
   align-items: center;
   gap: 0.75rem;
   border-radius: var(--radius-sm);
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
 }
 
-.points-submit:hover {
+.points-submit-btn:hover {
   background: #2563eb;
 }
 
