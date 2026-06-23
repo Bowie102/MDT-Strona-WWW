@@ -309,6 +309,21 @@ export default function FTD({ isLoggedIn }) {
                       )}
                     </div>
                     
+                    {/* Dodatkowe Wydziały (Baretki) */}
+                    {(() => {
+                      const ftoDivs = safeParseJSON(fto.divisions).filter(d => d === 'DTU' || d === 'METRO' || d === 'HWP' || d === 'Highway Patrol Division');
+                      if (ftoDivs.length === 0) return null;
+                      return (
+                        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem', justifyContent: 'center', width: '100%', background: 'rgba(0,0,0,0.2)', padding: '0.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.02)' }}>
+                          <span style={{ fontSize: '0.6rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px', display: 'flex', alignItems: 'center', marginRight: '0.25rem' }}>INNE PRZYDZIAŁY:</span>
+                          {ftoDivs.includes('DTU') && <img src="/dtu_logo.png" title="DTU" style={{ width: '18px', height: '18px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(139,92,246,0.5))' }} />}
+                          {ftoDivs.includes('METRO') && <img src="/metro_logo.png" title="METRO" style={{ width: '18px', height: '18px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(239,68,68,0.5))' }} />}
+                          {(ftoDivs.includes('HWP') || ftoDivs.includes('Highway Patrol Division')) && <img src="/hwp_logo.png" title="HWP" style={{ width: '18px', height: '18px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(100,116,139,0.5))' }} />}
+                        </div>
+                      );
+                    })()}
+                    
+
                     <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1.25rem', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.02)' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                         <span style={{ fontSize: '0.6rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px' }}>Status</span>

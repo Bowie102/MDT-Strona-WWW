@@ -341,7 +341,7 @@ function Roster({ isLoggedIn }) {
                 <th className="col-divider">NICK</th>
                 <th className="col-divider">STOPIEŃ</th>
                 <th className="col-divider">STATUS</th>
-                {COLS_DIV.map(d => <th key={d} className={d === 'METRO' ? 'col-divider' : ''}>{d === 'Highway Patrol Division' ? 'HWP' : d}</th>)}
+                <th className="col-divider" style={{ textAlign: 'center' }}>WYDZIAŁY</th>
                 {COLS_TRN.map(t => <th key={t} className={t === 'SEU' ? 'col-divider' : ''}>{t}</th>)}
                 <th className="col-divider" style={{ color: '#fbbf24', textAlign: 'center' }}>GODZINY</th>
                 {isLoggedIn && <th className="col-divider">AKCJE</th>}
@@ -406,14 +406,15 @@ function Roster({ isLoggedIn }) {
                     <span className={`status-pill ${st.toLowerCase()}`}>{st}</span>
                   </td>
                   
-                  {COLS_DIV.map(d => {
-                    const hasDTU = divs.includes(d);
-                    return (
-                      <td key={d} className={`${hasDTU ? 'check-yes' : 'check-no'} ${d === 'METRO' ? 'col-divider' : ''}`} style={{ textAlign: 'center' }}>
-                        {hasDTU ? '✓' : '—'}
-                      </td>
-                    );
-                  })}
+                  <td className="col-divider">
+                    <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                      {divs.includes('DTU') && <img src="/dtu_logo.png" title="DTU" style={{ width: '28px', height: '28px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(139,92,246,0.5))' }} />}
+                      {divs.includes('METRO') && <img src="/metro_logo.png" title="METRO" style={{ width: '28px', height: '28px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(239,68,68,0.5))' }} />}
+                      {divs.includes('FTD') && <img src="/ftd_logo.png" title="FTD" style={{ width: '28px', height: '28px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(245,158,11,0.5))' }} />}
+                      {(divs.includes('HWP') || divs.includes('Highway Patrol Division')) && <img src="/hwp_logo.png" title="HWP" style={{ width: '28px', height: '28px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(100,116,139,0.5))' }} />}
+                      {(!divs.includes('DTU') && !divs.includes('METRO') && !divs.includes('FTD') && !divs.includes('HWP') && !divs.includes('Highway Patrol Division')) && <span style={{ color: '#64748b', fontSize: '0.9rem' }}>—</span>}
+                    </div>
+                  </td>
                   
                   {COLS_TRN.map(t => (
                     <td key={t} className={`${trains.includes(t) ? 'check-yes' : 'check-no'} ${t === 'SEU' ? 'col-divider' : ''}`} style={{ textAlign: 'center' }}>
@@ -454,7 +455,17 @@ function Roster({ isLoggedIn }) {
           <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div className="modal-content" initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}>
               <div className="modal-header">
-                <h3>{isEditMode ? 'Edytuj Funkcjonariusza' : 'Zatrudnij Funkcjonariusza'}</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <h3>{isEditMode ? 'Edytuj Funkcjonariusza' : 'Zatrudnij Funkcjonariusza'}</h3>
+                  {isEditMode && formData.divisions && (
+                    <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '1rem' }}>
+                      {formData.divisions.includes('DTU') && <img src="/dtu_logo.png" title="DTU" style={{ width: '32px', height: '32px', filter: 'drop-shadow(0 2px 4px rgba(139,92,246,0.6))' }} />}
+                      {formData.divisions.includes('METRO') && <img src="/metro_logo.png" title="METRO" style={{ width: '32px', height: '32px', filter: 'drop-shadow(0 2px 4px rgba(239,68,68,0.6))' }} />}
+                      {formData.divisions.includes('FTD') && <img src="/ftd_logo.png" title="FTD" style={{ width: '32px', height: '32px', filter: 'drop-shadow(0 2px 4px rgba(245,158,11,0.6))' }} />}
+                      {(formData.divisions.includes('HWP') || formData.divisions.includes('Highway Patrol Division')) && <img src="/hwp_logo.png" title="HWP" style={{ width: '32px', height: '32px', filter: 'drop-shadow(0 2px 4px rgba(100,116,139,0.6))' }} />}
+                    </div>
+                  )}
+                </div>
                 <button onClick={() => setIsModalOpen(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}>
                   <X size={24} />
                 </button>
