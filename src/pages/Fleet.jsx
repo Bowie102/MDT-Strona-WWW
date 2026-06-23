@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Car, Search } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Car, Search, Maximize2, X } from 'lucide-react';
 
 const FLEET_DATA = [
   { id: 1, tier: 'Tier 1', name: 'Stanier', ranks: 'Officer I / Deputy I', image: '/fleet/stanier.png' },
@@ -25,6 +25,7 @@ const itemVariant = {
 
 function Fleet() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const filteredFleet = FLEET_DATA.filter(car => 
     car.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -57,18 +58,26 @@ function Fleet() {
         variants={containerVariant} 
         initial="hidden" 
         animate="show"
-        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}
+        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(450px, 1fr))', gap: '2rem' }}
       >
         {filteredFleet.map(car => (
           <motion.div key={car.id} variants={itemVariant} className="glass-card" style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', backgroundColor: '#0f172a' }}>
+            <div 
+              style={{ position: 'relative', width: '100%', paddingTop: '56.25%', backgroundColor: '#0f172a', cursor: 'pointer', group: 'fleet-image' }}
+              onClick={() => setSelectedImage(car.image)}
+            >
               <img 
                 src={car.image} 
                 alt={car.name} 
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }}
                 onError={(e) => { e.target.src = 'https://via.placeholder.com/600x338/1e293b/475569?text=Brak+Zdj%C4%99cia' }}
+                onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
               />
-              <div style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.7)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold', color: car.tier.includes('Tier 3') ? '#fbbf24' : car.tier.includes('Merry') ? '#a855f7' : '#e2e8f0', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="fleet-image-overlay">
+                <Maximize2 size={32} color="#fff" />
+              </div>
+              <div style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.8)', padding: '6px 12px', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 'bold', color: car.tier.includes('Tier 3') ? '#fbbf24' : car.tier.includes('Merry') ? '#a855f7' : '#e2e8f0', border: '1px solid rgba(255,255,255,0.1)' }}>
                 {car.tier}
               </div>
             </div>
@@ -89,6 +98,51 @@ function Fleet() {
           <p style={{ color: 'var(--text-muted)' }}>Brak pojazdów spełniających kryteria wyszukiwania.</p>
         </div>
       )}
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundColor: 'rgba(0,0,0,0.9)',
+              zIndex: 999999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'zoom-out',
+              padding: '2rem'
+            }}
+          >
+            <button 
+              onClick={() => setSelectedImage(null)}
+              style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}
+            >
+              <X size={36} />
+            </button>
+            <motion.img
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              src={selectedImage}
+              alt="Większy podgląd"
+              style={{
+                maxWidth: '90%',
+                maxHeight: '90%',
+                objectFit: 'contain',
+                borderRadius: '8px',
+                boxShadow: '0 0 40px rgba(0,0,0,0.5)'
+              }}
+              onClick={(e) => e.stopPropagation()} // żeby nie zamknąć klikając w zdjęcie
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
