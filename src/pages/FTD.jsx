@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, UserMinus, ShieldCheck } from 'lucide-react';
 import { API_BASE_URL } from '../config';
 
 const TRAININGS = ['SEU', 'SV', 'NT', 'PWC', 'WU', 'K9', 'ASU', 'MARY', 'FAC'];
@@ -204,7 +204,7 @@ export default function FTD({ isLoggedIn }) {
           </div>
         )}
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.25rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
           {ftdMembers.length === 0 ? (
             <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', background: 'rgba(15, 23, 42, 0.4)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.1)' }}>
               <p style={{ color: '#94a3b8', margin: 0, fontSize: '0.9rem' }}>Brak przypisanych oficerów do FTD.</p>
@@ -213,33 +213,73 @@ export default function FTD({ isLoggedIn }) {
             ftdMembers.map(fto => {
               const isLspd = fto.department === 'LSPD';
               return (
-                <div key={fto.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(15, 23, 42, 0.8)', padding: '1.25rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)', borderLeft: isLspd ? '4px solid #3b82f6' : '4px solid #22c55e', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.2)', transition: 'transform 0.2s' }} onMouseOver={e=>e.currentTarget.style.transform='translateY(-2px)'} onMouseOut={e=>e.currentTarget.style.transform='translateY(0)'}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                    <div style={{ 
-                      width: '46px', height: '46px', borderRadius: '50%', 
-                      background: isLspd ? 'linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.05) 100%)' : 'linear-gradient(135deg, rgba(21,128,61,0.2) 0%, rgba(21,128,61,0.05) 100%)', 
-                      border: isLspd ? '1px solid rgba(59, 130, 246, 0.3)' : '1px solid rgba(21, 128, 61, 0.3)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                      color: isLspd ? '#93c5fd' : '#86efac', fontWeight: 'bold', fontSize: '1rem', fontFamily: 'monospace'
-                    }}>
-                      {fto.badgeNumber}
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#f8fafc', marginBottom: '0.2rem' }}>{fto.firstName} {fto.lastName}</div>
-                      <div style={{ fontSize: '0.75rem', color: isLspd ? '#60a5fa' : '#4ade80', background: isLspd ? 'rgba(59,130,246,0.1)' : 'rgba(21,128,61,0.1)', display: 'inline-block', padding: '0.15rem 0.4rem', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 'bold' }}>{fto.rank}</div>
-                    </div>
-                  </div>
+                <div key={fto.id} style={{ 
+                  position: 'relative', 
+                  background: 'rgba(15, 23, 42, 0.6)', 
+                  borderRadius: '12px', 
+                  border: '1px solid rgba(255,255,255,0.05)', 
+                  overflow: 'hidden', 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)',
+                  transition: 'transform 0.3s, box-shadow 0.3s'
+                }} onMouseOver={e=>{e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='0 20px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3)'}} onMouseOut={e=>{e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='0 10px 25px -5px rgba(0,0,0,0.3)'}}>
+                  
+                  {/* Banner Top */}
+                  <div style={{ 
+                    height: '6px', 
+                    background: isLspd ? 'linear-gradient(90deg, #3b82f6, #1d4ed8)' : 'linear-gradient(90deg, #10b981, #047857)',
+                    width: '100%'
+                  }}></div>
 
-                  {isLoggedIn && (
-                    <button 
-                      onClick={() => removeFto(fto)} 
-                      style={{ background: 'transparent', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.4rem 0.75rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 'bold', transition: 'all 0.2s' }}
-                      onMouseOver={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.1)'; e.currentTarget.style.borderColor='#ef4444'}}
-                      onMouseOut={e=>{e.currentTarget.style.background='transparent'; e.currentTarget.style.borderColor='rgba(239, 68, 68, 0.3)'}}
-                    >
-                      USUŃ
-                    </button>
-                  )}
+                  {/* Watermark Logo */}
+                  <img src={isLspd ? "/lspd_logo.png" : "/bcso_logo.png"} alt="bg" style={{ position: 'absolute', top: '20px', right: '-20px', width: '120px', opacity: 0.03, pointerEvents: 'none', transform: 'rotate(-15deg)' }} onError={(e) => e.target.style.display='none'} />
+
+                  <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
+                    
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
+                      
+                      {/* Badge/Avatar */}
+                      <div style={{ 
+                        width: '56px', height: '56px', borderRadius: '12px', 
+                        background: isLspd ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', 
+                        border: isLspd ? '1px solid rgba(59, 130, 246, 0.3)' : '1px solid rgba(16, 185, 129, 0.3)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', 
+                        color: isLspd ? '#93c5fd' : '#86efac', fontWeight: '900', fontSize: '1.25rem', fontFamily: 'var(--font-mono)',
+                        boxShadow: isLspd ? '0 0 15px rgba(59,130,246,0.15)' : '0 0 15px rgba(16,185,129,0.15)'
+                      }}>
+                        {fto.badgeNumber}
+                      </div>
+
+                      {isLoggedIn && (
+                        <button 
+                          onClick={() => removeFto(fto)} 
+                          style={{ 
+                            background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.2)', 
+                            padding: '0.35rem 0.6rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold', 
+                            transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: '0.25rem'
+                          }}
+                          onMouseOver={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.2)'; e.currentTarget.style.borderColor='#ef4444'}}
+                          onMouseOut={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.1)'; e.currentTarget.style.borderColor='rgba(239, 68, 68, 0.2)'}}
+                        >
+                          <UserMinus size={14} /> USUŃ
+                        </button>
+                      )}
+                    </div>
+
+                    <div>
+                      <h4 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.5px' }}>{fto.firstName} {fto.lastName}</h4>
+                      <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{fto.rank}</p>
+                    </div>
+
+                    <div style={{ marginTop: 'auto', paddingTop: '1.25rem' }}>
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.7rem', color: isLspd ? '#60a5fa' : '#34d399', background: isLspd ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)', padding: '0.25rem 0.6rem', borderRadius: '9999px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        <ShieldCheck size={14} />
+                        {fto.department} FTO
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               );
             })
