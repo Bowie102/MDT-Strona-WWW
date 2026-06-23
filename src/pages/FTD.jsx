@@ -204,9 +204,9 @@ export default function FTD({ isLoggedIn }) {
           </div>
         )}
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           {ftdMembers.length === 0 ? (
-            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', background: 'rgba(15, 23, 42, 0.4)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.1)' }}>
+            <div style={{ textAlign: 'center', padding: '3rem', background: 'rgba(15, 23, 42, 0.4)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.1)' }}>
               <p style={{ color: '#94a3b8', margin: 0, fontSize: '0.9rem' }}>Brak przypisanych oficerów do FTD.</p>
             </div>
           ) : (
@@ -221,60 +221,59 @@ export default function FTD({ isLoggedIn }) {
                   border: '1px solid var(--border-color)', 
                   borderLeft: `4px solid ${deptColor}`,
                   display: 'flex', 
-                  flexDirection: 'column',
-                  padding: '1rem 1.25rem',
-                  position: 'relative'
-                }}>
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem 1.25rem',
+                  transition: 'background 0.2s, transform 0.2s',
+                  cursor: 'default'
+                }} onMouseOver={e=>{e.currentTarget.style.background='rgba(255,255,255,0.02)'; e.currentTarget.style.transform='translateX(4px)'}} onMouseOut={e=>{e.currentTarget.style.background='var(--bg-dark)'; e.currentTarget.style.transform='translateX(0)'}}>
                   
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <div style={{ 
-                        background: isLspd ? '#1e3a8a' : '#064e3b', 
-                        color: isLspd ? '#93c5fd' : '#6ee7b7', 
-                        padding: '0.35rem 0.6rem', 
-                        borderRadius: '4px', 
-                        fontWeight: '900', 
-                        fontSize: '1rem', 
-                        fontFamily: 'var(--font-mono)',
-                        border: `1px solid ${deptColor}`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        {fto.badgeNumber}
-                      </div>
-                      <div>
-                        <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.3px' }}>{fto.firstName} {fto.lastName}</h4>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{fto.rank}</div>
-                      </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
+                    <div style={{ 
+                      background: isLspd ? '#1e3a8a' : '#064e3b', 
+                      color: isLspd ? '#93c5fd' : '#6ee7b7', 
+                      width: '50px',
+                      height: '34px', 
+                      borderRadius: '4px', 
+                      fontWeight: '900', 
+                      fontSize: '0.9rem', 
+                      fontFamily: 'var(--font-mono)',
+                      border: `1px solid ${deptColor}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }}>
+                      {fto.badgeNumber}
                     </div>
                     
-                    {isLoggedIn && (
-                      <button 
-                        onClick={() => removeFto(fto)} 
-                        style={{ 
-                          background: 'transparent', color: '#ef4444', border: 'none', 
-                          padding: '0.2rem', cursor: 'pointer', opacity: 0.7,
-                          transition: 'opacity 0.2s', display: 'flex', alignItems: 'center'
-                        }}
-                        onMouseOver={e=>{e.currentTarget.style.opacity='1'}}
-                        onMouseOut={e=>{e.currentTarget.style.opacity='0.7'}}
-                        title="Usuń szkoleniowca"
-                      >
-                        <UserMinus size={16} />
-                      </button>
-                    )}
-                  </div>
+                    <div style={{ width: '250px' }}>
+                      <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.2px' }}>{fto.firstName} {fto.lastName}</h4>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{fto.rank}</div>
+                    </div>
 
-                  <div style={{ 
-                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem', 
-                    fontSize: '0.7rem', color: '#cbd5e1', 
-                    background: 'rgba(255,255,255,0.03)', padding: '0.25rem 0.5rem', 
-                    borderRadius: '4px', fontWeight: 600, border: '1px solid rgba(255,255,255,0.05)', alignSelf: 'flex-start'
-                  }}>
-                    <ShieldCheck size={14} color={deptColor} />
-                    Field Training Division ({fto.department})
+                    <div style={{ 
+                      display: 'inline-flex', alignItems: 'center', gap: '0.4rem', 
+                      fontSize: '0.7rem', color: '#cbd5e1', 
+                      background: 'rgba(0,0,0,0.3)', padding: '0.2rem 0.6rem', 
+                      borderRadius: '4px', fontWeight: 600, border: '1px solid rgba(255,255,255,0.05)'
+                    }}>
+                      <ShieldCheck size={14} color={deptColor} />
+                      {fto.department} FTO
+                    </div>
                   </div>
+                  
+                  {isLoggedIn && (
+                    <button 
+                      onClick={() => removeFto(fto)} 
+                      style={{ 
+                        background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.2)', 
+                        padding: '0.35rem 0.75rem', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.7rem',
+                        transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: '0.3rem'
+                      }}
+                      onMouseOver={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.2)';}}
+                      onMouseOut={e=>{e.currentTarget.style.background='rgba(239, 68, 68, 0.1)';}}
+                    >
+                      <UserMinus size={14} /> USUŃ
+                    </button>
+                  )}
 
                 </div>
               );

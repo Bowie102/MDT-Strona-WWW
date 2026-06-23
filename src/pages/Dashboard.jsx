@@ -234,45 +234,95 @@ function Dashboard() {
           <h3 style={{ color: '#facc15', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.85rem' }}>
             <Award size={16} /> Hall of Fame LSPD & BCSO (Godziny na Służbie)
           </h3>
-          <div className="glass-card" style={{ padding: '0.5rem' }}>
+          <div className="glass-card" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             
             {topOfficers.length === 0 ? (
               <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '1rem', fontFamily: 'var(--font-mono)' }}>Brak zarejestrowanych godzin.</p>
             ) : (
-              <div style={{ display: 'grid', gap: '0.5rem' }}>
-                {topOfficers.map((off, idx) => {
-                  let rankColor = '#334155';
-                  if (idx === 0) rankColor = '#facc15';
-                  else if (idx === 1) rankColor = '#cbd5e1';
-                  else if (idx === 2) rankColor = '#b45309';
-
-                  return (
-                    <div key={off.id} style={{ 
-                      display: 'flex', alignItems: 'center', justifyContent: 'space-between', 
-                      background: 'var(--bg-dark)', padding: '0.75rem 1rem', 
-                      borderRadius: '6px', border: '1px solid var(--border-color)', 
-                      borderLeft: `3px solid ${rankColor}`
-                    }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <div style={{ fontWeight: 900, color: rankColor, fontSize: '1.2rem', minWidth: '30px', textAlign: 'center' }}>
-                          #{idx + 1}
-                        </div>
-                        <div>
-                          <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: '0.95rem' }}>
-                            {off.firstName} {off.lastName} 
-                            <span style={{ marginLeft: '0.5rem', color: off.department === 'LSPD' ? '#60a5fa' : '#34d399', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>[{off.badgeNumber}]</span>
-                          </div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{off.rank} ({off.department})</div>
-                        </div>
+              <>
+                {/* PODIUM dla TOP 3 */}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: '0.5rem', marginTop: '1rem', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  {/* #2 Miejsce */}
+                  {topOfficers[1] && (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, position: 'relative', transition: 'transform 0.3s' }} onMouseOver={e=>e.currentTarget.style.transform='translateY(-5px)'} onMouseOut={e=>e.currentTarget.style.transform='translateY(0)'}>
+                      <div style={{ marginBottom: '0.5rem', width: '45px', height: '45px', borderRadius: '50%', background: 'var(--bg-dark)', border: '2px solid #cbd5e1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', color: '#cbd5e1', fontSize: '1rem', boxShadow: '0 0 15px rgba(203, 213, 225, 0.3)', position: 'relative', zIndex: 2 }}>
+                        {topOfficers[1].badgeNumber}
                       </div>
-                      <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: '1.05rem', fontFamily: 'var(--font-mono)' }}>{off.score.toFixed(1)}h</div>
-                        <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Wykazane</div>
+                      <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+                        <div style={{ fontWeight: 800, color: '#f8fafc', fontSize: '0.85rem', lineHeight: 1.1 }}>{topOfficers[1].lastName}</div>
+                        <div style={{ fontSize: '0.65rem', color: topOfficers[1].department === 'LSPD' ? '#60a5fa' : '#34d399', fontWeight: 'bold' }}>{topOfficers[1].department}</div>
+                      </div>
+                      <div style={{ width: '100%', height: '100px', background: 'linear-gradient(to top, rgba(0,0,0,0.5), rgba(203, 213, 225, 0.15))', borderTop: '4px solid #cbd5e1', borderRadius: '6px 6px 0 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '1rem', borderLeft: '1px solid rgba(255,255,255,0.05)', borderRight: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#cbd5e1', opacity: 0.8 }}>#2</div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#fff', marginTop: 'auto', marginBottom: '0.75rem', fontFamily: 'var(--font-mono)' }}>{topOfficers[1].score.toFixed(1)}h</div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                  )}
+
+                  {/* #1 Miejsce */}
+                  {topOfficers[0] && (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1.2, position: 'relative', transition: 'transform 0.3s' }} onMouseOver={e=>e.currentTarget.style.transform='translateY(-5px)'} onMouseOut={e=>e.currentTarget.style.transform='translateY(0)'}>
+                      <Award size={24} color="#facc15" style={{ position: 'absolute', top: '-60px', zIndex: 3, filter: 'drop-shadow(0 0 5px rgba(250,204,21,0.5))' }} />
+                      <div style={{ marginBottom: '0.5rem', width: '55px', height: '55px', borderRadius: '50%', background: 'var(--bg-dark)', border: '2px solid #facc15', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', color: '#facc15', fontSize: '1.2rem', boxShadow: '0 0 20px rgba(250, 204, 21, 0.4)', position: 'relative', zIndex: 2 }}>
+                        {topOfficers[0].badgeNumber}
+                      </div>
+                      <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+                        <div style={{ fontWeight: 900, color: '#facc15', fontSize: '0.95rem', lineHeight: 1.1 }}>{topOfficers[0].lastName}</div>
+                        <div style={{ fontSize: '0.7rem', color: topOfficers[0].department === 'LSPD' ? '#60a5fa' : '#34d399', fontWeight: 'bold' }}>{topOfficers[0].department}</div>
+                      </div>
+                      <div style={{ width: '100%', height: '140px', background: 'linear-gradient(to top, rgba(0,0,0,0.5), rgba(250, 204, 21, 0.2))', borderTop: '4px solid #facc15', borderRadius: '8px 8px 0 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '1rem', borderLeft: '1px solid rgba(255,255,255,0.05)', borderRight: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#facc15', opacity: 0.9, textShadow: '0 0 10px rgba(250,204,21,0.3)' }}>#1</div>
+                        <div style={{ fontSize: '1rem', fontWeight: 800, color: '#fff', marginTop: 'auto', marginBottom: '1rem', fontFamily: 'var(--font-mono)' }}>{topOfficers[0].score.toFixed(1)}h</div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* #3 Miejsce */}
+                  {topOfficers[2] && (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, position: 'relative', transition: 'transform 0.3s' }} onMouseOver={e=>e.currentTarget.style.transform='translateY(-5px)'} onMouseOut={e=>e.currentTarget.style.transform='translateY(0)'}>
+                      <div style={{ marginBottom: '0.5rem', width: '45px', height: '45px', borderRadius: '50%', background: 'var(--bg-dark)', border: '2px solid #b45309', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', color: '#b45309', fontSize: '1rem', boxShadow: '0 0 15px rgba(180, 83, 9, 0.3)', position: 'relative', zIndex: 2 }}>
+                        {topOfficers[2].badgeNumber}
+                      </div>
+                      <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+                        <div style={{ fontWeight: 800, color: '#f8fafc', fontSize: '0.85rem', lineHeight: 1.1 }}>{topOfficers[2].lastName}</div>
+                        <div style={{ fontSize: '0.65rem', color: topOfficers[2].department === 'LSPD' ? '#60a5fa' : '#34d399', fontWeight: 'bold' }}>{topOfficers[2].department}</div>
+                      </div>
+                      <div style={{ width: '100%', height: '80px', background: 'linear-gradient(to top, rgba(0,0,0,0.5), rgba(180, 83, 9, 0.2))', borderTop: '4px solid #b45309', borderRadius: '6px 6px 0 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '0.5rem', borderLeft: '1px solid rgba(255,255,255,0.05)', borderRight: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ fontSize: '1.75rem', fontWeight: 900, color: '#b45309', opacity: 0.8 }}>#3</div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#fff', marginTop: 'auto', marginBottom: '0.5rem', fontFamily: 'var(--font-mono)' }}>{topOfficers[2].score.toFixed(1)}h</div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Reszta (Miejsca 4-5) jako czysta lista */}
+                {topOfficers.length > 3 && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {topOfficers.slice(3).map((off, idx) => (
+                      <div key={off.id} style={{ 
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-between', 
+                        background: 'rgba(0,0,0,0.2)', padding: '0.5rem 1rem', 
+                        borderRadius: '4px', border: '1px solid rgba(255,255,255,0.02)'
+                      }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                          <div style={{ fontWeight: 800, color: '#64748b', fontSize: '1rem', minWidth: '24px' }}>
+                            #{idx + 4}
+                          </div>
+                          <div>
+                            <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.85rem' }}>
+                              {off.firstName} {off.lastName} 
+                              <span style={{ marginLeft: '0.5rem', color: off.department === 'LSPD' ? '#60a5fa' : '#34d399', fontSize: '0.7rem', fontFamily: 'var(--font-mono)' }}>[{off.badgeNumber}]</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem', fontFamily: 'var(--font-mono)' }}>
+                          {off.score.toFixed(1)}h
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
 
           </div>
