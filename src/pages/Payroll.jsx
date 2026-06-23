@@ -182,10 +182,17 @@ function Payroll({ isLoggedIn }) {
               {filtered.map(off => (
                 <motion.tr variants={itemVariant} key={off.id}>
                   <td>
-                    <span className={`badge-number ${off.department === 'BCSO' ? 'bcso' : ''}`} style={{ marginRight: '8px' }}>
-                      {off.badgeNumber}
-                    </span>
-                    {off.firstName} {off.lastName}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <div style={{ position: 'relative', width: '38px', height: '38px', flexShrink: 0 }}>
+                        <img src={off.department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 2px 5px ${off.department === 'LSPD' ? 'rgba(59,130,246,0.3)' : 'rgba(16,185,129,0.3)'})` }} onError={(e) => e.target.style.display='none'} />
+                        <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', background: off.department === 'LSPD' ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)', border: '1px solid #0f172a', borderRadius: '4px', padding: '0 4px', fontSize: '0.65rem', fontWeight: 900, color: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.5)', whiteSpace: 'nowrap' }}>
+                          {off.badgeNumber || '---'}
+                        </div>
+                      </div>
+                      <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#f8fafc' }}>
+                        {off.firstName} {off.lastName}
+                      </div>
+                    </div>
                   </td>
                   <td>
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{off.rank}</div>

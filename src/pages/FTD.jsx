@@ -162,7 +162,13 @@ export default function FTD({ isLoggedIn }) {
 
   const sortOfficers = (arr) => arr.sort((a, b) => parseInt(a.badgeNumber || 0) - parseInt(b.badgeNumber || 0));
 
-  const ftdMembers = sortOfficers(officers.filter(o => safeParseJSON(o.divisions).includes('FTD')));
+  const ftdMembers = sortOfficers(officers.filter(o => safeParseJSON(o.divisions).includes('FTD'))).sort((a,b) => {
+    const isACommander = a.ftdRank && a.ftdRank.toLowerCase().includes('commander');
+    const isBCommander = b.ftdRank && b.ftdRank.toLowerCase().includes('commander');
+    if (isACommander && !isBCommander) return -1;
+    if (!isACommander && isBCommander) return 1;
+    return 0;
+  });
   const nonFtdMembers = sortOfficers(officers.filter(o => !safeParseJSON(o.divisions).includes('FTD')));
   const commanders = sortOfficers(ftdMembers.filter(o => o.ftdRank && o.ftdRank.toLowerCase().includes('commander')));
   const fto = sortOfficers(ftdMembers.filter(o => !o.ftdRank || !o.ftdRank.toLowerCase().includes('commander')));

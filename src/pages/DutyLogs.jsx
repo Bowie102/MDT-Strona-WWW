@@ -197,11 +197,14 @@ function DutyLogs() {
                     <motion.tr variants={itemVariant} key={log.id}>
                       <td>{format(new Date(log.date), 'dd.MM.yyyy')}</td>
                       <td>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          <span className={`badge-number ${log.user?.department === 'BCSO' ? 'bcso' : ''}`} style={{ marginRight: '8px' }}>
-                            {log.user?.badgeNumber}
-                          </span>
-                          {log.user?.firstName} {log.user?.lastName}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <div style={{ position: 'relative', width: '32px', height: '32px', flexShrink: 0 }}>
+                            <img src={log.user?.department === 'LSPD' ? '/lspd_logo.png' : '/bcso_logo.png'} alt="Badge" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 2px 5px ${log.user?.department === 'LSPD' ? 'rgba(59,130,246,0.3)' : 'rgba(16,185,129,0.3)'})` }} onError={(e) => e.target.style.display='none'} />
+                            <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', background: log.user?.department === 'LSPD' ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' : 'linear-gradient(135deg, #10b981, #047857)', border: '1px solid #0f172a', borderRadius: '4px', padding: '0 4px', fontSize: '0.6rem', fontWeight: 900, color: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.5)', whiteSpace: 'nowrap' }}>
+                              {log.user?.badgeNumber || '---'}
+                            </div>
+                          </div>
+                          <span style={{ fontWeight: 600 }}>{log.user?.firstName} {log.user?.lastName}</span>
                         </div>
                       </td>
                       <td><strong style={{ color: 'var(--lspd-blue)' }}>{log.hours}h</strong></td>
