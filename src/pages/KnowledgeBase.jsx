@@ -1393,10 +1393,7 @@ function KnowledgeBase() {
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu przygotowanie pilota do trudnych manewrów w przestrzeni miejskiej, sprawdzając jego opanowanie maszyny w sytuacjach stresowych.</p>
                 </div>
 
-                <div style={{ width: '100%', height: '200px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
-                   <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }} />
-                   <img src="/szkolenia/asu_banner.png" alt="ASU Helicopter" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
+
 
                 {/* TEORIA MANEWROWA */}
                 <div>
@@ -1465,10 +1462,7 @@ function KnowledgeBase() {
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Jednostka wyspecjalizowana do podejmowania pościgów za autami o dużej mocy, wyposażona w sportowe modele radiowozów.</p>
                 </div>
 
-                <div style={{ width: '100%', height: '200px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
-                   <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }} />
-                   <img src="/szkolenia/seu_banner.png" alt="SEU Interceptor" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 60%' }} />
-                </div>
+
 
                 {/* ZASADY I CIEKAWOSTKI */}
                 <div>
@@ -1563,10 +1557,7 @@ function KnowledgeBase() {
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Jednostka MARY to rozwiązanie dla ciasnej miejskiej dżungli i wąskich szlaków terenowych. Szybka, zwrotna, ale obarczona wysokim ryzykiem wypadku.</p>
                 </div>
 
-                <div style={{ width: '100%', height: '200px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
-                   <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }} />
-                   <img src="/szkolenia/mary_banner.png" alt="MARY Motorcycle" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%' }} />
-                </div>
+
 
                 {/* ETAP I */}
                 <div>
