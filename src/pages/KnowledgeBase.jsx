@@ -646,7 +646,7 @@ function KnowledgeBase() {
                     <img 
                       src={`${maneuver.img}?v=3`} 
                       alt={maneuver.title} 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
                       onClick={() => setLightboxImg(`${maneuver.img}?v=3`)}
                       onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                       onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -691,7 +691,7 @@ function KnowledgeBase() {
                     <img 
                       src={`${formation.img}?v=3`} 
                       alt={formation.title} 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
                       onClick={() => setLightboxImg(`${formation.img}?v=3`)}
                       onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                       onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -1069,6 +1069,57 @@ function KnowledgeBase() {
 
         const szkoleniaData = [
           {
+            id: 'rto',
+            icon: '🎧',
+            title: 'RTO — Radio Traffic Only',
+            reqs: 'Od stopnia: Cadet  ·  Wymagane na: Officer I',
+            available: true,
+            content: (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={24} /> Szkolenie RTO (Przeprowadzane w pościgu)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu naukę płynnej, bezbłędnej i profesjonalnej komunikacji radiowej w stresie. <strong>W tym szkoleniu w ogóle nie liczą się umiejętności kierowania!</strong></p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Złote Zasady Szkolenia</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={16} color="var(--lspd-blue)"/> Brak "Must-Win"</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Prędkość pościgowa to <strong>maksymalnie 150 km/h</strong>. Masz dać kadetowi szansę skupić się na komunikacji, a nie na ekstremalnej jeździe.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={16} color="#10b981"/> 5 Minut</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Pościg rozpoczynacie na komendzie. Od momentu wyjazdu włączacie stoper na równo 5 minut.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Map size={16} color="var(--gold)"/> Miejscówki</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Podczas pościgu macie obowiązek przejechać przez przynajmniej <strong>5 kluczowych miejscówek</strong> wymienionych na liście szkoleniowej.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Przebieg Egzaminu (Krok po Kroku)</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {[
+                      "Pobieramy 2 wolne jednostki ADAM (np. standardowa Victoria) — jedną dla szkoleniowca, drugą dla zdającego.",
+                      "Przed startem weryfikujemy, czy kandydat zna nazwy miejscówek. Przejeżdżamy przez kilka i w przypadku braku znajomości — uczymy go ich nazw.",
+                      "Rozpoczynamy pościg z poziomu komendy i odpalamy stoper na równe 5 minut.",
+                      "Podczas pościgu szkoleniowiec utrzymuje prędkość max 150 km/h, a kandydat prowadzi pełną komunikację RTO.",
+                      "W trakcie trwania 5 minut musimy zahaczyć o minimum 5 wyznaczonych miejscówek z listy szkoleniowej."
+                    ].map((step, idx) => (
+                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                        <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(59, 130, 246, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', fontWeight: 'bold' }}>{idx + 1}</div>
+                        <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{step}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )
+          },
+          {
             id: 'nt',
             icon: '🤝',
             title: 'NT — Negocjator',
@@ -1076,72 +1127,142 @@ function KnowledgeBase() {
             available: true,
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                  <h4 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Shield size={20} /> Cel i Postawa</h4>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Negocjator ratuje ludzkie życie i zdrowie w sytuacjach kryzysowych. Nie okazuj zdenerwowania, bądź pewny siebie, stanowczy i opanowany. <strong>Negocjator musi być zawsze ubezpieczony przez innego funkcjonariusza.</strong></p>
+                
+                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)', textAlign: 'center' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>GŁOS LSPD (NEGOCJATOR)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Negocjator ratuje ludzkie życie. Jest łącznikiem między napastnikami a PD. Zawsze ubezpieczony, zawsze opanowany.</p>
                 </div>
 
+                {/* ETAP I - TEORIA */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Procedura Działania (Krok po Kroku)</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
-                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>1.</span> Pierwszy kontakt</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Zawsze na odległość słyszalności. <em>"Los Santos Police Department, co tam się dzieje?"</em></p>
+                  <h3 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem' }}>ETAP I: Egzamin Teoretyczny</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>Egzamin w formie testu. Z każdej tabeli (Zagadnień) zadajecie <strong>minimum 3 pytania</strong>. Dopuszczalna ilość błędów na pojedynczą tabelę: <strong>3</strong>.</p>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+                    
+                    {/* Kryteria Negocjacji */}
+                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', fontWeight: 'bold', color: '#fff', textAlign: 'center', background: 'rgba(0,0,0,0.2)' }}>Kryteria Negocjacji</div>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                        <tbody style={{ textAlign: 'left', color: '#fff' }}>
+                          <tr><td style={{ padding: '0.4rem' }}>Kultura na drodze</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 żądanie</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Wolny odjazd</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 żądanie</td></tr>
+                          <tr><td style={{ padding: '0.4rem' }}>Wolny odjazd (poszukiwany)</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>2 żądania</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Brak Kolczatek (1km)</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 żądanie</td></tr>
+                          <tr><td style={{ padding: '0.4rem' }}>Brak Eagle (Minuta)</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 żądanie</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Brak Eagle (Całkowity)</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>3 żądania</td></tr>
+                          <tr><td style={{ padding: '0.4rem' }}>Naprawa (przed / w trakcie)</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 / 3 żądania</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Okup za zakładnika</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>Max 2000$</td></tr>
+                        </tbody>
+                      </table>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
-                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>2.</span> Legitymacja</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Odznaka, imię, nazwisko, numer odznaki i stopień.</p>
+
+                    {/* Ostrzeżenia */}
+                    <div style={{ background: 'rgba(239, 68, 68, 0.05)', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                      <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid rgba(239, 68, 68, 0.1)', fontWeight: 'bold', color: '#ef4444', textAlign: 'center', background: 'rgba(0,0,0,0.1)' }}>Ostrzeżenia Negocjatorskie</div>
+                      <ul style={{ margin: 0, padding: '1rem 1rem 1rem 2rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        <li>Nieprzestrzeganie zasad negocjacji</li>
+                        <li>Brak kontaktu / chęci porozumienia</li>
+                        <li>Groźby w stronę zakładników / FP</li>
+                        <li>Nierealne żądania</li>
+                        <li>Brak powagi na napadzie/akcji</li>
+                        <li>Celowanie w stronę FP</li>
+                      </ul>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
-                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>3.</span> Zbieranie Info</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Liczba napastników, liczba zakładników i ich stan (każdy musi coś powiedzieć).</p>
+
+                    {/* Zerwanie */}
+                    <div style={{ background: 'rgba(239, 68, 68, 0.05)', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                      <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid rgba(239, 68, 68, 0.1)', fontWeight: 'bold', color: '#ef4444', textAlign: 'center', background: 'rgba(0,0,0,0.1)' }}>Zerwanie Negocjacji</div>
+                      <ul style={{ margin: 0, padding: '1rem 1rem 1rem 2rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        <li><strong>Po wydaniu 3 ostrzeżeń</strong></li>
+                        <li>Zakładnik został zraniony</li>
+                        <li>Napastnicy opuszczają teren bez zgody</li>
+                        <li>Zakładnicy są podstawieni (koledzy)</li>
+                        <li>100% pewności bezpiecznego wjazdu siłowego</li>
+                        <li>Strzały na terenie napadu</li>
+                        <li>Wielokrotne wyzwiska/groźby w stronę FP</li>
+                      </ul>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
-                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>4.</span> Negocjacje</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Kupowanie czasu przez pytanie o żądania. Decyzje o ich spełnieniu <strong>zawsze</strong> podejmuje SV.</p>
-                    </div>
+                  </div>
+
+                  {/* Formułka */}
+                  <div style={{ background: 'rgba(16, 185, 129, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid #10b981', marginBottom: '1.5rem' }}>
+                    <strong style={{ color: '#10b981', display: 'block', marginBottom: '0.5rem' }}>Formułka Negocjatorska (Koniec Akcji)</strong>
+                    <p style={{ margin: 0, color: '#fff', fontSize: '1rem', fontStyle: 'italic' }}>"Macie 30 sekund na rozkucie zakładników, wypuszczenie ich z terenu napadu/akcji, oraz wejście do pojazdu i oczekiwanie na zielone światło."</p>
+                  </div>
+
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                    <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Pytania z Wiedzy Ogólnej (Wymagane)</h5>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                      <li><strong style={{ color: '#fff' }}>Kim jest NT?</strong> Łącznik między napastnikami a PD. Zawsze druga najważniejsza osoba na akcji po SV.</li>
+                      <li><strong style={{ color: '#fff' }}>Ilu NT może rozmawiać?</strong> Zawsze i tylko JEDEN. Nie może wchodzić sam (zawsze ubezpieczany).</li>
+                      <li><strong style={{ color: '#fff' }}>Procedura (Kroki):</strong> Pierwszy kontakt → Legitymacja → Zbieranie info → Negocjacje → Odjazd → Zakończenie.</li>
+                      <li><strong style={{ color: '#fff' }}>Wolny Odjazd:</strong> Odblokowanie dróg (500m), zdjęcie kolczatek, wejście do pojazdu, zakaz ognia w stronę odjeżdżającego.</li>
+                      <li><strong style={{ color: '#fff' }}>Porwany FP:</strong> Kod czerwony, szukanie przez SV, priorytet to odzyskanie przez niego wyposażenia.</li>
+                      <li><strong style={{ color: '#fff' }}>Ranny Zakładnik:</strong> Priorytet bezwzględny! Dążymy do jego uwolnienia i podania EMS.</li>
+                      <li><strong style={{ color: '#fff' }}>Wydanie sprzętu PD:</strong> Absolutny zakaz (nie wydajemy radiowozów, broni, sprzętu).</li>
+                    </ul>
                   </div>
                 </div>
 
-                <div style={{ background: 'rgba(16, 185, 129, 0.05)', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
-                  <div style={{ padding: '1rem', borderBottom: '1px solid rgba(16, 185, 129, 0.1)' }}>
-                    <h4 style={{ margin: 0, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Banknote size={20} /> Żądania Napastników (Limity Maksymalne)</h4>
-                  </div>
-                  <div style={{ padding: '1rem' }}>
-                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-                      <tbody>
-                        <tr>
-                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Swobodny odjazd</td>
-                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>1 zakł. (nieposzukiwany) / 2 zakł. (poszukiwany) / Min. 3 zakł. (&gt;5 poszukiwanych)</td>
-                        </tr>
-                        <tr>
-                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Brak kolczatek</td>
-                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>1 zakładnik (min. 0.5km, max 1km od miejsca)</td>
-                        </tr>
-                        <tr>
-                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Brak EAGLE</td>
-                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Czasowy: 1 zakładnik (1-1.5 min). Całkowity: Jubiler(2), Fleeca(3), Maze(4).</td>
-                        </tr>
-                        <tr>
-                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Naprawa pojazdu</td>
-                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Przed pościgiem: 1 zakł. / W trakcie pościgu: 3 zakł.</td>
-                        </tr>
-                        <tr>
-                          <td style={{ padding: '0.5rem', color: '#ef4444', fontWeight: 'bold' }}>Czego NIE wolno?</td>
-                          <td style={{ padding: '0.5rem', color: '#ef4444' }}>Odwołać SEU/Mery, Wydać broni (palnej/białej), sprzętu ani mundurów LSPD.</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #ef4444' }}>
-                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={20} /> Ostrzeżenia i Zerwanie Negocjacji</h4>
-                  <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                    Negocjator może wydać <strong>maksymalnie 3 ostrzeżenia</strong> (brak kontaktu, agresja, nierealne żądania). <br/><br/>
-                    <strong>Automatyczne zerwanie i wjazd siłowy następuje gdy:</strong> zakładnik zostanie ranny, napastnicy zaczną uciekać bez zgody, zidentyfikujesz podstawionych zakładników, lub masz 100% pewności na bezpieczne rozwiązanie siłowe.
+                {/* ETAP II - PRAKTYKA */}
+                <div>
+                  <h3 style={{ color: '#10b981', marginBottom: '1rem', borderBottom: '2px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem', marginTop: '1rem' }}>ETAP II: Egzamin Praktyczny</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+                    Po zdanej teorii idziecie na <strong>Status-5</strong> i czekacie na najbliższy napad. 
+                    Przejmujecie na radiu rolę Negocjatora na mocy praw szkoleniowych FTO.
                   </p>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Na co zwracamy uwagę?</h4>
+                      <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
+                        <li>Poprawne przejęcie roli (radio, pokazanie odznaki i przedstawienie się).</li>
+                        <li>Komunikacja Nego-SV (Przekazanie części I: ilu napastników/zakładników, stan zakładników).</li>
+                        <li>Komunikacja Nego-SV (Przekazanie części II: Żądania X za X).</li>
+                        <li>Przekazanie do SV informacji o czasie końca rabunku po "przyklepaniu".</li>
+                        <li>Poprawne odklepanie formułki na sam koniec napadu.</li>
+                      </ul>
+                    </div>
+                    
+                    <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid #ef4444' }}>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Błędy Kardynalne (Oblewające)</h4>
+                      <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
+                        <li>Niepoprawne przejęcie roli (brak przedstawienia, odznaki).</li>
+                        <li>Brak pytania o stan zdrowia zakładników!</li>
+                        <li>Brak poinformowania, że napastnicy celują do FP!</li>
+                        <li>Brak poinformowania, że wielu napastników próbuje negocjować (przekrzykiwanie).</li>
+                        <li>Zatajenie wyzwisk w stronę FP (ktokolwiek to jest).</li>
+                        <li>Prowadzenie pogaduszek jak z ziomkami.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--gold)', marginTop: '1rem' }}>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Brak napadów na mieście? (Symulacja)</h4>
+                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>Jeśli przez dłuższy czas nie ma napadu, możecie przeprowadzić "Symulację Napadu" na komendzie (Piętro 0 - parking policyjny, po wyjściu z windy w prawo do samego końca).</p>
+                  </div>
                 </div>
+
+                {/* ZAKOŃCZENIE */}
+                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                  <h4 style={{ margin: '0 0 1rem 0', color: '#fff', textAlign: 'center' }}>Ocena Końcowa Egzaminu</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Niezaliczenie Teorii</strong> = Oblewacie całe szkolenie.
+                    </div>
+                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Teoria OK + Błędy Kardynalne na Praktyce</strong> = Oblewacie całe szkolenie.
+                    </div>
+                    <div style={{ padding: '0.75rem', background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Teoria OK + Drobne błędy na Praktyce</strong> = Kandydat zdaje teorię. Do praktyki musi podejść ponownie po odczekaniu <strong>Cooldownu (24h)</strong> u Ciebie lub innego FTO. Na Discordzie (Raporty) wpisujesz notatkę o zaliczonej teorii i skierowaniu na poprawkę z praktyki.
+                    </div>
+                    <div style={{ padding: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Teoria OK + Praktyka OK</strong> = Szkolenie NEGOCJATORA zaliczone w pełni!
+                    </div>
+                  </div>
+                </div>
+
               </div>
             )
           },
@@ -1153,57 +1274,155 @@ function KnowledgeBase() {
             available: true,
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                
                 <div style={{ background: 'rgba(234, 179, 8, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--gold)', textAlign: 'center' }}>
                   <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>ANONIMOWOŚĆ SV TO PRIORYTET ABSOLUTNY</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Supervisor to osoba dowodząca akcją. Jest to zawsze osoba najwyższa stopniem lub inicjująca pościg.</p>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Supervisor to osoba dowodząca akcją. Jest to zawsze osoba najwyższa stopniem lub inicjująca pościg. Jego dane personalne absolutnie <strong>nie mogą zostać wyjawione</strong> nikomu spoza jednostki.</p>
                 </div>
 
+                {/* ETAP I - TEORIA */}
                 <div>
-                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Kluczowe Obowiązki na Akcji</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Users size={16} color="var(--lspd-blue)"/> Delegacja</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Wyznaczenie negocjatora i pełnej obstawy terenu (zamknięcie strefy).</p>
+                  <h3 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem' }}>ETAP I: Egzamin Teoretyczny</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>Egzamin przeprowadzamy w formie testu wiedzy. Z każdej z poniższych tabel zadajecie <strong>minimum 3 pytania</strong>. Dopuszczalna ilość błędów na pojedynczą tabelę: <strong>3</strong>. Próg zdania teorii wynosi <strong>80%</strong>.</p>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+                    {/* Limity Napadów */}
+                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', fontWeight: 'bold', color: '#fff', textAlign: 'center', background: 'rgba(0,0,0,0.2)' }}>Limity Napadów</div>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                        <thead>
+                          <tr style={{ color: 'var(--text-muted)' }}>
+                            <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', textAlign: 'left' }}>Napad</th>
+                            <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>LSPD</th>
+                            <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>CRIME</th>
+                          </tr>
+                        </thead>
+                        <tbody style={{ textAlign: 'center', color: '#fff' }}>
+                          <tr><td style={{ padding: '0.4rem', textAlign: 'left' }}>Sklep / Bankomat / Kasetka / Trucker</td><td>4</td><td>2</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem', textAlign: 'left' }}>Jubiler / Bank</td><td>10</td><td>8</td></tr>
+                          <tr><td style={{ padding: '0.4rem', textAlign: 'left' }}>Humane Labs / Pacific</td><td>12</td><td>10</td></tr>
+                        </tbody>
+                      </table>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={16} color="var(--gold)"/> Pościg</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Ustalenie kolejności jednostek (U1, U2, U3) i nadawanie Kodów Pościgowych.</p>
+
+                    {/* Wartości Zakładników */}
+                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', fontWeight: 'bold', color: '#fff', textAlign: 'center', background: 'rgba(0,0,0,0.2)' }}>Wartości Zakładników</div>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                        <tbody style={{ textAlign: 'left', color: '#fff' }}>
+                          <tr><td style={{ padding: '0.4rem' }}>Cywil / Medyk / Adwokat</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 żądanie</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>FP / LSPD</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>2 żądania</td></tr>
+                          <tr><td style={{ padding: '0.4rem' }}>DTU / SWAT / HC EMS / DOJ</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>2 żądania</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Kapitan LSPD</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>3 żądania</td></tr>
+                          <tr><td style={{ padding: '0.4rem' }}>HC LSPD</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>4 żądania</td></tr>
+                        </tbody>
+                      </table>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={16} color="#10b981"/> Radio</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Nakładanie freq taktycznego, wezwanie EMS i rozwiązanie radia po akcji.</p>
+
+                    {/* Rozpoczynanie Pościgu */}
+                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', fontWeight: 'bold', color: '#fff', textAlign: 'center', background: 'rgba(0,0,0,0.2)' }}>Rozpoczynanie Pościgu</div>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                        <thead>
+                          <tr style={{ color: 'var(--text-muted)' }}>
+                            <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', textAlign: 'left' }}>Kod Miasto</th>
+                            <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', textAlign: 'right' }}>Kod Pościgowy</th>
+                          </tr>
+                        </thead>
+                        <tbody style={{ textAlign: 'left', color: '#fff' }}>
+                          <tr><td style={{ padding: '0.4rem', color: '#22c55e' }}>Zielony</td><td style={{ textAlign: 'right', color: '#22c55e' }}>Zielony</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem', color: '#f97316' }}>Pomarańczowy</td><td style={{ textAlign: 'right', color: '#22c55e' }}>Zielony</td></tr>
+                          <tr><td style={{ padding: '0.4rem', color: '#ef4444' }}>Czerwony</td><td style={{ textAlign: 'right', color: '#eab308' }}>Żółty</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem', color: '#94a3b8' }}>Czarny</td><td style={{ textAlign: 'right', color: '#ef4444' }}>Czerwony</td></tr>
+                        </tbody>
+                      </table>
                     </div>
+
+                    {/* Kryteria Negocjacji */}
+                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', fontWeight: 'bold', color: '#fff', textAlign: 'center', background: 'rgba(0,0,0,0.2)' }}>Kryteria Negocjacji</div>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                        <tbody style={{ textAlign: 'left', color: '#fff' }}>
+                          <tr><td style={{ padding: '0.4rem' }}>Kultura na drodze / Wolny odjazd</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 żądanie</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Wolny odjazd dla poszukiwanego</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>2 żądania</td></tr>
+                          <tr><td style={{ padding: '0.4rem' }}>Brak Kolczatek (1km) / Brak Eagle (1 min)</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 żądanie</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Brak Eagle (Całkowity)</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>3 żądania</td></tr>
+                          <tr><td style={{ padding: '0.4rem' }}>Naprawa pojazdu przed/w trakcie</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>1 / 3 żądania</td></tr>
+                          <tr style={{ background: 'rgba(255,255,255,0.01)' }}><td style={{ padding: '0.4rem' }}>Okup za zakładnika</td><td style={{ textAlign: 'right', color: 'var(--text-muted)' }}>Max 2000$</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                    <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Pytania z Wiedzy Ogólnej (Wymagane)</h5>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                      <li><strong style={{ color: '#fff' }}>Cechy Dobrego SV:</strong> Odwaga, pewność siebie, utrzymanie zimnej krwi, kontrola przebiegu akcji.</li>
+                      <li><strong style={{ color: '#fff' }}>Główne Obowiązki:</strong> Wyznaczenie Nego i FP, ustalenie Unitów, nakładanie kodów pościgowych, wezwanie EMS (w razie potrzeby), wpisywanie poszukiwań i finalne rozwiązanie częstotliwości.</li>
+                      <li><strong style={{ color: '#fff' }}>Zarządzanie Jednostkami:</strong> Absolutny zakaz odwoływania SEU / MERRY z powodu negocjacji.</li>
+                      <li><strong style={{ color: '#fff' }}>Użycie Siły:</strong> PIT w mieście na kodzie czerwonym dozwolony do 60 km/h. Strzały w opony NIE SĄ automatyczne - wymagają wyraźnej autoryzacji od SV.</li>
+                    </ul>
                   </div>
                 </div>
 
+                {/* ETAP II - PRAKTYKA */}
                 <div>
-                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Limity Podczas Napadów (LSPD vs Przestępcy)</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                    <div style={{ background: '#1e293b', padding: '1.25rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #334155' }}>
-                      <div style={{ color: '#94a3b8', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Małe (Sklep, Kasetka)</div>
-                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}><span style={{ color: 'var(--lspd-blue)' }}>4</span> <span style={{ color: '#475569', fontSize: '1rem' }}>vs</span> <span style={{ color: '#ef4444' }}>2</span></div>
-                    </div>
-                    <div style={{ background: '#1e293b', padding: '1.25rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #334155' }}>
-                      <div style={{ color: '#94a3b8', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Średnie (Banki)</div>
-                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}><span style={{ color: 'var(--lspd-blue)' }}>8</span> <span style={{ color: '#475569', fontSize: '1rem' }}>vs</span> <span style={{ color: '#ef4444' }}>5</span></div>
-                    </div>
-                    <div style={{ background: '#1e293b', padding: '1.25rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #334155' }}>
-                      <div style={{ color: '#94a3b8', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Duże (Jubiler, Pacific)</div>
-                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}><span style={{ color: 'var(--lspd-blue)' }}>12</span> <span style={{ color: '#475569', fontSize: '1rem' }}>vs</span> <span style={{ color: '#ef4444' }}>8</span></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                  <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={20} /> Zasady Użycia Helikoptera (EAGLE)</h4>
-                  <p style={{ margin: '0 0 0.5rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                    <strong>Zakaz używania w zwykłych pościgach drogowych</strong> (wyjątkiem jest pościg za porwanym funkcjonariuszem).
+                  <h3 style={{ color: '#10b981', marginBottom: '1rem', borderBottom: '2px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem', marginTop: '1rem' }}>ETAP II: Egzamin Praktyczny</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+                    Po zdanej teorii, idziecie na wspólny <strong>Status-5</strong> i czekacie na najbliższy napad. 
+                    Jeśli na napad zareagują inne jednostki, komunikujesz na radiu, że to egzamin SV i na mocy praw FTO kandydat przejmuje dowodzenie akcją.
                   </p>
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                    <li><strong>Napad na Kasetkę/Sejf:</strong> Bezwzględny zakaz wzywania EAGLE.</li>
-                    <li><strong>Napad na Fleeca Bank:</strong> Dozwolone maksymalnie 1x EAGLE.</li>
-                  </ul>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Na co zwracamy uwagę?</h4>
+                      <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
+                        <li>Przestrzeganie Limitów (Złota zasada!).</li>
+                        <li>Poprawna komunikacja na linii: SV - Nego, SV - Jednostki.</li>
+                        <li>Rozstawienie FP (Zabezpieczenie terenu).</li>
+                        <li>Rozstawienie Unitów na ucieczkę / do pościgu.</li>
+                        <li>Nakładanie kodów (Pościgowych i Miejskich).</li>
+                        <li>Nadawanie ostrzeżeń / Prawidłowe zerwanie negocjacji.</li>
+                      </ul>
+                    </div>
+                    
+                    <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid #ef4444' }}>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Błędy Kardynalne (Oblewające)</h4>
+                      <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
+                        <li>Nieprzestrzeganie limitów.</li>
+                        <li>Niepoprawne rozstawienie FP i Unitów na pościg.</li>
+                        <li>Krytycznie błędna komunikacja radiowa.</li>
+                        <li>Błędne ostrzeżenia wydane Nego lub błędne zerwanie negocjacji.</li>
+                        <li>Brakujące krytyczne informacje (np. brak kodu na pościg).</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--gold)', marginTop: '1rem' }}>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Brak napadów na mieście? (Symulacja)</h4>
+                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>Jeśli przez dłuższy czas nie ma napadu, możecie przeprowadzić "Symulację Napadu" w jednym z pomieszczeń na komendzie (np. Piętro 0 - parking policyjny, od windy w prawo na samym końcu).</p>
+                  </div>
                 </div>
+
+                {/* ZAKOŃCZENIE */}
+                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                  <h4 style={{ margin: '0 0 1rem 0', color: '#fff', textAlign: 'center' }}>Ocena Końcowa Egzaminu</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Niezaliczenie Teorii</strong> = Oblewacie całe szkolenie.
+                    </div>
+                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Teoria OK + Błędy Kardynalne na Praktyce</strong> = Oblewacie całe szkolenie.
+                    </div>
+                    <div style={{ padding: '0.75rem', background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Teoria OK + Drobne błędy na Praktyce</strong> = Kandydat zdaje teorię. Do praktyki musi podejść ponownie po odczekaniu <strong>Cooldownu (24h)</strong> u Ciebie lub innego FTO. Na Discordzie (Raporty) wpisujesz: <em>"Teoria szkolenia SV zaliczona, czas na zdanie praktyki."</em>
+                    </div>
+                    <div style={{ padding: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.9rem' }}>
+                      <strong>Teoria OK + Praktyka OK</strong> = Szkolenie SV zaliczone w pełni. Gratulacje!
+                    </div>
+                  </div>
+                </div>
+
               </div>
             )
           },
@@ -1319,35 +1538,83 @@ function KnowledgeBase() {
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Oko na Niebie (Pilot EAGLE)</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Pełnisz wsparcie działań z powietrza (poszukiwania, pościgi, kody). Pilot odpowiada za pełne bezpieczeństwo lotu, zachowanie separacji wysokościowej i doskonałą koordynację działań naziemnych z radiem.</p>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Pilot EAGLE (ASU) — Egzamin Praktyczny</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu zweryfikowanie precyzji, opanowania maszyny w stresie oraz zwinności pilota. Test składa się z trzech restrykcyjnych etapów.</p>
                 </div>
 
+                {/* ETAP 1 */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Manewry i Procedury</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={16} color="var(--lspd-blue)"/> Eagle Up / Down</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Każdy start (<em>Eagle One Up</em>) i lądowanie (<em>Eagle One Down</em>) musi być zameldowany z zachowaniem ciszy w eterze.</p>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap I: Podstawy i Manewr "Ósemki"</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
+                      <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                        Wraz z osobą zdającą udajemy się na wspólną częstotliwość radiową i dokładnie omawiamy wszystkie etapy szkolenia. 
+                        Po wyciągnięciu maszyn, dajemy zdającemu <strong>2-3 minuty na oswojenie się z helikopterem</strong>.
+                        Następnie zdający wraca na helipad LSPD, FTO wsiada jako pasażer i obaj lecą nad wyznaczony punkt startowy.
+                      </p>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={16} color="var(--gold)"/> Zawis</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Zatrzymanie maszyny stabilnie w powietrzu. Służy do dokładnej obserwacji strefowej lub oświetlania miejsca akcji szperaczem.</p>
+                    
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        [Miejsce na zdjęcie - Helipad]
+                      </div>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        [Miejsce na zdjęcie - Trasa Ósemki]
+                      </div>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={16} color="#10b981"/> Lot postępowy</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Dynamiczny lot z przechyleniem tarczy wirnika do precyzyjnego podążania za szybko przemieszczającym się obiektem.</p>
+
+                    <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
+                      <strong style={{ color: '#fff' }}>Zadanie z Helipada:</strong> Z wyznaczonego miejsca startowego osoba rozpoczyna tzw. <strong>"ósemkę"</strong>, przelatując pomiędzy wyznaczonymi budynkami, a na koniec ląduje z powrotem w miejscu startu.
+                      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
+                        <span style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Limit czasu: 1 Minuta</span>
+                        <span style={{ background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Próby: 2</span>
+                        <span style={{ background: 'rgba(255, 255, 255, 0.05)', color: '#fff', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Rozbicie maszyny = Niezaliczenie</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
+                {/* ETAP 2 */}
+                <div>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap II: Przelot Precyzyjny (Kanał Burzowy)</h4>
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--lspd-blue)' }}>
+                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                      Po zaliczeniu etapu 1, przechodzicie do manewrów w kanale burzowym. Zadaniem jest przelot <strong>pod 3 mostami</strong> (zaczynając od strony północnej i lecąc na południe). <br/><br/>
+                      Wylatując spod ostatniego mostu, należy od razu wzbić się stromo do góry i skierować prosto na helipad komendy LSPD, by na nim wylądować.
+                    </p>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        [Miejsce na zdjęcie - Most 1]
+                      </div>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        [Miejsce na zdjęcie - Trasa]
+                      </div>
+                  </div>
+                </div>
+
+                {/* ETAP 3 */}
                 <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
-                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Bezpieczeństwo Maszyny i Załogi</h4>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} /> Etap III: Manewry Losowe (5 Minut)</h4>
                   <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                    <strong>Przedstartowo:</strong> Dokładnie sprawdź poziom paliwa i fizyczny stan łopat wirnika. <br/>
-                    <strong>W locie:</strong> Bądź świadomy otoczenia (kable napowietrzne, latarnie, dźwigi) oraz bezustannie kontroluj instrumenty pokładowe (sztuczny horyzont, wariometr, obrotomierz). <br/>
-                    <strong>Awaria silnika:</strong> Jeśli utracisz moc, natychmiast wyrównaj lot aby obracający się wirnik nabrał bezwładności i łagodnie wyhamował opadanie przed przyziemieniem (autorotacja).
+                    Rozpoczynacie luźny lot wokół Los Santos. Przez około 5 minut, FTO w locie przydziela zdającemu różne, szybkie zadania do wykonania.
                   </p>
+                  
+                  <div style={{ margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <strong style={{ color: '#fff', fontSize: '0.85rem', textTransform: 'uppercase' }}>Przykładowe rozkazy z fotela pasażera:</strong>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                      <li>Zawrócenie w kierunku wskazanym na kompasie.</li>
+                      <li>Wylądowanie na trudnym dachu / helipadzie wskazanym na mapie.</li>
+                      <li>Przelecenie pod konkretnymi mostami na trasie.</li>
+                      <li>Utrzymanie pułapu równe 100m nad ziemią przez 1 minutę (bez rozbicia/zahaczenia).</li>
+                      <li>Precyzyjne okrążenie wybranego budynku 2 razy.</li>
+                    </ul>
+                  </div>
+
+                  <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                    <strong style={{ color: '#ef4444', display: 'block', marginBottom: '0.2rem' }}>PUNKTACJA KARNA (Niedopuszczalne jest zahaczenie łopatą / płozą)</strong>
+                    <span style={{ fontSize: '0.9rem', color: '#fff' }}>Za każde zahaczenie o obiekt w Etapie III = <strong>1 Ostrzeżenie</strong>.<br/>Zgromadzenie <strong>4 Ostrzeżeń = Test Niezdany</strong>.</span>
+                  </div>
                 </div>
               </div>
             )
@@ -1357,8 +1624,59 @@ function KnowledgeBase() {
             icon: '🏎️',
             title: 'SEU — Speed Enforcement Unit',
             reqs: 'Dostępne od: Sergeant  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
-            available: false,
-            content: null
+            available: true,
+            content: (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(244, 63, 94, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #f43f5e' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#f43f5e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={24} /> Szkolenie SEU (Speed Enforcement Unit)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Wyciągacie pojazdy pościgowe oraz wraz z osobą wyrabiającą szkolenie udajecie się na wspólne radio operacyjne.</p>
+                </div>
+
+                {/* ZDJĘCIA POJAZDÓW (PLACEHOLDERY FLOTY LSPD) */}
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Pojazdy Egzaminacyjne</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                      <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Buffalo)</div>
+                      <img src="/fleet/buffalo.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'cover', opacity: 0.9, marginTop: '20px' }} />
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                      <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Torrence)</div>
+                      <img src="/fleet/torrence.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'cover', opacity: 0.9, marginTop: '20px' }} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* ZASADY */}
+                <div>
+                  <h4 style={{ color: '#fff', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zasady i Przebieg Szkolenia</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--lspd-blue)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} color="var(--lspd-blue)"/> Cel Szkolenia</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Szkolenie polega na <strong>5-minutowym pościgu</strong> z elementami kaskaderki oraz bezbłędną komunikacją radiową (RTO).</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid #10b981' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Shield size={18} color="#10b981"/> Warunek Zaliczenia</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Funkcjonariusz musi wytrwać równo <strong>5 minut pościgu</strong> bez popełniania błędów kategorycznych.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertCircle size={18} color="var(--gold)"/> Wizja i Próby</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Na 1 pościg przypada <strong>maksymalnie 3x brak wizji</strong>.<br/>Maksymalnie <strong>2 próby</strong> (przy drugiej próbie po zgubieniu wizji czas jest liczony od nowa).</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* BŁĘDY KATEGORYCZNE */}
+                <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Kategoryczne Błędy (Oblewające Egzamin)</h4>
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.8' }}>
+                    <li><strong style={{ color: '#fff' }}>Niepełna komunikacja radiowa</strong> (lub jej całkowity brak).</li>
+                    <li><strong style={{ color: '#fff' }}>Niezgłaszanie braku wizji</strong> (przedłużanie milczenia).</li>
+                    <li><strong style={{ color: '#fff' }}>Niewykonywanie najprostszych skoków</strong> (specjalne objeżdżanie miejsc, w których uciekinier wykonał bezpieczny skok).</li>
+                  </ul>
+                </div>
+              </div>
+            )
           },
           {
             id: 'wu',
@@ -1421,34 +1739,71 @@ function KnowledgeBase() {
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(168, 85, 247, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Oczy Pościgu (MERRY)</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Wyspecjalizowana jednośladowa jednostka zwiadowcza. Śledzi uciekiniera ze znakomitą dynamiką i zwinnością w mieście. MARY jest okiem operacji, przekazującym bezbłędnie koordynaty (np. <em>"Duży ruch, zjazd w boczną ulicę"</em>).</p>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Egzamin Praktyczny (MARY / MERRY)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie na jednostkę motocyklową LSPD sprawdza opanowanie maszyny, zwinność i refleks w ciasnych, miejskich warunkach. Składa się z dwóch części.</p>
                 </div>
 
+                {/* ETAP I */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Taktyka Operacyjna</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Map size={16} color="var(--gold)"/> Offset (Klucz)</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Nigdy nie jedziemy bezpośrednio za uciekinierem. Trzymamy boczny margines drogi (offset) by uniknąć wjechania w auto w razie twardego hamowania lub PITu.</p>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap I: Próba Czasowa i Terenowa</h4>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
+                      <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                        Na samym początku sprawdzacie czy osoba posiada w ogóle <strong>prawo jazdy Kategorii A</strong>. <br/>
+                        Następnie pobieracie z garażu policyjny motocykl marki <strong>Sanchez</strong>.
+                      </p>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><ShieldAlert size={16} color="var(--lspd-blue)"/> Zabezpieczenie Skrzyżowań</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Kiedy radiowozy pewnie trzymają uciekiniera, MARY może odjechać do boku zamykając boczne drogi i monitorując osie przecinające pościg.</p>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        [Miejsce na zdjęcie - Sanchez]
+                      </div>
+                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                        [Miejsce na zdjęcie - Mapa / Most]
+                      </div>
                     </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={16} color="#10b981"/> Synergia z EAGLE</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Pilot widzi makro, a Mary widzi mikro (środowisko ulicy). Meldunki radiowe między Eagle a Mary muszą być zsynchronizowane by uniknąć przekrzykiwania.</p>
+
+                    <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
+                      <strong style={{ color: '#fff', display: 'block', marginBottom: '0.5rem' }}>Przebieg Próby:</strong> 
+                      <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Udajecie się na miejsce wyznaczone na mapie. Startujecie z samego końca mostu. Zdający musi dotrzeć z punktu Startu do Mety w wyznaczonym czasie.</span>
+                      
+                      <div style={{ marginTop: '0.75rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <span style={{ background: 'rgba(168, 85, 247, 0.1)', color: '#a855f7', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Limit czasu: 1 Minuta 55 sekund</span>
+                        <span style={{ background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Ilość Prób: 2</span>
+                        <span style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Niezmieszczenie się = Niezaliczenie</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
-                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Ryzyko i Czerwone Linie</h4>
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                    <li style={{ marginBottom: '0.5rem' }}><strong style={{ color: '#fff' }}>ABSOLUTNY ZAKAZ:</strong> Jednostka Mary <strong>pod żadnym pozorem</strong> nie inicjuje PIT, nie taranuje, nie spycha z drogi aut. Masa motocykla powoduje śmiertelne ryzyko przy kontakcie z samochodem.</li>
-                    <li><strong style={{ color: '#fff' }}>Emocje na wodzy:</strong> MARY nie krzyczy przez megafon, nie wyzywa uciekiniera. Ta jednostka ma być profesjonalnym, cichym i bezlitosnym cieniem podejrzanego, niezależnie od przebiegu ucieczki.</li>
-                  </ul>
+                {/* ETAP II */}
+                <div style={{ marginTop: '0.5rem' }}>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap II: Symulacja Pościgu (5 Minut)</h4>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Cel i Trasa</h5>
+                      <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                        Po zaliczeniu Etapu I wracacie do miasta. Rozpoczynacie <strong>5-minutowy pościg</strong> po ulicach Los Santos. <br/><br/>
+                        Ważne by ucieczka odbywała się w terenie miejskim, obejmowała ciasne uliczki, zakamarki i <strong>delikatne kaskaderki</strong>, by sprawdzić faktyczną przydatność jednostki.
+                      </p>
+                    </div>
+
+                    <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--gold)' }}>
+                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Zasady Utraty Wizji</h5>
+                      <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
+                        <li>Jeśli zdający straci wizję, FTO staje w miejscu i odlicza <strong>10 sekund na znalezienie</strong> (czas pościgu ciągle leci).</li>
+                        <li>Podczas jednej próby można zgubić wizję <strong>maksymalnie 2 razy</strong>.</li>
+                        <li>Po całkowitym zgubieniu pościgu = rozpoczynacie nową próbę, a <strong>czas resetuje się do zera</strong>.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px', marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem', border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.4rem', borderRadius: '4px' }}><Activity size={16} color="#fff" /></div>
+                    <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}><strong>Awaria pojazdu:</strong> Jeśli komukolwiek zepsuje się motocykl, zatrzymujecie czas i obaj go naprawiacie. Warunek: w momencie awarii zdający <strong>musi mieć wizję</strong> na pojazd uciekającego.</span>
+                  </div>
                 </div>
               </div>
             )
