@@ -121,8 +121,10 @@ function KnowledgeBase() {
                   <img 
                     src="/magazyn.png?v=3" 
                     alt="Szafka w magazynie dowodowym" 
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} 
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
                     onClick={() => setLightboxImg('/magazyn.png?v=3')}
+                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   />
                 </div>
               </div>
@@ -1666,11 +1668,11 @@ function KnowledgeBase() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
                       <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Buffalo)</div>
-                      <img src="/fleet/buffalo.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px' }} />
+                      <img src="/fleet/buffalo.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} onClick={(e) => { setLightboxImg('/fleet/buffalo.png'); e.stopPropagation(); }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} />
                     </div>
                     <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
                       <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Torrence)</div>
-                      <img src="/fleet/torrence.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px' }} />
+                      <img src="/fleet/torrence.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} onClick={(e) => { setLightboxImg('/fleet/torrence.png'); e.stopPropagation(); }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} />
                     </div>
                   </div>
                 </div>
