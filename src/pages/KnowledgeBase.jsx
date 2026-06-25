@@ -1921,10 +1921,10 @@ function KnowledgeBase() {
                 <Banknote size={20} /> Limity na Napady i Negocjacje
               </h3>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
                 {[
                   {
-                    title: 'Napad na kasetkę', limits: 'Limit 4 PD vs 2 Crime',
+                    title: 'Napad na kasetkę / Trucker', limits: 'Limit 5 PD vs 3 Crime',
                     desc: 'Max. 2 jednostki pościgowe, zakaz pobierania EAGLE.',
                     negos: [
                       { t: 'Wolny odjazd', v: '1 zakładnik' },
@@ -1935,12 +1935,12 @@ function KnowledgeBase() {
                     ]
                   },
                   {
-                    title: 'Napad na bankomat', limits: 'Limit 4 PD vs 2 Crime',
-                    desc: 'Max. 2 jednostki pościgowe, zakaz pobierania EAGLE. Tutaj zwykle nie dojdzie do negocjacji, procedurowo oczekujemy i dajemy szanse napastnikom wsiąść do pojazdu i rozpoczęcie pościgu. Nie wybiegamy jak bydło z tazerami lub kopytami.'
+                    title: 'Okradanie domów', limits: 'Limit 4 PD vs 2 Crime',
+                    desc: 'Max. 2 jednostki pościgowe, zakaz pobierania EAGLE. Tutaj zwykle nie dojdzie do negocjacji, procedurowo oczekujemy i dajemy szansę napastnikom wsiąść do pojazdu i rozpoczęcie pościgu. Nie wybiegamy jak bydło z tazerami lub kopytami.'
                   },
                   {
-                    title: 'Sprzedaż narkotyków', limits: 'Na każdą osobę 2 FP (Max. 10 FP)',
-                    desc: 'Od 1 do 5 jednostek (w zależności od grupy). Zawsze staramy się porozmawiać, zamiast przeprowadzenia zatrzymania z tzw. "buta". Zamaskowanie to podstawa do przeszukania, ale to tylko gra – odpuszczenie raz czy dwa nikomu nie zaszkodzi. Jeżeli obywatel ucieka, procedurowo czekamy i dajemy szansę na pościg. Nie wybiegamy jak bydło z tazerami.'
+                    title: 'Sprzedaż narkotyków', limits: 'Max. 10 FP (2 FP / osoba)',
+                    desc: 'Od 1 do 5 jednostek. Zawsze staramy się porozmawiać, zamiast zatrzymania z tzw. "buta". Zamaskowanie = podstawa do przeszukania, ale to gra – odpuszczenie raz czy dwa z ziołem nikomu nie zaszkodzi. Gdy uciekają, procedurowo czekamy i dajemy szansę na pościg.'
                   },
                   {
                     title: 'Napad na bank Fleeca', limits: 'Limit 8 PD vs 5 Crime',
@@ -1950,10 +1950,10 @@ function KnowledgeBase() {
                       { t: 'Wolny odjazd (poszukiwany pojazd)', v: '2 zakładników' },
                       { t: 'Wolny odjazd (kod czerwony+)', v: '2 zakładników' },
                       { t: 'Brak kolczatek (całkowity)', v: '2 zakładników' },
-                      { t: 'Brak kolczatek (za każde 1.5 minuty)', v: '1 zakładnik' },
+                      { t: 'Brak kolczatek (za 1.5 minuty)', v: '1 zakładnik' },
                       { t: 'Naprawa pojazdu/obrócenie', v: '3 zakładników' },
                       { t: 'Całkowity brak EAGLE', v: '4 zakładników' },
-                      { t: 'Brak EAGLE (za każde 1.5 minuty)', v: '1 zakładnik' }
+                      { t: 'Brak EAGLE (za 1.5 minuty)', v: '1 zakładnik' }
                     ]
                   },
                   {
@@ -1964,10 +1964,10 @@ function KnowledgeBase() {
                       { t: 'Wolny odjazd (poszukiwany pojazd)', v: '2 zakładników' },
                       { t: 'Wolny odjazd (kod czerwony+)', v: '2 zakładników' },
                       { t: 'Brak kolczatek (całkowity)', v: '3 zakładników' },
-                      { t: 'Brak kolczatek (za każde 1.5 minuty)', v: '1 zakładnik' },
+                      { t: 'Brak kolczatek (za 1.5 minuty)', v: '1 zakładnik' },
                       { t: 'Naprawa pojazdu/obrócenie', v: '4 zakładników' },
                       { t: 'Całkowity brak EAGLE', v: '5 zakładników' },
-                      { t: 'Brak EAGLE (za każde 1.5 minuty)', v: '1 zakładnik' }
+                      { t: 'Brak EAGLE (za 1.5 minuty)', v: '1 zakładnik' }
                     ]
                   },
                   {
@@ -1978,28 +1978,28 @@ function KnowledgeBase() {
                       { t: 'Wolny odjazd (poszukiwany pojazd)', v: '3 zakładników' },
                       { t: 'Wolny odjazd (kod czerwony+)', v: '3 zakładników' },
                       { t: 'Brak kolczatek (całkowity)', v: '3 zakładników' },
-                      { t: 'Brak kolczatek (za każde 1.5 minuty)', v: '1 zakładnik' },
+                      { t: 'Brak kolczatek (za 1.5 minuty)', v: '1 zakładnik' },
                       { t: 'Naprawa pojazdu/obrócenie', v: '4 zakładników' },
                       { t: 'Całkowity brak EAGLE', v: '6 zakładników' },
-                      { t: 'Brak EAGLE (za każde 1.5 minuty)', v: '1 zakładnik' }
+                      { t: 'Brak EAGLE (za 1.5 minuty)', v: '1 zakładnik' }
                     ]
                   }
                 ].map((item, idx) => (
-                  <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem 1.5rem', borderRadius: '8px', borderLeft: '3px solid var(--gold)' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                      <strong style={{ color: '#fff', fontSize: '1.1rem' }}>{item.title}</strong>
-                      <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: 'var(--gold)', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem' }}>{item.limits}</span>
+                  <div key={idx} style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.03), rgba(255,255,255,0.01))', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.2)', position: 'relative', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.75rem' }}>
+                      <strong style={{ color: '#fff', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertCircle size={18} color="var(--gold)" /> {item.title}</strong>
+                      <span style={{ background: 'rgba(234, 179, 8, 0.1)', color: 'var(--gold)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', border: '1px solid rgba(234, 179, 8, 0.2)' }}>{item.limits}</span>
                     </div>
-                    <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)', fontSize: '0.95rem' }}>{item.desc}</p>
+                    <p style={{ margin: '0 0 1.5rem 0', color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
                     
                     {item.negos && (
-                      <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
-                        <strong style={{ display: 'block', color: '#e2e8f0', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Przyjmowanie negocjacji:</strong>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '0.5rem' }}>
+                      <div>
+                        <strong style={{ display: 'block', color: '#e2e8f0', marginBottom: '0.75rem', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Dopuszczalne negocjacje:</strong>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                           {item.negos.map((n, i) => (
-                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.25rem' }}>
-                              <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{n.t}</span>
-                              <strong style={{ color: '#60a5fa', fontSize: '0.85rem' }}>{n.v}</strong>
+                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,0.3)', padding: '0.6rem 1rem', borderRadius: '6px', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.3)'}>
+                              <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{n.t}</span>
+                              <strong style={{ color: '#60a5fa', fontSize: '0.85rem', background: 'rgba(59, 130, 246, 0.1)', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>{n.v}</strong>
                             </div>
                           ))}
                         </div>
