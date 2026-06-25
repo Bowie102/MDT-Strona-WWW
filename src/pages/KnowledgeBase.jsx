@@ -904,94 +904,44 @@ function KnowledgeBase() {
                   
                   {/* 10-38 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#3b82f6' }}>Procedura Zatrzymania Drogowego (10-38)</h4>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Rutynowa kontrola nieposzukiwanego pojazdu wymaga ostrożności i systematyczności, aby zminimalizować ryzyko eskalacji.</p>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#3b82f6' }}>Teoria Zatrzymania Drogowego (10-38)</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Zatrzymanie drogowe to najbardziej powszechna, ale i nieprzewidywalna czynność. Kluczowe jest dbanie o bezpieczeństwo.</p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      {[
-                        "Włączenie sygnalizacji świetlnej/dźwiękowej + 'LSPD, zjedź na pobocze'.",
-                        "Poprawne, bezpieczne ustawienie radiowozu (kąt) i zgaszenie sygnałów dźwiękowych.",
-                        "Instrukcja: 'Zgaś silnik, ręce na kierownicy, nie wysiadaj'.",
-                        "Poprawne zgłoszenie na radiu (10-38, marka pojazdu, blachy, lokalizacja).",
-                        "Wyjście z radiowozu z gotowym tazerem w dłoni.",
-                        "Podejście do kontrolowanego pojazdu i ustawienie się za słupkiem B (bezpieczna pozycja).",
-                        "Rozmowa: 'Obywatelu, proszę obniżyć szybkę'.",
-                        "Okazanie odznaki, przedstawienie się stopniem i nazwiskiem, prośba o dokumenty.",
-                        "Poprawne przyjęcie dokumentu (/do bierze dokument).",
-                        "Powrót do radiowozu: 'Zaraz do Pana wrócę'.",
-                        "Sprawdzenie bazy danych obywatela oraz pojazdu w tablecie policyjnym.",
-                        "Powrót do obywatela, zapytanie o znajomość powodu zatrzymania.",
-                        "Nałożenie mandatu i odegranie jego wystawienia na /do.",
-                        "Zgoda na odjazd: 'Po zgaszeniu sygnalizacji może Pan odjechać'.",
-                        "Koniec interwencji na radiu: 'kod 4 do 10-38, status 6'."
-                      ].map((step, idx) => (
-                        <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                          <div style={{ background: 'rgba(59, 130, 246, 0.2)', color: '#3b82f6', minWidth: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>{idx + 1}</div>
-                          <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '2px' }}>{step}</div>
-                        </div>
-                      ))}
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Bezpieczny kąt:</strong> Radiowóz zawsze należy ustawiać pod lekkim kątem (tzw. offset), co tworzy bezpieczną strefę dla funkcjonariusza wychodzącego z pojazdu oraz oświetla wnętrze kontrolowanego auta nocą.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Podejście do pojazdu:</strong> Zawsze zatrzymujemy się tuż za słupkiem B (pomiędzy drzwiami kierowcy a pasażera z tyłu). Zapobiega to uderzeniu przez nagle otwierane drzwi i daje przewagę taktyczną, jeśli kierowca wyciągnąłby broń.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Gotowość:</strong> Tazer powinien być w pogotowiu (ale nie wycelowany), by w razie nagłego ataku móc szybko zareagować. Odznaka okazywana jest po nawiązaniu pierwszego kontaktu wzrokowego.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Komunikacja RTO:</strong> Przed wyjściem z radiowozu należy bezwzględnie zgłosić markę, rejestrację oraz dokładną lokalizację pojazdu. Jeśli kontakt się urwie, inne jednostki wiedzą, gdzie wysłać wsparcie.</div>
                     </div>
                   </div>
 
                   {/* 10-80 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#ef4444' }}>Procedura Pościgowa (10-80)</h4>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Standardy postępowania w przypadku eskalacji kontroli drogowej do pościgu zmotoryzowanego, a następnie pieszego.</p>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#ef4444' }}>Zasady Pościgu Zmotoryzowanego (10-80)</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Wiedza teoretyczna dotycząca podejmowania i prowadzenia pościgów za uciekającym podejrzanym.</p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      {[
-                        "Poprawne zgłoszenie 10-80 na radiu wraz z podaniem początkowego kierunku.",
-                        "Ciągła, płynna komunikacja radiowa RTO (lokalizacje, kierunek, ulica, zachowanie kierowcy).",
-                        "Informacja o wysiadce podejrzanego i zgłoszenie rozpoczęcia pościgu pieszego.",
-                        "Bezpieczne zatrzymanie (użycie tazera po 3 minutach), zakucie w kajdanki.",
-                        "Przeszukanie: odebranie broni, niebezpiecznych narzędzi, przelanie napojów."
-                      ].map((step, idx) => (
-                        <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                          <div style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', minWidth: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>{idx + 1}</div>
-                          <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '2px' }}>{step}</div>
-                        </div>
-                      ))}
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Hierarchia w kolumnie:</strong> Jednostka będąca na pierwszej pozycji (Primary) skupia się wyłącznie na jeździe. RTO (pasażer) podaje komunikaty na radiu. Pozostałe jednostki pilnują formacji i nasłuchują.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Zmiana pozycji:</strong> Jeśli auto ulegnie uszkodzeniu lub kierowca popełni duży błąd, jednostka Primary natychmiast zjeżdża z linii pościgu, przepuszczając jednostkę Secondary.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Pościg pieszy:</strong> W momencie ucieczki na nogach nie używamy od razu środków przymusu. Dopiero po ignorowaniu wezwań (i po upływie 3 minut) dopuszczalne jest użycie paralizatora. Broń palna — tylko w odpowiedzi na śmiertelne zagrożenie.</div>
                     </div>
                   </div>
 
                   {/* STATUS 7 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>Procedura Transportu (Status 7)</h4>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>Teoria Transportu Więźnia (Status 7)</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      {[
-                        "Dokładne upewnienie się co do przeszukania przed wsadzeniem do radiowozu.",
-                        "Umieszczenie zatrzymanego w pojeździe z narracją ('Wsadzam cię do radiowozu, zapinam pasy').",
-                        "Upewnienie się o prawach: 'Znasz swoje prawa?'.",
-                        "Bezbłędne odczytanie pełnej formułki Praw Mirandy.",
-                        "Płynny, bezpieczny transport na komendę (Max 70km/h w mieście, 140km/h poza)."
-                      ].map((step, idx) => (
-                        <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                          <div style={{ background: 'rgba(250, 204, 21, 0.2)', color: '#facc15', minWidth: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>{idx + 1}</div>
-                          <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '2px' }}>{step}</div>
-                        </div>
-                      ))}
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Zabezpieczenie:</strong> Zanim podejrzany trafi na tylne siedzenie, musi zostać pobieżnie przeszukany w celu pozbawienia go broni palnej, ostrej lub jakichkolwiek przedmiotów stanowiących bezpośrednie zagrożenie.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Prawa Mirandy:</strong> Zatrzymany musi zostać poinformowany o swoich prawach konstytucyjnych w pełni zrozumiałej formie (niezależnie czy się z nimi zgadza, czy nie). Bez ich podania, zeznania obywatela mogą zostać podważone przez papugę w sądzie.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Prędkość:</strong> Transport podejrzanego wymaga ostrożnej jazdy. Maksymalna prędkość operacyjna to przeważnie 70km/h w obszarze zabudowanym oraz do 140km/h na drogach szybkiego ruchu. Zbyt brawurowa jazda z zatrzymanym może skończyć się karą dyscyplinarną.</div>
                     </div>
                   </div>
 
                   {/* STATUS 9 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #a855f7' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#a855f7' }}>Osadzenie na Komendzie (Status 9)</h4>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#a855f7' }}>Procedury na Komendzie (Status 9)</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      {[
-                        "Wprowadzenie do celi, ponowne okazanie odznaki, konfiskata telefonu i urządzeń komunikacyjnych.",
-                        "Instrukcja: 'To koniec przeszukania, proszę się nie odwracać'.",
-                        "Odkucie zatrzymanego przez kraty po opuszczeniu celi.",
-                        "Zażądanie dowodu tożsamości oraz zdjęcia maski.",
-                        "Dokładne sprawdzenie poszukiwań i kartoteki w bazie danych LSPD.",
-                        "Przedstawienie ostatecznego wyroku i pytanie, czy zatrzymany zgadza się z zarzutami.",
-                        "Zaoferowanie praw (np. telefonu, adwokata) – jeśli zatrzymany współpracuje.",
-                        "Ostateczne wystawienie wyroku w systemie.",
-                        "Odstawienie legalnych rzeczy do depozytu lub oddanie podejrzanemu (/do).",
-                        "Odłożenie nielegalnego sprzętu i dowodów do odpowiednich szafek dowodowych (/do)."
-                      ].map((step, idx) => (
-                        <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                          <div style={{ background: 'rgba(168, 85, 247, 0.2)', color: '#a855f7', minWidth: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>{idx + 1}</div>
-                          <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '2px' }}>{step}</div>
-                        </div>
-                      ))}
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Cela zatrzymań:</strong> To tutaj obywatel zostaje pozbawiony sprzętu komunikacyjnego. Zdjęta zostaje również maska w celu weryfikacji tożsamości poprzez dowód lub odcisk palca w bazie AFIS.</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Przeszukanie szczegółowe:</strong> Wykonywane bardzo skrupulatnie. Przedmioty nielegalne wędrują natychmiast do szafki dowodowej, natomiast przedmioty osobiste zatrzymanego umieszczane są w depozycie (tzw. oddanie pod komendą za pomocą odpowiednich komend).</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>• <strong>Wyrok i negocjacje kary:</strong> Zatrzymany ma prawo wysłuchać swoich zarzutów. Jeżeli wykazuje współpracę, Officer może (ale nie musi) zezwolić na telefon do adwokata lub zredukować wyrok na podstawie taryfikatora współpracującego podejrzanego.</div>
                     </div>
                   </div>
                 </div>
@@ -1454,81 +1404,31 @@ function KnowledgeBase() {
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu przygotowanie pilota do trudnych manewrów w przestrzeni miejskiej, sprawdzając jego opanowanie maszyny w sytuacjach stresowych.</p>
                 </div>
 
-                {/* ETAP 1 */}
+                {/* TEORIA MANEWROWA */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Manewr: Ósemka</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Ciekawostki i Teoria Lotnicza: "Ósemka"</h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                        Wraz z osobą zdającą udajemy się na wspólną częstotliwość radiową i dokładnie omawiamy wszystkie etapy szkolenia. 
-                        Po wyciągnięciu maszyn, dajemy zdającemu <strong>2-3 minuty na oswojenie się z helikopterem</strong>.
-                        Następnie zdający wraca na helipad LSPD, FTO wsiada jako pasażer i obaj lecą nad wyznaczony punkt startowy.
+                        Manewr "Ósemki" to podstawowe ćwiczenie, które weryfikuje zdolność pilota do szybkiej zmiany wektora lotu wokół przeszkód urbanistycznych. <br/>
+                        <strong>Praktyczna wskazówka:</strong> Podchodząc do ciasnych zakrętów między wieżowcami, pilot powinien kontrolować wychylenie ogona. Zbyt mocne użycie pedałów kierunkowych (yaw) przy dużym pochyleniu (pitch) może doprowadzić do nagłej utraty pułapu i uderzenia w budynek.
                       </p>
-                    </div>
-                    
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        <img 
-                          src="/szkolenia/asu_helipad.png?v=1" 
-                          alt="ASU Helipad" 
-                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
-                          onClick={() => setLightboxImg('/szkolenia/asu_helipad.png?v=1')}
-                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
-                      </div>
-                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        <img 
-                          src="/szkolenia/asu_osemka.png?v=1" 
-                          alt="ASU Osemka" 
-                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
-                          onClick={() => setLightboxImg('/szkolenia/asu_osemka.png?v=1')}
-                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
-                      </div>
                     </div>
 
                     <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
-                      <strong style={{ color: '#fff' }}>Zadanie Operacyjne:</strong> Z wyznaczonego miejsca startowego pilot rozpoczyna tzw. <strong>"ósemkę"</strong>, przelatując pomiędzy wyznaczonymi budynkami, a na koniec ląduje z powrotem w miejscu startu.
-                      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
-                        <span style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Czas docelowy: ~1 Minuta</span>
-                        <span style={{ background: 'rgba(255, 255, 255, 0.05)', color: '#fff', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Wymagane 100% sprawności maszyny</span>
-                      </div>
+                      <strong style={{ color: '#fff' }}>Zadanie Operacyjne w Warunkach Miejskich:</strong> W centrum Los Santos gęstość budynków bywa myląca z powietrza. Umiejętność latania ciasnymi pętlami jest niezbędna, by utrzymać kontakt wzrokowy z uciekającym podejrzanym, który manewruje pomiędzy zaułkami.
                     </div>
                   </div>
                 </div>
 
-                {/* ETAP 2 */}
+                {/* PRZELOT PRECYZYJNY */}
                 <div>
-                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Manewr: Przelot Precyzyjny (Kanał Burzowy)</h4>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Ciekawostki i Teoria Lotnicza: Przelot Precyzyjny (Kanał Burzowy)</h4>
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--lspd-blue)' }}>
                     <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                      Po zaliczeniu etapu 1, przechodzicie do manewrów w kanale burzowym. Zadaniem jest przelot <strong>pod 3 mostami</strong> (zaczynając od strony północnej i lecąc na południe). <br/><br/>
-                      Wylatując spod ostatniego mostu, należy od razu wzbić się stromo do góry i skierować prosto na helipad komendy LSPD, by na nim wylądować.
+                      Manewrowanie nad korytem kanału burzowego i pod mostami to sztuka przewidywania. Przelatując <strong>pod przeprawami drogowymi</strong>, pilot musi zważać na wiry powietrzne oraz gwałtowną zmianę oświetlenia, która może go zdekoncentrować.<br/><br/>
+                      <strong>Praktyczna wskazówka:</strong> Kluczem do bezkolizyjnego lotu na niskim pułapie pod mostami jest "wyprzedzanie maszyny myślami". Jeśli pilot zauważy obniżające się przęsło, nie powinien wykonywać raptownych szarpnięć do góry, aby zapobiec uderzeniu łopatami wirnika głównego w sufit mostu. Płynne zniżanie pułapu kilkadziesiąt metrów wcześniej ułatwia prześwit.
                     </p>
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
-                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        <img 
-                          src="/szkolenia/asu_most.png?v=1" 
-                          alt="ASU Most" 
-                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
-                          onClick={() => setLightboxImg('/szkolenia/asu_most.png?v=1')}
-                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
-                      </div>
-                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        <img 
-                          src="/szkolenia/asu_trasa.png?v=1" 
-                          alt="ASU Trasa" 
-                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
-                          onClick={() => setLightboxImg('/szkolenia/asu_trasa.png?v=1')}
-                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
-                      </div>
                   </div>
                 </div>
 
@@ -1567,51 +1467,33 @@ function KnowledgeBase() {
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(244, 63, 94, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #f43f5e' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#f43f5e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={24} /> SEU (Speed Enforcement Unit)</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Wyciągacie pojazdy pościgowe oraz wraz z osobą wyrabiającą szkolenie udajecie się na wspólne radio operacyjne.</p>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#f43f5e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={24} /> Teoria SEU (Speed Enforcement Unit)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Jednostka wyspecjalizowana do podejmowania pościgów za autami o dużej mocy, wyposażona w sportowe modele radiowozów.</p>
                 </div>
 
-                {/* ZDJĘCIA POJAZDÓW (PLACEHOLDERY FLOTY LSPD) */}
+                {/* ZASADY I CIEKAWOSTKI */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Pojazdy Wykorzystywane w SEU</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
-                      <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Buffalo)</div>
-                      <img src="/fleet/buffalo.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} onClick={(e) => { setLightboxImg('/fleet/buffalo.png'); e.stopPropagation(); }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} />
-                    </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
-                      <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Torrence)</div>
-                      <img src="/fleet/torrence.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} onClick={(e) => { setLightboxImg('/fleet/torrence.png'); e.stopPropagation(); }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* ZASADY */}
-                <div>
-                  <h4 style={{ color: '#fff', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zasady i Przebieg Szkolenia</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Fundamenty Operacyjne SEU</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--lspd-blue)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} color="var(--lspd-blue)"/> Cel Szkolenia</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Szkolenie polega na <strong>5-minutowym pościgu</strong> z elementami kaskaderki oraz bezbłędną komunikacją radiową (RTO).</p>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} color="var(--lspd-blue)"/> Zgranie w kabinie</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Jednostki SEU operują z ekstremalnymi prędkościami. Od kierowcy wymaga się bezbłędnej jazdy i zaufania do RTO (radiooperatora), który w trakcie pościgu jest "oczami i uszami" całego Departamentu.</p>
                     </div>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid #10b981' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Shield size={18} color="#10b981"/> Warunek Skuteczności</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Funkcjonariusz musi bezbłędnie asystować w pościgu. Kluczem jest trzymanie się bardzo blisko uciekiniera bez utraty panowania nad pojazdem.</p>
-                    </div>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertCircle size={18} color="var(--gold)"/> Utrata Wizji</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Funkcjonariusz powinien unikać częstej utraty wizji. W celach szkoleniowych przyjmuje się limit około <strong>3 zgubień wizji</strong> na jeden cykl treningowy.</p>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Shield size={18} color="#10b981"/> Pościg vs Bezpieczeństwo</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Must win mentality (chęć wygrania za wszelką cenę) to największy wróg jednostek SEU. Często odpuszczenie zbyt niebezpiecznego skoku kaskaderskiego jest lepszym wyborem niż rozbicie wartego miliony radiowozu.</p>
                     </div>
                   </div>
                 </div>
 
-                {/* BŁĘDY KATEGORYCZNE */}
+                {/* ZADANIA RTO */}
                 <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
-                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Kategoryczne Błędy Proceduralne</h4>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Kluczowe Zadania Pasażera (RTO)</h4>
+                  <p style={{ margin: '0 0 0.5rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Brak płynnej łączności to powód wielu oblanych treningów SEU. RTO musi:</p>
                   <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.8' }}>
-                    <li><strong style={{ color: '#fff' }}>Niepełna komunikacja radiowa</strong> (lub jej całkowity brak) - najważniejszy element pracy RTO!</li>
-                    <li><strong style={{ color: '#fff' }}>Niezgłaszanie braku wizji</strong> (przedłużanie milczenia).</li>
-                    <li><strong style={{ color: '#fff' }}>Niewykonywanie podstawowych manewrów i skoków</strong> (specjalne objeżdżanie miejsc, w których uciekinier wykonał bezpieczny skok, spowalniające pościg).</li>
+                    <li><strong style={{ color: '#fff' }}>Przewidywać ulice:</strong> Informować na radiu ułamek sekundy <em>przed</em> tym, jak podejrzany wejdzie w zakręt.</li>
+                    <li><strong style={{ color: '#fff' }}>Zgłaszać utratę wizji natychmiast:</strong> Każda sekunda wahania ("Zaraz go znajdziemy") daje uciekinierowi przewagę kilkuset metrów. Trzeba od razu zgłosić "Zgubiliśmy wizję", by inne patrole rozwinęły poszukiwania.</li>
+                    <li><strong style={{ color: '#fff' }}>Wspierać kierowcę:</strong> RTO jest nawigatorem. Jeżeli widzi potencjalne przeszkody w wąskich zaułkach, musi z wyprzedzeniem nakazać kierowcy hamowanie.</li>
                   </ul>
                 </div>
               </div>
@@ -1631,27 +1513,27 @@ function KnowledgeBase() {
                 </div>
 
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Procedury Ratownictwa Taktycznego (Trening)</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Procedury Operacyjne i Taktyczne (Teoria)</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
                       <div style={{ color: 'var(--gold)' }}><Map size={24} /></div>
                       <div>
-                        <strong style={{ color: '#fff' }}>1. Tunel Humane Labs</strong>
-                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Wyskok z maszyny EAGLE do wody, dopłynięcie i pokonanie pełnego tunelu podziemnego w czasie szkoleniowym nie dłuższym niż <strong>4 minuty</strong>.</div>
+                        <strong style={{ color: '#fff' }}>Ewakuacja podwodna (np. Humane Labs)</strong>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>W krytycznych sytuacjach nurkowie WU desantowani są bezpośrednio z maszyny EAGLE do wody. Kluczowe jest szybkie rozeznanie w terenie podwodnym, użycie latarek taktycznych i zachowanie spokoju w ciasnych tunelach jaskiniowych.</div>
                       </div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
                       <div style={{ color: 'var(--lspd-blue)' }}><Crosshair size={24} /></div>
                       <div>
-                        <strong style={{ color: '#fff' }}>2. Poszukiwania na głębokości</strong>
-                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Odnalezienie obiektu (np. zatopionego manekina/ofiary) pod wodą w wyznaczonym sektorze i jego bezpieczna ewakuacja na ląd. Limit szkoleniowy: <strong>5 minut</strong>.</div>
+                        <strong style={{ color: '#fff' }}>Poszukiwania na dnie oceanu</strong>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Poszukiwanie dowodów zbrodni (np. wyrzuconej broni) lub ciał ofiar wymaga metodycznego przeszukiwania sektorowego. Widoczność w brudnych wodach Los Santos bywa zerowa, dlatego nurek musi polegać na dotyku i skanerach sonaru.</div>
                       </div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
                       <div style={{ color: '#10b981' }}><Radio size={24} /></div>
                       <div>
-                        <strong style={{ color: '#fff' }}>3. Tor Przeszkód Zancudo</strong>
-                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Test opanowania łodzi morskiej (OCEAN). Pokonanie wyznaczonej na rzece Zancudo trasy omijając przeszkody pod prąd (sugerowany czas: <strong>1m 50s</strong>).</div>
+                        <strong style={{ color: '#fff' }}>Prowadzenie łodzi OCEAN w rzekach</strong>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Pływanie łodzią patrolową pod prąd w rzece Zancudo bywa zdradliwe z powodu wystających konarów i płycizn. Sternik musi błyskawicznie reagować na zmiany nurtu, by nie uszkodzić śruby napędowej.</div>
                       </div>
                     </div>
                   </div>
@@ -1678,83 +1560,53 @@ function KnowledgeBase() {
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(168, 85, 247, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Standardy Operacyjne (MARY / MERRY)</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie na jednostkę motocyklową LSPD sprawdza opanowanie maszyny, zwinność i refleks w ciasnych, miejskich warunkach. Składa się z dwóch części operacyjnych.</p>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>MARY — Teoria Motocyklowa LSPD</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Jednostka MARY to rozwiązanie dla ciasnej miejskiej dżungli i wąskich szlaków terenowych. Szybka, zwrotna, ale obarczona wysokim ryzykiem wypadku.</p>
                 </div>
 
                 {/* ETAP I */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zadanie 1: Przeprawa Terenowa</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zwinność Terenowa</h4>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                        Na samym początku sprawdzamy, czy funkcjonariusz posiada <strong>prawo jazdy Kategorii A</strong>. <br/>
-                        Następnie pobierany jest z garażu policyjny motocykl marki <strong>Sanchez</strong>.
+                        W departamencie LSPD motocyklem podstawowym dla wymagających zadań terenowych jest <strong>Sanchez</strong>. Jego zawieszenie pozwala na szybkie pokonywanie pofałdowań w obszarze Vinewood Hills czy piaszczystych bezdroży Blaine County. <br/><br/>
+                        <strong>Wskazówka od instruktorów:</strong> Podczas jazdy w terenie kluczem jest odpowiedni balans i dociążanie przedniego lub tylnego koła, by nie dopuścić do wywrotki przy lądowaniach. 
                       </p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        <img 
-                          src="/szkolenia/mary_sanchez.png?v=1" 
-                          alt="MARY Sanchez" 
-                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
-                          onClick={() => setLightboxImg('/szkolenia/mary_sanchez.png?v=1')}
-                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
-                      </div>
-                      <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        <img 
-                          src="/szkolenia/mary_mapa.png?v=1" 
-                          alt="MARY Mapa" 
-                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
-                          onClick={() => setLightboxImg('/szkolenia/mary_mapa.png?v=1')}
-                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        />
-                      </div>
-                    </div>
-
                     <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
-                      <strong style={{ color: '#fff', display: 'block', marginBottom: '0.5rem' }}>Przebieg Próby:</strong> 
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Udajecie się na miejsce wyznaczone na mapie. Startujecie z samego końca mostu. Wyznaczona trasa do mety musi zostać sprawnie pokonana.</span>
-                      
-                      <div style={{ marginTop: '0.75rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        <span style={{ background: 'rgba(168, 85, 247, 0.1)', color: '#a855f7', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Czas docelowy: ~1 Minuta 55 sekund</span>
-                        <span style={{ background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Oczekiwana pełna sprawność</span>
-                      </div>
+                      <strong style={{ color: '#fff', display: 'block', marginBottom: '0.5rem' }}>Praktyka terenowa (co musisz potrafić):</strong> 
+                      <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Wyznaczanie własnych szlaków. Na motocyklu nie obowiązują Cię zablokowane autostrady, z łatwością przeciśniesz się przez korki lub zjedziesz na trawiasty skrót, zyskując ogromną przewagę nad uciekającym autem osobowym.</span>
                     </div>
                   </div>
                 </div>
 
                 {/* ETAP II */}
                 <div style={{ marginTop: '0.5rem' }}>
-                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zadanie 2: Pościg Miejski</h4>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Pościg Miejski (Zakamarki i Alejki)</h4>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Cel i Trasa</h5>
+                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Przewaga Manewrowa</h5>
                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                        Po powrocie do miasta rozpoczynacie <strong>5-minutowy pościg</strong> po ulicach Los Santos. <br/><br/>
-                        Ważne by manewry odbywały się w terenie miejskim, obejmując ciasne uliczki, zakamarki i <strong>delikatne kaskaderki</strong>, by sprawdzić faktyczną przydatność jednostki w tego typu środowisku.
+                        W gęstej tkance miasta (np. Davis, Little Seoul), radiowozy LSPD bywają zablokowane przez wąskie przejścia czy małe rampy na parkingach wielopoziomowych. Jednostka MARY potrafi "wcisnąć się" niemal wszędzie. Utrata wizji w motocyklu powinna być rzadkością dzięki niezwykłemu przyspieszeniu na prostych odcinkach.
                       </p>
                     </div>
 
                     <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--gold)' }}>
-                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Zasady Utraty Wizji</h5>
+                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Złota zasada bezpieczeństwa</h5>
                       <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
-                        <li>Jeśli kierowca straci wizję, FTO szkoleniowo zatrzymuje się, symulując odliczanie (ok. <strong>10 sekund na odnalezienie</strong>).</li>
-                        <li>W warunkach treningowych dopuszcza się <strong>maksymalnie 2</strong> utraty wizji w jednym cyklu.</li>
-                        <li>Po całkowitym zgubieniu pościgu, manewr treningowy powtarza się od początku.</li>
+                        <li><strong>Brak blach:</strong> Jesteś odsłonięty na strzały. Gdy podejrzany wyciąga broń automatyczną, motocykl musi odpuścić bezpośredni kontakt i wezwać jednostki pancerne.</li>
+                        <li><strong>Awaryjność:</strong> Wjazd przy 150 km/h w słupek = śmierć i zniszczona maszyna. Jeździj szybko, ale rozważnie.</li>
                       </ul>
                     </div>
                   </div>
 
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px', marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.4rem', borderRadius: '4px' }}><Activity size={16} color="#fff" /></div>
-                    <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}><strong>Awaria pojazdu:</strong> Jeśli motocykl ulegnie awarii, priorytetem jest jego naprawa, jednak warunkiem jest wcześniejsze zachowanie pełnej wizji na pojazd uciekający (przekazanie informacji na radio).</span>
+                    <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}><strong>Zgłaszanie awarii:</strong> Motocykle są niezwykle podatne na defekty kół po trafieniu w dziurę lub krawężnik. Zawsze informuj na radiu (RTO motocykla podaje sam kierowca, więc masz podwójną robotę), gdy zmuszony jesteś do naprawy maszyny.</span>
                   </div>
                 </div>
               </div>
