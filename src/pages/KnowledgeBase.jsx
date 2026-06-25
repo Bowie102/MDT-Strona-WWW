@@ -325,13 +325,16 @@ function KnowledgeBase() {
             </motion.div>
 
             {/* HIGH COMMAND */}
-            <motion.div variants={itemVariant} className="glass-card" style={{ background: 'linear-gradient(to right, rgba(239, 68, 68, 0.1), rgba(0,0,0,0.3))', border: '1px solid rgba(239, 68, 68, 0.3)', borderLeft: '4px solid #ef4444', padding: '1.5rem' }}>
-              <h4 style={{ color: '#ef4444', margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.3rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                <ShieldAlert size={24} /> HIGH COMMAND (01 - 05)
-              </h4>
-              <p style={{ margin: 0, color: '#fca5a5', fontSize: '1.1rem', lineHeight: '1.6' }}>
-                Najwyższą władzę nad <strong>każdym departamentem, wydziałem oraz agencją federalną</strong> sprawuje Zarząd (High Command), czyli osoby ze stopniami od 01 do 05.
-              </p>
+            <motion.div variants={itemVariant} className="glass-card" style={{ background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(0,0,0,0.5))', border: '1px solid rgba(234, 179, 8, 0.4)', borderTop: '4px solid #eab308', padding: '2.5rem', display: 'flex', alignItems: 'center', gap: '2rem' }}>
+              <img src="/hc_logo.png" alt="High Command" style={{ width: '130px', height: '130px', objectFit: 'contain', filter: 'drop-shadow(0 0 25px rgba(234, 179, 8, 0.6))' }} />
+              <div>
+                <h4 style={{ color: '#eab308', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.8rem', textTransform: 'uppercase', letterSpacing: '2px', textShadow: '0 0 10px rgba(234, 179, 8, 0.5)' }}>
+                  Zarząd Główny (High Command)
+                </h4>
+                <p style={{ margin: 0, color: '#fef08a', fontSize: '1.15rem', lineHeight: '1.7' }}>
+                  Najwyższy organ decyzyjny departamentu (stopnie 01-05). Obejmuje ścisłe dowództwo, które sprawuje <strong>absolutną i nadrzędną władzę</strong> nad każdym departamentem, wydziałem operacyjnym oraz agencją federalną działającą na terenie stanu. Decyzje High Command są ostateczne.
+                </p>
+              </div>
             </motion.div>
 
             {/* Główne Wydziały */}
@@ -371,8 +374,7 @@ function KnowledgeBase() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     {[
                       { tag: 'METRO', name: 'Metropolitan Division', desc: 'Powoływani w przypadku ataków terrorystycznych, Kodu Czarnego, zbrojnych napadów lub konwojów więźniów o zaostrzonym rygorze.', img: '/metro_logo.png', color: '#eab308' },
-                      { tag: 'DTU', name: 'Detective Unit', desc: 'Jednostka prowadząca szczegółowe dochodzenia kryminalne, infiltrację gangów oraz operacje pod przykrywką w terenie.', img: '/dtu_logo.png', color: '#f97316' },
-                      { tag: 'IAD', name: 'Internal Affairs Division', desc: 'Biuro spraw wewnętrznych. Infiltrują i analizują działania funkcjonariuszy pod kątem korupcji i łamania regulaminów.', icon: ShieldAlert, color: 'var(--text-muted)' }
+                      { tag: 'DTU', name: 'Detective Unit', desc: 'Jednostka prowadząca szczegółowe dochodzenia kryminalne, infiltrację gangów oraz operacje pod przykrywką w terenie.', img: '/dtu_logo.png', color: '#f97316' }
                     ].map((div, idx) => (
                       <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '8px', borderLeft: `3px solid ${div.color}`, padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}>
                          {div.img ? <img src={div.img} alt={div.tag} style={{ width: '50px', height: '50px', objectFit: 'contain', filter: `drop-shadow(0 0 8px ${div.color}50)` }} /> : <div.icon size={50} color={div.color} style={{ opacity: 0.7 }} />}
@@ -394,12 +396,12 @@ function KnowledgeBase() {
                   </h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     {[
-                      { tag: 'FIB', name: 'Federal Investigation Bureau', desc: 'Rozpracowywanie zorganizowanych grup przestępczych, przeciwdziałanie terroryzmowi oraz nadzór nad bezpieczeństwem narodowym.', icon: Shield, color: '#ef4444' },
-                      { tag: 'USMS', name: 'United States Marshal Service', desc: 'Zapewnienie ochrony ważnych świadków koronnych, poszukiwanie groźnych uciekinierów oraz transport więźniów federalnych.', icon: Crosshair, color: '#f43f5e' }
+                      { tag: 'FIB', name: 'Federal Investigation Bureau', desc: 'Rozpracowywanie zorganizowanych grup przestępczych, przeciwdziałanie terroryzmowi oraz nadzór nad bezpieczeństwem narodowym.', img: '/fib_logo.png', color: '#ef4444' },
+                      { tag: 'USMS', name: 'United States Marshal Service', desc: 'Zapewnienie ochrony ważnych świadków koronnych, poszukiwanie groźnych uciekinierów oraz transport więźniów federalnych.', img: '/usms_logo.png', color: '#f43f5e' }
                     ].map((div, idx) => (
                       <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '8px', borderLeft: `3px solid ${div.color}`, padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}>
-                         <div style={{ width: '50px', height: '50px', borderRadius: '8px', background: `${div.color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                           <div.icon size={30} color={div.color} />
+                         <div style={{ width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                           <img src={div.img} alt={div.tag} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 0 10px ${div.color}50)` }} />
                          </div>
                          <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
