@@ -23,6 +23,7 @@ const SECTIONS = [
 function KnowledgeBase() {
   const [activeTab, setActiveTab] = useState('zasady');
   const [expandedSzkolenie, setExpandedSzkolenie] = useState(null);
+  const [lightboxImg, setLightboxImg] = useState(null);
 
   const containerVariant = {
     hidden: { opacity: 0 },
@@ -111,7 +112,8 @@ function KnowledgeBase() {
                 <img 
                   src="/magazyn.png" 
                   alt="Szafka w magazynie dowodowym" 
-                  style={{ width: '100%', maxWidth: '600px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', display: 'block', margin: '0 auto' }} 
+                  style={{ width: '100%', maxWidth: '600px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', display: 'block', margin: '0 auto', cursor: 'pointer' }} 
+                  onClick={() => setLightboxImg('/magazyn.png')}
                 />
               </div>
             </motion.div>
@@ -497,22 +499,25 @@ function KnowledgeBase() {
               <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>BOX</h4>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>Zablokowanie "w pudełku" przez 4 jednostki. Zaciągnięcie hamulca ręcznego po zablokowaniu.</p>
-                <img src="/box.png" alt="Box" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
+                <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>BOX</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Zablokowanie "w pudełku" przez 4 jednostki. Zaciągnięcie hamulca ręcznego po zablokowaniu.</p>
+                <img src="/box.png" alt="Box" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/box.png')} />
               </div>
-              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>STRZAŁKA</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>3 radiowozy: dwa pod kątem 45 stopni od tyłu, trzeci dociska z przodu drogę ucieczki.</p>
-                <img src="/strzalka.png" alt="Strzałka" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
+                <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>Strzałka</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Radiowozy ustawiają się za uciekinierem, tworząc klin lub łuk, zapobiegający nagłemu wyhamowaniu lub zepchnięciu innych jednostek.</p>
+                <img src="/strzalka.png" alt="Strzałka" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/strzalka.png')} />
               </div>
-              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>BLOKADA DROGOWA</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>Zablokowanie przód/tył. U1 zwalnia przed maską, U2 dojeżdża z tyłu. Zaciągamy hamulec ręczny.</p>
-                <img src="/blokada_drogowa.png" alt="Blokada Drogowa" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
+                <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>Blokada Drogowa</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Celowe wjechanie w pojazd uciekiniera, aby całkowicie unieruchomić jego maszynę po zablokowaniu drogi ucieczki.</p>
+                <img src="/blokada_drogowa.png" alt="Blokada Drogowa" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/blokada_drogowa.png')} />
               </div>
-              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>PIT</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>Zepchnięcie uderzając w tylną oś pojazdu. Wykonywane w miejscach bezpiecznych, poza terenem zabudowanym.</p>
-                <img src="/pit.png" alt="PIT" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
+                <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>PIT (Precision Immobilization Technique)</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Uderzenie przodem radiowozu w tylny róg uciekającego pojazdu, aby wywołać niekontrolowany obrót i zgaszenie silnika.</p>
+                <img src="/pit.png" alt="PIT" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/pit.png')} />
               </div>
             </motion.div>
           </motion.div>
@@ -542,17 +547,19 @@ function KnowledgeBase() {
               <div className="glass-card" style={{ textAlign: 'center' }}>
                 <strong style={{ color: 'var(--gold)' }}>KOLUMNA</strong>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Używana w mieście. Auta jadą 5 metrów za sobą na jednym pasie.</p>
-                <img src="/kolumna.png" alt="Kolumna" style={{ width: '100%', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)' }} />
+                <img src="/kolumna.png" alt="Kolumna" style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/kolumna.png')} />
               </div>
-              <div className="glass-card" style={{ textAlign: 'center' }}>
-                <strong style={{ color: 'var(--gold)' }}>SZACHOWNICA</strong>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Używana na autostradzie. Auta jadą na zmianę pasami ruchu.</p>
-                <img src="/szachownica.png" alt="Szachownica" style={{ width: '100%', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)' }} />
+
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
+                <h4 style={{ margin: '0 0 0.5rem 0', color: '#3b82f6' }}>Szachownica</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Formacja polegająca na naprzemiennym ułożeniu radiowozów na pasach ruchu (lewy, prawy, lewy). Przeznaczona dla szybkich konwojów autostradowych. Wyprzedzanie tylko środkiem. Radiowozy jadą asynchronicznie blisko siebie.</p>
+                <img src="/szachownica.png" alt="Szachownica" style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/szachownica.png')} />
               </div>
-              <div className="glass-card" style={{ textAlign: 'center' }}>
-                <strong style={{ color: 'var(--gold)' }}>ŻÓŁW</strong>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Używana w razie ataku/odbicia. Auta otaczają więźniarkę i funkcjonariusze się bunkrują.</p>
-                <img src="/zolw.png" alt="Żółw" style={{ width: '100%', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)' }} />
+
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
+                <h4 style={{ margin: '0 0 0.5rem 0', color: '#3b82f6' }}>Żółw</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Skondensowana formacja, w której radiowozy szczelnie otaczają pojazd transportowy ze wszystkich stron (przód, tył, prawy i lewy bok). Najwyższy poziom ochrony używany głównie podczas Kodu Czarnego lub w niebezpiecznych strefach przy niskiej prędkości.</p>
+                <img src="/zolw.png" alt="Żółw" style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/zolw.png')} />
               </div>
             </motion.div>
           </motion.div>
@@ -842,9 +849,10 @@ function KnowledgeBase() {
             </motion.div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {szkoleniaData.map((sz, idx) => (
+              <h4 style={{ color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>Opcje Awansu (Wymagane)</h4>
+              {szkoleniaData.filter(s => !s.reqs.includes('Nieobowiązkowe')).map((sz, idx) => (
                 <motion.div key={sz.id} variants={itemVariant} className="glass-card" style={{ 
-                  padding: 0, overflow: 'hidden', opacity: sz.available ? 1 : 0.6, cursor: sz.available ? 'pointer' : 'not-allowed'
+                  padding: 0, overflow: 'hidden', opacity: sz.available ? 1 : 0.6, cursor: sz.available ? 'pointer' : 'not-allowed', borderLeft: '4px solid #ef4444'
                 }}>
                   <div 
                     onClick={() => sz.available && setExpandedSzkolenie(expandedSzkolenie === sz.id ? null : sz.id)}
@@ -858,6 +866,61 @@ function KnowledgeBase() {
                     <div style={{ flex: 1 }}>
                       <h4 style={{ margin: 0, fontSize: '1.2rem', color: '#fff' }}>{sz.title}</h4>
                       <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{sz.reqs}</span>
+                    </div>
+                    <div>
+                      {sz.available ? (
+                        <span style={{ 
+                          padding: '0.25rem 0.75rem', background: 'rgba(34, 197, 94, 0.2)', color: '#22c55e', 
+                          borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem'
+                        }}>
+                          DOSTĘPNE
+                          <ChevronDown size={16} style={{ transform: expandedSzkolenie === sz.id ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }} />
+                        </span>
+                      ) : (
+                        <span style={{ 
+                          padding: '0.25rem 0.75rem', background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', 
+                          borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold'
+                        }}>NIEDOSTĘPNE</span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <AnimatePresence>
+                    {expandedSzkolenie === sz.id && sz.available && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div style={{ padding: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', background: 'rgba(0,0,0,0.2)' }}>
+                          {sz.content}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem' }}>
+              <h4 style={{ color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>Dodatkowe Uprawnienia (Nieobowiązkowe)</h4>
+              {szkoleniaData.filter(s => s.reqs.includes('Nieobowiązkowe')).map((sz, idx) => (
+                <motion.div key={sz.id} variants={itemVariant} className="glass-card" style={{ 
+                  padding: 0, overflow: 'hidden', opacity: sz.available ? 1 : 0.6, cursor: sz.available ? 'pointer' : 'not-allowed', borderLeft: '4px solid #3b82f6'
+                }}>
+                  <div 
+                    onClick={() => sz.available && setExpandedSzkolenie(expandedSzkolenie === sz.id ? null : sz.id)}
+                    style={{ 
+                      padding: '1.25rem', display: 'flex', alignItems: 'center', gap: '1.5rem',
+                      background: expandedSzkolenie === sz.id ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                      transition: 'background 0.2s'
+                    }}
+                  >
+                    <div style={{ fontSize: '2rem' }}>{sz.icon}</div>
+                    <div style={{ flex: 1 }}>
+                      <h4 style={{ margin: 0, fontSize: '1.2rem', color: '#fff' }}>{sz.title}</h4>
+                      <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{sz.reqs.replace(' (Nieobowiązkowe)', '')}</span>
                     </div>
                     <div>
                       {sz.available ? (
@@ -957,6 +1020,16 @@ function KnowledgeBase() {
         </div>
 
       </div>
+
+      {lightboxImg && (
+        <div 
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.9)', zIndex: 99999, display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'zoom-out' }} 
+          onClick={() => setLightboxImg(null)}
+        >
+          <img src={lightboxImg} style={{ maxWidth: '90vw', maxHeight: '90vh', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 0 30px rgba(0,0,0,0.5)' }} />
+        </div>
+      )}
+
     </motion.div>
   );
 }
