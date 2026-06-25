@@ -104,6 +104,16 @@ function KnowledgeBase() {
                 <li>Modyfikacje broni (celownik, tłumik, magazynek) → zarzut "Modyfikacja broni palnej" (10 mies. + 25 000$).</li>
                 <li>Rzeczy "lotne" bez właściciela mogą zostać sprzedane w Lombardzie.</li>
               </ul>
+              <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                <p style={{ margin: '0 0 1rem 0', color: '#e2e8f0' }}>
+                  <strong style={{ color: 'var(--lspd-blue)' }}>Lokalizacja Magazynu:</strong> Magazyn dowodowy znajduje się w korytarzu między zbrojownią a szatnią z ubraniami, drugie drzwi z prawej.
+                </p>
+                <img 
+                  src="/magazyn.png" 
+                  alt="Szafka w magazynie dowodowym" 
+                  style={{ width: '100%', maxWidth: '600px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', display: 'block', margin: '0 auto' }} 
+                />
+              </div>
             </motion.div>
 
             <motion.div variants={itemVariant} className="glass-card">
@@ -168,9 +178,9 @@ function KnowledgeBase() {
               { tag: 'IAD', name: 'Internal Affairs Division', desc: 'Infiltrują i analizują działania funkcjonariuszy. Raporty rozpatrywane wewnętrznie.' },
               { tag: 'TD', name: 'Training Division', desc: 'Szkolenia, pilotaż helikoptera, pościgi SEU, procedury strzelania.' },
               { tag: 'PD', name: 'Patrol Division', desc: 'Rozłożenie jednostek, patrole, pierwsze reagowanie, egzekwowanie prawa.' },
-              { tag: 'SWAT', name: 'Special Weapons and Tactics', special: true, desc: 'Powoływani w przypadku ataków terrorystycznych, Kodu Czarnego lub konwojów.' },
+              { tag: 'METRO', name: 'Metropolitan Division', special: true, desc: 'Powoływani w przypadku ataków terrorystycznych, Kodu Czarnego lub konwojów.' },
               { tag: 'FIB', name: 'Federal Investigation Bureau', federal: true, desc: 'Rozpracowywanie grup przestępczych oraz infiltracja wewnętrzna.' },
-              { tag: 'SO', name: 'Sheriff Office', desc: 'Patrol Sandy Shores, Paleto Bay. Zarządza więzieniem Bolingbroke.' },
+              { tag: 'BCSO', name: 'Blaine County Sheriff Office', desc: 'Patrol Sandy Shores, Paleto Bay. Zarządza więzieniem Bolingbroke.' },
               { tag: 'DTU', name: 'Detective Unit', federal: true, desc: 'Jednostka prowadząca szczegółowe dochodzenia kryminalne.' },
               { tag: 'USMS', name: 'United States Marshal Service', federal: true, desc: 'Ochrona świadków, poszukiwanie uciekinierów, transport więźniów.' },
               { tag: 'HWP', name: 'Highway Patrol', desc: 'Bezpieczeństwo na autostradach. Egzekwowanie przepisów ruchu drogowego.' }
@@ -216,8 +226,8 @@ function KnowledgeBase() {
                   {[
                     ['10-1', 'Do wszystkich jednostek'], ['10-2', 'Potwierdzam'], ['10-3', 'Odmawiam'],
                     ['10-4', 'Zrozumiałem'], ['10-5', 'W drodze'], ['10-8', 'Potrzebne wsparcie'],
-                    ['10-9', 'Powtórz komunikat'], ['10-12', 'Teren czysty'], ['10-13A', 'Ranny funkcjonariusz (osoby trzecie)'],
-                    ['10-13B', 'Ranny funkcjonariusz (z własnej winy)'], ['10-20', 'Lokalizacja'], ['10-23', 'Dojechałem na miejsce'],
+                    ['10-9', 'Powtórz komunikat'], ['10-12', 'Teren czysty'], ['10-13', 'Ranny FP'], 
+                    ['10-20', 'Lokalizacja'], ['10-23', 'Dojechałem na miejsce'], ['10-38', 'Zatrzymanie drogowe'],
                     ['10-50', 'Wypadek/kolizja'], ['10-71', 'Strzały'], ['10-72', 'Sprzedaż narkotyków'],
                     ['10-80', 'Rozpoczynam pościg'], ['10-81', 'Pościg udany'], ['10-82', 'Pościg nieudany'], ['10-90', 'Napad']
                   ].map(([code, desc], idx) => (
@@ -473,7 +483,7 @@ function KnowledgeBase() {
                 <div style={{ borderLeft: '3px solid #ef4444', paddingLeft: '1rem' }}>
                   <strong style={{ color: '#ef4444' }}>KOD CZERWONY</strong>
                   <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Po 10 min, zmiana pojazdu, zabranie pasażera, chodnik, strzały z auta.</p>
-                  <p style={{ margin: 0, fontSize: '0.85rem' }}>• Blokady wszędzie<br/>• PIT/BOX/RAM w mieście do 80 km/h, poza miastem do 160 km/h<br/>• Kolczatki wszędzie</p>
+                  <p style={{ margin: 0, fontSize: '0.85rem' }}>• Blokady wszędzie<br/>• PIT/BOX/RAM w mieście do 80 km/h, poza miastem do 160 km/h<br/>• Kolczatki wszędzie<br/>• Możliwość strzelania w opony</p>
                 </div>
                 <div style={{ borderLeft: '3px solid #991b1b', paddingLeft: '1rem' }}>
                   <strong style={{ color: '#991b1b' }}>KOD CZARNY</strong>
@@ -484,21 +494,25 @@ function KnowledgeBase() {
             </motion.div>
 
             <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-              <div className="glass-card">
+              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>BOX</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Zablokowanie "w pudełku" przez 4 jednostki. Zaciągnięcie hamulca ręcznego po zablokowaniu.</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>Zablokowanie "w pudełku" przez 4 jednostki. Zaciągnięcie hamulca ręcznego po zablokowaniu.</p>
+                <img src="/box.png" alt="Box" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
               </div>
-              <div className="glass-card">
+              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>STRZAŁKA</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>3 radiowozy: dwa pod kątem 45 stopni od tyłu, trzeci dociska z przodu drogę ucieczki.</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>3 radiowozy: dwa pod kątem 45 stopni od tyłu, trzeci dociska z przodu drogę ucieczki.</p>
+                <img src="/strzalka.png" alt="Strzałka" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
               </div>
-              <div className="glass-card">
-                <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>RAM</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Zablokowanie przód/tył. U1 zwalnia przed maską, U2 dojeżdża z tyłu. Zaciągamy hamulec ręczny.</p>
+              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
+                <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>BLOKADA DROGOWA</h4>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>Zablokowanie przód/tył. U1 zwalnia przed maską, U2 dojeżdża z tyłu. Zaciągamy hamulec ręczny.</p>
+                <img src="/blokada_drogowa.png" alt="Blokada Drogowa" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
               </div>
-              <div className="glass-card">
+              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>PIT</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Zepchnięcie uderzając w tylną oś pojazdu. Wykonywane w miejscach bezpiecznych, poza terenem zabudowanym.</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>Zepchnięcie uderzając w tylną oś pojazdu. Wykonywane w miejscach bezpiecznych, poza terenem zabudowanym.</p>
+                <img src="/pit.png" alt="PIT" style={{ width: '100%', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }} />
               </div>
             </motion.div>
           </motion.div>
@@ -512,7 +526,7 @@ function KnowledgeBase() {
               <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.8', margin: 0 }}>
                 <li>Minimum 6 funkcjonariuszy na służbie.</li>
                 <li>Obecność osoby kompetentnej (Sergeant+).</li>
-                <li>Obywatel ma wyrok minimum 60 miesięcy.</li>
+                <li>Obywatel ma wyrok minimum 90 miesięcy.</li>
                 <li>Każdy biorący udział ZAKŁADA kamizelkę kuloodporną (nie pytamy o autoryzację).</li>
               </ul>
             </motion.div>
@@ -528,14 +542,17 @@ function KnowledgeBase() {
               <div className="glass-card" style={{ textAlign: 'center' }}>
                 <strong style={{ color: 'var(--gold)' }}>KOLUMNA</strong>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Używana w mieście. Auta jadą 5 metrów za sobą na jednym pasie.</p>
+                <img src="/kolumna.png" alt="Kolumna" style={{ width: '100%', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)' }} />
               </div>
               <div className="glass-card" style={{ textAlign: 'center' }}>
                 <strong style={{ color: 'var(--gold)' }}>SZACHOWNICA</strong>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Używana na autostradzie. Auta jadą na zmianę pasami ruchu.</p>
+                <img src="/szachownica.png" alt="Szachownica" style={{ width: '100%', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)' }} />
               </div>
               <div className="glass-card" style={{ textAlign: 'center' }}>
                 <strong style={{ color: 'var(--gold)' }}>ŻÓŁW</strong>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Używana w razie ataku/odbicia. Auta otaczają więźniarkę i funkcjonariusze się bunkrują.</p>
+                <img src="/zolw.png" alt="Żółw" style={{ width: '100%', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)' }} />
               </div>
             </motion.div>
           </motion.div>
@@ -585,9 +602,10 @@ function KnowledgeBase() {
               
               <div style={{ background: 'rgba(0,0,0,0.3)', padding: '3rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', maxWidth: '800px', margin: '0 auto', textAlign: 'left' }}>
                 <p style={{ fontSize: '1.4rem', lineHeight: '2', color: '#e2e8f0', fontStyle: 'italic', margin: 0 }}>
-                  "Masz prawo zachować milczenie. Wszystko, co powiesz, może i zostanie użyte przeciwko tobie w sądzie. <br /><br />
-                  Masz prawo do adwokata. Jeśli cię na niego nie stać, zostanie ci przydzielony z urzędu. <br /><br />
-                  Czy rozumiesz prawa, które ci przedstawiłem?"
+                  "Masz prawo zachować milczenie, wszystko co powiesz może i zostanie wykorzystane przeciwko Tobie w sądzie. <br /><br />
+                  Masz prawo do adwokata, jeśli Cię na niego nie stać zostanie Ci takowy przydzielony z urzędu, o ile jest dostępny w mieście. <br /><br />
+                  Masz prawo do telefonu w obecności funkcjonariusza policji który trwa maksymalnie 2,5 minuty, ilość połączeń nieograniczona, tak aby słyszał twoją rozmowę. <br /><br />
+                  Jeśli będziesz obrażał funkcjonariuszy, prawa zostaną Ci odebrane."
                 </p>
               </div>
             </motion.div>
@@ -668,6 +686,38 @@ function KnowledgeBase() {
             icon: '🏥',
             title: 'FAC — Pierwsza Pomoc',
             reqs: 'Od stopnia: Officer I  ·  Wymagane na: Officer II',
+            available: false,
+            content: null
+          },
+          {
+            id: 'asu',
+            icon: '🚁',
+            title: 'ASU — Air Support Unit',
+            reqs: 'Dostępne od: Officer III+1  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
+            available: false,
+            content: null
+          },
+          {
+            id: 'seu',
+            icon: '🏎️',
+            title: 'SEU — Speed Enforcement Unit',
+            reqs: 'Dostępne od: Sergeant  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
+            available: false,
+            content: null
+          },
+          {
+            id: 'wu',
+            icon: '🚤',
+            title: 'WU — Water Unit',
+            reqs: 'Dostępne od: Officer III  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
+            available: false,
+            content: null
+          },
+          {
+            id: 'mary',
+            icon: '🏍️',
+            title: 'MARY — Jednostka Motocyklowa',
+            reqs: 'Dostępne od: Officer II  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
             available: false,
             content: null
           }
