@@ -828,33 +828,26 @@ function KnowledgeBase() {
           {
             id: 'egzamin-officer',
             icon: '📝',
-            title: 'Egzamin na Officera',
+            title: 'Wiedza Podstawowa (Officer)',
             reqs: 'Los Santos Police Departament',
             available: true,
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--lspd-blue)' }}>
-                  <h3 style={{ margin: '0 0 1rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><ClipboardList size={24} /> Zasady Ogólne Egzaminu</h3>
+                  <h3 style={{ margin: '0 0 1rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><ClipboardList size={24} /> Standardy Wiedzy Oficerskiej</h3>
                   <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                    Test wykonujemy w wyznaczonym odgórnie miejscu z uwagi na to, że jest tam mało osób, które mogłyby utrudniać przeprowadzenie egzaminu. Egzamin składa się z części <strong>teoretycznej</strong> i <strong>praktycznej</strong>.
+                    Każdy pełnoprawny Officer LSPD musi bezbłędnie opanować procedury teoretyczne i praktyczne związane z przeprowadzaniem kontroli drogowych, pościgów oraz transportu zatrzymanych. Wiedza ta stanowi fundament codziennej służby.
                   </p>
                   <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                    <li><strong>Teorię</strong> wraz z zatrzymaniem drogowym "10-38" z części praktycznej wykonujemy w hangarze na lotnisku.</li>
-                    <li><strong>Praktykę</strong>, czyli pościg, wykonujemy na płycie lotniska.</li>
-                    <li>Po pościgu zatrzymujemy się i przechodzimy do części pościgu pieszego oraz Statusu 7. Następnie transportujemy "zatrzymanego" na komendę Vespucci na cele, w miejsce, w którym nikt nie będzie przeszkadzać.</li>
+                    <li><strong>Biegłość radiowa:</strong> Natychmiastowe rozpoznawanie i stosowanie kodów 10 oraz Statusów.</li>
+                    <li><strong>Procedury zatrzymania:</strong> Ścisłe trzymanie się kroków podczas 10-38 oraz zachowanie maksymalnego bezpieczeństwa własnego.</li>
+                    <li><strong>Transport i prawa:</strong> Poprawne egzekwowanie procedur transportowych (Status 7) i bezbłędne deklamowanie Praw Mirandy.</li>
                   </ul>
-                  <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem' }}>
-                    <div style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 'bold' }}>Poprawna odpowiedź = 1 Pkt</div>
-                    <div style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 'bold' }}>Niepoprawna odpowiedź = 0 Pkt</div>
-                  </div>
                 </div>
 
                 {/* KODY RADIOWE */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-                    <span>Kody Radiowe</span>
-                    <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>(35 Punktów)</span>
-                  </h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Podstawowe Kody Radiowe</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem' }}>
                     {[
                       ['10-1', 'Do wszystkich jednostek!'], ['Code 5', 'Omijać dany teren'],
@@ -886,45 +879,20 @@ function KnowledgeBase() {
 
                 {/* KOMPENDIUM */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-                    <span>Kompendium (Pytania Teoretyczne)</span>
-                    <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>(30 Punktów)</span>
-                  </h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Kluczowa Wiedza Operacyjna</h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {[
-                      { q: "Rozwiń skrót ETA i do czego się go używa", a: "Estimated Time to Arrive - Jest to oszacowanie czasu przybycia na dane miejsce." },
-                      { q: "Czym zajmuje się podjednostka HWP?", a: "Jest to jednostka pościgowa. Głównie zajmują się patrolowaniem autostrad i dróg szybkiego ruchu." },
-                      { q: "Rozwiń skrót SV oraz powiedz czym zajmuje się taka osoba", a: "SuperVisor - Osoba zarządzająca daną akcją (Rozmieszczająca jednostki, wydająca polecenia oraz kontrolująca limitu)." },
-                      { q: "Wymień wyposażenie funkcjonariusza LSPD", a: "Mundur, pałka, GPS, bodycam, panic button, kajdanki, broń palna, amunicja, taser, wkłady, radio, lornetka, latarka, pas taktyczny." },
-                      { q: "Ilu osobowe patrole mamy na kodzie CZARNYM?", a: "4 Osobowe." },
-                      { q: "Kiedy możemy użyć tazera na pościgu pieszym?", a: "Po 3 minutach." },
-                      { q: "Do czego uprawnia nas kod ŻÓŁTY pościgowy?", a: "Manewr BOX poza terenem zabudowanym, Blokada nieruchoma w terenie zabudowanym (Bez kolczatek), Wyprzedzanie w celu utrudnienia ucieczki." },
-                      { q: "Czym zajmuje się podjednostka DEA?", a: "DEA zajmuje się głównie poszukiwaniem i zwalczaniem osób zamieszanych w handel narkotykami." },
-                      { q: "Prawo Mirandy", a: "Masz prawo zachować milczenie, wszystko co powiesz... (pełna formułka)." },
-                      { q: "Co to jest “Shots Fired” i do czego się go używa?", a: "Strzały - W momencie, w którym padają strzały w naszą stronę." },
-                      { q: "Rozwiń skrót NEGO oraz powiedz czym zajmuje się", a: "Negocjator - Osoba przekazująca informacje między napastnikami a SuperVisorem." },
-                      { q: "Do czego uprawnia nas kod CZARNY pościgowy?", a: "Przebicie opon, 3x PIT w mieście (max 150km/h), PIT poza (max 180km/h), BOX w mieście, kolczatki i ruchome blokady w mieście." },
-                      { q: "Kiedy możemy użyć broni palnej na pościgu pieszym?", a: "Gdy wyciąga broń, stwarza zagrożenie na kodzie czarnym (trzyma broń), celuje w naszą stronę." },
-                      { q: "Czym zajmuje się podjednostka FTO?", a: "Szkoleniami nowych funkcjonariuszy oraz prowadzeniem akademii policyjnych." },
-                      { q: "Rozwiń skrót RTO i czym on jest", a: "Radiooperator - Osoba na prawym fotelu. Zgłasza komunikaty radiowe." },
-                      { q: "Ilu osobowe patrole mamy na kodzie CZERWONYM?", a: "3 Osobowe." },
-                      { q: "Ilu osobowe patrole mamy na kodzie ZIELONYM?", a: "1 Osobowe." },
-                      { q: "Do czego uprawnia nas kod CZERWONY pościgowy?", a: "Przebicie opon, 1x PIT w mieście (max 120km/h), 1x PIT poza (max 140km/h), BOX w mieście, kolczatki, ruchome blokady." },
-                      { q: "Co oznacza skrót “Officer Down”", a: "Ranny funkcjonariusz." },
-                      { q: "Co oznacza skrót “Suspect Down”", a: "Ranny napastnik." },
-                      { q: "Czym zajmuje się podjednostka DTU?", a: "Zwalczaniem organizacji przestępczych, karteli i gangów. Jednostka niejawna i tajna." },
-                      { q: "Ilu osobowe patrole mamy na kodzie POMARAŃCZOWYM?", a: "2 Osobowe." },
-                      { q: "Kiedy możemy “rzucić się na napastnika” na pieszym?", a: "Przy najbliższej okazji, aby zminimalizować ryzyko dalszej ucieczki." },
-                      { q: "Opisz wszystkie manewry i na czym one polegają", a: "BOX (zamknięcie), PIT (uderzenie w róg), Strzałka (blokowanie przodu kliniem), Blokada drogowa (celowe wjechanie)." },
-                      { q: "Czym zajmuje się podjednostka IAD?", a: "Internal Affairs Division - badanie korupcji, naruszeń zasad, badanie skarg na policjantów." },
-                      { q: "Czy broń białą zabiera się podczas zatrzymania?", a: "Tak, jeśli nie była użyta oddajemy do szafki więziennej." },
-                      { q: "Ile maksymalnie amunicji do pistoletu może mieć FP?", a: "100 sztuk." },
-                      { q: "Czy FP ma prawo strzelać do napastników w wodzie?", a: "Nie." },
-                      { q: "Czy podczas zatrzymania zabieramy alkohol?", a: "Tak." },
-                      { q: "Czy strzelamy do uciekających ze sprzedaży narkotyków?", a: "Nie. Musimy przeprowadzić 10-38 z poddaniem." }
+                      { q: "Skrót ETA", a: "Estimated Time to Arrive - Oszacowanie czasu przybycia na dane miejsce." },
+                      { q: "Podjednostka HWP", a: "Highway Patrol - Patrolowanie autostrad, dróg szybkiego ruchu i pościgi wysokich prędkości." },
+                      { q: "SuperVisor (SV)", a: "Osoba zarządzająca akcją (rozmieszczanie jednostek, polecenia, kontrola limitów)." },
+                      { q: "Wyposażenie Funkcjonariusza", a: "Mundur, pałka, GPS, bodycam, panic button, kajdanki, broń palna, amunicja, taser, wkłady, radio, lornetka, latarka, pas taktyczny." },
+                      { q: "Użycie tazera na pościgu pieszym", a: "Taser dopuszczony jest po 3 minutach trwania pościgu pieszego." },
+                      { q: "Użycie broni palnej na pościgu pieszym", a: "Gdy napastnik wyciąga broń, stwarza bezpośrednie zagrożenie lub celuje w naszą stronę." },
+                      { q: "Zatrzymanie 10-38 a handel narkotykami", a: "Nie strzelamy od razu do uciekających ze sprzedaży. Obowiązuje przeprowadzenie standardowego 10-38 z wezwaniem do poddania." },
+                      { q: "Radiooperator (RTO)", a: "Funkcjonariusz na prawym fotelu. Odpowiada za zgłaszanie komunikatów radiowych i utrzymywanie łączności z dyspozycją." }
                     ].map((qa, idx) => (
                       <div key={idx} style={{ background: idx % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent', padding: '1rem', borderRadius: '6px' }}>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '0.5rem', fontWeight: 'bold' }}>{idx + 1}. {qa.q}</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '0.5rem', fontWeight: 'bold' }}>{qa.q}</div>
                         <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', paddingLeft: '1.2rem', borderLeft: '2px solid rgba(255,255,255,0.1)' }}>{qa.a}</div>
                       </div>
                     ))}
@@ -936,26 +904,23 @@ function KnowledgeBase() {
                   
                   {/* 10-38 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#3b82f6', display: 'flex', justifyContent: 'space-between' }}>
-                      <span>Zatrzymanie Drogowe 10-38</span>
-                      <span style={{ fontSize: '0.85rem' }}>(15 Punktów)</span>
-                    </h4>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Zatrzymanie rozpoczynamy od poinformowania osoby, czy "napastnik" jest poszukiwany. W tym teście zatrzymanie jest normalne (nieposzukiwany).</p>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#3b82f6' }}>Procedura Zatrzymania Drogowego (10-38)</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Rutynowa kontrola nieposzukiwanego pojazdu wymaga ostrożności i systematyczności, aby zminimalizować ryzyko eskalacji.</p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       {[
                         "Włączenie sygnalizacji świetlnej/dźwiękowej + 'LSPD, zjedź na pobocze'.",
-                        "Poprawne ustawienie pojazdu i zgaszenie sygnałów dźwiękowych.",
+                        "Poprawne, bezpieczne ustawienie radiowozu (kąt) i zgaszenie sygnałów dźwiękowych.",
                         "Instrukcja: 'Zgaś silnik, ręce na kierownicy, nie wysiadaj'.",
-                        "Poprawne zgłoszenie na radiu (10-38, pojazd, blachy, lokalizacja).",
-                        "Wyjście z radiowozu z tazerem w ręku.",
-                        "Podejście do pojazdu i ustawienie się w bezpiecznej pozycji.",
+                        "Poprawne zgłoszenie na radiu (10-38, marka pojazdu, blachy, lokalizacja).",
+                        "Wyjście z radiowozu z gotowym tazerem w dłoni.",
+                        "Podejście do kontrolowanego pojazdu i ustawienie się za słupkiem B (bezpieczna pozycja).",
                         "Rozmowa: 'Obywatelu, proszę obniżyć szybkę'.",
-                        "Okazanie odznaki, przedstawienie się i prośba o dokumenty.",
+                        "Okazanie odznaki, przedstawienie się stopniem i nazwiskiem, prośba o dokumenty.",
                         "Poprawne przyjęcie dokumentu (/do bierze dokument).",
                         "Powrót do radiowozu: 'Zaraz do Pana wrócę'.",
-                        "Sprawdzenie bazy danych obywatela oraz pojazdu w radiowozie.",
-                        "Powrót do obywatela, pyt. o znajomość powodu, nałożenie mandatu.",
-                        "Odegranie wystawienia mandatu na /do.",
+                        "Sprawdzenie bazy danych obywatela oraz pojazdu w tablecie policyjnym.",
+                        "Powrót do obywatela, zapytanie o znajomość powodu zatrzymania.",
+                        "Nałożenie mandatu i odegranie jego wystawienia na /do.",
                         "Zgoda na odjazd: 'Po zgaszeniu sygnalizacji może Pan odjechać'.",
                         "Koniec interwencji na radiu: 'kod 4 do 10-38, status 6'."
                       ].map((step, idx) => (
@@ -969,18 +934,15 @@ function KnowledgeBase() {
 
                   {/* 10-80 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#ef4444', display: 'flex', justifyContent: 'space-between' }}>
-                      <span>Pościg 10-80 i Pościg Pieszy</span>
-                      <span style={{ fontSize: '0.85rem' }}>(5 Punktów)</span>
-                    </h4>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Egzaminowany informuje zdającego, że pojazd ma Kod Czerwony za ucieczkę. Prowadzi samodzielną komunikację na radiu w trakcie jazdy.</p>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#ef4444' }}>Procedura Pościgowa (10-80)</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Standardy postępowania w przypadku eskalacji kontroli drogowej do pościgu zmotoryzowanego, a następnie pieszego.</p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       {[
-                        "Włączenie sygnałów i nakaz zjechania na pobocze.",
-                        "Poprawne zgłoszenie 10-80 na radiu.",
-                        "Ciągła komunikacja radiowa, lokalizacje, kierunek, stan pojazdu.",
-                        "Informacja o wysiadce + rozpoczęcie pościgu pieszego.",
-                        "Zatrzymanie, zakucie, przeszukanie (odebranie rzeczy groźnych, przelanie napojów, konfiskata broni)."
+                        "Poprawne zgłoszenie 10-80 na radiu wraz z podaniem początkowego kierunku.",
+                        "Ciągła, płynna komunikacja radiowa RTO (lokalizacje, kierunek, ulica, zachowanie kierowcy).",
+                        "Informacja o wysiadce podejrzanego i zgłoszenie rozpoczęcia pościgu pieszego.",
+                        "Bezpieczne zatrzymanie (użycie tazera po 3 minutach), zakucie w kajdanki.",
+                        "Przeszukanie: odebranie broni, niebezpiecznych narzędzi, przelanie napojów."
                       ].map((step, idx) => (
                         <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
                           <div style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', minWidth: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>{idx + 1}</div>
@@ -992,17 +954,14 @@ function KnowledgeBase() {
 
                   {/* STATUS 7 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#facc15', display: 'flex', justifyContent: 'space-between' }}>
-                      <span>Status 7 (Transport)</span>
-                      <span style={{ fontSize: '0.85rem' }}>(5 Punktów)</span>
-                    </h4>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>Procedura Transportu (Status 7)</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       {[
-                        "Przeszukanie (Przelanie napojów, zabranie rzeczy niebezpiecznych).",
-                        "Wsadzenie do pojazdu i zapięcie pasów ('Wsadzam cię, zapinam pasy').",
-                        "Zapytanie: 'Znasz swoje prawa?'.",
-                        "Poprawne odczytanie Praw Mirandy.",
-                        "Zachowanie prędkości transportu (Miasto 70km/h, Poza 140km/h)."
+                        "Dokładne upewnienie się co do przeszukania przed wsadzeniem do radiowozu.",
+                        "Umieszczenie zatrzymanego w pojeździe z narracją ('Wsadzam cię do radiowozu, zapinam pasy').",
+                        "Upewnienie się o prawach: 'Znasz swoje prawa?'.",
+                        "Bezbłędne odczytanie pełnej formułki Praw Mirandy.",
+                        "Płynny, bezpieczny transport na komendę (Max 70km/h w mieście, 140km/h poza)."
                       ].map((step, idx) => (
                         <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
                           <div style={{ background: 'rgba(250, 204, 21, 0.2)', color: '#facc15', minWidth: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>{idx + 1}</div>
@@ -1014,22 +973,19 @@ function KnowledgeBase() {
 
                   {/* STATUS 9 */}
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #a855f7' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#a855f7', display: 'flex', justifyContent: 'space-between' }}>
-                      <span>Status 9 (Na Komendzie)</span>
-                      <span style={{ fontSize: '0.85rem' }}>(10 Punktów)</span>
-                    </h4>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#a855f7' }}>Osadzenie na Komendzie (Status 9)</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       {[
-                        "Wprowadzenie do celi, okazanie odznaki, zabranie radia i telefonu.",
-                        "Poinformowanie o zakończeniu przeszukiwania i polecenie 'nie odwracaj się'.",
-                        "Odkucie napastnika przez kraty i odsunięcie się.",
-                        "Poproszenie o dowód i zdjęcie maski.",
-                        "Sprawdzenie poszukiwań w bazie danych.",
-                        "Przedstawienie wyroku i pytanie, czy zgadza się z wyrokiem.",
-                        "Zaoferowanie praw (np. adwokat), jeśli napastnik współpracuje.",
-                        "Wystawienie wyroku (jeśli brak adwokata).",
-                        "Odstawienie rzeczy legalnych do depozytu/oddanie podejrzanemu (/do).",
-                        "Odstawienie rzeczy nielegalnych do szafek dowodowych (/do)."
+                        "Wprowadzenie do celi, ponowne okazanie odznaki, konfiskata telefonu i urządzeń komunikacyjnych.",
+                        "Instrukcja: 'To koniec przeszukania, proszę się nie odwracać'.",
+                        "Odkucie zatrzymanego przez kraty po opuszczeniu celi.",
+                        "Zażądanie dowodu tożsamości oraz zdjęcia maski.",
+                        "Dokładne sprawdzenie poszukiwań i kartoteki w bazie danych LSPD.",
+                        "Przedstawienie ostatecznego wyroku i pytanie, czy zatrzymany zgadza się z zarzutami.",
+                        "Zaoferowanie praw (np. telefonu, adwokata) – jeśli zatrzymany współpracuje.",
+                        "Ostateczne wystawienie wyroku w systemie.",
+                        "Odstawienie legalnych rzeczy do depozytu lub oddanie podejrzanemu (/do).",
+                        "Odłożenie nielegalnego sprzętu i dowodów do odpowiednich szafek dowodowych (/do)."
                       ].map((step, idx) => (
                         <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
                           <div style={{ background: 'rgba(168, 85, 247, 0.2)', color: '#a855f7', minWidth: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>{idx + 1}</div>
@@ -1038,30 +994,6 @@ function KnowledgeBase() {
                       ))}
                     </div>
                   </div>
-                </div>
-
-                {/* PODSUMOWANIE */}
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <h4 style={{ margin: '0 0 1rem 0', color: '#fff' }}>Podsumowanie i Pytania Dodatkowe</h4>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                    Do zdobycia jest łącznie <strong>100 punktów</strong>. Aby zdać, kadet musi osiągnąć minimum <strong>80 pkt (80%)</strong>.
-                    Jeżeli kursant popełnił małe błędy (np. zdobył 75 pkt), możesz zadać mu pytania ratunkowe, doliczając punkty w miejsce brakujących.
-                  </p>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
-                    {[
-                      { q: "Czy osoba jadąca sama może być RTO?", a: "Tak." },
-                      { q: "Rozwiń skrót IAD.", a: "Internal Affairs Division." },
-                      { q: "Za co Kod Czerwony na pościgu? (min. 2)", a: "Powyżej 10 min, skoki kaskaderskie, potrącenie pieszego, strzały w auto, zmiana pojazdu." },
-                      { q: "Ile żądań jest warty FP z podjednostki SRU?", a: "2 żądania." },
-                      { q: "Z jakiego kodu startują uciekinierzy gdy na mieście jest czarny?", a: "Czerwonego." }
-                    ].map((qa, idx) => (
-                      <div key={idx} style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem 1rem', borderRadius: '6px', borderLeft: '2px solid rgba(255,255,255,0.1)' }}>
-                        <div style={{ color: '#fff', fontSize: '0.85rem', marginBottom: '0.2rem' }}>D{idx + 1}. {qa.q}</div>
-                        <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Odp: {qa.a}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ marginTop: '1.5rem', textAlign: 'right', color: 'var(--text-muted)', fontSize: '0.8rem', fontStyle: 'italic' }}>Aktualizacja materiału: 12.06.2026r. - Jaroszewski</div>
                 </div>
 
               </div>
@@ -1074,42 +1006,41 @@ function KnowledgeBase() {
             id: 'rto',
             icon: '🎧',
             title: 'RTO — Radio Traffic Only',
-            reqs: 'Od stopnia: Cadet  ·  Wymagane na: Officer I',
+            reqs: 'Wymagane na: Officer I',
             available: true,
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={24} /> Szkolenie RTO (Przeprowadzane w pościgu)</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu naukę płynnej, bezbłędnej i profesjonalnej komunikacji radiowej w stresie. <strong>W tym szkoleniu w ogóle nie liczą się umiejętności kierowania!</strong></p>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={24} /> Komunikacja Radiowa (RTO)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Moduł ten kładzie całkowity nacisk na płynną, bezbłędną i profesjonalną komunikację radiową w stresowych sytuacjach. RTO jest rdzeniem koordynacji działań departamentu.</p>
                 </div>
 
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Złote Zasady Szkolenia</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zasady Operacyjne RTO w Pościgu</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={16} color="var(--lspd-blue)"/> Brak "Must-Win"</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Prędkość pościgowa to <strong>maksymalnie 150 km/h</strong>. Masz dać kadetowi szansę skupić się na komunikacji, a nie na ekstremalnej jeździe.</p>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={16} color="var(--lspd-blue)"/> Priorytet Informacji</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>W trakcie roli RTO priorytetem jest stałe nadawanie kierunku, nazwy ulicy oraz ewentualnych punktów orientacyjnych, aby jednostki wspomagające mogły przewidzieć trasę pościgu.</p>
                     </div>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={16} color="#10b981"/> 5 Minut</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Pościg rozpoczynacie na komendzie. Od momentu wyjazdu włączacie stoper na równo 5 minut.</p>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={16} color="#10b981"/> Czytelność i Opanowanie</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Komunikaty muszą być krótkie i rzeczowe. Przekrzykiwanie się na radiu lub nadawanie zbędnych emocji stwarza zagrożenie dla skuteczności całej akcji.</p>
                     </div>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Map size={16} color="var(--gold)"/> Miejscówki</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Podczas pościgu macie obowiązek przejechać przez przynajmniej <strong>5 kluczowych miejscówek</strong> wymienionych na liście szkoleniowej.</p>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Map size={16} color="var(--gold)"/> Znajomość Topografii</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Funkcjonariusz RTO ma bezwzględny obowiązek posługiwać się prawidłowymi nazwami dzielnic, ulic oraz kluczowych miejscówek bez zająknięcia.</p>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Przebieg Egzaminu (Krok po Kroku)</h4>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Standardy Weryfikacji (Trening)</h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {[
-                      "Pobieramy 2 wolne jednostki ADAM (np. standardowa Victoria) — jedną dla szkoleniowca, drugą dla zdającego.",
-                      "Przed startem weryfikujemy, czy kandydat zna nazwy miejscówek. Przejeżdżamy przez kilka i w przypadku braku znajomości — uczymy go ich nazw.",
-                      "Rozpoczynamy pościg z poziomu komendy i odpalamy stoper na równe 5 minut.",
-                      "Podczas pościgu szkoleniowiec utrzymuje prędkość max 150 km/h, a kandydat prowadzi pełną komunikację RTO.",
-                      "W trakcie trwania 5 minut musimy zahaczyć o minimum 5 wyznaczonych miejscówek z listy szkoleniowej."
+                      "Trening odbywa się przy wykorzystaniu standardowej jednostki patrolowej.",
+                      "Podczas treningu funkcjonariusz szkoleniowy utrzymuje stałe tempo ucieczki (np. do 150 km/h), by sprawdzić ciągłość narracji RTO.",
+                      "Weryfikowana jest znajomość kluczowych lokacji na mapie miasta w formie ciągłego, pięciominutowego meldunku.",
+                      "Przerwy w komunikacji nie mogą zakłócać ciągłości informacji o kierunku poruszania się uciekiniera."
                     ].map((step, idx) => (
                       <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
                         <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(59, 130, 246, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', fontWeight: 'bold' }}>{idx + 1}</div>
@@ -1209,58 +1140,47 @@ function KnowledgeBase() {
 
                 {/* ETAP II - PRAKTYKA */}
                 <div>
-                  <h3 style={{ color: '#10b981', marginBottom: '1rem', borderBottom: '2px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem', marginTop: '1rem' }}>ETAP II: Egzamin Praktyczny</h3>
+                  <h3 style={{ color: '#10b981', marginBottom: '1rem', borderBottom: '2px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem', marginTop: '1rem' }}>Procedury Negocjacyjne (Praktyka)</h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
-                    Po zdanej teorii idziecie na <strong>Status-5</strong> i czekacie na najbliższy napad. 
-                    Przejmujecie na radiu rolę Negocjatora na mocy praw szkoleniowych FTO.
+                    Standardy LSPD wymagają, aby Negocjator działał jako przedłużenie woli Supervisora (SV). Kluczem jest zabezpieczenie zakładników przy jednoczesnym kontrolowaniu emocji napastników.
                   </p>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                      <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Na co zwracamy uwagę?</h4>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Kluczowe Kroki i Komunikacja</h4>
                       <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
-                        <li>Poprawne przejęcie roli (radio, pokazanie odznaki i przedstawienie się).</li>
-                        <li>Komunikacja Nego-SV (Przekazanie części I: ilu napastników/zakładników, stan zakładników).</li>
+                        <li>Bezpieczne wejście, okazanie odznaki i przedstawienie się.</li>
+                        <li>Komunikacja Nego-SV (Przekazanie części I: liczba napastników/zakładników, stan zakładników).</li>
                         <li>Komunikacja Nego-SV (Przekazanie części II: Żądania X za X).</li>
-                        <li>Przekazanie do SV informacji o czasie końca rabunku po "przyklepaniu".</li>
-                        <li>Poprawne odklepanie formułki na sam koniec napadu.</li>
+                        <li>Przekazanie do SV precyzyjnej informacji o czasie końca rabunku (tzw. "przyklepanie").</li>
+                        <li>Poprawne odklepanie formułki zabezpieczającej na sam koniec negocjacji.</li>
                       </ul>
                     </div>
                     
                     <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid #ef4444' }}>
-                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Błędy Kardynalne (Oblewające)</h4>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Błędy Taktyczne</h4>
                       <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
-                        <li>Niepoprawne przejęcie roli (brak przedstawienia, odznaki).</li>
+                        <li>Brak wstępnego zabezpieczenia własnego (wejście bez osłony).</li>
                         <li>Brak pytania o stan zdrowia zakładników!</li>
-                        <li>Brak poinformowania, że napastnicy celują do FP!</li>
-                        <li>Brak poinformowania, że wielu napastników próbuje negocjować (przekrzykiwanie).</li>
-                        <li>Zatajenie wyzwisk w stronę FP (ktokolwiek to jest).</li>
-                        <li>Prowadzenie pogaduszek jak z ziomkami.</li>
+                        <li>Brak natychmiastowego poinformowania, że napastnicy celują do FP!</li>
+                        <li>Wdawanie się w przekrzykiwania lub nieprofesjonalne dyskusje.</li>
+                        <li>Zatajenie przed SV wyzwisk i gróźb kierowanych w stronę FP.</li>
                       </ul>
                     </div>
                   </div>
 
                   <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--gold)', marginTop: '1rem' }}>
-                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Brak napadów na mieście? (Symulacja)</h4>
-                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>Jeśli przez dłuższy czas nie ma napadu, możecie przeprowadzić "Symulację Napadu" na komendzie (Piętro 0 - parking policyjny, po wyjściu z windy w prawo do samego końca).</p>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Symulacje i Trening</h4>
+                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>Jednostka szkoleniowa LSPD zaleca regularne przeprowadzanie "Symulacji Napadu" na wyznaczonych terenach operacyjnych w celu szlifowania umiejętności komunikacyjnych.</p>
                   </div>
                 </div>
 
                 {/* ZAKOŃCZENIE */}
                 <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                  <h4 style={{ margin: '0 0 1rem 0', color: '#fff', textAlign: 'center' }}>Ocena Końcowa Egzaminu</h4>
+                  <h4 style={{ margin: '0 0 1rem 0', color: '#fff', textAlign: 'center' }}>Podsumowanie Roli Negocjatora</h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Niezaliczenie Teorii</strong> = Oblewacie całe szkolenie.
-                    </div>
-                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Teoria OK + Błędy Kardynalne na Praktyce</strong> = Oblewacie całe szkolenie.
-                    </div>
-                    <div style={{ padding: '0.75rem', background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Teoria OK + Drobne błędy na Praktyce</strong> = Kandydat zdaje teorię. Do praktyki musi podejść ponownie po odczekaniu <strong>Cooldownu (24h)</strong> u Ciebie lub innego FTO. Na Discordzie (Raporty) wpisujesz notatkę o zaliczonej teorii i skierowaniu na poprawkę z praktyki.
-                    </div>
                     <div style={{ padding: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Teoria OK + Praktyka OK</strong> = Szkolenie NEGOCJATORA zaliczone w pełni!
+                      Bycie Negocjatorem wymaga opanowania wszystkich tabel wartości i limitów napadów. Tylko osoba w pełni świadoma zasad jest w stanie bezpiecznie zarządzać napiętą sytuacją.
                     </div>
                   </div>
                 </div>
@@ -1284,8 +1204,8 @@ function KnowledgeBase() {
 
                 {/* ETAP I - TEORIA */}
                 <div>
-                  <h3 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem' }}>ETAP I: Egzamin Teoretyczny</h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>Egzamin przeprowadzamy w formie testu wiedzy. Z każdej z poniższych tabel zadajecie <strong>minimum 3 pytania</strong>. Dopuszczalna ilość błędów na pojedynczą tabelę: <strong>3</strong>. Próg zdania teorii wynosi <strong>80%</strong>.</p>
+                  <h3 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem' }}>Podstawy Teoretyczne (Tabele Operacyjne)</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>Wiedza z poniższych tabel jest bezwzględnie wymagana. Supervisor podejmuje decyzje ułamkach sekund, opierając się na stałych wytycznych i limitach operacyjnych.</p>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
                     {/* Limity Napadów */}
@@ -1357,7 +1277,7 @@ function KnowledgeBase() {
                   </div>
 
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
-                    <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Pytania z Wiedzy Ogólnej (Wymagane)</h5>
+                    <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Dodatkowa Wiedza Dowódcza</h5>
                     <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
                       <li><strong style={{ color: '#fff' }}>Cechy Dobrego SV:</strong> Odwaga, pewność siebie, utrzymanie zimnej krwi, kontrola przebiegu akcji.</li>
                       <li><strong style={{ color: '#fff' }}>Główne Obowiązki:</strong> Wyznaczenie Nego i FP, ustalenie Unitów, nakładanie kodów pościgowych, wezwanie EMS (w razie potrzeby), wpisywanie poszukiwań i finalne rozwiązanie częstotliwości.</li>
@@ -1369,15 +1289,14 @@ function KnowledgeBase() {
 
                 {/* ETAP II - PRAKTYKA */}
                 <div>
-                  <h3 style={{ color: '#10b981', marginBottom: '1rem', borderBottom: '2px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem', marginTop: '1rem' }}>ETAP II: Egzamin Praktyczny</h3>
+                  <h3 style={{ color: '#10b981', marginBottom: '1rem', borderBottom: '2px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem', marginTop: '1rem' }}>Standardy Dowodzenia (Praktyka)</h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
-                    Po zdanej teorii, idziecie na wspólny <strong>Status-5</strong> i czekacie na najbliższy napad. 
-                    Jeśli na napad zareagują inne jednostki, komunikujesz na radiu, że to egzamin SV i na mocy praw FTO kandydat przejmuje dowodzenie akcją.
+                    Supervisor zarządza każdym aspektem incydentu – od jego początku na miejscu zdarzenia aż po zwolnienie częstotliwości operacyjnej.
                   </p>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                      <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Na co zwracamy uwagę?</h4>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Kluczowe Działania</h4>
                       <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
                         <li>Przestrzeganie Limitów (Złota zasada!).</li>
                         <li>Poprawna komunikacja na linii: SV - Nego, SV - Jednostki.</li>
@@ -1389,38 +1308,29 @@ function KnowledgeBase() {
                     </div>
                     
                     <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid #ef4444' }}>
-                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Błędy Kardynalne (Oblewające)</h4>
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Zagrożenia Dowódcze</h4>
                       <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
-                        <li>Nieprzestrzeganie limitów.</li>
-                        <li>Niepoprawne rozstawienie FP i Unitów na pościg.</li>
-                        <li>Krytycznie błędna komunikacja radiowa.</li>
-                        <li>Błędne ostrzeżenia wydane Nego lub błędne zerwanie negocjacji.</li>
-                        <li>Brakujące krytyczne informacje (np. brak kodu na pościg).</li>
+                        <li>Nieprzestrzeganie limitów lub łamanie regulaminu serwera.</li>
+                        <li>Chaotyczne, niepoprawne rozstawienie FP i Unitów do pościgu.</li>
+                        <li>Krytycznie błędna komunikacja radiowa i wprowadzanie zamieszania.</li>
+                        <li>Błędne ostrzeżenia wydawane przez Nego lub nagłe, nieuzasadnione zerwanie negocjacji.</li>
+                        <li>Brak nadawania kodów i kierunków dla reagujących jednostek.</li>
                       </ul>
                     </div>
                   </div>
 
                   <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--gold)', marginTop: '1rem' }}>
-                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Brak napadów na mieście? (Symulacja)</h4>
-                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>Jeśli przez dłuższy czas nie ma napadu, możecie przeprowadzić "Symulację Napadu" w jednym z pomieszczeń na komendzie (np. Piętro 0 - parking policyjny, od windy w prawo na samym końcu).</p>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Trening Operacyjny</h4>
+                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>Jednostki dowódcze powinny trenować scenariusze symulacyjne podczas braku aktywności w mieście, optymalizując zarządzanie zasobami departamentu.</p>
                   </div>
                 </div>
 
                 {/* ZAKOŃCZENIE */}
                 <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                  <h4 style={{ margin: '0 0 1rem 0', color: '#fff', textAlign: 'center' }}>Ocena Końcowa Egzaminu</h4>
+                  <h4 style={{ margin: '0 0 1rem 0', color: '#fff', textAlign: 'center' }}>Podsumowanie Roli SV</h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Niezaliczenie Teorii</strong> = Oblewacie całe szkolenie.
-                    </div>
-                    <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Teoria OK + Błędy Kardynalne na Praktyce</strong> = Oblewacie całe szkolenie.
-                    </div>
-                    <div style={{ padding: '0.75rem', background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Teoria OK + Drobne błędy na Praktyce</strong> = Kandydat zdaje teorię. Do praktyki musi podejść ponownie po odczekaniu <strong>Cooldownu (24h)</strong> u Ciebie lub innego FTO. Na Discordzie (Raporty) wpisujesz: <em>"Teoria szkolenia SV zaliczona, czas na zdanie praktyki."</em>
-                    </div>
                     <div style={{ padding: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.9rem' }}>
-                      <strong>Teoria OK + Praktyka OK</strong> = Szkolenie SV zaliczone w pełni. Gratulacje!
+                      Rola Supervisora jest najbardziej obciążającą odpowiedzialnością podczas incydentów. Wymaga chłodnej kalkulacji i natychmiastowego egzekwowania prawa.
                     </div>
                   </div>
                 </div>
@@ -1540,13 +1450,13 @@ function KnowledgeBase() {
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Pilot EAGLE (ASU) — Egzamin Praktyczny</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu zweryfikowanie precyzji, opanowania maszyny w stresie oraz zwinności pilota. Test składa się z trzech restrykcyjnych etapów.</p>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Pilot EAGLE (ASU) — Procedury Operacyjne</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu przygotowanie pilota do trudnych manewrów w przestrzeni miejskiej, sprawdzając jego opanowanie maszyny w sytuacjach stresowych.</p>
                 </div>
 
                 {/* ETAP 1 */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap I: Podstawy i Manewr "Ósemki"</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Manewr: Ósemka</h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
@@ -1580,11 +1490,10 @@ function KnowledgeBase() {
                     </div>
 
                     <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
-                      <strong style={{ color: '#fff' }}>Zadanie z Helipada:</strong> Z wyznaczonego miejsca startowego osoba rozpoczyna tzw. <strong>"ósemkę"</strong>, przelatując pomiędzy wyznaczonymi budynkami, a na koniec ląduje z powrotem w miejscu startu.
+                      <strong style={{ color: '#fff' }}>Zadanie Operacyjne:</strong> Z wyznaczonego miejsca startowego pilot rozpoczyna tzw. <strong>"ósemkę"</strong>, przelatując pomiędzy wyznaczonymi budynkami, a na koniec ląduje z powrotem w miejscu startu.
                       <div style={{ marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
-                        <span style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Limit czasu: 1 Minuta</span>
-                        <span style={{ background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Próby: 2</span>
-                        <span style={{ background: 'rgba(255, 255, 255, 0.05)', color: '#fff', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Rozbicie maszyny = Niezaliczenie</span>
+                        <span style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Czas docelowy: ~1 Minuta</span>
+                        <span style={{ background: 'rgba(255, 255, 255, 0.05)', color: '#fff', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>Wymagane 100% sprawności maszyny</span>
                       </div>
                     </div>
                   </div>
@@ -1592,7 +1501,7 @@ function KnowledgeBase() {
 
                 {/* ETAP 2 */}
                 <div>
-                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap II: Przelot Precyzyjny (Kanał Burzowy)</h4>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Manewr: Przelot Precyzyjny (Kanał Burzowy)</h4>
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--lspd-blue)' }}>
                     <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
                       Po zaliczeniu etapu 1, przechodzicie do manewrów w kanale burzowym. Zadaniem jest przelot <strong>pod 3 mostami</strong> (zaczynając od strony północnej i lecąc na południe). <br/><br/>
@@ -1625,25 +1534,25 @@ function KnowledgeBase() {
 
                 {/* ETAP 3 */}
                 <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
-                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} /> Etap III: Manewry Losowe (5 Minut)</h4>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} /> Manewry Zwinnościowe</h4>
                   <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                    Rozpoczynacie luźny lot wokół Los Santos. Przez około 5 minut, FTO w locie przydziela zdającemu różne, szybkie zadania do wykonania.
+                    Podczas patrolowania miasta jednostka ASU musi błyskawicznie reagować na dyspozycje. Część szkolenia obejmuje wykonywanie nagłych manewrów w locie.
                   </p>
                   
                   <div style={{ margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <strong style={{ color: '#fff', fontSize: '0.85rem', textTransform: 'uppercase' }}>Przykładowe rozkazy z fotela pasażera:</strong>
+                    <strong style={{ color: '#fff', fontSize: '0.85rem', textTransform: 'uppercase' }}>Przykładowe Procedury W Locie:</strong>
                     <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                       <li>Zawrócenie w kierunku wskazanym na kompasie.</li>
                       <li>Wylądowanie na trudnym dachu / helipadzie wskazanym na mapie.</li>
                       <li>Przelecenie pod konkretnymi mostami na trasie.</li>
-                      <li>Utrzymanie pułapu równe 100m nad ziemią przez 1 minutę (bez rozbicia/zahaczenia).</li>
+                      <li>Utrzymanie pułapu równe 100m nad ziemią przez 1 minutę.</li>
                       <li>Precyzyjne okrążenie wybranego budynku 2 razy.</li>
                     </ul>
                   </div>
 
                   <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                    <strong style={{ color: '#ef4444', display: 'block', marginBottom: '0.2rem' }}>PUNKTACJA KARNA (Niedopuszczalne jest zahaczenie łopatą / płozą)</strong>
-                    <span style={{ fontSize: '0.9rem', color: '#fff' }}>Za każde zahaczenie o obiekt w Etapie III = <strong>1 Ostrzeżenie</strong>.<br/>Zgromadzenie <strong>4 Ostrzeżeń = Test Niezdany</strong>.</span>
+                    <strong style={{ color: '#ef4444', display: 'block', marginBottom: '0.2rem' }}>BEZPIECZEŃSTWO LOTU</strong>
+                    <span style={{ fontSize: '0.9rem', color: '#fff' }}>Każde zahaczenie łopatą lub płozą w terenie zabudowanym traktowane jest jako poważny błąd proceduralny. Należy utrzymywać maksymalną koncentrację.</span>
                   </div>
                 </div>
               </div>
@@ -1658,13 +1567,13 @@ function KnowledgeBase() {
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(244, 63, 94, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #f43f5e' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#f43f5e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={24} /> Szkolenie SEU (Speed Enforcement Unit)</h3>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#f43f5e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={24} /> SEU (Speed Enforcement Unit)</h3>
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Wyciągacie pojazdy pościgowe oraz wraz z osobą wyrabiającą szkolenie udajecie się na wspólne radio operacyjne.</p>
                 </div>
 
                 {/* ZDJĘCIA POJAZDÓW (PLACEHOLDERY FLOTY LSPD) */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Pojazdy Egzaminacyjne</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Pojazdy Wykorzystywane w SEU</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
                       <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Buffalo)</div>
@@ -1686,23 +1595,23 @@ function KnowledgeBase() {
                       <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Szkolenie polega na <strong>5-minutowym pościgu</strong> z elementami kaskaderki oraz bezbłędną komunikacją radiową (RTO).</p>
                     </div>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid #10b981' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Shield size={18} color="#10b981"/> Warunek Zaliczenia</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Funkcjonariusz musi wytrwać równo <strong>5 minut pościgu</strong> bez popełniania błędów kategorycznych.</p>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Shield size={18} color="#10b981"/> Warunek Skuteczności</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Funkcjonariusz musi bezbłędnie asystować w pościgu. Kluczem jest trzymanie się bardzo blisko uciekiniera bez utraty panowania nad pojazdem.</p>
                     </div>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
-                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertCircle size={18} color="var(--gold)"/> Wizja i Próby</strong>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Na 1 pościg przypada <strong>maksymalnie 3x brak wizji</strong>.<br/>Maksymalnie <strong>2 próby</strong> (przy drugiej próbie po zgubieniu wizji czas jest liczony od nowa).</p>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertCircle size={18} color="var(--gold)"/> Utrata Wizji</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>Funkcjonariusz powinien unikać częstej utraty wizji. W celach szkoleniowych przyjmuje się limit około <strong>3 zgubień wizji</strong> na jeden cykl treningowy.</p>
                     </div>
                   </div>
                 </div>
 
                 {/* BŁĘDY KATEGORYCZNE */}
                 <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
-                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Kategoryczne Błędy (Oblewające Egzamin)</h4>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Kategoryczne Błędy Proceduralne</h4>
                   <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.8' }}>
-                    <li><strong style={{ color: '#fff' }}>Niepełna komunikacja radiowa</strong> (lub jej całkowity brak).</li>
+                    <li><strong style={{ color: '#fff' }}>Niepełna komunikacja radiowa</strong> (lub jej całkowity brak) - najważniejszy element pracy RTO!</li>
                     <li><strong style={{ color: '#fff' }}>Niezgłaszanie braku wizji</strong> (przedłużanie milczenia).</li>
-                    <li><strong style={{ color: '#fff' }}>Niewykonywanie najprostszych skoków</strong> (specjalne objeżdżanie miejsc, w których uciekinier wykonał bezpieczny skok).</li>
+                    <li><strong style={{ color: '#fff' }}>Niewykonywanie podstawowych manewrów i skoków</strong> (specjalne objeżdżanie miejsc, w których uciekinier wykonał bezpieczny skok, spowalniające pościg).</li>
                   </ul>
                 </div>
               </div>
@@ -1722,27 +1631,27 @@ function KnowledgeBase() {
                 </div>
 
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Przebieg Egzaminu Praktycznego</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Procedury Ratownictwa Taktycznego (Trening)</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
                       <div style={{ color: 'var(--gold)' }}><Map size={24} /></div>
                       <div>
                         <strong style={{ color: '#fff' }}>1. Tunel Humane Labs</strong>
-                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Wyskok z maszyny EAGLE do wody, dopłynięcie i pokonanie pełnego tunelu podziemnego w czasie nie dłuższym niż <strong>4 minuty</strong>.</div>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Wyskok z maszyny EAGLE do wody, dopłynięcie i pokonanie pełnego tunelu podziemnego w czasie szkoleniowym nie dłuższym niż <strong>4 minuty</strong>.</div>
                       </div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
                       <div style={{ color: 'var(--lspd-blue)' }}><Crosshair size={24} /></div>
                       <div>
                         <strong style={{ color: '#fff' }}>2. Poszukiwania na głębokości</strong>
-                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Odnalezienie obiektu (np. zatopionego manekina/ofiary) pod wodą w wyznaczonym sektorze i jego bezpieczna ewakuacja na ląd. Limit czasowy: <strong>5 minut</strong>.</div>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Odnalezienie obiektu (np. zatopionego manekina/ofiary) pod wodą w wyznaczonym sektorze i jego bezpieczna ewakuacja na ląd. Limit szkoleniowy: <strong>5 minut</strong>.</div>
                       </div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
                       <div style={{ color: '#10b981' }}><Radio size={24} /></div>
                       <div>
                         <strong style={{ color: '#fff' }}>3. Tor Przeszkód Zancudo</strong>
-                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Test opanowania łodzi morskiej (OCEAN). Pokonanie wyznaczonej na rzece Zancudo trasy omijając przeszkody pod prąd (limit: <strong>1m 50s</strong>).</div>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Test opanowania łodzi morskiej (OCEAN). Pokonanie wyznaczonej na rzece Zancudo trasy omijając przeszkody pod prąd (sugerowany czas: <strong>1m 50s</strong>).</div>
                       </div>
                     </div>
                   </div>
@@ -1769,19 +1678,19 @@ function KnowledgeBase() {
             content: (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: 'rgba(168, 85, 247, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
-                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Egzamin Praktyczny (MARY / MERRY)</h3>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie na jednostkę motocyklową LSPD sprawdza opanowanie maszyny, zwinność i refleks w ciasnych, miejskich warunkach. Składa się z dwóch części.</p>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Standardy Operacyjne (MARY / MERRY)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie na jednostkę motocyklową LSPD sprawdza opanowanie maszyny, zwinność i refleks w ciasnych, miejskich warunkach. Składa się z dwóch części operacyjnych.</p>
                 </div>
 
                 {/* ETAP I */}
                 <div>
-                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap I: Próba Czasowa i Terenowa</h4>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zadanie 1: Przeprawa Terenowa</h4>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                        Na samym początku sprawdzacie czy osoba posiada w ogóle <strong>prawo jazdy Kategorii A</strong>. <br/>
-                        Następnie pobieracie z garażu policyjny motocykl marki <strong>Sanchez</strong>.
+                        Na samym początku sprawdzamy, czy funkcjonariusz posiada <strong>prawo jazdy Kategorii A</strong>. <br/>
+                        Następnie pobierany jest z garażu policyjny motocykl marki <strong>Sanchez</strong>.
                       </p>
                     </div>
 
@@ -1810,12 +1719,11 @@ function KnowledgeBase() {
 
                     <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
                       <strong style={{ color: '#fff', display: 'block', marginBottom: '0.5rem' }}>Przebieg Próby:</strong> 
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Udajecie się na miejsce wyznaczone na mapie. Startujecie z samego końca mostu. Zdający musi dotrzeć z punktu Startu do Mety w wyznaczonym czasie.</span>
+                      <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Udajecie się na miejsce wyznaczone na mapie. Startujecie z samego końca mostu. Wyznaczona trasa do mety musi zostać sprawnie pokonana.</span>
                       
                       <div style={{ marginTop: '0.75rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        <span style={{ background: 'rgba(168, 85, 247, 0.1)', color: '#a855f7', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Limit czasu: 1 Minuta 55 sekund</span>
-                        <span style={{ background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Ilość Prób: 2</span>
-                        <span style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Niezmieszczenie się = Niezaliczenie</span>
+                        <span style={{ background: 'rgba(168, 85, 247, 0.1)', color: '#a855f7', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Czas docelowy: ~1 Minuta 55 sekund</span>
+                        <span style={{ background: 'rgba(250, 204, 21, 0.1)', color: 'var(--gold)', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>Oczekiwana pełna sprawność</span>
                       </div>
                     </div>
                   </div>
@@ -1823,30 +1731,30 @@ function KnowledgeBase() {
 
                 {/* ETAP II */}
                 <div style={{ marginTop: '0.5rem' }}>
-                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Etap II: Symulacja Pościgu (5 Minut)</h4>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Zadanie 2: Pościg Miejski</h4>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--lspd-blue)' }}>
                       <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)' }}>Cel i Trasa</h5>
                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                        Po zaliczeniu Etapu I wracacie do miasta. Rozpoczynacie <strong>5-minutowy pościg</strong> po ulicach Los Santos. <br/><br/>
-                        Ważne by ucieczka odbywała się w terenie miejskim, obejmowała ciasne uliczki, zakamarki i <strong>delikatne kaskaderki</strong>, by sprawdzić faktyczną przydatność jednostki.
+                        Po powrocie do miasta rozpoczynacie <strong>5-minutowy pościg</strong> po ulicach Los Santos. <br/><br/>
+                        Ważne by manewry odbywały się w terenie miejskim, obejmując ciasne uliczki, zakamarki i <strong>delikatne kaskaderki</strong>, by sprawdzić faktyczną przydatność jednostki w tego typu środowisku.
                       </p>
                     </div>
 
                     <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1rem', borderRadius: '6px', borderLeft: '3px solid var(--gold)' }}>
                       <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Zasady Utraty Wizji</h5>
                       <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
-                        <li>Jeśli zdający straci wizję, FTO staje w miejscu i odlicza <strong>10 sekund na znalezienie</strong> (czas pościgu ciągle leci).</li>
-                        <li>Podczas jednej próby można zgubić wizję <strong>maksymalnie 2 razy</strong>.</li>
-                        <li>Po całkowitym zgubieniu pościgu = rozpoczynacie nową próbę, a <strong>czas resetuje się do zera</strong>.</li>
+                        <li>Jeśli kierowca straci wizję, FTO szkoleniowo zatrzymuje się, symulując odliczanie (ok. <strong>10 sekund na odnalezienie</strong>).</li>
+                        <li>W warunkach treningowych dopuszcza się <strong>maksymalnie 2</strong> utraty wizji w jednym cyklu.</li>
+                        <li>Po całkowitym zgubieniu pościgu, manewr treningowy powtarza się od początku.</li>
                       </ul>
                     </div>
                   </div>
 
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px', marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.4rem', borderRadius: '4px' }}><Activity size={16} color="#fff" /></div>
-                    <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}><strong>Awaria pojazdu:</strong> Jeśli komukolwiek zepsuje się motocykl, zatrzymujecie czas i obaj go naprawiacie. Warunek: w momencie awarii zdający <strong>musi mieć wizję</strong> na pojazd uciekającego.</span>
+                    <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}><strong>Awaria pojazdu:</strong> Jeśli motocykl ulegnie awarii, priorytetem jest jego naprawa, jednak warunkiem jest wcześniejsze zachowanie pełnej wizji na pojazd uciekający (przekazanie informacji na radio).</span>
                   </div>
                 </div>
               </div>
