@@ -166,6 +166,17 @@ function KnowledgeBase() {
 
             <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
               
+              {/* KADET (WSPÓLNY) */}
+              <div style={{ gridColumn: '1 / -1', background: 'linear-gradient(to right, rgba(59, 130, 246, 0.05), rgba(234, 179, 8, 0.05))', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
+                 <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '0.5rem' }}>
+                    <img src="/lspd_logo.png" alt="LSPD" style={{ height: '30px', opacity: 0.8 }} />
+                    <GraduationCap size={32} color="#fff" />
+                    <img src="/bcso_logo.png" alt="BCSO" style={{ height: '30px', opacity: 0.8 }} />
+                 </div>
+                 <h4 style={{ margin: 0, color: '#fff', fontSize: '1.4rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Kadet (Akademia)</h4>
+                 <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '600px' }}>Kadet to stopień początkowy, wspólny dla obu departamentów. Po zdaniu egzaminu końcowego w akademii (Training Division), kadet wybiera swoją docelową jednostkę (LSPD lub BCSO).</p>
+              </div>
+
               {/* LSPD COLUMN */}
               <div style={{ background: 'rgba(59, 130, 246, 0.03)', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.1)', overflow: 'hidden' }}>
                 <div style={{ background: 'linear-gradient(to bottom, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05))', padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid rgba(59, 130, 246, 0.3)' }}>
@@ -176,7 +187,7 @@ function KnowledgeBase() {
                    {/* Central line */}
                    <div style={{ position: 'absolute', left: '2.5rem', top: '2.5rem', bottom: '2.5rem', width: '2px', background: 'linear-gradient(to bottom, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.5), #eab308)' }} />
                    {[
-                      { rank: 'Officer I', desc: 'Okres próbny (Kadet)' },
+                      { rank: 'Officer I', desc: 'Początkujący funkcjonariusz' },
                       { rank: 'Officer II', desc: 'Pełnoprawny funkcjonariusz' },
                       { rank: 'Officer III', desc: 'Doświadczony funkcjonariusz' },
                       { rank: 'Senior Officer', desc: 'Officer III+1 (Supervisory)' },
@@ -209,16 +220,16 @@ function KnowledgeBase() {
                    {/* Central line */}
                    <div style={{ position: 'absolute', right: '2.5rem', top: '2.5rem', bottom: '2.5rem', width: '2px', background: 'linear-gradient(to bottom, rgba(234, 179, 8, 0.1), rgba(234, 179, 8, 0.5), #eab308)' }} />
                    {[
-                      { rank: 'Deputy I', desc: 'Okres próbny (Kadet)' },
+                      { rank: 'Deputy I', desc: 'Początkujący zastępca' },
                       { rank: 'Deputy II', desc: 'Pełnoprawny zastępca' },
                       { rank: 'Deputy III', desc: 'Doświadczony zastępca' },
-                      { rank: 'Senior Deputy', desc: 'Deputy III+1 (Supervisory)' },
-                      { rank: 'Sergeant', desc: 'Dowódca zmiany', isCommand: true },
-                      { rank: 'Lieutenant', desc: 'Dowódca jednostki / zmiany', isCommand: true },
-                      { rank: 'Captain', desc: 'Kapitan dywizji', isCommand: true },
-                      { rank: 'Major', desc: 'Dowództwo szczebla wyższego', isCommand: true, isHigh: true },
-                      { rank: 'Assistant Sheriff', desc: 'Asystent Szeryfa', isCommand: true, isHigh: true },
-                      { rank: 'Undersheriff', desc: 'Zastępca Szeryfa', isCommand: true, isHigh: true },
+                      { rank: 'Corporal', desc: 'Dowódca polowy (Supervisory)' },
+                      { rank: 'Sergeant I', desc: 'Młodszy dowódca zmiany', isCommand: true },
+                      { rank: 'Sergeant II', desc: 'Sierżant sztabowy', isCommand: true },
+                      { rank: 'Sergeant III', desc: 'Dowódca zmiany', isCommand: true },
+                      { rank: 'Lieutenant I', desc: 'Zastępca dowódcy jednostki', isCommand: true, isHigh: true },
+                      { rank: 'Lieutenant II', desc: 'Dowódca jednostki', isCommand: true, isHigh: true },
+                      { rank: 'Undersheriff', desc: 'Zastępca Szeryfa (Zarząd)', isCommand: true, isHigh: true },
                       { rank: 'Sheriff', desc: 'Szeryf (Zarząd)', isCommand: true, isHigh: true },
                    ].map((item, i) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', zIndex: 1, flexDirection: 'row-reverse' }}>
