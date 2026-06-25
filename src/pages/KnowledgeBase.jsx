@@ -623,19 +623,31 @@ function KnowledgeBase() {
             content: (
               <>
                 <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Kim jest Negocjator?</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Ratuje ludzkie życie i zdrowie w sytuacjach kryzysowych. Nie okazuj zdenerwowania, bądź pewny siebie i stanowczy.</p>
+                <p style={{ color: 'var(--text-muted)' }}>Ratuje ludzkie życie i zdrowie w sytuacjach kryzysowych. Nie okazuj zdenerwowania, bądź pewny siebie i stanowczy. Negocjator musi być zawsze ubezpieczony.</p>
                 <h4 style={{ color: 'var(--gold)' }}>Procedura — Krok po Kroku</h4>
                 <ol style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>Pierwszy kontakt</strong> — zbliżamy się na odległość słyszalności.</li>
-                  <li><strong>Legitymacja</strong> — odznaka, imię, nazwisko, stopień.</li>
-                  <li><strong>Zbieranie informacji</strong> — liczba napastników, zakładników, stan zdrowia.</li>
-                  <li><strong>Negocjacje</strong> — pytamy o żądania. Decyduje zawsze SV.</li>
-                  <li><strong>Odjazd napastników</strong> — pytamy SV o zgodę na wypuszczenie.</li>
+                  <li><strong>Pierwszy kontakt</strong> — odległość słyszalności. "Los Santos Police Department, co tam się dzieje?".</li>
+                  <li><strong>Legitymacja</strong> — odznaka, imię, nazwisko, numer, stopień.</li>
+                  <li><strong>Zbieranie informacji</strong> — liczba napastników, zakładników, ich stan (każdy musi coś powiedzieć).</li>
+                  <li><strong>Negocjacje</strong> — pytamy o żądania by kupić czas. Decyduje zawsze SV.</li>
+                  <li><strong>Odjazd</strong> — "Negocjator do SV, napastnicy gotowi do odjazdu. Mogę wypuszczać?".</li>
                 </ol>
+                <h4 style={{ color: 'var(--gold)' }}>Tabela Żądań (Maksymalne)</h4>
+                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
+                  <li><strong>Swobodny odjazd:</strong> 1 zakł. (nieposzukiwany), 2 zakł. (poszukiwany), min. 3 zakł. (ponad 5 posz.).</li>
+                  <li><strong>Poziom Czerwony/Czarny:</strong> Min. 2 zakładników.</li>
+                  <li><strong>Brak kolczatek:</strong> 1 zakładnik (min. 0,5km - max 1km od miejsca).</li>
+                  <li><strong>Brak EAGLE (czasowy):</strong> 1 zakładnik (min. 1 min - max 1,5 min).</li>
+                  <li><strong>Brak EAGLE (całkowity):</strong> Jubiler (2), Fleeca (3), Maze Bank (4).</li>
+                  <li><strong>Odwołanie SEU/Mery:</strong> ZAKAZ CAŁKOWITY.</li>
+                  <li><strong>Naprawa pojazdu:</strong> W trakcie pościgu (3 zakł.), przed pościgiem (1 zakł.).</li>
+                  <li><strong>Okup:</strong> Max 2000$ (decyduje SV).</li>
+                  <li style={{ color: '#ef4444' }}><strong>NIGDY:</strong> Nie wydajemy broni palnej, białej, sprzętu ani mundurów!</li>
+                </ul>
                 <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderLeft: '3px solid #ef4444', borderRadius: '4px', marginTop: '1rem' }}>
                   <strong style={{ color: '#ef4444' }}>Ostrzeżenia i Zerwanie</strong>
                   <p style={{ margin: '0.5rem 0 0 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                    Max 3 ostrzeżenia. Zerwanie gdy zakładnik ranny, napastnicy uciekają bez zgody, podstawieni zakładnicy.
+                    Max 3 ostrzeżenia (brak kontaktu, agresja, nierealne żądania). Zerwanie następuje gdy: zakładnik ranny, próba ucieczki bez zgody, podstawieni zakładnicy, 100% pewność na udane wejście siłowe.
                   </p>
                 </div>
               </>
@@ -650,15 +662,38 @@ function KnowledgeBase() {
             content: (
               <>
                 <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Czym jest SV?</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Najwyższy stopniem na akcji. Dowodzi i decyduje. Anonimowość SV jest bezwzględnym priorytetem.</p>
+                <p style={{ color: 'var(--text-muted)' }}>Dowodzi akcją. Najwyższy stopniem lub osoba inicjująca pościg. <strong style={{ color: '#ef4444' }}>ANONIMOWOŚĆ SV TO PRIORYTET ABSOLUTNY!</strong></p>
                 <h4 style={{ color: 'var(--gold)' }}>Obowiązki na Akcji</h4>
                 <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li>Wyznaczenie negocjatora i ubezpieczenia.</li>
-                  <li>Zabezpieczenie terenu.</li>
+                  <li>Wyznaczenie negocjatora i obstawy terenu.</li>
+                  <li>Ustalenie jednostek w pościgu (kto sprawdza budynek).</li>
                   <li>Nakładanie kodów pościgowych.</li>
-                  <li>Wezwanie EMS.</li>
-                  <li>Ustalenie częstotliwości taktycznej.</li>
+                  <li>Wezwanie EMS i wpisywanie poszukiwań.</li>
+                  <li>Rozwiązanie częstotliwości taktycznej po akcji.</li>
                 </ul>
+                <h4 style={{ color: 'var(--gold)' }}>Limity Podczas Napadów (Policja vs Crime)</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', margin: '1rem 0' }}>
+                  <div style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>
+                    <strong style={{ color: 'var(--lspd-blue)' }}>Małe</strong> (Sklep, Kasetka)<br/>
+                    <span style={{ color: 'var(--text-muted)' }}>4 vs 2</span>
+                  </div>
+                  <div style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>
+                    <strong style={{ color: 'var(--lspd-blue)' }}>Średnie</strong> (Banki)<br/>
+                    <span style={{ color: 'var(--text-muted)' }}>8 vs 5</span>
+                  </div>
+                  <div style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', gridColumn: 'span 2' }}>
+                    <strong style={{ color: 'var(--lspd-blue)' }}>Duże</strong> (Human, Pacific, Jubiler)<br/>
+                    <span style={{ color: 'var(--text-muted)' }}>12 vs 8</span>
+                  </div>
+                </div>
+                <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '1rem', borderLeft: '3px solid var(--lspd-blue)', borderRadius: '4px' }}>
+                  <strong style={{ color: 'var(--lspd-blue)' }}>Zasady użycia EAGLE</strong>
+                  <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                    <li>Zakaz używania w zwykłych pościgach (wyjątek: porwany FP).</li>
+                    <li>Napad na Kasetkę/Sejf: Brak EAGLE.</li>
+                    <li>Napad na Fleeca: Max 1x EAGLE.</li>
+                  </ul>
+                </div>
               </>
             )
           },
@@ -686,16 +721,57 @@ function KnowledgeBase() {
             icon: '🏥',
             title: 'FAC — Pierwsza Pomoc',
             reqs: 'Od stopnia: Officer I  ·  Wymagane na: Officer II',
-            available: false,
-            content: null
+            available: true,
+            content: (
+              <>
+                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Podstawy Ratownictwa (IFAC)</h3>
+                <p style={{ color: 'var(--text-muted)' }}>Kurs IFAC uczy pomocy przedmedycznej przed przyjazdem EMS (Kanał główny: 9, Operacyjny: 11). <strong>Priorytetem jest zawsze bezpieczeństwo funkcjonariusza!</strong></p>
+                <h4 style={{ color: 'var(--gold)' }}>Złota Zasada ABCDE</h4>
+                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
+                  <li><strong>A</strong> (Airway) - Udrożnienie dróg oddechowych.</li>
+                  <li><strong>B</strong> (Breathing) - Sprawdzenie oddechu.</li>
+                  <li><strong>C</strong> (Circulation) - Tamowanie masywnych krwotoków (staza CAT).</li>
+                  <li><strong>D</strong> (Disability) - Ocena przytomności (neurologia).</li>
+                  <li><strong>E</strong> (Exposure) - Badanie urazowe całego ciała.</li>
+                </ul>
+                <h4 style={{ color: 'var(--gold)' }}>Postępowanie przy NZK (Brak pulsu/oddechu)</h4>
+                <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', marginBottom: '1rem' }}>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Wykonywać RKO. Tempo: <strong>100-120 uciśnięć/min</strong> w stosunku <strong>30:2</strong>. U topielców przed uciskami wykonujemy 5 wdechów ratowniczych na płytkiej wodzie.</p>
+                </div>
+                <h4 style={{ color: 'var(--gold)' }}>Urazy i Złamania</h4>
+                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
+                  <li><strong>Postrzały:</strong> Tamowanie krwotoków, hemostatyki. Przy postrzale klatki — opatrunek oddychający na odmę.</li>
+                  <li><strong>Złamania:</strong> Stabilizacja kości szyną Kramera w zastanej pozycji. Nigdy nie nastawiamy kości!</li>
+                  <li><strong>Staza (CAT):</strong> Zakładana 3-5cm nad raną przy obfitym krwotoku kończyn. Zawsze zapisujemy godzinę!</li>
+                </ul>
+              </>
+            )
           },
           {
             id: 'asu',
             icon: '🚁',
             title: 'ASU — Air Support Unit',
             reqs: 'Dostępne od: Officer III+1  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
-            available: false,
-            content: null
+            available: true,
+            content: (
+              <>
+                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Rola Pilota EAGLE</h3>
+                <p style={{ color: 'var(--text-muted)' }}>Wsparcie działań z powietrza (pościgi, poszukiwania). Pilot odpowiada za pełne bezpieczeństwo lotu, zachowanie wysokości i koordynację działań.</p>
+                <h4 style={{ color: 'var(--gold)' }}>Procedury Lotu i Komunikaty</h4>
+                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
+                  <li><strong>Start:</strong> Bezwzględny komunikat radiowy: <strong style={{ color: 'var(--lspd-blue)' }}>"Eagle One Up"</strong>.</li>
+                  <li><strong>Lądowanie:</strong> Przy lądowaniu / opuszczeniu: <strong style={{ color: 'var(--lspd-blue)' }}>"Eagle One Down"</strong>.</li>
+                  <li><strong>Zawis:</strong> Zatrzymanie w powietrzu do obserwacji/oświetlenia terenu.</li>
+                  <li><strong>Lot postępowy:</strong> Dynamiczny lot z wychyleniem tarczy wirnika do śledzenia celu.</li>
+                </ul>
+                <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '1rem', borderLeft: '3px solid var(--lspd-blue)', borderRadius: '4px', marginTop: '1rem' }}>
+                  <strong style={{ color: 'var(--lspd-blue)' }}>Bezpieczeństwo Maszyny</strong>
+                  <p style={{ margin: '0.5rem 0 0 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                    Wykonaj procedurę przedstartową (stan wirników, paliwo). W locie kontroluj sztuczny horyzont, wariometr i obrotomierz. Unikaj przeszkód w locie miejskim (kable, anteny). Awaria silnika wymaga wykorzystania energii wirnika do bezpiecznego lądowania.
+                  </p>
+                </div>
+              </>
+            )
           },
           {
             id: 'seu',
@@ -710,16 +786,51 @@ function KnowledgeBase() {
             icon: '🚤',
             title: 'WU — Water Unit',
             reqs: 'Dostępne od: Officer III  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
-            available: false,
-            content: null
+            available: true,
+            content: (
+              <>
+                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Jednostka Wodna</h3>
+                <p style={{ color: 'var(--text-muted)' }}>Patrolowanie akwenów, korzystanie z łodzi OCEAN oraz stroju nurka. Wymagana kondycja ruchowa, bardzo dobra umiejętność pływania i brak lęków.</p>
+                <h4 style={{ color: 'var(--gold)' }}>Egzamin Praktyczny</h4>
+                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
+                  <li><strong>Tunel Humane:</strong> Próba czasowa (max 4 min) po wyskoku z helikoptera EAGLE i przepłynięcie podziemnego tunelu.</li>
+                  <li><strong>Poszukiwania:</strong> Odnalezienie osoby pod wodą w wyznaczonym obszarze i ewakuacja na brzeg (max 5 min).</li>
+                  <li><strong>Tor Zancudo:</strong> Pływanie jednostką OCEAN na czas (1m 50s).</li>
+                </ul>
+                <h4 style={{ color: 'var(--gold)' }}>Pierwsza Pomoc u Topielca</h4>
+                <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>
+                    Przytomnemu <strong>nigdy nie podajemy dłoni</strong> (szok może podtopić ratownika) — podajemy tylko przedmioty do chwycenia. Nieprzytomnemu po wyciągnięciu na płyciznę od razu podajemy <strong>5 wdechów ratowniczych</strong>. Jeśli oddechu nadal brak — rozpoczynamy RKO 30:2.
+                  </p>
+                </div>
+              </>
+            )
           },
           {
             id: 'mary',
             icon: '🏍️',
             title: 'MARY — Jednostka Motocyklowa',
             reqs: 'Dostępne od: Officer II  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
-            available: false,
-            content: null
+            available: true,
+            content: (
+              <>
+                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Oczy Pościgu (MERRY)</h3>
+                <p style={{ color: 'var(--text-muted)' }}>Jednośladowa jednostka zwiadowcza. Śledzi uciekiniera, kontroluje zaułki i przekazuje dokładne meldunki ("Duży ruch, zjazd w boczną ulicę").</p>
+                <h4 style={{ color: 'var(--gold)' }}>Taktyka Offsetowa i Obserwacja</h4>
+                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
+                  <li><strong>Offset:</strong> Nigdy nie jedziemy bezpośrednio za ściganym pojazdem. Trzymamy się krawędzi drogi z boku by uniknąć zderzenia przy hamowaniu.</li>
+                  <li>Odłączamy się by sprawdzić skrzyżowania i zamykać alternatywne trasy, gdy jednostki 4-kołowe trzymają pościg.</li>
+                  <li><strong>Współpraca z EAGLE:</strong> Zgrywamy meldunki radiowe by nie nakładać się na "ptaszka". Eagle widzi ogół, Merry widzi uciekiniera z ziemi.</li>
+                </ul>
+                <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderLeft: '3px solid #ef4444', borderRadius: '4px', marginTop: '1rem' }}>
+                  <strong style={{ color: '#ef4444' }}>Zasady Bezpieczeństwa</strong>
+                  <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                    <li><strong>ABSOLUTNY ZAKAZ:</strong> Motocykl nie używa PIT, nie spycha pojazdów, nie taranuje.</li>
+                    <li>Motocykl nie prowokuje podejrzanego, nie wyzywa go przez megafon, zachowuje "chłodną głowę". MERRY to elitarny i cichy cień.</li>
+                  </ul>
+                </div>
+              </>
+            )
           }
         ];
 
