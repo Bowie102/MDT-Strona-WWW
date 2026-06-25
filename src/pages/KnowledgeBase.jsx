@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Book, Shield, Users, Radio, AlertTriangle, Crosshair, Map, ShieldAlert, FileText, ChevronRight, Tablet, Car, HandMetal, AlertCircle, Banknote, HelpCircle, GraduationCap, ChevronDown, Activity, Siren, ClipboardList, Check, Package, MapPin, Shirt, Ban } from 'lucide-react';
-
-const SECTIONS = [
+import { API_BASE_URL } from '../config';const SECTIONS = [
   { id: 'zasady', title: 'Podstawowe Zasady', icon: Shield },
   { id: 'wewnetrzne', title: 'Zasady Wewnętrzne', icon: AlertCircle },
   { id: 'organizacja', title: 'Organizacja LSPD/BCSO', icon: Users },
@@ -25,6 +24,31 @@ function KnowledgeBase() {
   const [activeTab, setActiveTab] = useState('zasady');
   const [expandedSzkolenie, setExpandedSzkolenie] = useState(null);
   const [lightboxImg, setLightboxImg] = useState(null);
+  const [officers, setOfficers] = useState([]);
+
+  useEffect(() => {
+    fetch(API_BASE_URL + '/api/officers')
+      .then(res => res.json())
+      .then(data => setOfficers(data))
+      .catch(err => console.error("Error fetching officers:", err));
+  }, []);
+
+  const getCommander = (tag) => {
+    let commander = officers.find(o => {
+      if (tag === 'FTD') return o.ftdRank === 'Commander FTD';
+      if (tag === 'DTU') return o.dtuRank === 'Commander DTU';
+      if (tag === 'METRO') return o.metroRank === 'Commander METRO';
+      if (tag === 'HWP') return o.hwpRank === 'Commander HWP';
+      if (tag === 'PD') return o.rank === 'Chief of Police' && o.department === 'LSPD';
+      if (tag === 'BCSO') return o.rank === 'Sheriff';
+      return false;
+    });
+    
+    if (commander) {
+      return `${commander.firstName} ${commander.lastName}`;
+    }
+    return 'Brak Danych';
+  };
 
   const containerVariant = {
     hidden: { opacity: 0 },
@@ -358,13 +382,18 @@ function KnowledgeBase() {
                   <div key={idx} style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))', borderRadius: '12px', border: `1px solid ${div.color}40`, padding: '1.5rem', display: 'flex', gap: '1.5rem', alignItems: 'flex-start', position: 'relative', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.15)', transition: 'transform 0.3s, box-shadow 0.3s', cursor: 'default' }} onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = `0 10px 30px ${div.color}30`; }} onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)'; }}>
                     <div style={{ position: 'absolute', top: '0', left: '0', width: '4px', height: '100%', background: div.color }}></div>
                     <img src={div.img} alt={div.tag} style={{ width: '70px', height: '70px', objectFit: 'contain', filter: `drop-shadow(0 0 10px ${div.color}60)` }} />
-                    <div>
-                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                          <span style={{ background: `${div.color}20`, color: div.color, padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>{div.tag}</span>
-                          <h5 style={{ margin: 0, color: '#fff', fontSize: '1.1rem' }}>{div.name}</h5>
-                       </div>
-                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>{div.desc}</p>
-                    </div>
+                     <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                           <span style={{ background: `${div.color}20`, color: div.color, padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>{div.tag}</span>
+                           <h5 style={{ margin: 0, color: '#fff', fontSize: '1.1rem' }}>{div.name}</h5>
+                        </div>
+                        <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>{div.desc}</p>
+                        <div style={{ marginTop: '0.8rem', paddingTop: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                           <Users size={16} color={div.color} style={{ opacity: 0.8 }} />
+                           <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Główny Commander:</span>
+                           <strong style={{ color: '#fff', fontSize: '0.85rem' }}>{getCommander(div.tag)}</strong>
+                        </div>
+                     </div>
                   </div>
                 ))}
               </div>
@@ -389,7 +418,12 @@ function KnowledgeBase() {
                                <strong style={{ color: div.color }}>{div.tag}</strong>
                                <span style={{ color: '#fff', fontSize: '1.05rem' }}>{div.name}</span>
                             </div>
-                            <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5' }}>{div.desc}</p>
+                            <p style={{ margin: '0 0 0.5rem 0', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5' }}>{div.desc}</p>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                               <Users size={14} color={div.color} style={{ opacity: 0.8 }} />
+                               <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>Commander:</span>
+                               <strong style={{ color: '#fff', fontSize: '0.8rem' }}>{getCommander(div.tag)}</strong>
+                             </div>
                          </div>
                       </div>
                     ))}
