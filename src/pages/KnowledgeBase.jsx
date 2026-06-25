@@ -496,9 +496,6 @@ function KnowledgeBase() {
             </motion.div>
 
             <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-              <div className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ color: 'var(--lspd-blue)', marginTop: 0 }}>BOX</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', flexGrow: 1 }}>Zablokowanie "w pudełku" przez 4 jednostki. Zaciągnięcie hamulca ręcznego po zablokowaniu.</p>
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
                 <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>BOX</h4>
                 <p style={{ margin: 0, color: 'var(--text-muted)' }}>Zablokowanie "w pudełku" przez 4 jednostki. Zaciągnięcie hamulca ręcznego po zablokowaniu.</p>
@@ -619,7 +616,7 @@ function KnowledgeBase() {
           </motion.div>
         );
 
-      case 'szkolenia':
+      case 'szkolenia': {
         const szkoleniaData = [
           {
             id: 'nt',
@@ -1126,6 +1123,7 @@ function KnowledgeBase() {
             </div>
           </motion.div>
         );
+      }
 
       default:
         return null;
