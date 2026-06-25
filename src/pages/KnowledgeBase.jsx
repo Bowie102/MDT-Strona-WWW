@@ -164,10 +164,10 @@ function KnowledgeBase() {
               <p style={{ color: 'var(--text-muted)', margin: 0, position: 'relative', zIndex: 1 }}>Poznaj oficjalną ścieżkę awansów i strukturę dowodzenia obu departamentów (LSPD oraz BCSO).</p>
             </motion.div>
 
-            <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+            <motion.div variants={itemVariant} style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
               
               {/* KADET (WSPÓLNY) */}
-              <div style={{ gridColumn: '1 / -1', background: 'linear-gradient(to right, rgba(59, 130, 246, 0.05), rgba(234, 179, 8, 0.05))', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
+              <div style={{ flex: '1 1 100%', background: 'linear-gradient(to right, rgba(59, 130, 246, 0.05), rgba(234, 179, 8, 0.05))', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '0.5rem' }}>
                     <img src="/lspd_logo.png" alt="LSPD" style={{ height: '30px', opacity: 0.8 }} />
                     <GraduationCap size={32} color="#fff" />
@@ -178,7 +178,7 @@ function KnowledgeBase() {
               </div>
 
               {/* LSPD COLUMN */}
-              <div style={{ background: 'rgba(59, 130, 246, 0.03)', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.1)', overflow: 'hidden' }}>
+              <div style={{ flex: '1 1 400px', background: 'rgba(59, 130, 246, 0.03)', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.1)', overflow: 'hidden' }}>
                 <div style={{ background: 'linear-gradient(to bottom, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05))', padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid rgba(59, 130, 246, 0.3)' }}>
                   <img src="/lspd_logo.png" alt="LSPD" style={{ height: '80px', marginBottom: '1rem', filter: 'drop-shadow(0 0 15px rgba(59,130,246,0.4))' }} />
                   <h4 style={{ margin: 0, color: '#60a5fa', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Los Santos Police</h4>
@@ -190,10 +190,13 @@ function KnowledgeBase() {
                       { rank: 'Officer I', desc: 'Początkujący funkcjonariusz' },
                       { rank: 'Officer II', desc: 'Pełnoprawny funkcjonariusz' },
                       { rank: 'Officer III', desc: 'Doświadczony funkcjonariusz' },
-                      { rank: 'Senior Officer', desc: 'Officer III+1 (Supervisory)' },
+                      { rank: 'Officer III+1', desc: 'Senior Officer (Supervisory)' },
                       { rank: 'Sergeant', desc: 'Dowódca zmiany', isCommand: true },
-                      { rank: 'Lieutenant', desc: 'Dowódca jednostki / zmiany', isCommand: true },
-                      { rank: 'Captain', desc: 'Kapitan dywizji', isCommand: true },
+                      { rank: 'Staff Sergeant', desc: 'Starszy dowódca', isCommand: true },
+                      { rank: 'Master Sergeant', desc: 'Główny sierżant', isCommand: true },
+                      { rank: 'Lieutenant I', desc: 'Zastępca dowódcy jednostki', isCommand: true, isHigh: true },
+                      { rank: 'Lieutenant II', desc: 'Dowódca jednostki / zmiany', isCommand: true, isHigh: true },
+                      { rank: 'Captain', desc: 'Kapitan dywizji', isCommand: true, isHigh: true },
                       { rank: 'Commander', desc: 'Dowództwo szczebla wyższego', isCommand: true, isHigh: true },
                       { rank: 'Deputy Chief', desc: 'Zastępca Szefa Departamentu', isCommand: true, isHigh: true },
                       { rank: 'Assistant Chief', desc: 'Asystent Szefa Policji', isCommand: true, isHigh: true },
@@ -211,7 +214,7 @@ function KnowledgeBase() {
               </div>
 
               {/* BCSO COLUMN */}
-              <div style={{ background: 'rgba(234, 179, 8, 0.03)', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.1)', overflow: 'hidden' }}>
+              <div style={{ flex: '1 1 400px', background: 'rgba(234, 179, 8, 0.03)', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.1)', overflow: 'hidden' }}>
                 <div style={{ background: 'linear-gradient(to bottom, rgba(234, 179, 8, 0.15), rgba(234, 179, 8, 0.05))', padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid rgba(234, 179, 8, 0.3)' }}>
                   <img src="/bcso_logo.png" alt="BCSO" style={{ height: '80px', marginBottom: '1rem', filter: 'drop-shadow(0 0 15px rgba(234,179,8,0.4))' }} />
                   <h4 style={{ margin: 0, color: '#facc15', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Blaine County Sheriff</h4>
