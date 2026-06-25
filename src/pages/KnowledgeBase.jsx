@@ -5,7 +5,7 @@ import { Book, Shield, Users, Radio, AlertTriangle, Crosshair, Map, ShieldAlert,
 const SECTIONS = [
   { id: 'zasady', title: 'Podstawowe Zasady', icon: Shield },
   { id: 'wewnetrzne', title: 'Zasady Wewnętrzne', icon: AlertCircle },
-  { id: 'organizacja', title: 'Organizacja LSPD', icon: Users },
+  { id: 'organizacja', title: 'Organizacja LSPD/BCSO', icon: Users },
   { id: 'struktura', title: 'Struktura Dywizji', icon: Map },
   { id: 'radio', title: 'Radio i Kody', icon: Radio },
   { id: 'tablet', title: 'Tablet Policyjny', icon: Tablet },
@@ -151,46 +151,87 @@ function KnowledgeBase() {
 
       case 'organizacja':
         return (
-          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <motion.div variants={itemVariant} className="glass-card">
-              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Users size={20} /> Ścieżka Awansów (Rangi LSPD)
-              </h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>Jednostka Los Santos Police Department podzielona jest na konkretne stopnie służbowe, z wyraźnym oddzieleniem szczebla dowodzenia od jednostek patrolowych.</p>
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <motion.div variants={itemVariant} className="glass-card" style={{ padding: '2rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: '-20px', left: '-20px', opacity: 0.05, transform: 'rotate(-15deg)' }}><img src="/lspd_logo.png" style={{ height: '200px' }} /></div>
+              <div style={{ position: 'absolute', top: '-20px', right: '-20px', opacity: 0.05, transform: 'rotate(15deg)' }}><img src="/bcso_logo.png" style={{ height: '200px' }} /></div>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', position: 'relative' }}>
-                {/* Linia osi czasu */}
-                <div style={{ position: 'absolute', left: '1.5rem', top: '1rem', bottom: '1rem', width: '2px', background: 'rgba(255,255,255,0.05)' }}></div>
+              <h3 style={{ marginTop: 0, color: '#fff', fontSize: '1.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', position: 'relative', zIndex: 1 }}>
+                <img src="/lspd_logo.png" alt="LSPD Logo" style={{ height: '40px', filter: 'drop-shadow(0 0 8px rgba(59,130,246,0.5))' }} />
+                Chain of Command
+                <img src="/bcso_logo.png" alt="BCSO Logo" style={{ height: '40px', filter: 'drop-shadow(0 0 8px rgba(234,179,8,0.5))' }} />
+              </h3>
+              <p style={{ color: 'var(--text-muted)', margin: 0, position: 'relative', zIndex: 1 }}>Poznaj oficjalną ścieżkę awansów i strukturę dowodzenia obu departamentów (LSPD oraz BCSO).</p>
+            </motion.div>
 
-                {[
-                  { from: 'Officer I', to: 'Officer II' },
-                  { from: 'Officer II', to: 'Officer III' },
-                  { from: 'Officer III', to: 'Officer III+1' },
-                  { from: 'Officer III+1', to: 'Sergeant' },
-                  { from: 'Sergeant / Staff / Master', to: 'Lieutenant', isCommand: true },
-                  { from: 'Lieutenant I/II', to: 'Captain', isCommand: true },
-                  { from: 'Captain', to: 'Commander', isCommand: true },
-                  { from: 'Commander', to: 'Deputy Chief', isCommand: true, top: true },
-                  { from: 'Deputy Chief', to: 'Assistant Chief', isCommand: true, top: true },
-                  { from: 'Assistant Chief', to: 'Chief of Police', isCommand: true, top: true },
-                  { from: 'Chief of Police', to: 'Zarząd LSPD', isCommand: true, top: true }
-                ].map((rank, idx) => (
-                  <div key={idx} style={{ 
-                    background: rank.top ? 'linear-gradient(90deg, rgba(234, 179, 8, 0.1), transparent)' : rank.isCommand ? 'linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent)' : 'rgba(255,255,255,0.02)', 
-                    borderLeft: rank.top ? '4px solid #eab308' : rank.isCommand ? '4px solid #3b82f6' : '4px solid #64748b',
-                    padding: '1rem 1.5rem', borderRadius: '0 6px 6px 0', display: 'flex', alignItems: 'center', marginLeft: '3rem', position: 'relative'
-                  }}>
-                    {/* Kropka na osi */}
-                    <div style={{ position: 'absolute', left: '-1.8rem', width: '12px', height: '12px', borderRadius: '50%', background: rank.top ? '#eab308' : rank.isCommand ? '#3b82f6' : '#64748b', border: '3px solid #0f172a' }}></div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
-                      <strong style={{ width: '200px', color: rank.top ? '#eab308' : rank.isCommand ? '#60a5fa' : '#e2e8f0', fontSize: '1.05rem' }}>{rank.from}</strong>
-                      <ChevronRight size={18} color={rank.top ? 'var(--gold)' : 'var(--text-muted)'} />
-                      <span style={{ color: 'var(--text-muted)' }}>Awansuje na: <strong style={{ color: '#fff' }}>{rank.to}</strong></span>
-                    </div>
-                  </div>
-                ))}
+            <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+              
+              {/* LSPD COLUMN */}
+              <div style={{ background: 'rgba(59, 130, 246, 0.03)', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.1)', overflow: 'hidden' }}>
+                <div style={{ background: 'linear-gradient(to bottom, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05))', padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid rgba(59, 130, 246, 0.3)' }}>
+                  <img src="/lspd_logo.png" alt="LSPD" style={{ height: '80px', marginBottom: '1rem', filter: 'drop-shadow(0 0 15px rgba(59,130,246,0.4))' }} />
+                  <h4 style={{ margin: 0, color: '#60a5fa', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Los Santos Police</h4>
+                </div>
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', position: 'relative' }}>
+                   {/* Central line */}
+                   <div style={{ position: 'absolute', left: '2.5rem', top: '2.5rem', bottom: '2.5rem', width: '2px', background: 'linear-gradient(to bottom, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.5), #eab308)' }} />
+                   {[
+                      { rank: 'Officer I', desc: 'Okres próbny (Kadet)' },
+                      { rank: 'Officer II', desc: 'Pełnoprawny funkcjonariusz' },
+                      { rank: 'Officer III', desc: 'Doświadczony funkcjonariusz' },
+                      { rank: 'Senior Officer', desc: 'Officer III+1 (Supervisory)' },
+                      { rank: 'Sergeant', desc: 'Dowódca zmiany', isCommand: true },
+                      { rank: 'Lieutenant', desc: 'Dowódca jednostki / zmiany', isCommand: true },
+                      { rank: 'Captain', desc: 'Kapitan dywizji', isCommand: true },
+                      { rank: 'Commander', desc: 'Dowództwo szczebla wyższego', isCommand: true, isHigh: true },
+                      { rank: 'Deputy Chief', desc: 'Zastępca Szefa Departamentu', isCommand: true, isHigh: true },
+                      { rank: 'Assistant Chief', desc: 'Asystent Szefa Policji', isCommand: true, isHigh: true },
+                      { rank: 'Chief of Police', desc: 'Szef Policji (Zarząd)', isCommand: true, isHigh: true },
+                   ].map((item, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', zIndex: 1 }}>
+                        <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: item.isHigh ? '#eab308' : item.isCommand ? '#60a5fa' : '#94a3b8', border: '4px solid #0f172a', marginLeft: '0.6rem', boxShadow: `0 0 10px ${item.isHigh ? 'rgba(234,179,8,0.5)' : item.isCommand ? 'rgba(59,130,246,0.5)' : 'rgba(148,163,184,0.3)'}` }} />
+                        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '0.75rem 1rem', borderRadius: '6px', flex: 1, borderLeft: `3px solid ${item.isHigh ? '#eab308' : item.isCommand ? '#60a5fa' : '#94a3b8'}`, transition: 'transform 0.2s', cursor: 'default' }} onMouseOver={(e) => e.currentTarget.style.transform = 'translateX(5px)'} onMouseOut={(e) => e.currentTarget.style.transform = 'translateX(0)'}>
+                           <strong style={{ color: item.isHigh ? '#eab308' : item.isCommand ? '#60a5fa' : '#f8fafc', display: 'block', fontSize: '1.05rem' }}>{item.rank}</strong>
+                           <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{item.desc}</span>
+                        </div>
+                      </div>
+                   ))}
+                </div>
               </div>
+
+              {/* BCSO COLUMN */}
+              <div style={{ background: 'rgba(234, 179, 8, 0.03)', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.1)', overflow: 'hidden' }}>
+                <div style={{ background: 'linear-gradient(to bottom, rgba(234, 179, 8, 0.15), rgba(234, 179, 8, 0.05))', padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid rgba(234, 179, 8, 0.3)' }}>
+                  <img src="/bcso_logo.png" alt="BCSO" style={{ height: '80px', marginBottom: '1rem', filter: 'drop-shadow(0 0 15px rgba(234,179,8,0.4))' }} />
+                  <h4 style={{ margin: 0, color: '#facc15', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Blaine County Sheriff</h4>
+                </div>
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', position: 'relative' }}>
+                   {/* Central line */}
+                   <div style={{ position: 'absolute', right: '2.5rem', top: '2.5rem', bottom: '2.5rem', width: '2px', background: 'linear-gradient(to bottom, rgba(234, 179, 8, 0.1), rgba(234, 179, 8, 0.5), #eab308)' }} />
+                   {[
+                      { rank: 'Deputy I', desc: 'Okres próbny (Kadet)' },
+                      { rank: 'Deputy II', desc: 'Pełnoprawny zastępca' },
+                      { rank: 'Deputy III', desc: 'Doświadczony zastępca' },
+                      { rank: 'Senior Deputy', desc: 'Deputy III+1 (Supervisory)' },
+                      { rank: 'Sergeant', desc: 'Dowódca zmiany', isCommand: true },
+                      { rank: 'Lieutenant', desc: 'Dowódca jednostki / zmiany', isCommand: true },
+                      { rank: 'Captain', desc: 'Kapitan dywizji', isCommand: true },
+                      { rank: 'Major', desc: 'Dowództwo szczebla wyższego', isCommand: true, isHigh: true },
+                      { rank: 'Assistant Sheriff', desc: 'Asystent Szeryfa', isCommand: true, isHigh: true },
+                      { rank: 'Undersheriff', desc: 'Zastępca Szeryfa', isCommand: true, isHigh: true },
+                      { rank: 'Sheriff', desc: 'Szeryf (Zarząd)', isCommand: true, isHigh: true },
+                   ].map((item, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', zIndex: 1, flexDirection: 'row-reverse' }}>
+                        <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: item.isHigh ? '#eab308' : item.isCommand ? '#facc15' : '#d4d4d8', border: '4px solid #0f172a', marginRight: '0.6rem', boxShadow: `0 0 10px ${item.isHigh ? 'rgba(234,179,8,0.5)' : item.isCommand ? 'rgba(234,179,8,0.5)' : 'rgba(212,212,216,0.3)'}` }} />
+                        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '0.75rem 1rem', borderRadius: '6px', flex: 1, borderRight: `3px solid ${item.isHigh ? '#eab308' : item.isCommand ? '#facc15' : '#d4d4d8'}`, textAlign: 'right', transition: 'transform 0.2s', cursor: 'default' }} onMouseOver={(e) => e.currentTarget.style.transform = 'translateX(-5px)'} onMouseOut={(e) => e.currentTarget.style.transform = 'translateX(0)'}>
+                           <strong style={{ color: item.isHigh ? '#eab308' : item.isCommand ? '#facc15' : '#f8fafc', display: 'block', fontSize: '1.05rem' }}>{item.rank}</strong>
+                           <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{item.desc}</span>
+                        </div>
+                      </div>
+                   ))}
+                </div>
+              </div>
+
             </motion.div>
           </motion.div>
         );
