@@ -1556,10 +1556,24 @@ function KnowledgeBase() {
                     
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                       <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        [Miejsce na zdjęcie - Helipad]
+                        <img 
+                          src="/szkolenia/asu_helipad.png?v=1" 
+                          alt="ASU Helipad" 
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                          onClick={() => setLightboxImg('/szkolenia/asu_helipad.png?v=1')}
+                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
                       </div>
                       <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        [Miejsce na zdjęcie - Trasa Ósemki]
+                        <img 
+                          src="/szkolenia/asu_osemka.png?v=1" 
+                          alt="ASU Osemka" 
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                          onClick={() => setLightboxImg('/szkolenia/asu_osemka.png?v=1')}
+                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
                       </div>
                     </div>
 
@@ -1585,10 +1599,24 @@ function KnowledgeBase() {
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
                       <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        [Miejsce na zdjęcie - Most 1]
+                        <img 
+                          src="/szkolenia/asu_most.png?v=1" 
+                          alt="ASU Most" 
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                          onClick={() => setLightboxImg('/szkolenia/asu_most.png?v=1')}
+                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
                       </div>
                       <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        [Miejsce na zdjęcie - Trasa]
+                        <img 
+                          src="/szkolenia/asu_trasa.png?v=1" 
+                          alt="ASU Trasa" 
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                          onClick={() => setLightboxImg('/szkolenia/asu_trasa.png?v=1')}
+                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
                       </div>
                   </div>
                 </div>
@@ -1638,11 +1666,11 @@ function KnowledgeBase() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
                       <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Buffalo)</div>
-                      <img src="/fleet/buffalo.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'cover', opacity: 0.9, marginTop: '20px' }} />
+                      <img src="/fleet/buffalo.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px' }} />
                     </div>
                     <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
                       <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.5)', position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1, fontSize: '0.8rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>SEU Interceptor (Torrence)</div>
-                      <img src="/fleet/torrence.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'cover', opacity: 0.9, marginTop: '20px' }} />
+                      <img src="/fleet/torrence.png" alt="Pojazd SEU" style={{ width: '100%', height: '140px', objectFit: 'contain', opacity: 0.9, marginTop: '20px' }} />
                     </div>
                   </div>
                 </div>
@@ -1757,10 +1785,24 @@ function KnowledgeBase() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                       <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        [Miejsce na zdjęcie - Sanchez]
+                        <img 
+                          src="/szkolenia/mary_sanchez.png?v=1" 
+                          alt="MARY Sanchez" 
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                          onClick={() => setLightboxImg('/szkolenia/mary_sanchez.png?v=1')}
+                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
                       </div>
                       <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '140px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        [Miejsce na zdjęcie - Mapa / Most]
+                        <img 
+                          src="/szkolenia/mary_mapa.png?v=1" 
+                          alt="MARY Mapa" 
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                          onClick={() => setLightboxImg('/szkolenia/mary_mapa.png?v=1')}
+                          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
                       </div>
                     </div>
 
