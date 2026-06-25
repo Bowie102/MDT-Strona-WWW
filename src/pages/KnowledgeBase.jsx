@@ -34,7 +34,7 @@ function KnowledgeBase() {
   }, []);
 
   const getCommander = (tag) => {
-    let commander = officers.find(o => {
+    let commanders = officers.filter(o => {
       if (tag === 'FTD') return o.ftdRank === 'Commander FTD';
       if (tag === 'DTU') return o.dtuRank === 'Commander DTU';
       if (tag === 'METRO') return o.metroRank === 'Commander METRO';
@@ -44,8 +44,8 @@ function KnowledgeBase() {
       return false;
     });
     
-    if (commander) {
-      return `[${commander.badgeNumber || '?'}] ${commander.firstName} ${commander.lastName} (DC: ${commander.discordNick || 'Brak'})`;
+    if (commanders.length > 0) {
+      return commanders.map(c => `[${c.badgeNumber || '?'}] ${c.firstName} ${c.lastName} (DC: ${c.discordNick || 'Brak'})`).join(' oraz ');
     }
     return 'Brak Danych';
   };
@@ -1100,47 +1100,95 @@ function KnowledgeBase() {
 
       case 'miranda':
         return (
-          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3rem' }}>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
-              
-              {/* Left Side: Visual / Title */}
-              <motion.div variants={itemVariant} className="glass-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '4rem 2rem', background: 'linear-gradient(to bottom right, rgba(234, 179, 8, 0.05), rgba(0,0,0,0.5))', border: '1px solid rgba(234, 179, 8, 0.2)' }}>
-                <div style={{ background: 'rgba(234, 179, 8, 0.1)', padding: '2rem', borderRadius: '50%', marginBottom: '2rem', boxShadow: '0 0 50px rgba(234, 179, 8, 0.2)' }}>
-                  <ShieldAlert size={80} color="var(--gold)" />
-                </div>
-                <h2 style={{ fontSize: '2.5rem', margin: '0 0 1rem 0', color: '#fff', textTransform: 'uppercase', letterSpacing: '2px' }}>Prawa <span style={{ color: 'var(--gold)' }}>Mirandy</span></h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '300px', lineHeight: '1.6' }}>
-                  Oficjalna formułka zatrzymania departamentu Los Santos.
-                </p>
-              </motion.div>
+            {/* Realistyczna Karta Mirandy */}
+            <motion.div variants={itemVariant} style={{ 
+              backgroundColor: '#f8fafc',
+              backgroundImage: 'url(/lspd_logo.png)',
+              backgroundSize: '400px',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundBlendMode: 'overlay',
+              borderRadius: '16px', 
+              border: '1px solid #cbd5e1', 
+              boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)', 
+              width: '100%', 
+              maxWidth: '850px', 
+              position: 'relative', 
+              overflow: 'hidden',
+              padding: '0'
+            }}>
+               {/* Nagłówek Karty */}
+               <div style={{ background: 'linear-gradient(135deg, #1e293b, #0f172a)', borderBottom: '6px solid var(--lspd-blue)', padding: '2rem 3rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+                     <img src="/lspd_logo.png" alt="LSPD Logo" style={{ width: '90px', height: '90px', filter: 'drop-shadow(0 0 15px rgba(59,130,246,0.3))' }} />
+                     <div>
+                        <h2 style={{ margin: 0, color: '#f8fafc', fontSize: '2.5rem', textTransform: 'uppercase', letterSpacing: '4px', fontFamily: '"Times New Roman", Times, serif', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                           Miranda Warning
+                        </h2>
+                        <h4 style={{ margin: '0.5rem 0 0 0', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '1rem' }}>
+                           San Andreas Department of Justice
+                        </h4>
+                     </div>
+                  </div>
+                  <FileText size={50} color="var(--lspd-blue)" style={{ opacity: 0.3 }} />
+               </div>
 
-              {/* Right Side: The Rights */}
-              <motion.div variants={itemVariant} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {[
-                  { id: 1, text: 'Masz prawo zachować milczenie. Wszystko, co powiesz, może i zostanie wykorzystane przeciwko Tobie w sądzie.' },
-                  { id: 2, text: 'Masz prawo do adwokata. Jeśli Cię na niego nie stać, zostanie Ci takowy przydzielony z urzędu, o ile jest dostępny w mieście.' },
-                  { id: 3, text: 'Masz prawo do telefonu w obecności funkcjonariusza. Trwa on maksymalnie 2,5 minuty, ilość połączeń nieograniczona, funkcjonariusz musi słyszeć rozmowę.' },
-                  { id: 4, text: 'Jeśli będziesz obrażał funkcjonariuszy, Twoje prawa zostaną Ci odebrane.', color: '#ef4444' }
-                ].map((right, idx) => (
-                  <div key={idx} className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.5rem', borderLeft: `4px solid ${right.color || 'var(--gold)'}`, background: right.color ? 'rgba(239, 68, 68, 0.05)' : undefined }}>
-                    <div style={{ fontSize: '3rem', fontWeight: 'bold', color: right.color ? 'rgba(239, 68, 68, 0.2)' : 'rgba(234, 179, 8, 0.2)', lineHeight: '1' }}>
-                      0{right.id}
+               {/* Treść Praw */}
+               <div style={{ padding: '3.5rem 4rem', backgroundColor: 'rgba(248, 250, 252, 0.96)' }}>
+                  <p style={{ color: '#475569', fontSize: '1.25rem', fontStyle: 'italic', marginBottom: '3rem', textAlign: 'center', fontWeight: '500' }}>
+                     "Poniższa formułka musi zostać bezzwłocznie odczytana każdemu podejrzanemu przed rozpoczęciem oficjalnego przesłuchania."
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+                       <span style={{ color: 'var(--lspd-blue)', fontSize: '2.2rem', fontWeight: '900', fontFamily: '"Times New Roman", Times, serif', lineHeight: '1' }}>1.</span>
+                       <p style={{ margin: 0, color: '#0f172a', fontSize: '1.4rem', fontWeight: '600', lineHeight: '1.6' }}>Masz prawo zachować milczenie. Wszystko, co powiesz, może i zostanie wykorzystane przeciwko Tobie w sądzie.</p>
                     </div>
-                    <p style={{ margin: 0, color: '#e2e8f0', fontSize: '1.1rem', lineHeight: '1.6' }}>
-                      {right.text}
+                    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+                       <span style={{ color: 'var(--lspd-blue)', fontSize: '2.2rem', fontWeight: '900', fontFamily: '"Times New Roman", Times, serif', lineHeight: '1' }}>2.</span>
+                       <p style={{ margin: 0, color: '#0f172a', fontSize: '1.4rem', fontWeight: '600', lineHeight: '1.6' }}>Masz prawo do adwokata. Jeśli Cię na niego nie stać, zostanie Ci on przydzielony z urzędu, o ile jest w mieście.</p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+                       <span style={{ color: 'var(--lspd-blue)', fontSize: '2.2rem', fontWeight: '900', fontFamily: '"Times New Roman", Times, serif', lineHeight: '1' }}>3.</span>
+                       <p style={{ margin: 0, color: '#0f172a', fontSize: '1.4rem', fontWeight: '600', lineHeight: '1.6' }}>Masz prawo do telefonu. Trwa on maksymalnie 2.5 minuty, ilość połączeń jest dowolna, lecz funkcjonariusz musi słyszeć rozmowę.</p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start', background: 'rgba(239, 68, 68, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #ef4444' }}>
+                       <span style={{ color: '#ef4444', fontSize: '2.2rem', fontWeight: '900', fontFamily: '"Times New Roman", Times, serif', lineHeight: '1' }}>!</span>
+                       <p style={{ margin: 0, color: '#b91c1c', fontSize: '1.3rem', fontWeight: '700', lineHeight: '1.6' }}>Jeśli będziesz obrażał funkcjonariuszy, Twoje prawa zostaną Ci natychmiast odebrane.</p>
+                    </div>
+                  </div>
+
+                  {/* Zrzeczenie się praw - Waiver */}
+                  <div style={{ marginTop: '3.5rem', paddingTop: '2.5rem', borderTop: '2px dashed #cbd5e1' }}>
+                    <h3 style={{ color: '#334155', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.1rem', marginBottom: '1rem', fontWeight: 'bold' }}>Waiver of Rights (Zrozumienie Praw)</h3>
+                    <p style={{ color: '#1e293b', fontSize: '1.3rem', fontStyle: 'italic', fontWeight: '600', lineHeight: '1.6' }}>
+                       "Czy zrozumiałeś/aś swoje prawa, tak jak Ci je właśnie przedstawiłem? Mając te prawa na uwadze, czy chcesz teraz ze mną rozmawiać?"
                     </p>
                   </div>
-                ))}
-              </motion.div>
-            </div>
-            
-            <motion.div variants={itemVariant} className="glass-card" style={{ background: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)', display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '1.5rem' }}>
-              <AlertTriangle size={24} color="#ef4444" style={{ flexShrink: 0, marginTop: '2px' }} />
+
+                  {/* Pieczątki i podpisy */}
+                  <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                     <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <img src="/doj_logo.png" alt="DOJ Seal" style={{ width: '80px', height: '80px', filter: 'grayscale(0.2) opacity(0.9)' }} />
+                        <div style={{ color: '#475569', fontSize: '0.85rem', marginTop: '0.8rem', fontWeight: '900', letterSpacing: '1px' }}>DOJ APPROVED & VERIFIED</div>
+                     </div>
+                     <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontFamily: '"Brush Script MT", "Segoe Print", cursive', fontSize: '2.5rem', color: '#0f172a', borderBottom: '2px solid #94a3b8', padding: '0 3rem', transform: 'rotate(-2deg)' }}>Lucas White</div>
+                        <div style={{ color: '#475569', fontSize: '0.95rem', marginTop: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold' }}>Chief of Police, LSPD</div>
+                     </div>
+                  </div>
+               </div>
+            </motion.div>
+
+            {/* Ostrzeżenie */}
+            <motion.div variants={itemVariant} className="glass-card" style={{ background: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)', display: 'flex', alignItems: 'flex-start', gap: '1.5rem', padding: '2rem', maxWidth: '850px', width: '100%' }}>
+              <AlertTriangle size={36} color="#ef4444" style={{ flexShrink: 0 }} />
               <div>
-                <strong style={{ color: '#ef4444', display: 'block', marginBottom: '0.3rem', fontSize: '1.1rem' }}>Zasada poprawnego odczytania</strong>
-                <p style={{ margin: 0, color: '#fca5a5', lineHeight: '1.6' }}>
-                  Prawa Mirandy muszą zostać odczytane w sposób <strong>w pełni słyszalny i zrozumiały</strong> dla zatrzymanego, zanim zostaną mu zadane jakiekolwiek pytania mogące posłużyć jako dowód w sądzie.
+                <strong style={{ color: '#ef4444', display: 'block', marginBottom: '0.5rem', fontSize: '1.3rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Zasada poprawnego odczytania</strong>
+                <p style={{ margin: 0, color: '#fca5a5', lineHeight: '1.6', fontSize: '1.15rem' }}>
+                  Prawa Mirandy muszą zostać odczytane w sposób <strong>w pełni słyszalny i zrozumiały</strong> dla zatrzymanego, zanim zostaną mu zadane jakiekolwiek pytania mogące posłużyć jako dowód w sądzie. Zawsze domagaj się potwierdzenia ich zrozumienia (Waiver)!
                 </p>
               </div>
             </motion.div>
