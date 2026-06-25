@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Book, Shield, Users, Radio, AlertTriangle, Crosshair, Map, ShieldAlert, FileText, ChevronRight, Tablet, Car, HandMetal, AlertCircle, Banknote, HelpCircle, GraduationCap, ChevronDown, Activity, Siren, ClipboardList, Check } from 'lucide-react';
+import { Book, Shield, Users, Radio, AlertTriangle, Crosshair, Map, ShieldAlert, FileText, ChevronRight, Tablet, Car, HandMetal, AlertCircle, Banknote, HelpCircle, GraduationCap, ChevronDown, Activity, Siren, ClipboardList, Check, Package, MapPin, Shirt, Ban } from 'lucide-react';
 
 const SECTIONS = [
   { id: 'zasady', title: 'Podstawowe Zasady', icon: Shield },
@@ -39,114 +39,176 @@ function KnowledgeBase() {
     switch (activeTab) {
       case 'zasady':
         return (
-          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <motion.div variants={itemVariant} className="glass-card" style={{ borderLeft: '4px solid #ef4444' }}>
-              <h3 style={{ color: '#ef4444', marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <AlertTriangle /> PRIORYTET ABSOLUTNY
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            
+            {/* PRIORYTET ABSOLUTNY */}
+            <motion.div variants={itemVariant} className="glass-card" style={{ background: 'linear-gradient(to right, rgba(239, 68, 68, 0.1), rgba(0,0,0,0.2))', border: '1px solid rgba(239, 68, 68, 0.3)', borderLeft: '4px solid #ef4444' }}>
+              <h3 style={{ color: '#ef4444', marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.4rem' }}>
+                <AlertTriangle size={28} /> PRIORYTET ABSOLUTNY
               </h3>
-              <p style={{ margin: 0, fontSize: '1.1rem' }}>
+              <p style={{ margin: 0, color: '#fca5a5', fontSize: '1.15rem', lineHeight: '1.6' }}>
                 <strong>KOD 0 to ŚWIĘTOŚĆ</strong> i ma zawsze NAJWYŻSZY PRIORYTET — rzucasz wszystko, nie ważne co robisz i reagujesz!
               </p>
             </motion.div>
 
-            <motion.div variants={itemVariant} className="glass-card">
-              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><ShieldAlert size={20} /> Regulamin i Zachowanie</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
-                  <div style={{ color: '#10b981' }}><Shield size={18} /></div>
-                  <span style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>ZAWSZE</strong> oddawaj szacunek i wykonuj polecenia wyższego stopnia (nawet gdy się z tym nie zgadzasz).</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
-                  <div style={{ color: '#eab308' }}><HandMetal size={18} /></div>
-                  <span style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>SALUTOWANIE</strong>: Pamiętaj o salutowaniu do wyższego stopnia (salutujemy tylko do stopnia bezpośrednio wyżej).</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(239, 68, 68, 0.05)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
-                  <div style={{ color: '#ef4444' }}><Users size={18} /></div>
-                  <span style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>NIGDY</strong> nie zostawiaj samego partnera przy zdarzeniu — miej go zawsze na widoku. Przy zatrzymaniu drogowym <strong>każdy wysiada z radiowozu!</strong></span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
-                  <div style={{ color: 'var(--lspd-blue)' }}><Book size={18} /></div>
-                  <span style={{ color: 'var(--text-muted)' }}>Nie podważaj decyzji wyższej rangi. Nigdy nie wchodź w pół-zdania przełożonym.</span>
-                </div>
-              </div>
-            </motion.div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+              
+              {/* Regulamin i Zachowanie */}
+              <motion.div variants={itemVariant} className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.5rem', fontSize: '1.3rem' }}>
+                  <ShieldAlert size={24} /> Regulamin i Zachowanie
+                </h3>
+                <ul style={{ padding: 0, margin: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-muted)' }}>
+                  <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '8px' }}>
+                    <Shield size={20} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}><strong style={{ color: '#fff' }}>ZAWSZE</strong> oddawaj szacunek i wykonuj polecenia wyższego stopnia (nawet gdy się z tym nie zgadzasz).</span>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '8px' }}>
+                    <HandMetal size={20} color="#eab308" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}><strong style={{ color: '#fff' }}>SALUTOWANIE</strong>: Pamiętaj o salutowaniu do wyższego stopnia (salutujemy tylko do stopnia bezpośrednio wyżej).</span>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', background: 'rgba(239, 68, 68, 0.05)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(239, 68, 68, 0.1)' }}>
+                    <Users size={20} color="#ef4444" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}><strong style={{ color: '#fff' }}>NIGDY</strong> nie zostawiaj samego partnera przy zdarzeniu — miej go zawsze na widoku. Przy zatrzymaniu drogowym <strong>każdy wysiada z radiowozu!</strong></span>
+                  </li>
+                  <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '8px' }}>
+                    <Book size={20} color="var(--lspd-blue)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Nie podważaj decyzji wyższej rangi. Nigdy nie wchodź w pół-zdania przełożonym.</span>
+                  </li>
+                </ul>
+              </motion.div>
 
-            <motion.div variants={itemVariant} className="glass-card">
-              <h3 style={{ marginTop: 0, color: '#eab308' }}>System Zgłaszania Pytań (Chain of Command)</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between' }}>
-                  <span><strong style={{ color: 'var(--lspd-blue)' }}>Officer I – III+1</strong></span>
-                  <span style={{ color: 'var(--text-muted)' }}>zgłasza do ➔ <strong style={{ color: '#e2e8f0' }}>Sergeant</strong></span>
+              {/* Chain of Command */}
+              <motion.div variants={itemVariant} className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ marginTop: 0, color: '#eab308', display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.5rem', fontSize: '1.3rem' }}>
+                  <Users size={24} /> Chain of Command
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <div style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1))', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong style={{ color: 'var(--lspd-blue)', fontSize: '1.1rem' }}>Officer I – III+1</strong>
+                    <span style={{ color: 'var(--text-muted)' }}>➔ <strong style={{ color: '#e2e8f0' }}>Sergeant</strong></span>
+                  </div>
+                  <div style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1))', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong style={{ color: 'var(--lspd-blue)', fontSize: '1.1rem' }}>Sgt / Staff / Master</strong>
+                    <span style={{ color: 'var(--text-muted)' }}>➔ <strong style={{ color: '#e2e8f0' }}>Lieutenant</strong></span>
+                  </div>
+                  <div style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1))', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong style={{ color: 'var(--lspd-blue)', fontSize: '1.1rem' }}>Lieutenant I/II</strong>
+                    <span style={{ color: 'var(--text-muted)' }}>➔ <strong style={{ color: '#e2e8f0' }}>Captain</strong></span>
+                  </div>
+                  <div style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1))', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong style={{ color: 'var(--lspd-blue)', fontSize: '1.1rem' }}>Captain</strong>
+                    <span style={{ color: 'var(--text-muted)' }}>➔ <strong style={{ color: '#e2e8f0' }}>Commander+</strong></span>
+                  </div>
                 </div>
-                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between' }}>
-                  <span><strong style={{ color: 'var(--lspd-blue)' }}>Sergeant / Staff / Master</strong></span>
-                  <span style={{ color: 'var(--text-muted)' }}>zgłasza do ➔ <strong style={{ color: '#e2e8f0' }}>Lieutenant</strong></span>
-                </div>
-                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between' }}>
-                  <span><strong style={{ color: 'var(--lspd-blue)' }}>Lieutenant I/II</strong></span>
-                  <span style={{ color: 'var(--text-muted)' }}>zgłasza do ➔ <strong style={{ color: '#e2e8f0' }}>Captain</strong></span>
-                </div>
-                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between' }}>
-                  <span><strong style={{ color: 'var(--lspd-blue)' }}>Captain</strong></span>
-                  <span style={{ color: 'var(--text-muted)' }}>zgłasza do ➔ <strong style={{ color: '#e2e8f0' }}>Commander / Zarząd</strong></span>
-                </div>
-              </div>
-            </motion.div>
 
-            <motion.div variants={itemVariant} className="glass-card" style={{ borderLeft: '4px solid #eab308' }}>
-              <h3 style={{ color: '#eab308', marginTop: 0 }}>KAMIZELKA / PISTOLET CIĘŻKI</h3>
-              <p style={{ margin: 0, color: 'var(--text-muted)' }}>
-                Funkcjonariusz ze stopniem <strong>Porucznika II+</strong> może pobrać kamizelkę kuloodporną z wkładem balistycznym na regularny patrol. Pistolet ciężki może pobrać funkcjonariusz ze stopniem <strong>Kapitana+</strong> podczas poziomu zagrożenia terrorystycznego.
-              </p>
-            </motion.div>
+                <div style={{ marginTop: '2rem', padding: '1.2rem', background: 'rgba(234, 179, 8, 0.05)', borderRadius: '8px', borderLeft: '3px solid #eab308' }}>
+                  <strong style={{ color: '#eab308', display: 'block', marginBottom: '0.5rem' }}>KAMIZELKA / PISTOLET CIĘŻKI</strong>
+                  <p style={{ margin: 0, color: '#fef08a', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                    Kamizelka na patrol: <strong>Porucznik II+</strong>.<br/>
+                    Pistolet ciężki w kodzie terrorystycznym: <strong>Kapitan+</strong>.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         );
 
       case 'wewnetrzne':
         return (
-          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <motion.div variants={itemVariant} className="glass-card">
-              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>1. Kontrabanda i Skonfiskowane Przedmioty</h3>
-              <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.8', margin: 0 }}>
-                <li>Nieopodatkowane pieniądze muszą trafić do depozytu pod stwierdzeniem "Wypierz pieniądze". <strong>Przywłaszczanie = postępowanie IAD.</strong></li>
-                <li>Narkotyki MUSZĄ trafić do depozytu na komendzie. Nie wyrzucamy, nie przywłaszczamy.</li>
-                <li>Broń krótka — do zbrojowni z 1 pociskiem. Broń długa — z ilością amunicji zebranej + wpis do ewidencji #zbrojownia.</li>
-                <li>Modyfikacje broni (celownik, tłumik, magazynek) → zarzut "Modyfikacja broni palnej" (10 mies. + 25 000$).</li>
-                <li>Rzeczy "lotne" bez właściciela mogą zostać sprzedane w Lombardzie.</li>
-              </ul>
-              <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
-                <p style={{ margin: '0 0 1rem 0', color: '#e2e8f0' }}>
-                  <strong style={{ color: 'var(--lspd-blue)' }}>Lokalizacja Magazynu:</strong> Magazyn dowodowy znajduje się w korytarzu między zbrojownią a szatnią z ubraniami, drugie drzwi z prawej.
-                </p>
-                <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img 
-                    src="/magazyn.png?v=3" 
-                    alt="Szafka w magazynie dowodowym" 
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
-                    onClick={() => setLightboxImg('/magazyn.png?v=3')}
-                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                  />
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            
+            {/* Kontrabanda */}
+            <motion.div variants={itemVariant} className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
+              <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '1.5rem', borderBottom: '1px solid rgba(59, 130, 246, 0.2)' }}>
+                <h3 style={{ margin: 0, color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.4rem' }}>
+                  <Package size={24} /> 1. Kontrabanda i Skonfiskowane Przedmioty
+                </h3>
+              </div>
+              <div style={{ padding: '1.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                <ul style={{ padding: 0, margin: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-muted)' }}>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <Check size={20} color="#60a5fa" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Nieopodatkowane pieniądze trafiają do depozytu ("Wypierz pieniądze"). <strong style={{ color: '#ef4444' }}>Przywłaszczanie = IAD.</strong></span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <Check size={20} color="#60a5fa" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Narkotyki <strong>MUSZĄ</strong> trafić do depozytu na komendzie. Nie wyrzucamy, nie bierzemy.</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <Check size={20} color="#60a5fa" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Broń krótka — do zbrojowni z 1 pociskiem. Broń długa — z zebraną amunicją + wpis do ewidencji.</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <Check size={20} color="#60a5fa" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Modyfikacje broni (celownik, tłumik) to zarzut <strong>"Modyfikacja broni palnej"</strong> (10 mies. + 25k$).</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <Check size={20} color="#60a5fa" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Rzeczy "lotne" bez właściciela = lombard.</span>
+                  </li>
+                </ul>
+
+                <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <strong style={{ color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><MapPin size={18} /> Lokalizacja Magazynu Dowodowego</strong>
+                    <p style={{ margin: '0.5rem 0 0 0', color: '#cbd5e1', fontSize: '0.9rem', lineHeight: '1.5' }}>Korytarz między zbrojownią a szatnią, drugie drzwi z prawej.</p>
+                  </div>
+                  <div style={{ flex: 1, position: 'relative', minHeight: '150px' }}>
+                    <img 
+                      src="/magazyn.png?v=3" 
+                      alt="Szafka w magazynie dowodowym" 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'zoom-in', transition: 'transform 0.3s ease' }} 
+                      onClick={() => setLightboxImg('/magazyn.png?v=3')}
+                      onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                      onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariant} className="glass-card">
-              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>2. Umundurowanie</h3>
-              <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.8', margin: 0 }}>
-                <li>Modyfikacje munduru są kategorycznie zakazane bez autoryzacji Zarządu. Brak akceptacji = IAD.</li>
-                <li>Mundur motocyklowy — tylko podczas poruszania się jednostką MARY.</li>
-                <li>Mundur galowy — tylko na oficjalne apele/uroczystości.</li>
-                <li>Dłuższe włosy muszą być spinane z tyłu głowy.</li>
-              </ul>
-            </motion.div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+              
+              {/* Umundurowanie */}
+              <motion.div variants={itemVariant} className="glass-card" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.02), rgba(0,0,0,0.2))' }}>
+                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.5rem', fontSize: '1.3rem' }}>
+                  <Shirt size={24} /> 2. Umundurowanie
+                </h3>
+                <ul style={{ padding: 0, margin: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-muted)' }}>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <AlertCircle size={20} color="#eab308" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Modyfikacje munduru zakazane bez autoryzacji Zarządu. <strong>Brak akceptacji = IAD.</strong></span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <AlertCircle size={20} color="#eab308" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Mundur motocyklowy <strong>tylko</strong> podczas jazdy jednostką MARY.</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <AlertCircle size={20} color="#eab308" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Mundur galowy — oficjalne apele i uroczystości.</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+                    <AlertCircle size={20} color="#eab308" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ lineHeight: '1.6' }}>Dłuższe włosy muszą być <strong>spinane z tyłu głowy</strong>.</span>
+                  </li>
+                </ul>
+              </motion.div>
 
-            <motion.div variants={itemVariant} className="glass-card" style={{ borderLeft: '4px solid #ef4444' }}>
-              <h3 style={{ color: '#ef4444', marginTop: 0 }}>ZAKAZ BEZWZGLĘDNY: ALKOHOL I NARKOTYKI</h3>
-              <p style={{ margin: 0, color: 'var(--text-muted)' }}>
-                Wejście lub przebywanie na służbie pod wpływem alkoholu/narkotyków jest kategorycznie zakazane. Jednostka IAD ma prawo do narkotestów KAŻDEGO funkcjonariusza. Wykrycie = degradacja lub zwolnienie dyscyplinarne.
-              </p>
-            </motion.div>
+              {/* ZAKAZ ALKOHOL I NARKOTYKI */}
+              <motion.div variants={itemVariant} className="glass-card" style={{ background: 'linear-gradient(to bottom right, rgba(239, 68, 68, 0.05), rgba(0,0,0,0.5))', border: '1px solid rgba(239, 68, 68, 0.2)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <h3 style={{ color: '#ef4444', marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.3rem', marginBottom: '1.5rem' }}>
+                  <Ban size={24} /> ALKOHOL I NARKOTYKI
+                </h3>
+                <p style={{ margin: '0 0 1rem 0', color: '#fca5a5', fontSize: '1.1rem', lineHeight: '1.6' }}>
+                  Wejście lub przebywanie na służbie pod wpływem jest <strong>kategorycznie zakazane</strong>.
+                </p>
+                <div style={{ background: 'rgba(0,0,0,0.4)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid #ef4444', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                  Jednostka IAD ma prawo do narkotestów KAŻDEGO funkcjonariusza w dowolnym momencie. Wykrycie równa się <strong>degradacji lub zwolnieniu dyscyplinarnemu</strong>.
+                </div>
+              </motion.div>
+            </div>
+
           </motion.div>
         );
 
@@ -726,25 +788,61 @@ function KnowledgeBase() {
       case 'poscig':
         return (
           <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <motion.div variants={itemVariant} className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
-              <div style={{ background: 'rgba(30,95,196,0.15)', padding: '1rem', borderBottom: '1px solid rgba(30,95,196,0.2)' }}>
-                <h3 style={{ margin: 0, color: 'var(--lspd-blue)' }}>Kody Pościgowe (Nadaje SV)</h3>
-              </div>
-              <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ borderLeft: '3px solid #facc15', paddingLeft: '1rem' }}>
-                  <strong style={{ color: '#facc15' }}>KOD ŻÓŁTY</strong>
-                  <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Po 5 minutach ucieczki lub jazda pod prąd / bardzo niebezpiecznie.</p>
-                  <p style={{ margin: 0, fontSize: '0.85rem' }}>• Blokady nieruchome<br/>• PIT/BOX/RAM poza miastem do 80 km/h<br/>• Kolczatki poza miastem</p>
+            <motion.div variants={itemVariant}>
+              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                <Siren size={24} /> Kody Pościgowe (Nadaje SV)
+              </h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                
+                {/* ŻÓŁTY */}
+                <div style={{ background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.05) 0%, rgba(0,0,0,0) 100%)', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.2)', overflow: 'hidden' }}>
+                  <div style={{ background: 'rgba(234, 179, 8, 0.1)', padding: '1rem', borderBottom: '1px solid rgba(234, 179, 8, 0.2)' }}>
+                    <strong style={{ color: '#fde047', fontSize: '1.2rem', letterSpacing: '1px' }}>KOD ŻÓŁTY</strong>
+                  </div>
+                  <div style={{ padding: '1.2rem' }}>
+                    <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)' }}>Po <strong>5 minutach</strong> ucieczki, jazda pod prąd lub bardzo niebezpieczna.</p>
+                    <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#cbd5e1', fontSize: '0.9rem' }}>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Blokady nieruchome</li>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> PIT/BOX/RAM (poza miastem do 80 km/h)</li>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Kolczatki (poza miastem)</li>
+                    </ul>
+                  </div>
                 </div>
-                <div style={{ borderLeft: '3px solid #ef4444', paddingLeft: '1rem' }}>
-                  <strong style={{ color: '#ef4444' }}>KOD CZERWONY</strong>
-                  <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Po 10 min, zmiana pojazdu, zabranie pasażera, chodnik, strzały z auta.</p>
-                  <p style={{ margin: 0, fontSize: '0.85rem' }}>• Blokady wszędzie<br/>• PIT/BOX/RAM w mieście do 80 km/h, poza miastem do 160 km/h<br/>• Kolczatki wszędzie<br/>• Możliwość strzelania w opony</p>
+
+                {/* CZERWONY */}
+                <div style={{ background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(0,0,0,0) 100%)', borderRadius: '12px', border: '1px solid rgba(239, 68, 68, 0.2)', overflow: 'hidden' }}>
+                  <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderBottom: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                    <strong style={{ color: '#fca5a5', fontSize: '1.2rem', letterSpacing: '1px' }}>KOD CZERWONY</strong>
+                  </div>
+                  <div style={{ padding: '1.2rem' }}>
+                    <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)' }}>Po <strong>10 minutach</strong>, zmiana pojazdu, pasażer, chodnik, strzały.</p>
+                    <ul style={{ margin: '0 0 1rem 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#cbd5e1', fontSize: '0.9rem' }}>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Blokady wszędzie</li>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> PIT/BOX/RAM (poza do 160 km/h, miasto 80 km/h)</li>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Kolczatki wszędzie</li>
+                    </ul>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fca5a5', fontSize: '0.85rem', background: 'rgba(239, 68, 68, 0.1)', padding: '0.5rem', borderRadius: '4px' }}>
+                      <AlertTriangle size={14} /> <strong>Możliwość strzelania w opony!</strong>
+                    </div>
+                  </div>
                 </div>
-                <div style={{ borderLeft: '3px solid #991b1b', paddingLeft: '1rem' }}>
-                  <strong style={{ color: '#991b1b' }}>KOD CZARNY</strong>
-                  <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Strzały do funkcjonariuszy/przechodniów, potrącenia. Zagrożenie życia.</p>
-                  <p style={{ margin: 0, fontSize: '0.85rem' }}>• Blokady wszędzie<br/>• PIT/BOX/RAM bez limitu prędkości<br/>• Strzały do kierowcy (Zatrzymać za wszelką cenę)</p>
+
+                {/* CZARNY */}
+                <div style={{ background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0,0,0,0) 100%)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.2)', overflow: 'hidden' }}>
+                  <div style={{ background: 'rgba(255, 255, 255, 0.1)', padding: '1rem', borderBottom: '1px solid rgba(255, 255, 255, 0.2)' }}>
+                    <strong style={{ color: '#fff', fontSize: '1.2rem', letterSpacing: '1px' }}>KOD CZARNY</strong>
+                  </div>
+                  <div style={{ padding: '1.2rem' }}>
+                    <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)' }}>Strzały do FP/przechodniów, potrącenia. Zagrożenie życia.</p>
+                    <ul style={{ margin: '0 0 1rem 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#cbd5e1', fontSize: '0.9rem' }}>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Blokady wszędzie</li>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> PIT/BOX/RAM bez limitu prędkości</li>
+                      <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={16} color="#ef4444" /> Strzały w kierunku kierowcy</li>
+                    </ul>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', color: '#ef4444', fontSize: '0.85rem', background: '#000', border: '1px solid #333', padding: '0.5rem', borderRadius: '4px' }}>
+                      <strong style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><AlertTriangle size={14} /> ZATRZYMAĆ ZA WSZELKĄ CENĘ</strong>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -778,22 +876,36 @@ function KnowledgeBase() {
       case 'konwoj':
         return (
           <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <motion.div variants={itemVariant} className="glass-card">
-              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Kryteria Organizacji Konwoju</h3>
-              <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.8', margin: 0 }}>
-                <li>Minimum 6 funkcjonariuszy na służbie.</li>
-                <li>Obecność osoby kompetentnej (Sergeant+).</li>
-                <li>Obywatel ma wyrok minimum 90 miesięcy.</li>
-                <li>Każdy biorący udział ZAKŁADA kamizelkę kuloodporną (nie pytamy o autoryzację).</li>
-              </ul>
-            </motion.div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem' }}>
+              <motion.div variants={itemVariant} style={{ background: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.05), rgba(0,0,0,0.2))', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.2)' }}>
+                <h3 style={{ marginTop: 0, color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem', fontSize: '1.3rem' }}>
+                  <ClipboardList size={24} /> Kryteria Organizacji Konwoju
+                </h3>
+                <ul style={{ padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem', color: 'var(--text-muted)' }}>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}><Check size={20} color="#4ade80" style={{ flexShrink: 0, marginTop: '2px' }} /> <span>Minimum <strong>6 funkcjonariuszy</strong> na służbie.</span></li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}><Check size={20} color="#4ade80" style={{ flexShrink: 0, marginTop: '2px' }} /> <span>Obecność osoby kompetentnej <strong>(Sergeant+)</strong>.</span></li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}><Check size={20} color="#4ade80" style={{ flexShrink: 0, marginTop: '2px' }} /> <span>Obywatel ma wyrok minimum <strong>90 miesięcy</strong>.</span></li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}><Check size={20} color="#4ade80" style={{ flexShrink: 0, marginTop: '2px' }} /> <span>Każdy biorący udział <strong>ZAKŁADA kamizelkę kuloodporną</strong> (nie pytamy o autoryzację).</span></li>
+                </ul>
+              </motion.div>
 
-            <motion.div variants={itemVariant} className="glass-card" style={{ borderLeft: '4px solid #ef4444' }}>
-              <h3 style={{ color: '#ef4444', marginTop: 0 }}>⚠ KONWÓJ = RUCHOMY KOD CZARNY</h3>
-              <p style={{ margin: 0, color: 'var(--text-muted)' }}>
-                Konwój jedzie stale ok. 80 km/h. Każde zagrożenie eliminujemy po 1 komunikacie. Pierwsze strzały w opony, drugie w kierowcę. U1 i Ostatnia jednostka włączają KOD 3, reszta KOD 2. Do więzienia wjeżdża TYLKO więźniarka.
-              </p>
-            </motion.div>
+              <motion.div variants={itemVariant} style={{ background: 'linear-gradient(to bottom right, rgba(239, 68, 68, 0.05), rgba(0,0,0,0.5))', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(239, 68, 68, 0.3)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <h3 style={{ color: '#ef4444', marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.3rem', marginBottom: '1.5rem' }}>
+                  <AlertTriangle size={24} /> KONWÓJ = RUCHOMY KOD CZARNY
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: '#fca5a5', lineHeight: '1.6' }}>
+                  <p style={{ margin: 0 }}>
+                    Konwój jedzie stale ok. <strong>80 km/h</strong>.
+                  </p>
+                  <p style={{ margin: 0, paddingLeft: '1rem', borderLeft: '3px solid #ef4444' }}>
+                    Każde zagrożenie eliminujemy po 1 komunikacie. Pierwsze strzały lecą w opony, drugie prosto w kierowcę.
+                  </p>
+                  <p style={{ margin: 0 }}>
+                    <strong>U1 i Ostatnia jednostka</strong> włączają KOD 3, reszta KOD 2. Do więzienia wjeżdża <strong>TYLKO więźniarka</strong>.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
 
             <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
               {[
