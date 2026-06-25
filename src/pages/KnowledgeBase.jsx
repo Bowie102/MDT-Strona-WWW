@@ -49,17 +49,25 @@ function KnowledgeBase() {
             </motion.div>
 
             <motion.div variants={itemVariant} className="glass-card">
-              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Regulamin i Zachowanie</h3>
-              <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.8', margin: 0 }}>
-                <li><strong>ZAWSZE</strong> oddawaj szacunek do wyższego stopnia.</li>
-                <li><strong>ZAWSZE</strong> wykonuj polecenia wyższego stopnia, nawet gdy wewnętrznie się z tym nie zgadzasz.</li>
-                <li><strong>ZAWSZE</strong> pamiętaj o salutowaniu do wyższego stopnia (salutujemy tylko do stopnia bezpośrednio wyżej).</li>
-                <li><strong>NIGDY</strong> nie zostawiaj samego partnera przy zdarzeniu — miej go zawsze na widoku.</li>
-                <li>Przy zatrzymaniu drogowym <strong>każdy wysiada z radiowozu!</strong></li>
-                <li>Nie podważaj decyzji innej (szczególnie wyższej) rangi. Nigdy nie wchodź w pół-zdania z wyższym rangą.</li>
-                <li>Jeżeli chcesz zwrócić uwagę FP, zrób to sam-na-sam z kulturą i poszanowaniem.</li>
-                <li>Staraj się zawsze być lojalny wobec innych, a przede wszystkim do swoich przełożonych.</li>
-              </ul>
+              <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><ShieldAlert size={20} /> Regulamin i Zachowanie</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                  <div style={{ color: '#10b981' }}><Shield size={18} /></div>
+                  <span style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>ZAWSZE</strong> oddawaj szacunek i wykonuj polecenia wyższego stopnia (nawet gdy się z tym nie zgadzasz).</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                  <div style={{ color: '#eab308' }}><HandMetal size={18} /></div>
+                  <span style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>SALUTOWANIE</strong>: Pamiętaj o salutowaniu do wyższego stopnia (salutujemy tylko do stopnia bezpośrednio wyżej).</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(239, 68, 68, 0.05)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                  <div style={{ color: '#ef4444' }}><Users size={18} /></div>
+                  <span style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>NIGDY</strong> nie zostawiaj samego partnera przy zdarzeniu — miej go zawsze na widoku. Przy zatrzymaniu drogowym <strong>każdy wysiada z radiowozu!</strong></span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                  <div style={{ color: 'var(--lspd-blue)' }}><Book size={18} /></div>
+                  <span style={{ color: 'var(--text-muted)' }}>Nie podważaj decyzji wyższej rangi. Nigdy nie wchodź w pół-zdania przełożonym.</span>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div variants={itemVariant} className="glass-card">
@@ -109,12 +117,14 @@ function KnowledgeBase() {
                 <p style={{ margin: '0 0 1rem 0', color: '#e2e8f0' }}>
                   <strong style={{ color: 'var(--lspd-blue)' }}>Lokalizacja Magazynu:</strong> Magazyn dowodowy znajduje się w korytarzu między zbrojownią a szatnią z ubraniami, drugie drzwi z prawej.
                 </p>
-                <img 
-                  src="/magazyn.png" 
-                  alt="Szafka w magazynie dowodowym" 
-                  style={{ width: '100%', maxWidth: '600px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', display: 'block', margin: '0 auto', cursor: 'pointer' }} 
-                  onClick={() => setLightboxImg('/magazyn.png')}
-                />
+                <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img 
+                    src="/magazyn.png?v=2" 
+                    alt="Szafka w magazynie dowodowym" 
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} 
+                    onClick={() => setLightboxImg('/magazyn.png?v=2')}
+                  />
+                </div>
               </div>
             </motion.div>
 
@@ -499,22 +509,30 @@ function KnowledgeBase() {
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
                 <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>BOX</h4>
                 <p style={{ margin: 0, color: 'var(--text-muted)' }}>Zablokowanie "w pudełku" przez 4 jednostki. Zaciągnięcie hamulca ręcznego po zablokowaniu.</p>
-                <img src="/box.png" alt="Box" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/box.png')} />
+                <div style={{ width: '100%', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <img src="/box.png?v=2" alt="Box" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', cursor: 'pointer' }} onClick={() => setLightboxImg('/box.png?v=2')} />
+                </div>
               </div>
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
                 <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>Strzałka</h4>
                 <p style={{ margin: 0, color: 'var(--text-muted)' }}>Radiowozy ustawiają się za uciekinierem, tworząc klin lub łuk, zapobiegający nagłemu wyhamowaniu lub zepchnięciu innych jednostek.</p>
-                <img src="/strzalka.png" alt="Strzałka" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/strzalka.png')} />
+                <div style={{ width: '100%', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <img src="/strzalka.png?v=2" alt="Strzałka" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', cursor: 'pointer' }} onClick={() => setLightboxImg('/strzalka.png?v=2')} />
+                </div>
               </div>
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
                 <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>Blokada Drogowa</h4>
                 <p style={{ margin: 0, color: 'var(--text-muted)' }}>Celowe wjechanie w pojazd uciekiniera, aby całkowicie unieruchomić jego maszynę po zablokowaniu drogi ucieczki.</p>
-                <img src="/blokada_drogowa.png" alt="Blokada Drogowa" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/blokada_drogowa.png')} />
+                <div style={{ width: '100%', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <img src="/blokada_drogowa.png?v=2" alt="Blokada Drogowa" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', cursor: 'pointer' }} onClick={() => setLightboxImg('/blokada_drogowa.png?v=2')} />
+                </div>
               </div>
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #facc15' }}>
                 <h4 style={{ margin: '0 0 1rem 0', color: '#facc15' }}>PIT (Precision Immobilization Technique)</h4>
                 <p style={{ margin: 0, color: 'var(--text-muted)' }}>Uderzenie przodem radiowozu w tylny róg uciekającego pojazdu, aby wywołać niekontrolowany obrót i zgaszenie silnika.</p>
-                <img src="/pit.png" alt="PIT" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/pit.png')} />
+                <div style={{ width: '100%', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <img src="/pit.png?v=2" alt="PIT" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', cursor: 'pointer' }} onClick={() => setLightboxImg('/pit.png?v=2')} />
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -541,22 +559,28 @@ function KnowledgeBase() {
             </motion.div>
 
             <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="glass-card" style={{ textAlign: 'center' }}>
-                <strong style={{ color: 'var(--gold)' }}>KOLUMNA</strong>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Używana w mieście. Auta jadą 5 metrów za sobą na jednym pasie.</p>
-                <img src="/kolumna.png" alt="Kolumna" style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/kolumna.png')} />
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
+                <h4 style={{ margin: '0 0 0.5rem 0', color: '#3b82f6' }}>Kolumna</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Używana w mieście. Auta jadą 5 metrów za sobą na jednym pasie.</p>
+                <div style={{ width: '100%', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <img src="/kolumna.png?v=2" alt="Kolumna" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', cursor: 'pointer' }} onClick={() => setLightboxImg('/kolumna.png?v=2')} />
+                </div>
               </div>
 
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
                 <h4 style={{ margin: '0 0 0.5rem 0', color: '#3b82f6' }}>Szachownica</h4>
                 <p style={{ margin: 0, color: 'var(--text-muted)' }}>Formacja polegająca na naprzemiennym ułożeniu radiowozów na pasach ruchu (lewy, prawy, lewy). Przeznaczona dla szybkich konwojów autostradowych. Wyprzedzanie tylko środkiem. Radiowozy jadą asynchronicznie blisko siebie.</p>
-                <img src="/szachownica.png" alt="Szachownica" style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/szachownica.png')} />
+                <div style={{ width: '100%', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <img src="/szachownica.png?v=2" alt="Szachownica" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', cursor: 'pointer' }} onClick={() => setLightboxImg('/szachownica.png?v=2')} />
+                </div>
               </div>
 
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
                 <h4 style={{ margin: '0 0 0.5rem 0', color: '#3b82f6' }}>Żółw</h4>
                 <p style={{ margin: 0, color: 'var(--text-muted)' }}>Skondensowana formacja, w której radiowozy szczelnie otaczają pojazd transportowy ze wszystkich stron (przód, tył, prawy i lewy bok). Najwyższy poziom ochrony używany głównie podczas Kodu Czarnego lub w niebezpiecznych strefach przy niskiej prędkości.</p>
-                <img src="/zolw.png" alt="Żółw" style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '6px', marginTop: '0.5rem', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} onClick={() => setLightboxImg('/zolw.png')} />
+                <div style={{ width: '100%', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', borderRadius: '6px', marginTop: '1rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <img src="/zolw.png?v=2" alt="Żółw" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', cursor: 'pointer' }} onClick={() => setLightboxImg('/zolw.png?v=2')} />
+                </div>
               </div>
             </motion.div>
           </motion.div>
