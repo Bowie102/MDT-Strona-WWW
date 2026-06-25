@@ -324,6 +324,16 @@ function KnowledgeBase() {
               </p>
             </motion.div>
 
+            {/* HIGH COMMAND */}
+            <motion.div variants={itemVariant} className="glass-card" style={{ background: 'linear-gradient(to right, rgba(239, 68, 68, 0.1), rgba(0,0,0,0.3))', border: '1px solid rgba(239, 68, 68, 0.3)', borderLeft: '4px solid #ef4444', padding: '1.5rem' }}>
+              <h4 style={{ color: '#ef4444', margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.3rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <ShieldAlert size={24} /> HIGH COMMAND (01 - 05)
+              </h4>
+              <p style={{ margin: 0, color: '#fca5a5', fontSize: '1.1rem', lineHeight: '1.6' }}>
+                Najwyższą władzę nad <strong>każdym departamentem, wydziałem oraz agencją federalną</strong> sprawuje Zarząd (High Command), czyli osoby ze stopniami od 01 do 05.
+              </p>
+            </motion.div>
+
             {/* Główne Wydziały */}
             <motion.div variants={itemVariant}>
               <h4 style={{ color: 'var(--lspd-blue)', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
