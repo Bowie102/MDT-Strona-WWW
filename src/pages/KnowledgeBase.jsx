@@ -628,36 +628,74 @@ function KnowledgeBase() {
             reqs: 'Od stopnia: Officer I  ·  Wymagane na: Officer II',
             available: true,
             content: (
-              <>
-                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Kim jest Negocjator?</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Ratuje ludzkie życie i zdrowie w sytuacjach kryzysowych. Nie okazuj zdenerwowania, bądź pewny siebie i stanowczy. Negocjator musi być zawsze ubezpieczony.</p>
-                <h4 style={{ color: 'var(--gold)' }}>Procedura — Krok po Kroku</h4>
-                <ol style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>Pierwszy kontakt</strong> — odległość słyszalności. "Los Santos Police Department, co tam się dzieje?".</li>
-                  <li><strong>Legitymacja</strong> — odznaka, imię, nazwisko, numer, stopień.</li>
-                  <li><strong>Zbieranie informacji</strong> — liczba napastników, zakładników, ich stan (każdy musi coś powiedzieć).</li>
-                  <li><strong>Negocjacje</strong> — pytamy o żądania by kupić czas. Decyduje zawsze SV.</li>
-                  <li><strong>Odjazd</strong> — "Negocjator do SV, napastnicy gotowi do odjazdu. Mogę wypuszczać?".</li>
-                </ol>
-                <h4 style={{ color: 'var(--gold)' }}>Tabela Żądań (Maksymalne)</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>Swobodny odjazd:</strong> 1 zakł. (nieposzukiwany), 2 zakł. (poszukiwany), min. 3 zakł. (ponad 5 posz.).</li>
-                  <li><strong>Poziom Czerwony/Czarny:</strong> Min. 2 zakładników.</li>
-                  <li><strong>Brak kolczatek:</strong> 1 zakładnik (min. 0,5km - max 1km od miejsca).</li>
-                  <li><strong>Brak EAGLE (czasowy):</strong> 1 zakładnik (min. 1 min - max 1,5 min).</li>
-                  <li><strong>Brak EAGLE (całkowity):</strong> Jubiler (2), Fleeca (3), Maze Bank (4).</li>
-                  <li><strong>Odwołanie SEU/Mery:</strong> ZAKAZ CAŁKOWITY.</li>
-                  <li><strong>Naprawa pojazdu:</strong> W trakcie pościgu (3 zakł.), przed pościgiem (1 zakł.).</li>
-                  <li><strong>Okup:</strong> Max 2000$ (decyduje SV).</li>
-                  <li style={{ color: '#ef4444' }}><strong>NIGDY:</strong> Nie wydajemy broni palnej, białej, sprzętu ani mundurów!</li>
-                </ul>
-                <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderLeft: '3px solid #ef4444', borderRadius: '4px', marginTop: '1rem' }}>
-                  <strong style={{ color: '#ef4444' }}>Ostrzeżenia i Zerwanie</strong>
-                  <p style={{ margin: '0.5rem 0 0 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                    Max 3 ostrzeżenia (brak kontaktu, agresja, nierealne żądania). Zerwanie następuje gdy: zakładnik ranny, próba ucieczki bez zgody, podstawieni zakładnicy, 100% pewność na udane wejście siłowe.
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                  <h4 style={{ marginTop: 0, color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Shield size={20} /> Cel i Postawa</h4>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Negocjator ratuje ludzkie życie i zdrowie w sytuacjach kryzysowych. Nie okazuj zdenerwowania, bądź pewny siebie, stanowczy i opanowany. <strong>Negocjator musi być zawsze ubezpieczony przez innego funkcjonariusza.</strong></p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Procedura Działania (Krok po Kroku)</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>1.</span> Pierwszy kontakt</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Zawsze na odległość słyszalności. <em>"Los Santos Police Department, co tam się dzieje?"</em></p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>2.</span> Legitymacja</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Odznaka, imię, nazwisko, numer odznaki i stopień.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>3.</span> Zbieranie Info</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Liczba napastników, liczba zakładników i ich stan (każdy musi coś powiedzieć).</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <strong style={{ color: '#fff' }}><span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>4.</span> Negocjacje</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Kupowanie czasu przez pytanie o żądania. Decyzje o ich spełnieniu <strong>zawsze</strong> podejmuje SV.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ background: 'rgba(16, 185, 129, 0.05)', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                  <div style={{ padding: '1rem', borderBottom: '1px solid rgba(16, 185, 129, 0.1)' }}>
+                    <h4 style={{ margin: 0, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Banknote size={20} /> Żądania Napastników (Limity Maksymalne)</h4>
+                  </div>
+                  <div style={{ padding: '1rem' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                      <tbody>
+                        <tr>
+                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Swobodny odjazd</td>
+                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>1 zakł. (nieposzukiwany) / 2 zakł. (poszukiwany) / Min. 3 zakł. (&gt;5 poszukiwanych)</td>
+                        </tr>
+                        <tr>
+                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Brak kolczatek</td>
+                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>1 zakładnik (min. 0.5km, max 1km od miejsca)</td>
+                        </tr>
+                        <tr>
+                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Brak EAGLE</td>
+                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Czasowy: 1 zakładnik (1-1.5 min). Całkowity: Jubiler(2), Fleeca(3), Maze(4).</td>
+                        </tr>
+                        <tr>
+                          <td style={{ padding: '0.5rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Naprawa pojazdu</td>
+                          <td style={{ padding: '0.5rem', color: 'var(--text-muted)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>Przed pościgiem: 1 zakł. / W trakcie pościgu: 3 zakł.</td>
+                        </tr>
+                        <tr>
+                          <td style={{ padding: '0.5rem', color: '#ef4444', fontWeight: 'bold' }}>Czego NIE wolno?</td>
+                          <td style={{ padding: '0.5rem', color: '#ef4444' }}>Odwołać SEU/Mery, Wydać broni (palnej/białej), sprzętu ani mundurów LSPD.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #ef4444' }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={20} /> Ostrzeżenia i Zerwanie Negocjacji</h4>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    Negocjator może wydać <strong>maksymalnie 3 ostrzeżenia</strong> (brak kontaktu, agresja, nierealne żądania). <br/><br/>
+                    <strong>Automatyczne zerwanie i wjazd siłowy następuje gdy:</strong> zakładnik zostanie ranny, napastnicy zaczną uciekać bez zgody, zidentyfikujesz podstawionych zakładników, lub masz 100% pewności na bezpieczne rozwiązanie siłowe.
                   </p>
                 </div>
-              </>
+              </div>
             )
           },
           {
@@ -667,41 +705,59 @@ function KnowledgeBase() {
             reqs: 'Od stopnia: Officer II  ·  Wymagane na: Officer III',
             available: true,
             content: (
-              <>
-                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Czym jest SV?</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Dowodzi akcją. Najwyższy stopniem lub osoba inicjująca pościg. <strong style={{ color: '#ef4444' }}>ANONIMOWOŚĆ SV TO PRIORYTET ABSOLUTNY!</strong></p>
-                <h4 style={{ color: 'var(--gold)' }}>Obowiązki na Akcji</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li>Wyznaczenie negocjatora i obstawy terenu.</li>
-                  <li>Ustalenie jednostek w pościgu (kto sprawdza budynek).</li>
-                  <li>Nakładanie kodów pościgowych.</li>
-                  <li>Wezwanie EMS i wpisywanie poszukiwań.</li>
-                  <li>Rozwiązanie częstotliwości taktycznej po akcji.</li>
-                </ul>
-                <h4 style={{ color: 'var(--gold)' }}>Limity Podczas Napadów (Policja vs Crime)</h4>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', margin: '1rem 0' }}>
-                  <div style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>
-                    <strong style={{ color: 'var(--lspd-blue)' }}>Małe</strong> (Sklep, Kasetka)<br/>
-                    <span style={{ color: 'var(--text-muted)' }}>4 vs 2</span>
-                  </div>
-                  <div style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>
-                    <strong style={{ color: 'var(--lspd-blue)' }}>Średnie</strong> (Banki)<br/>
-                    <span style={{ color: 'var(--text-muted)' }}>8 vs 5</span>
-                  </div>
-                  <div style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', gridColumn: 'span 2' }}>
-                    <strong style={{ color: 'var(--lspd-blue)' }}>Duże</strong> (Human, Pacific, Jubiler)<br/>
-                    <span style={{ color: 'var(--text-muted)' }}>12 vs 8</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(234, 179, 8, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--gold)', textAlign: 'center' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>ANONIMOWOŚĆ SV TO PRIORYTET ABSOLUTNY</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Supervisor to osoba dowodząca akcją. Jest to zawsze osoba najwyższa stopniem lub inicjująca pościg.</p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Kluczowe Obowiązki na Akcji</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Users size={16} color="var(--lspd-blue)"/> Delegacja</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Wyznaczenie negocjatora i pełnej obstawy terenu (zamknięcie strefy).</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={16} color="var(--gold)"/> Pościg</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Ustalenie kolejności jednostek (U1, U2, U3) i nadawanie Kodów Pościgowych.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={16} color="#10b981"/> Radio</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Nakładanie freq taktycznego, wezwanie EMS i rozwiązanie radia po akcji.</p>
+                    </div>
                   </div>
                 </div>
-                <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '1rem', borderLeft: '3px solid var(--lspd-blue)', borderRadius: '4px' }}>
-                  <strong style={{ color: 'var(--lspd-blue)' }}>Zasady użycia EAGLE</strong>
-                  <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                    <li>Zakaz używania w zwykłych pościgach (wyjątek: porwany FP).</li>
-                    <li>Napad na Kasetkę/Sejf: Brak EAGLE.</li>
-                    <li>Napad na Fleeca: Max 1x EAGLE.</li>
+
+                <div>
+                  <h4 style={{ color: 'var(--lspd-blue)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Limity Podczas Napadów (LSPD vs Przestępcy)</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                    <div style={{ background: '#1e293b', padding: '1.25rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #334155' }}>
+                      <div style={{ color: '#94a3b8', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Małe (Sklep, Kasetka)</div>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}><span style={{ color: 'var(--lspd-blue)' }}>4</span> <span style={{ color: '#475569', fontSize: '1rem' }}>vs</span> <span style={{ color: '#ef4444' }}>2</span></div>
+                    </div>
+                    <div style={{ background: '#1e293b', padding: '1.25rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #334155' }}>
+                      <div style={{ color: '#94a3b8', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Średnie (Banki)</div>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}><span style={{ color: 'var(--lspd-blue)' }}>8</span> <span style={{ color: '#475569', fontSize: '1rem' }}>vs</span> <span style={{ color: '#ef4444' }}>5</span></div>
+                    </div>
+                    <div style={{ background: '#1e293b', padding: '1.25rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #334155' }}>
+                      <div style={{ color: '#94a3b8', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Duże (Jubiler, Pacific)</div>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}><span style={{ color: 'var(--lspd-blue)' }}>12</span> <span style={{ color: '#475569', fontSize: '1rem' }}>vs</span> <span style={{ color: '#ef4444' }}>8</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={20} /> Zasady Użycia Helikoptera (EAGLE)</h4>
+                  <p style={{ margin: '0 0 0.5rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                    <strong>Zakaz używania w zwykłych pościgach drogowych</strong> (wyjątkiem jest pościg za porwanym funkcjonariuszem).
+                  </p>
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    <li><strong>Napad na Kasetkę/Sejf:</strong> Bezwzględny zakaz wzywania EAGLE.</li>
+                    <li><strong>Napad na Fleeca Bank:</strong> Dozwolone maksymalnie 1x EAGLE.</li>
                   </ul>
                 </div>
-              </>
+              </div>
             )
           },
           {
@@ -711,16 +767,43 @@ function KnowledgeBase() {
             reqs: 'Od stopnia: Officer III  ·  Wymagane na: Officer III+1',
             available: true,
             content: (
-              <>
-                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Kim jest PWC / APWC?</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Osoba dowodząca dyspozycją jednostek na dzielnicy. Kod radiowy: <strong>00</strong>. Powyżej 8 osób na służbie PWC jest wymagany.</p>
-                <h4 style={{ color: 'var(--gold)' }}>Zasady</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li>Każdy PWC wyznacza sobie Asystenta (APWC).</li>
-                  <li>PWC pilnuje dispatchu, przydziela zgłoszenia, nadzoruje radio.</li>
-                  <li>Kadeci zostają na komendzie przy kodzie Czerwonym i Czarnym.</li>
-                </ul>
-              </>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid var(--lspd-blue)' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#fff' }}>Dowódca Dyspozycji (PWC / APWC)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                    PWC to dowódca i menedżer dyspozycji jednostek na ulicach Los Santos. <br/>
+                    Kod wywoławczy: <strong style={{ color: 'var(--gold)', background: 'rgba(250, 204, 21, 0.1)', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>00</strong>. <br/>
+                    <strong>PWC jest obowiązkowy</strong>, gdy na służbie przebywa powyżej 8 funkcjonariuszy.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Organizacja Pracy</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                    <div style={{ display: 'flex', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <div style={{ color: 'var(--lspd-blue)' }}><Users size={24} /></div>
+                      <div>
+                        <strong style={{ color: '#fff', display: 'block', marginBottom: '0.2rem' }}>Asystent (APWC)</strong>
+                        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>PWC ma obowiązek wyznaczyć swojego asystenta, który pomaga mu w zarządzaniu.</span>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <div style={{ color: 'var(--gold)' }}><Radio size={24} /></div>
+                      <div>
+                        <strong style={{ color: '#fff', display: 'block', marginBottom: '0.2rem' }}>Dispatch i Radio</strong>
+                        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>PWC ciągle pilnuje systemu dispatch, zarządza wysyłaniem jednostek do zgłoszeń i pilnuje porządku na radiu.</span>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', gap: '1rem', background: 'rgba(239, 68, 68, 0.05)', padding: '1rem', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                      <div style={{ color: '#ef4444' }}><ShieldAlert size={24} /></div>
+                      <div>
+                        <strong style={{ color: '#fff', display: 'block', marginBottom: '0.2rem' }}>Kody Czerwony/Czarny</strong>
+                        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>PWC dba o to, by przy wysokich kodach Kadeci zostawali na komendzie w ramach bezpieczeństwa.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )
           },
           {
@@ -730,28 +813,54 @@ function KnowledgeBase() {
             reqs: 'Od stopnia: Officer I  ·  Wymagane na: Officer II',
             available: true,
             content: (
-              <>
-                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Podstawy Ratownictwa (IFAC)</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Kurs IFAC uczy pomocy przedmedycznej przed przyjazdem EMS (Kanał główny: 9, Operacyjny: 11). <strong>Priorytetem jest zawsze bezpieczeństwo funkcjonariusza!</strong></p>
-                <h4 style={{ color: 'var(--gold)' }}>Złota Zasada ABCDE</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>A</strong> (Airway) - Udrożnienie dróg oddechowych.</li>
-                  <li><strong>B</strong> (Breathing) - Sprawdzenie oddechu.</li>
-                  <li><strong>C</strong> (Circulation) - Tamowanie masywnych krwotoków (staza CAT).</li>
-                  <li><strong>D</strong> (Disability) - Ocena przytomności (neurologia).</li>
-                  <li><strong>E</strong> (Exposure) - Badanie urazowe całego ciała.</li>
-                </ul>
-                <h4 style={{ color: 'var(--gold)' }}>Postępowanie przy NZK (Brak pulsu/oddechu)</h4>
-                <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', marginBottom: '1rem' }}>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Wykonywać RKO. Tempo: <strong>100-120 uciśnięć/min</strong> w stosunku <strong>30:2</strong>. U topielców przed uciskami wykonujemy 5 wdechów ratowniczych na płytkiej wodzie.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(16, 185, 129, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #10b981' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={24} /> Individual First Aid Course (IFAC)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie medyczne przygotowujące do ratowania życia na miejscu zdarzenia przed przyjazdem EMS (Main: 9, Op: 11). <strong>Priorytet to zawsze bezpieczeństwo funkcjonariusza!</strong></p>
                 </div>
-                <h4 style={{ color: 'var(--gold)' }}>Urazy i Złamania</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>Postrzały:</strong> Tamowanie krwotoków, hemostatyki. Przy postrzale klatki — opatrunek oddychający na odmę.</li>
-                  <li><strong>Złamania:</strong> Stabilizacja kości szyną Kramera w zastanej pozycji. Nigdy nie nastawiamy kości!</li>
-                  <li><strong>Staza (CAT):</strong> Zakładana 3-5cm nad raną przy obfitym krwotoku kończyn. Zawsze zapisujemy godzinę!</li>
-                </ul>
-              </>
+
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Złoty Standard Ratownictwa — ABCDE</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.03)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                      <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold' }}>A</div>
+                      <div style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>Airway</strong> (Drogi oddechowe) — Otwarcie dróg, sprawdzenie czy nie ma ciał obcych.</div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.03)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                      <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold' }}>B</div>
+                      <div style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>Breathing</strong> (Oddech) — Kontrola oddechu metodą słyszę, widzę, czuję (przez 10s).</div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.03)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                      <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(239, 68, 68, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ef4444', fontWeight: 'bold' }}>C</div>
+                      <div style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#ef4444' }}>Circulation</strong> (Krążenie) — Szybkie tamowanie <strong>masywnych</strong> krwotoków stazą CAT.</div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.03)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                      <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold' }}>D</div>
+                      <div style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>Disability</strong> (Neurologia) — Ocena przytomności i reakcji pacjenta.</div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.03)', padding: '0.75rem 1rem', borderRadius: '6px' }}>
+                      <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold' }}>E</div>
+                      <div style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fff' }}>Exposure</strong> (Ekspozycja) — Szybkie badanie urazowe całego ciała przed przyjazdem EMS.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem' }}>
+                  <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} /> NZK (Brak Pulsu/Oddechu)</h4>
+                    <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Wykonujemy RKO (Resuscytacja krążeniowo-oddechowa). <br/><strong style={{ color: '#fff' }}>Tempo:</strong> 100-120 uciśnięć/min w stosunku <strong style={{ color: '#fff' }}>30 uciśnięć : 2 wdechy</strong>.<br/><br/>U topielców zawsze przed uciskami wykonujemy 5 wdechów ratowniczych po wyciągnięciu z wody.</p>
+                  </div>
+                  
+                  <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid var(--gold)' }}>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><ShieldAlert size={18} /> Krwotoki i Złamania</h4>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                      <li style={{ marginBottom: '0.3rem' }}><strong>Staza taktyczna (CAT):</strong> Zakładana 3-5cm NAD raną przy obfitym krwotoku kończynowym. Zawsze pisakiem na stazie <strong>zapisujemy godzinę</strong>!</li>
+                      <li style={{ marginBottom: '0.3rem' }}><strong>Postrzał w klatkę:</strong> Wymaga specjalnego opatrunku wentylowego (na odmę prężną).</li>
+                      <li><strong>Złamania:</strong> Stabilizacja szyną Kramera w zastanej pozycji. <strong>Nigdy sami nie nastawiamy kości!</strong></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             )
           },
           {
@@ -761,23 +870,39 @@ function KnowledgeBase() {
             reqs: 'Dostępne od: Officer III+1  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
             available: true,
             content: (
-              <>
-                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Rola Pilota EAGLE</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Wsparcie działań z powietrza (pościgi, poszukiwania). Pilot odpowiada za pełne bezpieczeństwo lotu, zachowanie wysokości i koordynację działań.</p>
-                <h4 style={{ color: 'var(--gold)' }}>Procedury Lotu i Komunikaty</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>Start:</strong> Bezwzględny komunikat radiowy: <strong style={{ color: 'var(--lspd-blue)' }}>"Eagle One Up"</strong>.</li>
-                  <li><strong>Lądowanie:</strong> Przy lądowaniu / opuszczeniu: <strong style={{ color: 'var(--lspd-blue)' }}>"Eagle One Down"</strong>.</li>
-                  <li><strong>Zawis:</strong> Zatrzymanie w powietrzu do obserwacji/oświetlenia terenu.</li>
-                  <li><strong>Lot postępowy:</strong> Dynamiczny lot z wychyleniem tarczy wirnika do śledzenia celu.</li>
-                </ul>
-                <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '1rem', borderLeft: '3px solid var(--lspd-blue)', borderRadius: '4px', marginTop: '1rem' }}>
-                  <strong style={{ color: 'var(--lspd-blue)' }}>Bezpieczeństwo Maszyny</strong>
-                  <p style={{ margin: '0.5rem 0 0 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                    Wykonaj procedurę przedstartową (stan wirników, paliwo). W locie kontroluj sztuczny horyzont, wariometr i obrotomierz. Unikaj przeszkód w locie miejskim (kable, anteny). Awaria silnika wymaga wykorzystania energii wirnika do bezpiecznego lądowania.
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid var(--lspd-blue)' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--lspd-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Oko na Niebie (Pilot EAGLE)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Pełnisz wsparcie działań z powietrza (poszukiwania, pościgi, kody). Pilot odpowiada za pełne bezpieczeństwo lotu, zachowanie separacji wysokościowej i doskonałą koordynację działań naziemnych z radiem.</p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Manewry i Procedury</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={16} color="var(--lspd-blue)"/> Eagle Up / Down</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Każdy start (<em>Eagle One Up</em>) i lądowanie (<em>Eagle One Down</em>) musi być zameldowany z zachowaniem ciszy w eterze.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={16} color="var(--gold)"/> Zawis</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Zatrzymanie maszyny stabilnie w powietrzu. Służy do dokładnej obserwacji strefowej lub oświetlania miejsca akcji szperaczem.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={16} color="#10b981"/> Lot postępowy</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Dynamiczny lot z przechyleniem tarczy wirnika do precyzyjnego podążania za szybko przemieszczającym się obiektem.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Bezpieczeństwo Maszyny i Załogi</h4>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    <strong>Przedstartowo:</strong> Dokładnie sprawdź poziom paliwa i fizyczny stan łopat wirnika. <br/>
+                    <strong>W locie:</strong> Bądź świadomy otoczenia (kable napowietrzne, latarnie, dźwigi) oraz bezustannie kontroluj instrumenty pokładowe (sztuczny horyzont, wariometr, obrotomierz). <br/>
+                    <strong>Awaria silnika:</strong> Jeśli utracisz moc, natychmiast wyrównaj lot aby obracający się wirnik nabrał bezwładności i łagodnie wyhamował opadanie przed przyziemieniem (autorotacja).
                   </p>
                 </div>
-              </>
+              </div>
             )
           },
           {
@@ -795,22 +920,49 @@ function KnowledgeBase() {
             reqs: 'Dostępne od: Officer III  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
             available: true,
             content: (
-              <>
-                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Jednostka Wodna</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Patrolowanie akwenów, korzystanie z łodzi OCEAN oraz stroju nurka. Wymagana kondycja ruchowa, bardzo dobra umiejętność pływania i brak lęków.</p>
-                <h4 style={{ color: 'var(--gold)' }}>Egzamin Praktyczny</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>Tunel Humane:</strong> Próba czasowa (max 4 min) po wyskoku z helikoptera EAGLE i przepłynięcie podziemnego tunelu.</li>
-                  <li><strong>Poszukiwania:</strong> Odnalezienie osoby pod wodą w wyznaczonym obszarze i ewakuacja na brzeg (max 5 min).</li>
-                  <li><strong>Tor Zancudo:</strong> Pływanie jednostką OCEAN na czas (1m 50s).</li>
-                </ul>
-                <h4 style={{ color: 'var(--gold)' }}>Pierwsza Pomoc u Topielca</h4>
-                <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>
-                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>
-                    Przytomnemu <strong>nigdy nie podajemy dłoni</strong> (szok może podtopić ratownika) — podajemy tylko przedmioty do chwycenia. Nieprzytomnemu po wyciągnięciu na płyciznę od razu podajemy <strong>5 wdechów ratowniczych</strong>. Jeśli oddechu nadal brak — rozpoczynamy RKO 30:2.
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #3b82f6' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#3b82f6' }}>Jednostka Wodna (WU)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Jednostka wyspecjalizowana do patrolowania akwenów wodnych przy użyciu łodzi OCEAN oraz profesjonalnego sprzętu nurkowego. Praca w WU wymaga doskonałej kondycji, pewności w wodzie i wybitnej odporności na lęk przed głębokością.</p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Przebieg Egzaminu Praktycznego</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <div style={{ color: 'var(--gold)' }}><Map size={24} /></div>
+                      <div>
+                        <strong style={{ color: '#fff' }}>1. Tunel Humane Labs</strong>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Wyskok z maszyny EAGLE do wody, dopłynięcie i pokonanie pełnego tunelu podziemnego w czasie nie dłuższym niż <strong>4 minuty</strong>.</div>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <div style={{ color: 'var(--lspd-blue)' }}><Crosshair size={24} /></div>
+                      <div>
+                        <strong style={{ color: '#fff' }}>2. Poszukiwania na głębokości</strong>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Odnalezienie obiektu (np. zatopionego manekina/ofiary) pod wodą w wyznaczonym sektorze i jego bezpieczna ewakuacja na ląd. Limit czasowy: <strong>5 minut</strong>.</div>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
+                      <div style={{ color: '#10b981' }}><Radio size={24} /></div>
+                      <div>
+                        <strong style={{ color: '#fff' }}>3. Tor Przeszkód Zancudo</strong>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Test opanowania łodzi morskiej (OCEAN). Pokonanie wyznaczonej na rzece Zancudo trasy omijając przeszkody pod prąd (limit: <strong>1m 50s</strong>).</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ background: 'rgba(250, 204, 21, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid var(--gold)' }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={18} /> Ratownictwo Wodne (Pomoc Topielcom)</h4>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    <strong style={{ color: '#fff' }}>Przytomny poszkodowany w panice:</strong><br/>
+                    NIGDY nie podajemy mu dłoni z brzegu lub z pontonu — z powodu szoku poszkodowany wciągnie Cię do wody i może podtopić! Zawsze rzucajmy/podawajmy przedmioty (kij, lina, koło).<br/><br/>
+                    <strong style={{ color: '#fff' }}>Osoba wyciągnięta i nieprzytomna:</strong><br/>
+                    Gdy pacjent znajdzie się na twardym i płytkim gruncie, <strong>absolutnym priorytetem jest natychmiastowe podanie 5 oddechów ratowniczych</strong>. Jeśli po wdechach pacjent nadal nie odzyskał oddechu ani pulsu, natychmiastowo wdrażamy klasyczne RKO (30:2).
                   </p>
                 </div>
-              </>
+              </div>
             )
           },
           {
@@ -820,23 +972,38 @@ function KnowledgeBase() {
             reqs: 'Dostępne od: Officer II  ·  Szkolenie dodatkowe (Nieobowiązkowe)',
             available: true,
             content: (
-              <>
-                <h3 style={{ marginTop: 0, color: 'var(--lspd-blue)' }}>Oczy Pościgu (MERRY)</h3>
-                <p style={{ color: 'var(--text-muted)' }}>Jednośladowa jednostka zwiadowcza. Śledzi uciekiniera, kontroluje zaułki i przekazuje dokładne meldunki ("Duży ruch, zjazd w boczną ulicę").</p>
-                <h4 style={{ color: 'var(--gold)' }}>Taktyka Offsetowa i Obserwacja</h4>
-                <ul style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-                  <li><strong>Offset:</strong> Nigdy nie jedziemy bezpośrednio za ściganym pojazdem. Trzymamy się krawędzi drogi z boku by uniknąć zderzenia przy hamowaniu.</li>
-                  <li>Odłączamy się by sprawdzić skrzyżowania i zamykać alternatywne trasy, gdy jednostki 4-kołowe trzymają pościg.</li>
-                  <li><strong>Współpraca z EAGLE:</strong> Zgrywamy meldunki radiowe by nie nakładać się na "ptaszka". Eagle widzi ogół, Merry widzi uciekiniera z ziemi.</li>
-                </ul>
-                <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderLeft: '3px solid #ef4444', borderRadius: '4px', marginTop: '1rem' }}>
-                  <strong style={{ color: '#ef4444' }}>Zasady Bezpieczeństwa</strong>
-                  <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                    <li><strong>ABSOLUTNY ZAKAZ:</strong> Motocykl nie używa PIT, nie spycha pojazdów, nie taranuje.</li>
-                    <li>Motocykl nie prowokuje podejrzanego, nie wyzywa go przez megafon, zachowuje "chłodną głowę". MERRY to elitarny i cichy cień.</li>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ background: 'rgba(168, 85, 247, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Oczy Pościgu (MERRY)</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)' }}>Wyspecjalizowana jednośladowa jednostka zwiadowcza. Śledzi uciekiniera ze znakomitą dynamiką i zwinnością w mieście. MARY jest okiem operacji, przekazującym bezbłędnie koordynaty (np. <em>"Duży ruch, zjazd w boczną ulicę"</em>).</p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Taktyka Operacyjna</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Map size={16} color="var(--gold)"/> Offset (Klucz)</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Nigdy nie jedziemy bezpośrednio za uciekinierem. Trzymamy boczny margines drogi (offset) by uniknąć wjechania w auto w razie twardego hamowania lub PITu.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><ShieldAlert size={16} color="var(--lspd-blue)"/> Zabezpieczenie Skrzyżowań</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Kiedy radiowozy pewnie trzymają uciekiniera, MARY może odjechać do boku zamykając boczne drogi i monitorując osie przecinające pościg.</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
+                      <strong style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Radio size={16} color="#10b981"/> Synergia z EAGLE</strong>
+                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>Pilot widzi makro, a Mary widzi mikro (środowisko ulicy). Meldunki radiowe między Eagle a Mary muszą być zsynchronizowane by uniknąć przekrzykiwania.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ background: 'rgba(239, 68, 68, 0.05)', padding: '1.25rem', borderRadius: '8px', borderTop: '3px solid #ef4444' }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertTriangle size={18} /> Ryzyko i Czerwone Linie</h4>
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    <li style={{ marginBottom: '0.5rem' }}><strong style={{ color: '#fff' }}>ABSOLUTNY ZAKAZ:</strong> Jednostka Mary <strong>pod żadnym pozorem</strong> nie inicjuje PIT, nie taranuje, nie spycha z drogi aut. Masa motocykla powoduje śmiertelne ryzyko przy kontakcie z samochodem.</li>
+                    <li><strong style={{ color: '#fff' }}>Emocje na wodzy:</strong> MARY nie krzyczy przez megafon, nie wyzywa uciekiniera. Ta jednostka ma być profesjonalnym, cichym i bezlitosnym cieniem podejrzanego, niezależnie od przebiegu ucieczki.</li>
                   </ul>
                 </div>
-              </>
+              </div>
             )
           }
         ];
