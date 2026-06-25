@@ -910,34 +910,53 @@ function KnowledgeBase() {
 
       case 'miranda':
         return (
-          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <motion.div variants={itemVariant} className="glass-card" style={{ textAlign: 'center', padding: '4rem 2rem', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', opacity: 0.02, pointerEvents: 'none' }}>
-                <FileText size={400} />
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+            
+            <motion.div variants={itemVariant} style={{ background: 'linear-gradient(145deg, #1a1a1a, #0a0a0a)', borderRadius: '16px', padding: '3.5rem', width: '100%', maxWidth: '800px', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 0 100px rgba(0,0,0,0.5)', position: 'relative', overflow: 'hidden' }}>
+              {/* Texture Overlay */}
+              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundImage: 'url("https://www.transparenttextures.com/patterns/leather.png")', opacity: 0.3, mixBlendMode: 'overlay', pointerEvents: 'none' }}></div>
+              
+              <div style={{ position: 'absolute', top: '-10%', left: '-10%', opacity: 0.03, transform: 'rotate(-15deg)', pointerEvents: 'none' }}>
+                <Shield size={500} />
               </div>
-              
-              <ShieldAlert size={56} color="#eab308" style={{ margin: '0 auto 1.5rem', opacity: 0.9 }} />
-              <h2 style={{ color: '#eab308', marginBottom: '2.5rem', fontSize: '2rem', letterSpacing: '1px' }}>Prawa Mirandy (Formułka Zatrzymania)</h2>
-              
-              <div style={{ position: 'relative', maxWidth: '850px', margin: '0 auto', textAlign: 'left' }}>
-                <div style={{ position: 'absolute', top: '-20px', left: '-20px', fontSize: '6rem', color: 'rgba(255,255,255,0.05)', fontFamily: 'serif', lineHeight: '1' }}>"</div>
-                
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '3.5rem', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.2)', borderLeft: '4px solid #eab308', backdropFilter: 'blur(10px)' }}>
-                  <p style={{ fontSize: '1.4rem', lineHeight: '2.2', color: '#e2e8f0', fontStyle: 'italic', margin: 0, textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
-                    Masz prawo zachować milczenie, wszystko co powiesz może i zostanie wykorzystane przeciwko Tobie w sądzie. <br /><br />
-                    Masz prawo do adwokata, jeśli Cię na niego nie stać zostanie Ci takowy przydzielony z urzędu, o ile jest dostępny w mieście. <br /><br />
-                    Masz prawo do telefonu w obecności funkcjonariusza policji który trwa maksymalnie 2,5 minuty, ilość połączeń nieograniczona, tak aby słyszał twoją rozmowę. <br /><br />
-                    Jeśli będziesz obrażał funkcjonariuszy, prawa zostaną Ci odebrane.
-                  </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1 }}>
+                <div style={{ background: 'linear-gradient(135deg, #eab308, #ca8a04)', padding: '15px', borderRadius: '50%', marginBottom: '1.5rem', boxShadow: '0 0 30px rgba(234, 179, 8, 0.2)' }}>
+                   <ShieldAlert size={40} color="#111" />
                 </div>
                 
-                <div style={{ position: 'absolute', bottom: '-40px', right: '-10px', fontSize: '6rem', color: 'rgba(255,255,255,0.05)', fontFamily: 'serif', lineHeight: '1' }}>"</div>
+                <h2 style={{ margin: '0 0 0.5rem 0', color: '#fef08a', fontSize: '2.5rem', fontFamily: 'serif', letterSpacing: '2px', textTransform: 'uppercase', textAlign: 'center', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Miranda Warning</h2>
+                <div style={{ width: '100px', height: '2px', background: 'linear-gradient(90deg, transparent, #eab308, transparent)', marginBottom: '3rem' }}></div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', color: '#e5e7eb', fontSize: '1.3rem', lineHeight: '1.8', fontFamily: 'serif' }}>
+                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #eab308' }}>
+                    <strong>1.</strong> Masz prawo zachować milczenie. Wszystko co powiesz może i zostanie wykorzystane przeciwko Tobie w sądzie.
+                  </p>
+                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #eab308' }}>
+                    <strong>2.</strong> Masz prawo do adwokata. Jeśli Cię na niego nie stać, zostanie Ci takowy przydzielony z urzędu, o ile jest dostępny w mieście.
+                  </p>
+                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #eab308' }}>
+                    <strong>3.</strong> Masz prawo do telefonu w obecności funkcjonariusza. Trwa on maksymalnie 2,5 minuty, ilość połączeń nieograniczona, funkcjonariusz musi słyszeć rozmowę.
+                  </p>
+                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #ef4444' }}>
+                    <strong>4.</strong> Jeśli będziesz obrażał funkcjonariuszy, Twoje prawa zostaną Ci odebrane.
+                  </p>
+                </div>
+
+                <div style={{ width: '100%', marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                  <span>LSPD Official Standard Form</span>
+                  <span>Form #314-A</span>
+                </div>
               </div>
-              
-              <p style={{ marginTop: '3rem', color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '600px', margin: '3rem auto 0' }}>
-                <strong style={{ color: '#ef4444' }}>Ważne:</strong> Prawa Mirandy muszą zostać odczytane w sposób w pełni słyszalny i zrozumiały dla zatrzymanego, zanim zostaną mu zadane jakiekolwiek pytania mogące posłużyć jako dowód w sądzie.
+            </motion.div>
+            
+            <motion.div variants={itemVariant} style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '1.5rem', borderRadius: '8px', maxWidth: '800px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <AlertTriangle size={30} color="#ef4444" style={{ flexShrink: 0 }} />
+              <p style={{ margin: 0, color: '#fca5a5', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                <strong style={{ color: '#ef4444' }}>WAŻNE:</strong> Prawa Mirandy muszą zostać odczytane w sposób w pełni słyszalny i zrozumiały dla zatrzymanego, <strong>zanim</strong> zostaną mu zadane jakiekolwiek pytania mogące posłużyć jako dowód w sądzie (przesłuchanie).
               </p>
             </motion.div>
+
           </motion.div>
         );
 
@@ -1924,7 +1943,7 @@ function KnowledgeBase() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
                 {[
                   {
-                    title: 'Napad na kasetkę / Trucker', limits: 'Limit 5 PD vs 3 Crime',
+                    title: 'Napad na kasetkę', limits: 'Limit 5 PD vs 3 Crime',
                     desc: 'Max. 2 jednostki pościgowe, zakaz pobierania EAGLE.',
                     negos: [
                       { t: 'Wolny odjazd', v: '1 zakładnik' },
@@ -1935,8 +1954,12 @@ function KnowledgeBase() {
                     ]
                   },
                   {
+                    title: 'Napad na Truckera', limits: 'Limit 5 PD vs 3 Crime',
+                    desc: 'Zakaz kampienia na wyjazdach z miasta, trasie docelowej i miejscach zwrotu pojazdu. Prowadzimy normalną próbę zatrzymania. Jeśli jest dobre RP, dajemy się akcji prowadzić (nie zawsze trzeba od razu pitować). Max. 2 jednostki pościgowe, zakaz pobierania EAGLE oraz MARY.'
+                  },
+                  {
                     title: 'Okradanie domów', limits: 'Limit 4 PD vs 2 Crime',
-                    desc: 'Max. 2 jednostki pościgowe, zakaz pobierania EAGLE. Tutaj zwykle nie dojdzie do negocjacji, procedurowo oczekujemy i dajemy szansę napastnikom wsiąść do pojazdu i rozpoczęcie pościgu. Nie wybiegamy jak bydło z tazerami lub kopytami.'
+                    desc: 'Zakaz kampienia na ośkach. Nakaz podejścia do normalnej rozmowy (jeśli nie uciekają). Kreatywne wytłumaczenie RP = gramy w to. Jeśli dojdzie do ucieczki: max. 2 jednostki pościgowe, zakaz EAGLE i MARY. Odpuszczenie raz czy dwa z błahostką nikomu nie zaszkodzi.'
                   },
                   {
                     title: 'Sprzedaż narkotyków', limits: 'Max. 10 FP (2 FP / osoba)',
