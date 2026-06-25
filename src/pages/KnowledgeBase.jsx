@@ -1074,18 +1074,7 @@ function KnowledgeBase() {
                     <p style={{ margin: 0, color: '#fff', fontSize: '1rem', fontStyle: 'italic' }}>"Macie 30 sekund na rozkucie zakładników, wypuszczenie ich z terenu napadu/akcji, oraz wejście do pojazdu i oczekiwanie na zielone światło."</p>
                   </div>
 
-                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px' }}>
-                    <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--gold)' }}>Pytania z Wiedzy Ogólnej (Wymagane)</h5>
-                    <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
-                      <li><strong style={{ color: '#fff' }}>Kim jest NT?</strong> Łącznik między napastnikami a PD. Zawsze druga najważniejsza osoba na akcji po SV.</li>
-                      <li><strong style={{ color: '#fff' }}>Ilu NT może rozmawiać?</strong> Zawsze i tylko JEDEN. Nie może wchodzić sam (zawsze ubezpieczany).</li>
-                      <li><strong style={{ color: '#fff' }}>Procedura (Kroki):</strong> Pierwszy kontakt → Legitymacja → Zbieranie info → Negocjacje → Odjazd → Zakończenie.</li>
-                      <li><strong style={{ color: '#fff' }}>Wolny Odjazd:</strong> Odblokowanie dróg (500m), zdjęcie kolczatek, wejście do pojazdu, zakaz ognia w stronę odjeżdżającego.</li>
-                      <li><strong style={{ color: '#fff' }}>Porwany FP:</strong> Kod czerwony, szukanie przez SV, priorytet to odzyskanie przez niego wyposażenia.</li>
-                      <li><strong style={{ color: '#fff' }}>Ranny Zakładnik:</strong> Priorytet bezwzględny! Dążymy do jego uwolnienia i podania EMS.</li>
-                      <li><strong style={{ color: '#fff' }}>Wydanie sprzętu PD:</strong> Absolutny zakaz (nie wydajemy radiowozów, broni, sprzętu).</li>
-                    </ul>
-                  </div>
+
                 </div>
 
                 {/* ETAP II - PRAKTYKA */}
@@ -1404,6 +1393,11 @@ function KnowledgeBase() {
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Szkolenie ma na celu przygotowanie pilota do trudnych manewrów w przestrzeni miejskiej, sprawdzając jego opanowanie maszyny w sytuacjach stresowych.</p>
                 </div>
 
+                <div style={{ width: '100%', height: '200px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
+                   <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }} />
+                   <img src="/szkolenia/asu_banner.png" alt="ASU Helicopter" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+
                 {/* TEORIA MANEWROWA */}
                 <div>
                   <h4 style={{ color: 'var(--gold)', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>Ciekawostki i Teoria Lotnicza: "Ósemka"</h4>
@@ -1469,6 +1463,11 @@ function KnowledgeBase() {
                 <div style={{ background: 'rgba(244, 63, 94, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #f43f5e' }}>
                   <h3 style={{ margin: '0 0 0.5rem 0', color: '#f43f5e', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Car size={24} /> Teoria SEU (Speed Enforcement Unit)</h3>
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Jednostka wyspecjalizowana do podejmowania pościgów za autami o dużej mocy, wyposażona w sportowe modele radiowozów.</p>
+                </div>
+
+                <div style={{ width: '100%', height: '200px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
+                   <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }} />
+                   <img src="/szkolenia/seu_banner.png" alt="SEU Interceptor" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 60%' }} />
                 </div>
 
                 {/* ZASADY I CIEKAWOSTKI */}
@@ -1562,6 +1561,11 @@ function KnowledgeBase() {
                 <div style={{ background: 'rgba(168, 85, 247, 0.05)', padding: '1.25rem', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
                   <h3 style={{ margin: '0 0 0.5rem 0', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>MARY — Teoria Motocyklowa LSPD</h3>
                   <p style={{ margin: 0, color: 'var(--text-muted)' }}>Jednostka MARY to rozwiązanie dla ciasnej miejskiej dżungli i wąskich szlaków terenowych. Szybka, zwrotna, ale obarczona wysokim ryzykiem wypadku.</p>
+                </div>
+
+                <div style={{ width: '100%', height: '200px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
+                   <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }} />
+                   <img src="/szkolenia/mary_banner.png" alt="MARY Motorcycle" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%' }} />
                 </div>
 
                 {/* ETAP I */}
