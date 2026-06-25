@@ -45,7 +45,7 @@ function KnowledgeBase() {
     });
     
     if (commander) {
-      return `${commander.firstName} ${commander.lastName}`;
+      return `[${commander.badgeNumber || '?'}] ${commander.firstName} ${commander.lastName} (DC: ${commander.discordNick || 'Brak'})`;
     }
     return 'Brak Danych';
   };
@@ -359,10 +359,10 @@ function KnowledgeBase() {
                   Najwyższy organ decyzyjny departamentu (stopnie 01-05). Obejmuje ścisłe dowództwo, które sprawuje <strong>absolutną i nadrzędną władzę</strong> nad każdym departamentem, wydziałem operacyjnym oraz agencją federalną działającą na terenie stanu. Decyzje High Command są ostateczne.
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
-                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>01 Lucas White <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: Kurek)</span></span>
-                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>02 Jeremy Jones <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: Kieras)</span></span>
-                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>03 Daniel Cake <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: MrPlacki)</span></span>
-                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>04 Dustin Moreno <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: monke)</span></span>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>[01] Lucas White <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: Kurek)</span></span>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>[02] Jeremy Jones <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: Kieras)</span></span>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>[03] Daniel Cake <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: MrPlacki)</span></span>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>[04] Dustin Moreno <span style={{ opacity: 0.6, fontSize: '0.85rem', marginLeft: '0.3rem', fontWeight: 'normal' }}>(DC: monke)</span></span>
                 </div>
               </div>
             </motion.div>
