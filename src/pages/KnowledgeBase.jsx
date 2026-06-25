@@ -18,6 +18,7 @@ const SECTIONS = [
   { id: 'napady', title: 'Napady i Limity', icon: Banknote },
   { id: 'miranda', title: 'Prawa Mirandy', icon: FileText },
   { id: 'szkolenia', title: 'Szkolenia', icon: GraduationCap },
+  { id: 'antymustwin', title: 'ANTY MUSTWIN', icon: AlertTriangle },
 ];
 
 function KnowledgeBase() {
@@ -252,36 +253,95 @@ function KnowledgeBase() {
 
       case 'struktura':
         return (
-          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
-            {[
-              { tag: 'IAD', name: 'Internal Affairs Division', desc: 'Infiltrują i analizują działania funkcjonariuszy. Raporty rozpatrywane wewnętrznie.', icon: ShieldAlert, color: 'var(--lspd-blue)' },
-              { tag: 'TD', name: 'Training Division', desc: 'Szkolenia, pilotaż helikoptera, pościgi SEU, procedury strzelania.', icon: GraduationCap, color: 'var(--lspd-blue)' },
-              { tag: 'PD', name: 'Patrol Division', desc: 'Rozłożenie jednostek, patrole, pierwsze reagowanie, egzekwowanie prawa.', icon: Car, color: 'var(--lspd-blue)' },
-              { tag: 'METRO', name: 'Metropolitan Division', special: true, desc: 'Powoływani w przypadku ataków terrorystycznych, Kodu Czarnego lub konwojów.', icon: Crosshair, color: '#eab308' },
-              { tag: 'FIB', name: 'Federal Investigation Bureau', federal: true, desc: 'Rozpracowywanie grup przestępczych oraz infiltracja wewnętrzna.', icon: Shield, color: '#ef4444' },
-              { tag: 'BCSO', name: 'Blaine County Sheriff Office', desc: 'Patrol Sandy Shores, Paleto Bay. Zarządza więzieniem Bolingbroke.', icon: Map, color: 'var(--lspd-blue)' },
-              { tag: 'DTU', name: 'Detective Unit', federal: true, desc: 'Jednostka prowadząca szczegółowe dochodzenia kryminalne.', icon: Activity, color: '#ef4444' },
-              { tag: 'USMS', name: 'United States Marshal Service', federal: true, desc: 'Ochrona świadków, poszukiwanie uciekinierów, transport więźniów.', icon: ShieldAlert, color: '#ef4444' },
-              { tag: 'HWP', name: 'Highway Patrol', desc: 'Bezpieczeństwo na autostradach. Egzekwowanie przepisów ruchu drogowego.', icon: Siren, color: 'var(--lspd-blue)' }
-            ].map((div, idx) => (
-              <motion.div key={idx} variants={itemVariant} className="glass-card" style={{ 
-                borderTop: `3px solid ${div.color}`,
-                display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden'
-              }}>
-                <div style={{ position: 'absolute', right: '-10px', top: '-10px', opacity: 0.05, transform: 'rotate(15deg)' }}>
-                  <div.icon size={120} color={div.color} />
-                </div>
-                
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                  <div style={{ background: `${div.color}20`, padding: '0.5rem', borderRadius: '8px' }}>
-                    <div.icon size={20} color={div.color} />
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+            <motion.div variants={itemVariant} className="glass-card" style={{ padding: '2rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: '-50px', right: '-20px', opacity: 0.05, transform: 'rotate(15deg)' }}><Shield size={300} /></div>
+              <h3 style={{ marginTop: 0, color: '#fff', fontSize: '1.8rem', position: 'relative', zIndex: 1, textTransform: 'uppercase', letterSpacing: '2px' }}>Struktura Dywizji i Agencji</h3>
+              <p style={{ color: 'var(--text-muted)', margin: 0, position: 'relative', zIndex: 1, maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
+                Zbiór wszystkich jednostek operacyjnych, wydziałów specjalnych oraz agencji federalnych współpracujących na terenie całego stanu San Andreas.
+              </p>
+            </motion.div>
+
+            {/* Główne Wydziały */}
+            <motion.div variants={itemVariant}>
+              <h4 style={{ color: 'var(--lspd-blue)', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <Shield size={24} /> Główne Wydziały Departamentów
+              </h4>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
+                {[
+                  { tag: 'PD', name: 'Patrol Division', desc: 'Podstawa działania departamentu. Zajmuje się reagowaniem na wezwania, patrolowaniem ulic, prewencją i wstępnym zabezpieczeniem miejsc zbrodni.', img: '/lspd_logo.png', color: 'var(--lspd-blue)' },
+                  { tag: 'FTD', name: 'Field Training Division', desc: 'Odpowiedzialni za proces akademii policyjnej, egzaminowanie kadetów, oraz przeprowadzanie zaawansowanych szkoleń (np. ASU, SEU, MARY).', img: '/ftd_logo.png', color: '#10b981' },
+                  { tag: 'BCSO', name: 'Blaine County Sheriff', desc: 'Patrol i administracja poza miastem (Sandy Shores, Paleto Bay). Zarządza więzieniem stanowym Bolingbroke Penitentiary.', img: '/bcso_logo.png', color: '#eab308' },
+                  { tag: 'HWP', name: 'Highway Patrol', desc: 'Służba drogowa odpowiedzialna za bezpieczeństwo na autostradach stanowych. Zajmują się pościgami na trasach szybkiego ruchu.', img: '/hwp_logo.png', color: 'var(--lspd-blue)' }
+                ].map((div, idx) => (
+                  <div key={idx} style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))', borderRadius: '12px', border: `1px solid ${div.color}40`, padding: '1.5rem', display: 'flex', gap: '1.5rem', alignItems: 'flex-start', position: 'relative', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.15)', transition: 'transform 0.3s, box-shadow 0.3s', cursor: 'default' }} onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = `0 10px 30px ${div.color}30`; }} onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)'; }}>
+                    <div style={{ position: 'absolute', top: '0', left: '0', width: '4px', height: '100%', background: div.color }}></div>
+                    <img src={div.img} alt={div.tag} style={{ width: '70px', height: '70px', objectFit: 'contain', filter: `drop-shadow(0 0 10px ${div.color}60)` }} />
+                    <div>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <span style={{ background: `${div.color}20`, color: div.color, padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold' }}>{div.tag}</span>
+                          <h5 style={{ margin: 0, color: '#fff', fontSize: '1.1rem' }}>{div.name}</h5>
+                       </div>
+                       <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>{div.desc}</p>
+                    </div>
                   </div>
-                  <span style={{ color: div.color, fontWeight: 'bold', fontSize: '1rem', letterSpacing: '1px' }}>{div.tag}</span>
-                </div>
-                <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem', zIndex: 1 }}>{div.name}</h4>
-                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6', zIndex: 1 }}>{div.desc}</p>
-              </motion.div>
-            ))}
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Jednostki Specjalistyczne i Federalne */}
+            <motion.div variants={itemVariant} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
+               
+               <div>
+                  <h4 style={{ color: '#eab308', borderBottom: '2px solid rgba(234, 179, 8, 0.3)', paddingBottom: '0.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    <Crosshair size={20} /> Wydziały Specjalistyczne
+                  </h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {[
+                      { tag: 'METRO', name: 'Metropolitan Division', desc: 'Powoływani w przypadku ataków terrorystycznych, Kodu Czarnego, zbrojnych napadów lub konwojów więźniów o zaostrzonym rygorze.', img: '/metro_logo.png', color: '#eab308' },
+                      { tag: 'DTU', name: 'Detective Unit', desc: 'Jednostka prowadząca szczegółowe dochodzenia kryminalne, infiltrację gangów oraz operacje pod przykrywką w terenie.', img: '/dtu_logo.png', color: '#f97316' },
+                      { tag: 'IAD', name: 'Internal Affairs Division', desc: 'Biuro spraw wewnętrznych. Infiltrują i analizują działania funkcjonariuszy pod kątem korupcji i łamania regulaminów.', icon: ShieldAlert, color: 'var(--text-muted)' }
+                    ].map((div, idx) => (
+                      <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '8px', borderLeft: `3px solid ${div.color}`, padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}>
+                         {div.img ? <img src={div.img} alt={div.tag} style={{ width: '50px', height: '50px', objectFit: 'contain', filter: `drop-shadow(0 0 8px ${div.color}50)` }} /> : <div.icon size={50} color={div.color} style={{ opacity: 0.7 }} />}
+                         <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
+                               <strong style={{ color: div.color }}>{div.tag}</strong>
+                               <span style={{ color: '#fff', fontSize: '1.05rem' }}>{div.name}</span>
+                            </div>
+                            <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5' }}>{div.desc}</p>
+                         </div>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+
+               <div>
+                  <h4 style={{ color: '#ef4444', borderBottom: '2px solid rgba(239, 68, 68, 0.3)', paddingBottom: '0.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    <ShieldAlert size={20} /> Agencje Federalne
+                  </h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {[
+                      { tag: 'FIB', name: 'Federal Investigation Bureau', desc: 'Rozpracowywanie zorganizowanych grup przestępczych, przeciwdziałanie terroryzmowi oraz nadzór nad bezpieczeństwem narodowym.', icon: Shield, color: '#ef4444' },
+                      { tag: 'USMS', name: 'United States Marshal Service', desc: 'Zapewnienie ochrony ważnych świadków koronnych, poszukiwanie groźnych uciekinierów oraz transport więźniów federalnych.', icon: Crosshair, color: '#f43f5e' }
+                    ].map((div, idx) => (
+                      <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '8px', borderLeft: `3px solid ${div.color}`, padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}>
+                         <div style={{ width: '50px', height: '50px', borderRadius: '8px', background: `${div.color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                           <div.icon size={30} color={div.color} />
+                         </div>
+                         <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
+                               <strong style={{ color: div.color }}>{div.tag}</strong>
+                               <span style={{ color: '#fff', fontSize: '1.05rem' }}>{div.name}</span>
+                            </div>
+                            <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5' }}>{div.desc}</p>
+                         </div>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+
+            </motion.div>
           </motion.div>
         );
 
@@ -768,60 +828,63 @@ function KnowledgeBase() {
                 <Banknote size={20} /> Limity Osób na Napadach (LSPD vs Przestępcy)
               </h3>
               
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                {/* Małe Napady */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                
+                {/* Ogólne Starcia */}
+                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ position: 'absolute', right: '-10px', top: '-10px', opacity: 0.05 }}><Crosshair size={100} /></div>
+                  <h4 style={{ color: '#60a5fa', marginTop: 0, marginBottom: '0.25rem', fontSize: '1.2rem' }}>OGÓLNE STARCIA</h4>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', display: 'block', marginBottom: '1.5rem' }}>Podstawowe limity podczas strzelanin</span>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                     <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '6px' }}>
+                        <span style={{ color: 'var(--text-muted)' }}>Policja vs Crime</span>
+                        <strong style={{ color: '#fff', fontSize: '1.1rem' }}><span style={{ color: '#60a5fa' }}>10</span> vs <span style={{ color: '#ef4444' }}>8</span></strong>
+                     </div>
+                     <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '6px' }}>
+                        <span style={{ color: 'var(--text-muted)' }}>Crime I vs Crime II</span>
+                        <strong style={{ color: '#fff', fontSize: '1.1rem' }}><span style={{ color: '#ef4444' }}>8</span> vs <span style={{ color: '#f97316' }}>8</span></strong>
+                     </div>
+                     <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '6px' }}>
+                        <span style={{ color: 'var(--text-muted)' }}>PD vs Crime I vs Crime II</span>
+                        <strong style={{ color: '#fff', fontSize: '1.1rem' }}><span style={{ color: '#60a5fa' }}>10</span> vs <span style={{ color: '#ef4444' }}>8</span> vs <span style={{ color: '#f97316' }}>8</span></strong>
+                     </div>
+                  </div>
+                </div>
+
+                {/* Mniejsze Przestępstwa */}
                 <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #10b981', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ position: 'absolute', right: '-10px', top: '-10px', opacity: 0.05 }}><Banknote size={100} /></div>
-                  <h4 style={{ color: '#10b981', marginTop: 0, marginBottom: '0.25rem', fontSize: '1.2rem' }}>MAŁE NAPADY</h4>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', display: 'block', marginBottom: '1.5rem' }}>Kasetki sklepowe, małe sklepy</span>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '1rem', borderRadius: '6px' }}>
-                    <div style={{ textAlign: 'center' }}>
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', textTransform: 'uppercase' }}>LSPD</span>
-                      <strong style={{ fontSize: '1.8rem', color: '#3b82f6' }}>4</strong>
-                    </div>
-                    <span style={{ color: '#64748b', fontSize: '1.2rem', fontWeight: 'bold' }}>VS</span>
-                    <div style={{ textAlign: 'center' }}>
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', textTransform: 'uppercase' }}>Przestępcy</span>
-                      <strong style={{ fontSize: '1.8rem', color: '#ef4444' }}>2</strong>
-                    </div>
+                  <h4 style={{ color: '#10b981', marginTop: 0, marginBottom: '0.25rem', fontSize: '1.2rem' }}>MNIEJSZE PRZESTĘPSTWA</h4>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', display: 'block', marginBottom: '1.5rem' }}>Włamania i kradzieże mienia</span>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                     <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '6px' }}>
+                        <span style={{ color: 'var(--text-muted)' }}>Okradanie domów</span>
+                        <strong style={{ color: '#fff', fontSize: '1.1rem' }}><span style={{ color: '#60a5fa' }}>4</span> vs <span style={{ color: '#ef4444' }}>2</span></strong>
+                     </div>
+                     <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '6px' }}>
+                        <span style={{ color: 'var(--text-muted)' }}>Trucker / Napad na kasetkę</span>
+                        <strong style={{ color: '#fff', fontSize: '1.1rem' }}><span style={{ color: '#60a5fa' }}>5</span> vs <span style={{ color: '#ef4444' }}>3</span></strong>
+                     </div>
                   </div>
                 </div>
 
-                {/* Średnie Napady */}
+                {/* Duże Akcje Specjalne */}
                 <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #eab308', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ position: 'absolute', right: '-10px', top: '-10px', opacity: 0.05 }}><ShieldAlert size={100} /></div>
-                  <h4 style={{ color: '#eab308', marginTop: 0, marginBottom: '0.25rem', fontSize: '1.2rem' }}>ŚREDNIE NAPADY</h4>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', display: 'block', marginBottom: '1.5rem' }}>Banki Fleeca</span>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '1rem', borderRadius: '6px' }}>
-                    <div style={{ textAlign: 'center' }}>
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', textTransform: 'uppercase' }}>LSPD</span>
-                      <strong style={{ fontSize: '1.8rem', color: '#3b82f6' }}>8</strong>
-                    </div>
-                    <span style={{ color: '#64748b', fontSize: '1.2rem', fontWeight: 'bold' }}>VS</span>
-                    <div style={{ textAlign: 'center' }}>
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', textTransform: 'uppercase' }}>Przestępcy</span>
-                      <strong style={{ fontSize: '1.8rem', color: '#ef4444' }}>5</strong>
-                    </div>
+                  <h4 style={{ color: '#eab308', marginTop: 0, marginBottom: '0.25rem', fontSize: '1.2rem' }}>DUŻE AKCJE (KONWOJE)</h4>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', display: 'block', marginBottom: '1.5rem' }}>Transport i odbijanie więźniów</span>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                     <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '6px', border: '1px solid rgba(234, 179, 8, 0.3)' }}>
+                        <span style={{ color: 'var(--text-muted)' }}>Konwoje (PD vs Crime)</span>
+                        <strong style={{ color: '#fff', fontSize: '1.1rem' }}><span style={{ color: '#60a5fa' }}>12</span> vs <span style={{ color: '#ef4444' }}>15</span></strong>
+                     </div>
+                     <p style={{ margin: '0.5rem 0 0 0', color: 'var(--text-muted)', fontSize: '0.85rem' }}>Konwój to akcja o najwyższym stopniu ryzyka. Przestępcy otrzymują delikatną przewagę ze względu na specyfikę odbijania z rąk Departamentu.</p>
                   </div>
                 </div>
 
-                {/* Duże Napady */}
-                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #ef4444', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', right: '-10px', top: '-10px', opacity: 0.05 }}><AlertTriangle size={100} /></div>
-                  <h4 style={{ color: '#ef4444', marginTop: 0, marginBottom: '0.25rem', fontSize: '1.2rem' }}>DUŻE NAPADY</h4>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', display: 'block', marginBottom: '1.5rem' }}>Jubiler, Humane Labs, Pacific Standard</span>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '1rem', borderRadius: '6px' }}>
-                    <div style={{ textAlign: 'center' }}>
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', textTransform: 'uppercase' }}>LSPD</span>
-                      <strong style={{ fontSize: '1.8rem', color: '#3b82f6' }}>12</strong>
-                    </div>
-                    <span style={{ color: '#64748b', fontSize: '1.2rem', fontWeight: 'bold' }}>VS</span>
-                    <div style={{ textAlign: 'center' }}>
-                      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', textTransform: 'uppercase' }}>Przestępcy</span>
-                      <strong style={{ fontSize: '1.8rem', color: '#ef4444' }}>8</strong>
-                    </div>
-                  </div>
-                </div>
               </div>
             </motion.div>
 
@@ -1833,6 +1896,209 @@ function KnowledgeBase() {
           </motion.div>
         );
       }
+
+      case 'antymustwin':
+        return (
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <motion.div variants={itemVariant} className="glass-card" style={{ borderLeft: '4px solid #ef4444', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', right: '-10px', top: '-10px', opacity: 0.05, transform: 'rotate(15deg)' }}>
+                <AlertTriangle size={150} color="#ef4444" />
+              </div>
+              <h3 style={{ marginTop: 0, color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.5rem', zIndex: 1, position: 'relative' }}>
+                <AlertTriangle size={24} /> REGULAMIN ANTY MUSTWIN
+              </h3>
+              <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid #ef4444', marginBottom: '1.5rem', zIndex: 1, position: 'relative' }}>
+                <strong style={{ color: '#fca5a5' }}>Czym różni się od kompendium?</strong>
+                <p style={{ margin: '0.5rem 0 0 0', color: 'var(--text-muted)' }}>
+                  Za nieprzestrzeganie zasad z kompendium wyciągane są konsekwencje In Character (IC). Za łamanie zasad z regulaminu <strong>ANTY MUSTWIN</strong>, wyciągane będą konsekwencje Out Of Character (OOC), włącznie z blokadą konta (ban za MUSTWIN).<br/><br/>
+                  Regulamin ten będzie na bieżąco aktualizowany, a o zmianach będziecie informowani.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariant} className="glass-card">
+              <h3 style={{ marginTop: 0, color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '2px solid rgba(234, 179, 8, 0.3)', paddingBottom: '0.5rem' }}>
+                <Banknote size={20} /> Limity na Napady i Negocjacje
+              </h3>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1.5rem' }}>
+                {[
+                  {
+                    title: 'Napad na kasetkę', limits: 'Limit 4 PD vs 2 Crime',
+                    desc: 'Max. 2 jednostki pościgowe, zakaz pobierania EAGLE.',
+                    negos: [
+                      { t: 'Wolny odjazd', v: '1 zakładnik' },
+                      { t: 'Wolny odjazd (poszukiwany pojazd)', v: '1 zakładnik' },
+                      { t: 'Wolny odjazd (kod czerwony+)', v: '2 zakładników' },
+                      { t: 'Brak kolczatek (całkowity)', v: '1 zakładnik' },
+                      { t: 'Naprawa pojazdu/obrócenie', v: '2 zakładników' }
+                    ]
+                  },
+                  {
+                    title: 'Napad na bankomat', limits: 'Limit 4 PD vs 2 Crime',
+                    desc: 'Max. 2 jednostki pościgowe, zakaz pobierania EAGLE. Tutaj zwykle nie dojdzie do negocjacji, procedurowo oczekujemy i dajemy szanse napastnikom wsiąść do pojazdu i rozpoczęcie pościgu. Nie wybiegamy jak bydło z tazerami lub kopytami.'
+                  },
+                  {
+                    title: 'Sprzedaż narkotyków', limits: 'Na każdą osobę 2 FP (Max. 10 FP)',
+                    desc: 'Od 1 do 5 jednostek (w zależności od grupy). Zawsze staramy się porozmawiać, zamiast przeprowadzenia zatrzymania z tzw. "buta". Zamaskowanie to podstawa do przeszukania, ale to tylko gra – odpuszczenie raz czy dwa nikomu nie zaszkodzi. Jeżeli obywatel ucieka, procedurowo czekamy i dajemy szansę na pościg. Nie wybiegamy jak bydło z tazerami.'
+                  },
+                  {
+                    title: 'Napad na bank Fleeca', limits: 'Limit 8 PD vs 5 Crime',
+                    desc: 'Max. 4 jednostki pościgowe, max. 1 EAGLE.',
+                    negos: [
+                      { t: 'Wolny odjazd', v: '1 zakładnik' },
+                      { t: 'Wolny odjazd (poszukiwany pojazd)', v: '2 zakładników' },
+                      { t: 'Wolny odjazd (kod czerwony+)', v: '2 zakładników' },
+                      { t: 'Brak kolczatek (całkowity)', v: '2 zakładników' },
+                      { t: 'Brak kolczatek (za każde 1.5 minuty)', v: '1 zakładnik' },
+                      { t: 'Naprawa pojazdu/obrócenie', v: '3 zakładników' },
+                      { t: 'Całkowity brak EAGLE', v: '4 zakładników' },
+                      { t: 'Brak EAGLE (za każde 1.5 minuty)', v: '1 zakładnik' }
+                    ]
+                  },
+                  {
+                    title: 'Napad na Jubiler', limits: 'Limit 12 PD vs 8 Crime',
+                    desc: 'Max. 6 jednostek pościgowych, max. 1 EAGLE.',
+                    negos: [
+                      { t: 'Wolny odjazd', v: '1 zakładnik' },
+                      { t: 'Wolny odjazd (poszukiwany pojazd)', v: '2 zakładników' },
+                      { t: 'Wolny odjazd (kod czerwony+)', v: '2 zakładników' },
+                      { t: 'Brak kolczatek (całkowity)', v: '3 zakładników' },
+                      { t: 'Brak kolczatek (za każde 1.5 minuty)', v: '1 zakładnik' },
+                      { t: 'Naprawa pojazdu/obrócenie', v: '4 zakładników' },
+                      { t: 'Całkowity brak EAGLE', v: '5 zakładników' },
+                      { t: 'Brak EAGLE (za każde 1.5 minuty)', v: '1 zakładnik' }
+                    ]
+                  },
+                  {
+                    title: 'Napad na Pacyfik', limits: 'Limit 12 PD vs 8 Crime',
+                    desc: 'Max. 6 jednostek pościgowych, max. 2 EAGLE. Max. 4 operatorów S.W.A.T.',
+                    negos: [
+                      { t: 'Wolny odjazd', v: '2 zakładników' },
+                      { t: 'Wolny odjazd (poszukiwany pojazd)', v: '3 zakładników' },
+                      { t: 'Wolny odjazd (kod czerwony+)', v: '3 zakładników' },
+                      { t: 'Brak kolczatek (całkowity)', v: '3 zakładników' },
+                      { t: 'Brak kolczatek (za każde 1.5 minuty)', v: '1 zakładnik' },
+                      { t: 'Naprawa pojazdu/obrócenie', v: '4 zakładników' },
+                      { t: 'Całkowity brak EAGLE', v: '6 zakładników' },
+                      { t: 'Brak EAGLE (za każde 1.5 minuty)', v: '1 zakładnik' }
+                    ]
+                  }
+                ].map((item, idx) => (
+                  <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem 1.5rem', borderRadius: '8px', borderLeft: '3px solid var(--gold)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                      <strong style={{ color: '#fff', fontSize: '1.1rem' }}>{item.title}</strong>
+                      <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: 'var(--gold)', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem' }}>{item.limits}</span>
+                    </div>
+                    <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)', fontSize: '0.95rem' }}>{item.desc}</p>
+                    
+                    {item.negos && (
+                      <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '6px' }}>
+                        <strong style={{ display: 'block', color: '#e2e8f0', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Przyjmowanie negocjacji:</strong>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '0.5rem' }}>
+                          {item.negos.map((n, i) => (
+                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.25rem' }}>
+                              <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{n.t}</span>
+                              <strong style={{ color: '#60a5fa', fontSize: '0.85rem' }}>{n.v}</strong>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariant} className="glass-card">
+              <h3 style={{ marginTop: 0, color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem' }}>
+                <Car size={20} /> Procedury Pościgów w Pojazdach i na Patykach
+              </h3>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1.5rem' }}>
+                
+                {/* Kody Pościgowe */}
+                <div>
+                  <h4 style={{ color: '#fff', marginBottom: '1rem', fontSize: '1.1rem' }}>Kody Pościgowe</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <div style={{ borderLeft: '4px solid #22c55e', padding: '1rem', background: 'rgba(34, 197, 94, 0.05)', borderRadius: '0 8px 8px 0' }}>
+                      <strong style={{ color: '#22c55e', fontSize: '1.1rem' }}>KOD ZIELONY</strong>
+                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Brak kodu. Zakaz jakichkolwiek manewrów.</p>
+                    </div>
+
+                    <div style={{ borderLeft: '4px solid #eab308', padding: '1rem', background: 'rgba(234, 179, 8, 0.05)', borderRadius: '0 8px 8px 0' }}>
+                      <strong style={{ color: '#eab308', fontSize: '1.1rem' }}>KOD ŻÓŁTY</strong>
+                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Pościg trwa min. 5 min i stwarza zagrożenie lub pojazd nagminnie łamie przepisy w terenie zabudowanym / ponad 2x przekracza prędkość.</p>
+                      <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                        <li>Blokady nieruchome (miasto i poza nim)</li>
+                        <li>PIT/BOX/RAM poza miastem do 80 km/h</li>
+                        <li>Kolczatki poza miastem</li>
+                      </ul>
+                    </div>
+
+                    <div style={{ borderLeft: '4px solid #ef4444', padding: '1rem', background: 'rgba(239, 68, 68, 0.05)', borderRadius: '0 8px 8px 0' }}>
+                      <strong style={{ color: '#ef4444', fontSize: '1.1rem' }}>KOD CZERWONY</strong>
+                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Po 10 min, zmiana pojazdu, dosiada się pasażer. Realne zagrożenie dla pieszych, jazda po chodniku, strzały z pojazdu.</p>
+                      <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                        <li>Blokady nieruchome (miasto i poza nim)</li>
+                        <li>PIT/BOX/RAM poza miastem do 160 km/h</li>
+                        <li>PIT/BOX/RAM w mieście do 80 km/h</li>
+                        <li>Kolczatki wszędzie</li>
+                      </ul>
+                      <div style={{ marginTop: '0.5rem', background: 'rgba(239, 68, 68, 0.1)', padding: '0.5rem', borderRadius: '4px', display: 'inline-block', fontSize: '0.85rem' }}>
+                        <strong style={{ color: '#fca5a5' }}>⚠ Strzały w opony — autoryzacja SV oddzielnie!</strong>
+                      </div>
+                    </div>
+
+                    <div style={{ borderLeft: '4px solid #000', padding: '1rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '0 8px 8px 0' }}>
+                      <strong style={{ color: '#fff', fontSize: '1.1rem' }}>KOD CZARNY</strong>
+                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Potwierdzone strzały w kierunku FP. Pojazd SPECJALNIE potrącił pieszych/funkcjonariuszy. Realne zagrożenie życia.</p>
+                      <ul style={{ margin: '0 0 1rem 0', paddingLeft: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                        <li>Blokady wszędzie</li>
+                        <li>PIT/BOX/RAM wszędzie bez limitu prędkości</li>
+                        <li>Kolczatki wszędzie</li>
+                        <li>Strzały w kierunku kierowcy</li>
+                      </ul>
+                      <div style={{ background: '#000', border: '1px solid #333', padding: '0.5rem', borderRadius: '4px', fontSize: '0.9rem' }}>
+                        <strong style={{ color: '#ef4444' }}>⬛ ZATRZYMAĆ ZA WSZELKĄ CENĘ</strong> <span style={{ color: '#9ca3af' }}>(Uwaga! Nie oznacza to że można wbijać gościa w ścianę i zachowywać się jak zwierzęta)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr style={{ borderColor: 'rgba(255,255,255,0.05)', margin: '1rem 0' }} />
+
+                {/* Pościg na patykach */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #3b82f6' }}>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <Activity size={18} /> Pościg na Patykach
+                    </h4>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                      <li>Gdy uciekający ma broń palną, dajemy co najmniej 1 ostrzeżenie o jej schowaniu przed oddaniem strzałów.</li>
+                      <li>Gdy ewidentnie uciekają w stronę tzw. "Tower Defensa", można oddać strzały od razu.</li>
+                      <li>Podczas zwykłej gonitwy (bez zagrożenia życia), nie korzystamy z tazera. Należy obalić obywatela pałką policyjną lub (SHIFT + E).</li>
+                      <li>Tazer używamy dopiero po upływie minimum <strong>5 minut</strong> pościgu.</li>
+                    </ul>
+                  </div>
+
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '8px', borderTop: '3px solid #0ea5e9' }}>
+                    <h4 style={{ margin: '0 0 1rem 0', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <Siren size={18} /> Ucieczka do Wody
+                    </h4>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                      <li>Niezależnie od akcji, <strong>kategoryczny zakaz oddawania strzałów</strong> w stronę uciekinierów w wodzie (chyba, że mieli już nałożony Kod Czarny).</li>
+                      <li>Zakaz używania tazera w wodzie (wyjątek: pościg jest nużąco długi i brak innego planu ucieczki). Można użyć pięści w celu obezwładnienia.</li>
+                      <li>Można pobrać <strong>EAGLE</strong> niezależnie od akcji i negocjacji.</li>
+                      <li>Zalecane jest wezwanie jednostki <strong>Water Unit</strong> w celu pobrania łodzi.</li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </motion.div>
+        );
 
       default:
         return null;
