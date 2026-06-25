@@ -327,13 +327,19 @@ function KnowledgeBase() {
             {/* HIGH COMMAND */}
             <motion.div variants={itemVariant} className="glass-card" style={{ background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(0,0,0,0.5))', border: '1px solid rgba(234, 179, 8, 0.4)', borderTop: '4px solid #eab308', padding: '2.5rem', display: 'flex', alignItems: 'center', gap: '2rem' }}>
               <img src="/hc_logo.png" alt="High Command" style={{ width: '130px', height: '130px', objectFit: 'contain', filter: 'drop-shadow(0 0 25px rgba(234, 179, 8, 0.6))' }} />
-              <div>
+              <div style={{ flex: 1 }}>
                 <h4 style={{ color: '#eab308', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '1.8rem', textTransform: 'uppercase', letterSpacing: '2px', textShadow: '0 0 10px rgba(234, 179, 8, 0.5)' }}>
                   Zarząd Główny (High Command)
                 </h4>
-                <p style={{ margin: 0, color: '#fef08a', fontSize: '1.15rem', lineHeight: '1.7' }}>
+                <p style={{ margin: '0 0 1.2rem 0', color: '#fef08a', fontSize: '1.15rem', lineHeight: '1.7' }}>
                   Najwyższy organ decyzyjny departamentu (stopnie 01-05). Obejmuje ścisłe dowództwo, które sprawuje <strong>absolutną i nadrzędną władzę</strong> nad każdym departamentem, wydziałem operacyjnym oraz agencją federalną działającą na terenie stanu. Decyzje High Command są ostateczne.
                 </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>01 Lucas White Kurek</span>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>02 Jeremy Jones Kieras</span>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>03 Daniel Cake MrPlacki</span>
+                  <span style={{ background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', border: '1px solid rgba(234, 179, 8, 0.4)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>04 Dustin Moreno monke</span>
+                </div>
               </div>
             </motion.div>
 
@@ -398,6 +404,32 @@ function KnowledgeBase() {
                     {[
                       { tag: 'FIB', name: 'Federal Investigation Bureau', desc: 'Rozpracowywanie zorganizowanych grup przestępczych, przeciwdziałanie terroryzmowi oraz nadzór nad bezpieczeństwem narodowym.', img: '/fib_logo.png', color: '#ef4444' },
                       { tag: 'USMS', name: 'United States Marshal Service', desc: 'Zapewnienie ochrony ważnych świadków koronnych, poszukiwanie groźnych uciekinierów oraz transport więźniów federalnych.', img: '/usms_logo.png', color: '#f43f5e' }
+                    ].map((div, idx) => (
+                      <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '8px', borderLeft: `3px solid ${div.color}`, padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}>
+                         <div style={{ width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                           <img src={div.img} alt={div.tag} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 0 10px ${div.color}50)` }} />
+                         </div>
+                         <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
+                               <strong style={{ color: div.color }}>{div.tag}</strong>
+                               <span style={{ color: '#fff', fontSize: '1.05rem' }}>{div.name}</span>
+                            </div>
+                            <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5' }}>{div.desc}</p>
+                         </div>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+
+               <div>
+                  <h4 style={{ color: '#3b82f6', borderBottom: '2px solid rgba(59, 130, 246, 0.3)', paddingBottom: '0.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    <Shield size={20} /> Departamenty Stanowe i Ratunkowe
+                  </h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {[
+                      { tag: 'DOJ', name: 'Department of Justice', desc: 'Departament Sprawiedliwości. Zajmuje się nadzorem prawnym nad departamentami, wydawaniem licencji na broń oraz prowadzeniem spraw sądowych.', img: '/doj_logo.png', color: '#eab308' },
+                      { tag: 'LSFD', name: 'Los Santos Fire Department', desc: 'Straż Pożarna Los Santos. Odpowiada za ratownictwo techniczne, gaszenie pożarów oraz zabezpieczanie miejsc wypadków.', img: '/lsfd_logo.png', color: '#ef4444' },
+                      { tag: 'EMS', name: 'Emergency Medical Service', desc: 'Pogotowie Ratunkowe. Gwarantuje pierwszą pomoc i transport medyczny na terenie całego stanu San Andreas.', img: '/ems_logo.png', color: '#3b82f6' }
                     ].map((div, idx) => (
                       <div key={idx} style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '8px', borderLeft: `3px solid ${div.color}`, padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}>
                          <div style={{ width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
