@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Book, Shield, Users, Radio, AlertTriangle, Crosshair, Map, ShieldAlert, FileText, ChevronRight, Tablet, Car, HandMetal, AlertCircle, Banknote, HelpCircle, GraduationCap, ChevronDown, Activity, Siren, ClipboardList } from 'lucide-react';
+import { Book, Shield, Users, Radio, AlertTriangle, Crosshair, Map, ShieldAlert, FileText, ChevronRight, Tablet, Car, HandMetal, AlertCircle, Banknote, HelpCircle, GraduationCap, ChevronDown, Activity, Siren, ClipboardList, Check } from 'lucide-react';
 
 const SECTIONS = [
   { id: 'zasady', title: 'Podstawowe Zasady', icon: Shield },
@@ -910,51 +910,49 @@ function KnowledgeBase() {
 
       case 'miranda':
         return (
-          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+          <motion.div variants={containerVariant} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
-            <motion.div variants={itemVariant} style={{ background: 'linear-gradient(145deg, #1a1a1a, #0a0a0a)', borderRadius: '16px', padding: '3.5rem', width: '100%', maxWidth: '800px', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 0 100px rgba(0,0,0,0.5)', position: 'relative', overflow: 'hidden' }}>
-              {/* Texture Overlay */}
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundImage: 'url("https://www.transparenttextures.com/patterns/leather.png")', opacity: 0.3, mixBlendMode: 'overlay', pointerEvents: 'none' }}></div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
               
-              <div style={{ position: 'absolute', top: '-10%', left: '-10%', opacity: 0.03, transform: 'rotate(-15deg)', pointerEvents: 'none' }}>
-                <Shield size={500} />
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-                <div style={{ background: 'linear-gradient(135deg, #eab308, #ca8a04)', padding: '15px', borderRadius: '50%', marginBottom: '1.5rem', boxShadow: '0 0 30px rgba(234, 179, 8, 0.2)' }}>
-                   <ShieldAlert size={40} color="#111" />
+              {/* Left Side: Visual / Title */}
+              <motion.div variants={itemVariant} className="glass-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '4rem 2rem', background: 'linear-gradient(to bottom right, rgba(234, 179, 8, 0.05), rgba(0,0,0,0.5))', border: '1px solid rgba(234, 179, 8, 0.2)' }}>
+                <div style={{ background: 'rgba(234, 179, 8, 0.1)', padding: '2rem', borderRadius: '50%', marginBottom: '2rem', boxShadow: '0 0 50px rgba(234, 179, 8, 0.2)' }}>
+                  <ShieldAlert size={80} color="var(--gold)" />
                 </div>
-                
-                <h2 style={{ margin: '0 0 0.5rem 0', color: '#fef08a', fontSize: '2.5rem', fontFamily: 'serif', letterSpacing: '2px', textTransform: 'uppercase', textAlign: 'center', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Miranda Warning</h2>
-                <div style={{ width: '100px', height: '2px', background: 'linear-gradient(90deg, transparent, #eab308, transparent)', marginBottom: '3rem' }}></div>
+                <h2 style={{ fontSize: '2.5rem', margin: '0 0 1rem 0', color: '#fff', textTransform: 'uppercase', letterSpacing: '2px' }}>Prawa <span style={{ color: 'var(--gold)' }}>Mirandy</span></h2>
+                <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '300px', lineHeight: '1.6' }}>
+                  Oficjalna formułka zatrzymania departamentu Los Santos.
+                </p>
+              </motion.div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', color: '#e5e7eb', fontSize: '1.3rem', lineHeight: '1.8', fontFamily: 'serif' }}>
-                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #eab308' }}>
-                    <strong>1.</strong> Masz prawo zachować milczenie. Wszystko co powiesz może i zostanie wykorzystane przeciwko Tobie w sądzie.
-                  </p>
-                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #eab308' }}>
-                    <strong>2.</strong> Masz prawo do adwokata. Jeśli Cię na niego nie stać, zostanie Ci takowy przydzielony z urzędu, o ile jest dostępny w mieście.
-                  </p>
-                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #eab308' }}>
-                    <strong>3.</strong> Masz prawo do telefonu w obecności funkcjonariusza. Trwa on maksymalnie 2,5 minuty, ilość połączeń nieograniczona, funkcjonariusz musi słyszeć rozmowę.
-                  </p>
-                  <p style={{ margin: 0, paddingLeft: '1.5rem', borderLeft: '3px solid #ef4444' }}>
-                    <strong>4.</strong> Jeśli będziesz obrażał funkcjonariuszy, Twoje prawa zostaną Ci odebrane.
-                  </p>
-                </div>
-
-                <div style={{ width: '100%', marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                  <span>LSPD Official Standard Form</span>
-                  <span>Form #314-A</span>
-                </div>
-              </div>
-            </motion.div>
+              {/* Right Side: The Rights */}
+              <motion.div variants={itemVariant} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {[
+                  { id: 1, text: 'Masz prawo zachować milczenie. Wszystko, co powiesz, może i zostanie wykorzystane przeciwko Tobie w sądzie.' },
+                  { id: 2, text: 'Masz prawo do adwokata. Jeśli Cię na niego nie stać, zostanie Ci takowy przydzielony z urzędu, o ile jest dostępny w mieście.' },
+                  { id: 3, text: 'Masz prawo do telefonu w obecności funkcjonariusza. Trwa on maksymalnie 2,5 minuty, ilość połączeń nieograniczona, funkcjonariusz musi słyszeć rozmowę.' },
+                  { id: 4, text: 'Jeśli będziesz obrażał funkcjonariuszy, Twoje prawa zostaną Ci odebrane.', color: '#ef4444' }
+                ].map((right, idx) => (
+                  <div key={idx} className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.5rem', borderLeft: `4px solid ${right.color || 'var(--gold)'}`, background: right.color ? 'rgba(239, 68, 68, 0.05)' : undefined }}>
+                    <div style={{ fontSize: '3rem', fontWeight: 'bold', color: right.color ? 'rgba(239, 68, 68, 0.2)' : 'rgba(234, 179, 8, 0.2)', lineHeight: '1' }}>
+                      0{right.id}
+                    </div>
+                    <p style={{ margin: 0, color: '#e2e8f0', fontSize: '1.1rem', lineHeight: '1.6' }}>
+                      {right.text}
+                    </p>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
             
-            <motion.div variants={itemVariant} style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '1.5rem', borderRadius: '8px', maxWidth: '800px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <AlertTriangle size={30} color="#ef4444" style={{ flexShrink: 0 }} />
-              <p style={{ margin: 0, color: '#fca5a5', fontSize: '0.95rem', lineHeight: '1.5' }}>
-                <strong style={{ color: '#ef4444' }}>WAŻNE:</strong> Prawa Mirandy muszą zostać odczytane w sposób w pełni słyszalny i zrozumiały dla zatrzymanego, <strong>zanim</strong> zostaną mu zadane jakiekolwiek pytania mogące posłużyć jako dowód w sądzie (przesłuchanie).
-              </p>
+            <motion.div variants={itemVariant} className="glass-card" style={{ background: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)', display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '1.5rem' }}>
+              <AlertTriangle size={24} color="#ef4444" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <strong style={{ color: '#ef4444', display: 'block', marginBottom: '0.3rem', fontSize: '1.1rem' }}>Zasada poprawnego odczytania</strong>
+                <p style={{ margin: 0, color: '#fca5a5', lineHeight: '1.6' }}>
+                  Prawa Mirandy muszą zostać odczytane w sposób <strong>w pełni słyszalny i zrozumiały</strong> dla zatrzymanego, zanim zostaną mu zadane jakiekolwiek pytania mogące posłużyć jako dowód w sądzie.
+                </p>
+              </div>
             </motion.div>
 
           </motion.div>
@@ -1955,11 +1953,23 @@ function KnowledgeBase() {
                   },
                   {
                     title: 'Napad na Truckera', limits: 'Limit 5 PD vs 3 Crime',
-                    desc: 'Zakaz kampienia na wyjazdach z miasta, trasie docelowej i miejscach zwrotu pojazdu. Prowadzimy normalną próbę zatrzymania. Jeśli jest dobre RP, dajemy się akcji prowadzić (nie zawsze trzeba od razu pitować). Max. 2 jednostki pościgowe, zakaz pobierania EAGLE oraz MARY.'
+                    rules: [
+                      'Kategoryczny zakaz kampienia (wyjazdy, trasa, zwroty).',
+                      'Wymagana standardowa próba zatrzymania drogowego.',
+                      'Wspieramy dobre RP! Nie zawsze musisz od razu pitować.',
+                      'Max. 2 jednostki pościgowe.',
+                      'Zakaz wsparcia EAGLE oraz MARY.'
+                    ]
                   },
                   {
                     title: 'Okradanie domów', limits: 'Limit 4 PD vs 2 Crime',
-                    desc: 'Zakaz kampienia na ośkach. Nakaz podejścia do normalnej rozmowy (jeśli nie uciekają). Kreatywne wytłumaczenie RP = gramy w to. Jeśli dojdzie do ucieczki: max. 2 jednostki pościgowe, zakaz EAGLE i MARY. Odpuszczenie raz czy dwa z błahostką nikomu nie zaszkodzi.'
+                    rules: [
+                      'Zakaz kampienia na ośkach.',
+                      'Nakaz podjęcia normalnej rozmowy (jeśli nie uciekają).',
+                      'Kreatywne tłumaczenie = gramy w to. Odpuszczenie to nie grzech.',
+                      'W razie pościgu: max. 2 jednostki pościgowe.',
+                      'Zakaz wsparcia EAGLE oraz MARY.'
+                    ]
                   },
                   {
                     title: 'Sprzedaż narkotyków', limits: 'Max. 10 FP (2 FP / osoba)',
@@ -2013,7 +2023,16 @@ function KnowledgeBase() {
                       <strong style={{ color: '#fff', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><AlertCircle size={18} color="var(--gold)" /> {item.title}</strong>
                       <span style={{ background: 'rgba(234, 179, 8, 0.1)', color: 'var(--gold)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', border: '1px solid rgba(234, 179, 8, 0.2)' }}>{item.limits}</span>
                     </div>
-                    <p style={{ margin: '0 0 1.5rem 0', color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
+                    
+                    {item.desc && <p style={{ margin: '0 0 1.5rem 0', color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>}
+                    
+                    {item.rules && (
+                      <ul style={{ margin: item.desc ? '-0.5rem 0 1.5rem 0' : '0 0 1.5rem 0', paddingLeft: '1.2rem', color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.8', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        {item.rules.map((rule, i) => (
+                          <li key={i}><strong style={{ color: '#e2e8f0' }}>{rule}</strong></li>
+                        ))}
+                      </ul>
+                    )}
                     
                     {item.negos && (
                       <div>
@@ -2042,48 +2061,75 @@ function KnowledgeBase() {
                 
                 {/* Kody Pościgowe */}
                 <div>
-                  <h4 style={{ color: '#fff', marginBottom: '1rem', fontSize: '1.1rem' }}>Kody Pościgowe</h4>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <div style={{ borderLeft: '4px solid #22c55e', padding: '1rem', background: 'rgba(34, 197, 94, 0.05)', borderRadius: '0 8px 8px 0' }}>
-                      <strong style={{ color: '#22c55e', fontSize: '1.1rem' }}>KOD ZIELONY</strong>
-                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Brak kodu. Zakaz jakichkolwiek manewrów.</p>
-                    </div>
-
-                    <div style={{ borderLeft: '4px solid #eab308', padding: '1rem', background: 'rgba(234, 179, 8, 0.05)', borderRadius: '0 8px 8px 0' }}>
-                      <strong style={{ color: '#eab308', fontSize: '1.1rem' }}>KOD ŻÓŁTY</strong>
-                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Pościg trwa min. 5 min i stwarza zagrożenie lub pojazd nagminnie łamie przepisy w terenie zabudowanym / ponad 2x przekracza prędkość.</p>
-                      <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                        <li>Blokady nieruchome (miasto i poza nim)</li>
-                        <li>PIT/BOX/RAM poza miastem do 80 km/h</li>
-                        <li>Kolczatki poza miastem</li>
-                      </ul>
-                    </div>
-
-                    <div style={{ borderLeft: '4px solid #ef4444', padding: '1rem', background: 'rgba(239, 68, 68, 0.05)', borderRadius: '0 8px 8px 0' }}>
-                      <strong style={{ color: '#ef4444', fontSize: '1.1rem' }}>KOD CZERWONY</strong>
-                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Po 10 min, zmiana pojazdu, dosiada się pasażer. Realne zagrożenie dla pieszych, jazda po chodniku, strzały z pojazdu.</p>
-                      <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                        <li>Blokady nieruchome (miasto i poza nim)</li>
-                        <li>PIT/BOX/RAM poza miastem do 160 km/h</li>
-                        <li>PIT/BOX/RAM w mieście do 80 km/h</li>
-                        <li>Kolczatki wszędzie</li>
-                      </ul>
-                      <div style={{ marginTop: '0.5rem', background: 'rgba(239, 68, 68, 0.1)', padding: '0.5rem', borderRadius: '4px', display: 'inline-block', fontSize: '0.85rem' }}>
-                        <strong style={{ color: '#fca5a5' }}>⚠ Strzały w opony — autoryzacja SV oddzielnie!</strong>
+                  <h4 style={{ color: '#fff', marginBottom: '1.5rem', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Siren size={20} color="var(--lspd-blue)" /> Klasyfikacja Kodów Pościgowych
+                  </h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
+                    
+                    {/* ZIELONY */}
+                    <div style={{ background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(0,0,0,0) 100%)', borderRadius: '12px', border: '1px solid rgba(34, 197, 94, 0.2)', overflow: 'hidden' }}>
+                      <div style={{ background: 'rgba(34, 197, 94, 0.1)', padding: '1rem', borderBottom: '1px solid rgba(34, 197, 94, 0.2)' }}>
+                        <strong style={{ color: '#4ade80', fontSize: '1.2rem', letterSpacing: '1px' }}>KOD ZIELONY</strong>
+                      </div>
+                      <div style={{ padding: '1.2rem' }}>
+                        <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)' }}>Brak kodu. Pościg na etapie początkowym lub nie stwarza zagrożenia.</p>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ef4444', fontSize: '0.9rem', background: 'rgba(239, 68, 68, 0.1)', padding: '0.5rem', borderRadius: '4px' }}>
+                          <AlertCircle size={16} /> <strong>Zakaz jakichkolwiek manewrów!</strong>
+                        </div>
                       </div>
                     </div>
 
-                    <div style={{ borderLeft: '4px solid #000', padding: '1rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '0 8px 8px 0' }}>
-                      <strong style={{ color: '#fff', fontSize: '1.1rem' }}>KOD CZARNY</strong>
-                      <p style={{ margin: '0.5rem 0', color: 'var(--text-muted)' }}>Potwierdzone strzały w kierunku FP. Pojazd SPECJALNIE potrącił pieszych/funkcjonariuszy. Realne zagrożenie życia.</p>
-                      <ul style={{ margin: '0 0 1rem 0', paddingLeft: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                        <li>Blokady wszędzie</li>
-                        <li>PIT/BOX/RAM wszędzie bez limitu prędkości</li>
-                        <li>Kolczatki wszędzie</li>
-                        <li>Strzały w kierunku kierowcy</li>
-                      </ul>
-                      <div style={{ background: '#000', border: '1px solid #333', padding: '0.5rem', borderRadius: '4px', fontSize: '0.9rem' }}>
-                        <strong style={{ color: '#ef4444' }}>⬛ ZATRZYMAĆ ZA WSZELKĄ CENĘ</strong> <span style={{ color: '#9ca3af' }}>(Uwaga! Nie oznacza to że można wbijać gościa w ścianę i zachowywać się jak zwierzęta)</span>
+                    {/* ŻÓŁTY */}
+                    <div style={{ background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.05) 0%, rgba(0,0,0,0) 100%)', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.2)', overflow: 'hidden' }}>
+                      <div style={{ background: 'rgba(234, 179, 8, 0.1)', padding: '1rem', borderBottom: '1px solid rgba(234, 179, 8, 0.2)' }}>
+                        <strong style={{ color: '#fde047', fontSize: '1.2rem', letterSpacing: '1px' }}>KOD ŻÓŁTY</strong>
+                      </div>
+                      <div style={{ padding: '1.2rem' }}>
+                        <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)' }}>Pościg trwa min. <strong>5 min</strong> i stwarza zagrożenie lub pojazd nagminnie łamie przepisy / 2x przekracza prędkość.</p>
+                        <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#cbd5e1', fontSize: '0.9rem' }}>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Blokady nieruchome (wszędzie)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> PIT/BOX/RAM (poza miastem do 80 km/h)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Kolczatki (poza miastem)</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* CZERWONY */}
+                    <div style={{ background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(0,0,0,0) 100%)', borderRadius: '12px', border: '1px solid rgba(239, 68, 68, 0.2)', overflow: 'hidden' }}>
+                      <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '1rem', borderBottom: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                        <strong style={{ color: '#fca5a5', fontSize: '1.2rem', letterSpacing: '1px' }}>KOD CZERWONY</strong>
+                      </div>
+                      <div style={{ padding: '1.2rem' }}>
+                        <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)' }}>Po <strong>10 min</strong>, zmiana pojazdu, dosiada się pasażer. Realne zagrożenie (jazda po chodniku, strzały z pojazdu).</p>
+                        <ul style={{ margin: '0 0 1rem 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#cbd5e1', fontSize: '0.9rem' }}>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Blokady nieruchome (wszędzie)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> PIT/BOX/RAM (poza miastem do 160 km/h)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> PIT/BOX/RAM (w mieście do 80 km/h)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Kolczatki (wszędzie)</li>
+                        </ul>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fca5a5', fontSize: '0.85rem', background: 'rgba(239, 68, 68, 0.1)', padding: '0.5rem', borderRadius: '4px' }}>
+                          <AlertTriangle size={14} /> <strong>Strzały w opony — autoryzacja SV!</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* CZARNY */}
+                    <div style={{ background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0,0,0,0) 100%)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.2)', overflow: 'hidden' }}>
+                      <div style={{ background: 'rgba(255, 255, 255, 0.1)', padding: '1rem', borderBottom: '1px solid rgba(255, 255, 255, 0.2)' }}>
+                        <strong style={{ color: '#fff', fontSize: '1.2rem', letterSpacing: '1px' }}>KOD CZARNY</strong>
+                      </div>
+                      <div style={{ padding: '1.2rem' }}>
+                        <p style={{ margin: '0 0 1rem 0', color: 'var(--text-muted)' }}>Potwierdzone strzały w FP. Celowe potrącenie pieszych/FP. Bezpośrednie zagrożenie życia.</p>
+                        <ul style={{ margin: '0 0 1rem 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: '#cbd5e1', fontSize: '0.9rem' }}>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Blokady (wszędzie)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> PIT/BOX/RAM (wszędzie bez limitu prędkości)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Check size={16} color="#4ade80" /> Kolczatki (wszędzie)</li>
+                          <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Crosshair size={16} color="#ef4444" /> Strzały w kierunku kierowcy</li>
+                        </ul>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', color: '#ef4444', fontSize: '0.85rem', background: '#000', border: '1px solid #333', padding: '0.5rem', borderRadius: '4px' }}>
+                          <strong style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><AlertTriangle size={14} /> ZATRZYMAĆ ZA WSZELKĄ CENĘ</strong>
+                          <span style={{ color: '#9ca3af', fontSize: '0.75rem' }}>(Nie oznacza gry non-RP czy taranowania)</span>
+                        </div>
                       </div>
                     </div>
                   </div>
